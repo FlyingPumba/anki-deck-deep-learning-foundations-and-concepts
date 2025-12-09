@@ -163,7 +163,13 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str)
         "fields": {"Front": front, "Back": back},
         "tags": all_tags,
         "options": {
-            "allowDuplicate": False
+            "allowDuplicate": True,
+            "duplicateScope": "deck",
+            "duplicateScopeOptions": {
+                "deckName": deck,
+                "checkChildren": False,
+                "checkAllModels": False
+            }
         }
     }
     note_id = invoke("addNote", {"note": note})
