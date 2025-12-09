@@ -1,0 +1,164 @@
+{
+  "id": "16",
+  "title": "Lesson 16: Continuous Latent Variables",
+  "lesson_title": "Continuous Latent Variables",
+  "objectives": [
+    "Understand Principal Component Analysis (PCA)",
+    "Learn both maximum variance and minimum error formulations of PCA",
+    "Master probabilistic PCA and its advantages",
+    "Understand data whitening and standardization",
+    "Learn about factor analysis and ICA"
+  ],
+  "cards": [
+    {
+      "uid": "16-001",
+      "front": "What is the motivation for continuous latent variable models?",
+      "back": "Many data sets lie close to a **manifold of lower dimensionality** than the data space.\n\nExample: Handwritten digits with varying position and rotation have 3 degrees of freedom (translation + rotation) in a 10,000-pixel space.\n\nThe translation and rotation are **latent variables** not directly observed.",
+      "tags": ["ch16", "latent-variables", "motivation"]
+    },
+    {
+      "uid": "16-002",
+      "front": "What is Principal Component Analysis (PCA)?",
+      "back": "A technique for **linear dimensionality reduction**.\n\nApplications:\n\n- Dimensionality reduction\n- Lossy data compression\n- Feature extraction\n- Data visualization\n\nProjects data onto a lower-dimensional **principal subspace**.",
+      "tags": ["ch16", "pca", "definition"]
+    },
+    {
+      "uid": "16-003",
+      "front": "What are the two equivalent definitions of PCA?",
+      "back": "1. **Maximum variance**: Linear projection that maximizes variance of projected data\n\n2. **Minimum error**: Linear projection that minimizes mean squared distance between points and their projections\n\nBoth lead to same solution: eigenvectors of covariance matrix.",
+      "tags": ["ch16", "pca", "formulations"]
+    },
+    {
+      "uid": "16-004",
+      "front": "How is the first principal component found?",
+      "back": "Maximize projected variance \\( \\mathbf{u}_1^T \\mathbf{S} \\mathbf{u}_1 \\) subject to \\( ||\\mathbf{u}_1|| = 1 \\).\n\nUsing Lagrange multipliers: \\( \\mathbf{S} \\mathbf{u}_1 = \\lambda_1 \\mathbf{u}_1 \\)\n\nSolution: \\( \\mathbf{u}_1 \\) is eigenvector of covariance matrix S with **largest eigenvalue** \\( \\lambda_1 \\).\n\nThe variance equals \\( \\lambda_1 \\).",
+      "tags": ["ch16", "pca", "first-component"]
+    },
+    {
+      "uid": "16-005",
+      "front": "What is the data covariance matrix in PCA?",
+      "back": "\\( \\mathbf{S} = \\frac{1}{N} \\sum_{n=1}^{N} (\\mathbf{x}_n - \\bar{\\mathbf{x}})(\\mathbf{x}_n - \\bar{\\mathbf{x}})^T \\)\n\nwhere \\( \\bar{\\mathbf{x}} = \\frac{1}{N} \\sum_n \\mathbf{x}_n \\) is the sample mean.\n\nThe eigenvectors of S define the principal directions.",
+      "tags": ["ch16", "pca", "covariance"]
+    },
+    {
+      "uid": "16-006",
+      "front": "How is the PCA reconstruction error computed?",
+      "back": "Using M principal components, the error is:\n\n\\( J = \\sum_{i=M+1}^{D} \\lambda_i \\)\n\nThe sum of eigenvalues of **discarded** eigenvectors.\n\nChoose the M eigenvectors with **largest** eigenvalues to minimize J.",
+      "tags": ["ch16", "pca", "error"]
+    },
+    {
+      "uid": "16-007",
+      "front": "What is the PCA approximation of a data point?",
+      "back": "\\( \\tilde{\\mathbf{x}}_n = \\bar{\\mathbf{x}} + \\sum_{i=1}^{M} (\\mathbf{x}_n^T \\mathbf{u}_i - \\bar{\\mathbf{x}}^T \\mathbf{u}_i) \\mathbf{u}_i \\)\n\nCompression: Replace D-dimensional vector with M coefficients \\( (\\mathbf{x}_n^T \\mathbf{u}_i - \\bar{\\mathbf{x}}^T \\mathbf{u}_i) \\).\n\nReconstruction: Linear combination of M eigenvectors plus mean.",
+      "tags": ["ch16", "pca", "reconstruction"]
+    },
+    {
+      "uid": "16-008",
+      "front": "What is data whitening (sphering)?",
+      "back": "Transformation to give data **zero mean** and **identity covariance**:\n\n\\( \\mathbf{y}_n = \\mathbf{L}^{-1/2} \\mathbf{U}^T (\\mathbf{x}_n - \\bar{\\mathbf{x}}) \\)\n\nwhere U contains eigenvectors and L is diagonal matrix of eigenvalues.\n\nResult: Variables become uncorrelated with unit variance.",
+      "tags": ["ch16", "whitening", "preprocessing"]
+    },
+    {
+      "uid": "16-009",
+      "front": "What is data standardization?",
+      "back": "Transform each variable to have **zero mean** and **unit variance**:\n\n\\( z_i = \\frac{x_i - \\mu_i}{\\sigma_i} \\)\n\nUsed when variables have different units or scales.\n\nCorrelation matrix of standardized data has \\( \\rho_{ij} = 1 \\) if perfectly correlated.",
+      "tags": ["ch16", "standardization", "preprocessing"]
+    },
+    {
+      "uid": "16-010",
+      "front": "How to handle PCA when N < D?",
+      "back": "When data points N < dimensionality D:\n\n- At most N-1 non-zero eigenvalues exist\n- Solve eigenproblem for \\( N \\times N \\) matrix \\( \\frac{1}{N} \\mathbf{X} \\mathbf{X}^T \\) instead of \\( D \\times D \\)\n- Cost: \\( O(N^3) \\) instead of \\( O(D^3) \\)\n- Recover eigenvectors via \\( \\mathbf{u}_i = \\frac{1}{\\sqrt{N\\lambda_i}} \\mathbf{X}^T \\mathbf{v}_i \\)",
+      "tags": ["ch16", "pca", "high-dimensional"]
+    },
+    {
+      "uid": "16-011",
+      "front": "What is probabilistic PCA?",
+      "back": "PCA reformulated as a **linear-Gaussian latent variable model**:\n\n\\( p(\\mathbf{z}) = \\mathcal{N}(\\mathbf{z}|\\mathbf{0}, \\mathbf{I}) \\)\n\n\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|\\mathbf{W}\\mathbf{z} + \\boldsymbol{\\mu}, \\sigma^2 \\mathbf{I}) \\)\n\nThe D-dimensional x is a linear transformation of M-dimensional z plus Gaussian noise.",
+      "tags": ["ch16", "probabilistic-pca", "model"]
+    },
+    {
+      "uid": "16-012",
+      "front": "What are the advantages of probabilistic PCA over standard PCA?",
+      "back": "1. **EM algorithm** for efficient computation\n\n2. Handle **missing values** in data\n\n3. Build **mixtures** of PCA models\n\n4. **Compare** with other density models via likelihood\n\n5. **Bayesian** treatment to find dimensionality automatically\n\n6. **Generate samples** from the distribution",
+      "tags": ["ch16", "probabilistic-pca", "advantages"]
+    },
+    {
+      "uid": "16-013",
+      "front": "What is the marginal distribution in probabilistic PCA?",
+      "back": "Marginalizing over z:\n\n\\( p(\\mathbf{x}) = \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}, \\mathbf{C}) \\)\n\nwhere:\n\\( \\mathbf{C} = \\mathbf{W}\\mathbf{W}^T + \\sigma^2 \\mathbf{I} \\)\n\nThis is a Gaussian with constrained covariance structure (low-rank plus diagonal).",
+      "tags": ["ch16", "probabilistic-pca", "marginal"]
+    },
+    {
+      "uid": "16-014",
+      "front": "What is the maximum likelihood solution for probabilistic PCA?",
+      "back": "The MLE for W is:\n\n\\( \\mathbf{W}_{ML} = \\mathbf{U}_M (\\mathbf{L}_M - \\sigma^2 \\mathbf{I})^{1/2} \\mathbf{R} \\)\n\nwhere:\n\n- \\( \\mathbf{U}_M \\): M leading eigenvectors of S\n- \\( \\mathbf{L}_M \\): corresponding eigenvalues\n- R: arbitrary rotation matrix\n\nReduces to standard PCA as \\( \\sigma^2 \\to 0 \\).",
+      "tags": ["ch16", "probabilistic-pca", "mle"]
+    },
+    {
+      "uid": "16-015",
+      "front": "What is factor analysis?",
+      "back": "Similar to probabilistic PCA but with **diagonal** noise covariance:\n\n\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|\\mathbf{W}\\mathbf{z} + \\boldsymbol{\\mu}, \\boldsymbol{\\Psi}) \\)\n\nwhere \\( \\boldsymbol{\\Psi} = \\text{diag}(\\psi_1, \\ldots, \\psi_D) \\).\n\nAllows different noise levels for different observed variables.\n\nNo closed-form MLE; use EM algorithm.",
+      "tags": ["ch16", "factor-analysis", "model"]
+    },
+    {
+      "uid": "16-016",
+      "front": "What is Independent Component Analysis (ICA)?",
+      "back": "Latent variable model where sources are **non-Gaussian and independent**:\n\n\\( \\mathbf{x} = \\mathbf{A}\\mathbf{s} \\)\n\nGoal: Recover independent sources s from observed mixtures x.\n\nRequires non-Gaussian distributions (Gaussian sources are unidentifiable).\n\nApplication: Blind source separation (cocktail party problem).",
+      "tags": ["ch16", "ica", "model"]
+    },
+    {
+      "uid": "16-017",
+      "front": "Why can't ICA recover Gaussian sources?",
+      "back": "For Gaussian distributions, **uncorrelated implies independent**.\n\nAny rotation of independent Gaussians gives independent Gaussians.\n\nThe mixing matrix A is only identifiable up to rotation.\n\nNon-Gaussian distributions break this rotational symmetry.",
+      "tags": ["ch16", "ica", "identifiability"]
+    },
+    {
+      "uid": "16-018",
+      "front": "What is a Kalman filter?",
+      "back": "A linear-Gaussian model for **sequential data** with continuous latent variables.\n\n\\( p(\\mathbf{z}_t | \\mathbf{z}_{t-1}) = \\mathcal{N}(\\mathbf{z}_t | \\mathbf{A}\\mathbf{z}_{t-1}, \\mathbf{Q}) \\)\n\n\\( p(\\mathbf{x}_t | \\mathbf{z}_t) = \\mathcal{N}(\\mathbf{x}_t | \\mathbf{C}\\mathbf{z}_t, \\mathbf{R}) \\)\n\nUsed for tracking, navigation, signal processing.",
+      "tags": ["ch16", "kalman", "sequential"]
+    },
+    {
+      "uid": "16-019",
+      "front": "How does the EM algorithm apply to probabilistic PCA?",
+      "back": "E step: Compute posterior \\( p(\\mathbf{z}_n | \\mathbf{x}_n, \\mathbf{W}, \\sigma^2) \\)\n\nM step: Update W and \\( \\sigma^2 \\) using expected sufficient statistics.\n\nAdvantages:\n\n- Avoids explicit covariance matrix computation\n- Cost O(NM) per iteration instead of O(D^3)\n- Handles missing data naturally",
+      "tags": ["ch16", "em-algorithm", "pca"]
+    },
+    {
+      "uid": "16-020",
+      "front": "What is the relationship between PCA and rotation invariance?",
+      "back": "If M = D (no dimensionality reduction), PCA is just a **rotation** of coordinate axes.\n\nAxes align with principal components (eigenvectors of covariance).\n\nThe MLE solution for probabilistic PCA has **rotational ambiguity** - any rotation R of W gives the same likelihood.",
+      "tags": ["ch16", "pca", "rotation"]
+    },
+    {
+      "uid": "16-021",
+      "front": "Why is the principal subspace projection orthogonal?",
+      "back": "The error vector \\( \\mathbf{x}_n - \\tilde{\\mathbf{x}}_n \\) lies in the space **orthogonal** to principal subspace.\n\nThis minimizes squared projection error because:\n\n- Projected points can move freely within subspace\n- Minimum distance from a point to a subspace is perpendicular distance",
+      "tags": ["ch16", "pca", "projection"]
+    },
+    {
+      "uid": "16-022",
+      "front": "What determines how many principal components to keep?",
+      "back": "Methods to choose M:\n\n1. **Variance explained**: Keep components explaining X% of variance\n\n2. **Elbow method**: Look for \"elbow\" in eigenvalue spectrum\n\n3. **Cross-validation**: Choose M minimizing held-out reconstruction error\n\n4. **Bayesian PCA**: Automatically determines M from data\n\n5. **Application-specific**: Based on downstream task performance",
+      "tags": ["ch16", "pca", "model-selection"]
+    },
+    {
+      "uid": "16-023",
+      "front": "What is the computational complexity of standard PCA?",
+      "back": "Full eigenvector decomposition: \\( O(D^3) \\)\n\nFor M principal components only: \\( O(MD^2) \\) using power method\n\nFor N < D: \\( O(N^3) \\) by using the smaller matrix \\( \\mathbf{X}\\mathbf{X}^T \\)\n\nEM for probabilistic PCA: \\( O(NMD) \\) per iteration",
+      "tags": ["ch16", "pca", "complexity"]
+    },
+    {
+      "uid": "16-024",
+      "front": "What is the generative view of latent variable models?",
+      "back": "To generate a data point:\n\n1. Sample latent variable z from prior p(z)\n\n2. Sample observation x from conditional p(x|z)\n\nThe departures from the manifold are interpreted as **noise**.\n\nThis view enables sampling new data points from the learned distribution.",
+      "tags": ["ch16", "generative", "latent-variables"]
+    },
+    {
+      "uid": "16-025",
+      "front": "How do nonlinear latent variable models extend PCA?",
+      "back": "Replace linear mapping with **neural network**:\n\n\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|f(\\mathbf{z}; \\theta), \\sigma^2 \\mathbf{I}) \\)\n\nwhere f is a deep neural network.\n\nExamples:\n\n- Variational Autoencoders (VAEs)\n- Normalizing Flows\n- Diffusion Models\n\nCan model complex nonlinear manifolds.",
+      "tags": ["ch16", "nonlinear", "deep-learning"]
+    }
+  ]
+}

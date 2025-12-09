@@ -1,0 +1,116 @@
+{
+  "id": "17",
+  "title": "Lesson 17: Generative Adversarial Networks",
+  "lesson_title": "Generative Adversarial Networks",
+  "objectives": [
+    "Understand the GAN framework and adversarial training",
+    "Learn the GAN loss function and training procedure",
+    "Understand mode collapse and training challenges",
+    "Learn about Wasserstein GAN and other improvements",
+    "Understand CycleGAN and image-to-image translation"
+  ],
+  "cards": [
+    {
+      "uid": "17-001",
+      "front": "What is a Generative Adversarial Network (GAN)?",
+      "back": "A generative model with two competing neural networks:\n\n1. **Generator** g(z, w): Transforms latent z to data x\n2. **Discriminator** d(x, \\( \\phi \\)): Distinguishes real from fake samples\n\nThe generator tries to fool the discriminator; the discriminator tries to correctly classify real vs synthetic.",
+      "tags": ["ch17", "gan", "architecture"]
+    },
+    {
+      "uid": "17-002",
+      "front": "What is the GAN loss function?",
+      "back": "Cross-entropy for binary classification:\n\n\\( E = -\\frac{1}{N_{real}} \\sum_{real} \\ln d(x_n) - \\frac{1}{N_{synth}} \\sum_{synth} \\ln(1 - d(g(z_n))) \\)\n\n**Discriminator**: Minimizes E (correctly classify real/fake)\n\n**Generator**: Maximizes E (fool the discriminator)",
+      "tags": ["ch17", "gan", "loss"]
+    },
+    {
+      "uid": "17-003",
+      "front": "How is adversarial training implemented in GANs?",
+      "back": "Gradient descent with **opposite signs**:\n\n\\( \\Delta \\phi = -\\lambda \\nabla_\\phi E \\) (minimize for discriminator)\n\n\\( \\Delta w = +\\lambda \\nabla_w E \\) (maximize for generator)\n\nAlternate between updating discriminator and generator.\n\nThis is a **zero-sum game** - gain for one is loss for other.",
+      "tags": ["ch17", "gan", "training"]
+    },
+    {
+      "uid": "17-004",
+      "front": "What happens when a GAN is perfectly trained?",
+      "back": "The generator distribution **matches the data distribution exactly**.\n\nThe discriminator outputs 0.5 for all inputs (cannot distinguish real from fake).\n\nOnce trained, discard discriminator; use generator to sample new data.",
+      "tags": ["ch17", "gan", "convergence"]
+    },
+    {
+      "uid": "17-005",
+      "front": "What is mode collapse in GANs?",
+      "back": "A training failure where the generator maps all latent samples to a **subset of valid outputs**.\n\nExtreme case: All outputs are identical.\n\nThe discriminator assigns 0.5 to these outputs, training stops.\n\nExample: GAN trained on digits only generates '3's.",
+      "tags": ["ch17", "mode-collapse", "problem"]
+    },
+    {
+      "uid": "17-006",
+      "front": "Why is GAN training difficult when distributions are very different?",
+      "back": "When generator and data distributions don't overlap:\n\n- Optimal discriminator has **near-zero gradient** in both regions\n- Generator receives almost no learning signal\n- Training proceeds very slowly\n\nSolutions: Smooth discriminator function, instance noise, modified loss.",
+      "tags": ["ch17", "training", "challenges"]
+    },
+    {
+      "uid": "17-007",
+      "front": "Why is \\( \\ln d(g(z)) \\) preferred over \\( \\ln(1-d(g(z))) \\) for generator training?",
+      "back": "When d(g(z)) is close to 0 (generator is bad):\n\n- \\( \\ln(1-d) \\) has **small gradient** near d=0\n- \\( \\ln d \\) has **large gradient** near d=0\n\nThe modified form \\( \\ln d \\) provides stronger training signal when generator is far from optimal.",
+      "tags": ["ch17", "gan", "loss-modification"]
+    },
+    {
+      "uid": "17-008",
+      "front": "What is the Wasserstein GAN?",
+      "back": "A GAN variant using **Wasserstein distance** (earth mover's distance) instead of cross-entropy.\n\nMeasures: Total earth moved × mean distance to transform one distribution into another.\n\nImplementation:\n\n- Discriminator has real-valued outputs\n- Weight clipping or gradient penalty to limit discriminator gradient",
+      "tags": ["ch17", "wgan", "wasserstein"]
+    },
+    {
+      "uid": "17-009",
+      "front": "What is a conditional GAN?",
+      "back": "A GAN that samples from conditional distribution p(x|c).\n\nBoth generator and discriminator take conditioning vector c as additional input.\n\nTraining: Use labeled pairs {\\( x_n, c_n \\)}.\n\nExample: Generate images of specific dog breeds by setting c to breed label.",
+      "tags": ["ch17", "conditional-gan", "architecture"]
+    },
+    {
+      "uid": "17-010",
+      "front": "What is image-to-image translation?",
+      "back": "Learning a mapping between two image domains.\n\nExamples:\n\n- Photos to paintings\n- Day to night scenes\n- Sketches to photos\n- Semantic labels to realistic images\n\nCan be done with paired or unpaired training data.",
+      "tags": ["ch17", "image-translation", "application"]
+    },
+    {
+      "uid": "17-011",
+      "front": "What is CycleGAN?",
+      "back": "A GAN for **unpaired** image-to-image translation.\n\nComponents:\n\n- Two generators: \\( g_X \\) (Y→X), \\( g_Y \\) (X→Y)\n- Two discriminators: \\( d_X \\), \\( d_Y \\)\n\nKey idea: **Cycle consistency** - translating X→Y→X should return original image.",
+      "tags": ["ch17", "cyclegan", "architecture"]
+    },
+    {
+      "uid": "17-012",
+      "front": "What is cycle consistency loss?",
+      "back": "Enforces that round-trip translation recovers the original:\n\n\\( ||g_X(g_Y(x)) - x|| \\) + \\( ||g_Y(g_X(y)) - y|| \\)\n\nPhoto → Painting → Photo should be close to original photo.\n\nPrevents generators from producing arbitrary outputs.",
+      "tags": ["ch17", "cyclegan", "cycle-consistency"]
+    },
+    {
+      "uid": "17-013",
+      "front": "How do GANs progressively grow for high-resolution images?",
+      "back": "**Progressive growing**: Start at low resolution, add layers for finer details.\n\n1. Train generator and discriminator at low resolution\n2. Successively add new layers for higher resolution\n3. Each stage builds on previous\n\nEnables generation of high-quality, high-resolution images.",
+      "tags": ["ch17", "progressive-gan", "high-resolution"]
+    },
+    {
+      "uid": "17-014",
+      "front": "What is representation learning in GANs?",
+      "back": "The latent space becomes organized in **semantically meaningful** ways.\n\nProperties:\n\n- Similar images have nearby latent vectors\n- Directions in latent space correspond to image attributes\n- Arithmetic: 'smiling woman' - 'woman' + 'man' ≈ 'smiling man'\n\nThis is called **disentangled representation**.",
+      "tags": ["ch17", "representation", "latent-space"]
+    },
+    {
+      "uid": "17-015",
+      "front": "What is instance noise in GAN training?",
+      "back": "Adding **Gaussian noise** to both real and synthetic samples.\n\nPurpose: Smooths the discriminator function.\n\nResult: Provides stronger gradient signal when generator distribution is far from data distribution.",
+      "tags": ["ch17", "instance-noise", "training"]
+    },
+    {
+      "uid": "17-016",
+      "front": "What is least-squares GAN?",
+      "back": "A GAN variant that achieves smoother discriminator by:\n\n1. Discriminator produces real-valued output (not probability)\n2. Use sum-of-squares loss instead of cross-entropy\n\nProvides stronger gradient when distributions are different.",
+      "tags": ["ch17", "lsgan", "variant"]
+    },
+    {
+      "uid": "17-017",
+      "front": "Why is there no progress metric during GAN training?",
+      "back": "Unlike standard optimization, the GAN objective can **go up or down** during training.\n\nMinimizing for discriminator, maximizing for generator creates oscillation.\n\nEvaluation often requires generating samples and judging quality manually or with metrics like FID.",
+      "tags": ["ch17", "training", "evaluation"]
+    }
+  ]
+}

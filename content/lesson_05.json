@@ -1,0 +1,279 @@
+{
+  "id": "05",
+  "title": "Lesson 05: Single-layer Networks: Classification",
+  "lesson_title": "Single-layer Networks: Classification",
+  "objectives": [
+    "Understand logistic regression and softmax functions",
+    "Master discriminant functions and decision boundaries",
+    "Learn generative vs discriminative probabilistic models",
+    "Understand the cross-entropy error function",
+    "Learn about limitations of linear models and the curse of dimensionality",
+    "Understand neural network fundamentals: hidden units, activation functions, deep architectures"
+  ],
+  "cards": [
+    {
+      "uid": "05-001",
+      "front": "What is the logistic sigmoid function?",
+      "back": "\\( \\sigma(a) = \\frac{1}{1 + e^{-a}} \\)\n\nProperties:\n\n- Maps the whole real axis to the interval (0, 1)\n- 'Sigmoid' means S-shaped\n- Used to model probabilities in binary classification",
+      "tags": ["ch05", "sigmoid", "activation-functions"]
+    },
+    {
+      "uid": "05-002",
+      "front": "What is the logit function?",
+      "back": "The **inverse of the logistic sigmoid**:\n\n\\( \\text{logit}(p) = \\ln\\frac{p}{1-p} = \\sigma^{-1}(p) \\)\n\nAlso called the log-odds function. Maps (0,1) to the real line.",
+      "tags": ["ch05", "logit", "activation-functions"]
+    },
+    {
+      "uid": "05-003",
+      "front": "What is the softmax function (normalized exponential)?",
+      "back": "For K classes:\n\n\\( p(C_k|\\vec{x}) = \\frac{\\exp(a_k)}{\\sum_j \\exp(a_j)} \\)\n\nwhere \\( a_k = \\vec{w}_k^T \\vec{x} \\)\n\nProperties:\n\n- Outputs sum to 1\n- All outputs in (0, 1)\n- Generalizes logistic sigmoid to K > 2 classes",
+      "tags": ["ch05", "softmax", "activation-functions"]
+    },
+    {
+      "uid": "05-004",
+      "front": "For what types of inputs do posterior probabilities take the form of logistic sigmoid or softmax?",
+      "back": "For both:\n\n- **Gaussian distributed inputs** (with shared covariance)\n- **Discrete inputs**\n\nThe posterior class probabilities are logistic sigmoid (2 classes) or softmax (K classes) functions of a linear combination of inputs.",
+      "tags": ["ch05", "posterior", "generative-models"]
+    },
+    {
+      "uid": "05-005",
+      "front": "What is the advantage of discriminative models over generative models?",
+      "back": "In the discriminative approach:\n\n- Model \\( p(C_k|\\vec{x}) \\) directly\n- **Fewer learnable parameters** to determine\n- Don't need to model \\( p(\\vec{x}) \\) which may have complex structure irrelevant to classification\n\nGenerative models must model the full joint distribution.",
+      "tags": ["ch05", "discriminative", "generative"]
+    },
+    {
+      "uid": "05-006",
+      "front": "What is an activation function in neural networks?",
+      "back": "A nonlinear function applied to the weighted sum of inputs:\n\n\\( z = f(\\vec{w}^T \\vec{x} + b) \\)\n\nFor classification with discrete labels, we need a nonlinear activation to:\n\n- Squash outputs to valid probability ranges\n- Create nonlinear decision boundaries",
+      "tags": ["ch05", "activation-functions", "neural-networks"]
+    },
+    {
+      "uid": "05-007",
+      "front": "What are generalized linear models?",
+      "back": "Models where the output is a nonlinear function of a linear combination of inputs:\n\n\\( y = f(\\vec{w}^T \\phi(\\vec{x})) \\)\n\nThe function \\( f \\) is the **activation function** (or link function inverse).\n\nExamples: Logistic regression, Poisson regression.",
+      "tags": ["ch05", "generalized-linear-models", "glm"]
+    },
+    {
+      "uid": "05-008",
+      "front": "Are classes that are linearly separable in feature space necessarily linearly separable in input space?",
+      "back": "**No**. Classes that are linearly separable in feature space \\( \\phi(\\vec{x}) \\) need not be linearly separable in the original input space \\( \\vec{x} \\).\n\nThis is the power of using nonlinear basis functions/features.",
+      "tags": ["ch05", "linear-separability", "feature-space"]
+    },
+    {
+      "uid": "05-009",
+      "front": "What is logistic regression?",
+      "back": "A discriminative model for binary classification:\n\n\\( p(C_1|\\vec{x}) = \\sigma(\\vec{w}^T \\phi(\\vec{x})) \\)\n\nTrained by maximizing likelihood (or minimizing cross-entropy error).\n\nStochastic gradient descent is the principal approach for training.",
+      "tags": ["ch05", "logistic-regression", "classification"]
+    },
+    {
+      "uid": "05-010",
+      "front": "How is the error function for logistic regression derived?",
+      "back": "Take the **negative logarithm of the likelihood**:\n\n\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)\n\nwhere \\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\)\n\nThis is the **cross-entropy error function**.",
+      "tags": ["ch05", "cross-entropy", "logistic-regression"]
+    },
+    {
+      "uid": "05-011",
+      "front": "What is the cross-entropy error function for multi-class classification?",
+      "back": "\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\sum_{k=1}^{K} t_{nk} \\ln y_{nk} \\)\n\nWhere:\n\n- \\( t_{nk} \\) is the one-hot encoded target\n- \\( y_{nk} = p(C_k|\\vec{x}_n) \\) from softmax\n\nAlso called categorical cross-entropy or log loss.",
+      "tags": ["ch05", "cross-entropy", "multi-class"]
+    },
+    {
+      "uid": "05-012",
+      "front": "What are shortcomings of linear models with fixed basis functions?",
+      "back": "The assumption that basis functions are fixed independent of training data leads to:\n\n1. **Poor scaling** with dimensionality (curse of dimensionality)\n2. **Inability to adapt** features to the problem\n3. **Exponential growth** in number of parameters for expressive models\n\nSolution: Learn the basis functions from data (neural networks).",
+      "tags": ["ch05", "linear-models", "limitations"]
+    },
+    {
+      "uid": "05-013",
+      "front": "How does the number of coefficients grow for a polynomial of order M in D dimensions?",
+      "back": "The growth is \\( O(D^M) \\)\n\nFor high-dimensional spaces, polynomials become unwieldy very quickly.\n\nExample: Degree 3 polynomial in 100 dimensions requires millions of terms.",
+      "tags": ["ch05", "polynomial", "curse-of-dimensionality"]
+    },
+    {
+      "uid": "05-014",
+      "front": "What is the curse of dimensionality?",
+      "back": "The exponential increase in volume/complexity as dimensionality grows.\n\nConsequences:\n\n- Data becomes sparse\n- Distance metrics become less meaningful\n- Number of parameters explodes\n- More training data needed\n\nIf we divide space into M bins per dimension, total bins = \\( M^D \\).",
+      "tags": ["ch05", "curse-of-dimensionality", "high-dimensional"]
+    },
+    {
+      "uid": "05-015",
+      "front": "Where is most of the volume of a high-dimensional hypersphere concentrated?",
+      "back": "In spaces of high dimensionality, **most of the volume is concentrated in a thin shell near the surface**.\n\nThe volume scales as \\( r^D \\), so the ratio of inner volume to total volume vanishes as D increases.",
+      "tags": ["ch05", "hypersphere", "high-dimensional"]
+    },
+    {
+      "uid": "05-016",
+      "front": "Why can classification be easier in higher-dimensional spaces?",
+      "back": "Because there's more room to separate classes with hyperplanes.\n\nClasses that overlap in low dimensions may become linearly separable when projected to higher-dimensional feature spaces.\n\nThis is the intuition behind kernel methods and neural network embeddings.",
+      "tags": ["ch05", "high-dimensional", "classification"]
+    },
+    {
+      "uid": "05-017",
+      "front": "Why does real data often not suffer from the full curse of dimensionality?",
+      "back": "Real data is typically **confined to a region having lower effective dimensionality** than the ambient space.\n\nData lies on or near a **low-dimensional manifold**.\n\nExample: Adjacent pixels in images are highly correlated, not independent.",
+      "tags": ["ch05", "manifold", "curse-of-dimensionality"]
+    },
+    {
+      "uid": "05-018",
+      "front": "What are basis functions also called in machine learning?",
+      "back": "**Features**.\n\nThe terms are used interchangeably. Feature engineering/extraction was the traditional approach before deep learning.\n\nIn neural networks, features are learned from data rather than hand-crafted.",
+      "tags": ["ch05", "features", "basis-functions"]
+    },
+    {
+      "uid": "05-019",
+      "front": "What is the key idea behind neural networks?",
+      "back": "Choose basis functions \\( \\phi_j(\\vec{x}) \\) that **themselves have learnable parameters**.\n\nThis allows the basis functions to be adapted to the data during training, rather than being fixed in advance.",
+      "tags": ["ch05", "neural-networks", "learnable-features"]
+    },
+    {
+      "uid": "05-020",
+      "front": "What are hidden units in a neural network?",
+      "back": "The learnable basis functions \\( \\phi_j(\\vec{x}) \\) in a neural network.\n\nEach hidden unit computes:\n\\( z_j = h(\\vec{w}_j^T \\vec{x} + b_j) \\)\n\nwhere \\( h \\) is a nonlinear activation function.\n\nCalled 'hidden' because their values are not directly observed.",
+      "tags": ["ch05", "hidden-units", "neural-networks"]
+    },
+    {
+      "uid": "05-021",
+      "front": "Why can neural networks be trained with gradient-based methods?",
+      "back": "Because provided the activation function \\( h(\\cdot) \\) is differentiable, the overall network function is differentiable with respect to all parameters.\n\nThis enables backpropagation and gradient descent optimization.",
+      "tags": ["ch05", "gradient-descent", "differentiable"]
+    },
+    {
+      "uid": "05-022",
+      "front": "What are universal approximators?",
+      "back": "Networks that can approximate any continuous function to arbitrary accuracy.\n\nTwo-layer networks with a wide range of activation functions are **universal approximators**.\n\nHowever, this says nothing about:\n\n- How many units are needed\n- Whether such a network can be found by learning",
+      "tags": ["ch05", "universal-approximation", "neural-networks"]
+    },
+    {
+      "uid": "05-023",
+      "front": "What is the no free lunch theorem?",
+      "back": "Averaged over all possible problems, no learning algorithm is better than any other (including random guessing).\n\nImplication: Every successful algorithm must have **inductive biases** suited to the problems it solves.\n\nNo universal algorithm works best on everything.",
+      "tags": ["ch05", "no-free-lunch", "inductive-bias"]
+    },
+    {
+      "uid": "05-024",
+      "front": "Why are nonlinear activation functions necessary in deep networks?",
+      "back": "Because **composition of linear transformations is itself linear**.\n\nWithout nonlinearities, a deep network would collapse to a single linear transformation:\n\n\\( W_L \\cdots W_2 W_1 \\vec{x} = W_{\\text{effective}} \\vec{x} \\)\n\nNonlinearities enable learning complex functions.",
+      "tags": ["ch05", "activation-functions", "nonlinearity"]
+    },
+    {
+      "uid": "05-025",
+      "front": "What is a bottleneck network of linear units equivalent to?",
+      "back": "**Principal Component Analysis (PCA)**.\n\nIf the number of hidden units is smaller than both input and output dimensions, a linear network learns a low-rank approximation.\n\nThis corresponds to projecting onto the principal components.",
+      "tags": ["ch05", "bottleneck", "pca"]
+    },
+    {
+      "uid": "05-026",
+      "front": "What is the tanh activation function and how does it relate to sigmoid?",
+      "back": "\\( \\tanh(a) = \\frac{e^a - e^{-a}}{e^a + e^{-a}} \\)\n\nRelation to sigmoid:\n\\( \\tanh(a) = 2\\sigma(2a) - 1 \\)\n\nOutputs range: (-1, 1) vs (0, 1) for sigmoid.\n\nA linear combination of tanh functions is equivalent to a linear combination of sigmoids.",
+      "tags": ["ch05", "tanh", "activation-functions"]
+    },
+    {
+      "uid": "05-027",
+      "front": "What is the ReLU activation function?",
+      "back": "**Rectified Linear Unit**:\n\n\\( \\text{ReLU}(a) = \\max(0, a) \\)\n\nAdvantages:\n\n- One of the best-performing activation functions\n- Much less sensitive to random weight initialization\n- Computationally cheap to evaluate\n- Avoids vanishing gradients (for positive inputs)",
+      "tags": ["ch05", "relu", "activation-functions"]
+    },
+    {
+      "uid": "05-028",
+      "front": "What is the softplus activation function?",
+      "back": "A smooth approximation to ReLU:\n\n\\( \\text{softplus}(a) = \\ln(1 + e^a) \\)\n\nProperties:\n\n- Differentiable everywhere\n- Approaches ReLU as \\( a \\to \\infty \\)\n- Also called soft ReLU",
+      "tags": ["ch05", "softplus", "activation-functions"]
+    },
+    {
+      "uid": "05-029",
+      "front": "What is the leaky ReLU activation function?",
+      "back": "\\( \\text{LeakyReLU}(a) = \\begin{cases} a & \\text{if } a > 0 \\\\ \\alpha a & \\text{if } a \\leq 0 \\end{cases} \\)\n\nwhere \\( \\alpha \\) is a small positive constant (e.g., 0.01).\n\nAdvantage: Non-zero gradient for negative inputs (avoids 'dying ReLU' problem).",
+      "tags": ["ch05", "leaky-relu", "activation-functions"]
+    },
+    {
+      "uid": "05-030",
+      "front": "What is the weight-space symmetry in neural networks?",
+      "back": "A neural network with M hidden units has **\\( M! \\cdot 2^M \\)** equivalent weight configurations.\n\nSources:\n\n- \\( M! \\) from permuting hidden units\n- \\( 2^M \\) from sign flips (for symmetric activations like tanh)\n\nAll produce identical input-output mappings.",
+      "tags": ["ch05", "weight-symmetry", "neural-networks"]
+    },
+    {
+      "uid": "05-031",
+      "front": "What determines the expressive power of a neural network?",
+      "back": "The **number of layers of learnable weights**, not just the total number of layers.\n\nDeep networks can represent certain functions with **exponentially fewer parameters** than shallow networks.",
+      "tags": ["ch05", "depth", "expressive-power"]
+    },
+    {
+      "uid": "05-032",
+      "front": "How does depth help neural networks divide input space?",
+      "back": "The network function divides input space into a number of regions that is **exponential in the depth**.\n\nDeeper networks can create more complex decision boundaries with the same number of parameters.",
+      "tags": ["ch05", "depth", "decision-boundaries"]
+    },
+    {
+      "uid": "05-033",
+      "front": "What is the compositional inductive bias of neural networks?",
+      "back": "The network architecture encodes that the target function is built from **compositions of simpler functions**.\n\nEach layer transforms representations, building hierarchically complex features from simpler ones.\n\nThis matches how many real-world problems are structured.",
+      "tags": ["ch05", "compositional", "inductive-bias"]
+    },
+    {
+      "uid": "05-034",
+      "front": "What is a distributed representation?",
+      "back": "A representation where each unit in a hidden layer represents a 'feature' at that level of abstraction.\n\nCombinations of active units encode meaning, rather than individual units having fixed meanings.\n\nContrast with local/one-hot representations.",
+      "tags": ["ch05", "distributed-representation", "neural-networks"]
+    },
+    {
+      "uid": "05-035",
+      "front": "What is an embedding space?",
+      "back": "The space of learned representations in a neural network's hidden layers.\n\nSuccessive layers transform data into spaces where classification/regression becomes easier.\n\nThe network learns a **nonlinear transformation** that makes the problem simpler.",
+      "tags": ["ch05", "embedding", "representation"]
+    },
+    {
+      "uid": "05-036",
+      "front": "What is unsupervised learning?",
+      "back": "Learning from **unlabelled data**.\n\nGoal: Discover internal structure or representations useful for downstream tasks.\n\nExamples:\n\n- Clustering\n- Dimensionality reduction\n- Autoencoders\n- Density estimation",
+      "tags": ["ch05", "unsupervised-learning", "representation"]
+    },
+    {
+      "uid": "05-037",
+      "front": "What is an autoencoder?",
+      "back": "A neural network trained to reconstruct its input:\n\nInput \\( \\to \\) Encoder \\( \\to \\) Bottleneck \\( \\to \\) Decoder \\( \\to \\) Output \\( \\approx \\) Input\n\nThe bottleneck forces learning a compressed representation.\n\nUseful for unsupervised feature learning.",
+      "tags": ["ch05", "autoencoder", "unsupervised"]
+    },
+    {
+      "uid": "05-038",
+      "front": "What is transfer learning?",
+      "back": "Using knowledge learned on one task to improve performance on a different task.\n\nExample: Train on ImageNet for object classification, then apply to medical image analysis.\n\nWorks when tasks share underlying structure or features.",
+      "tags": ["ch05", "transfer-learning", "neural-networks"]
+    },
+    {
+      "uid": "05-039",
+      "front": "What is pre-training in neural networks?",
+      "back": "Learning parameters on one task (with abundant data) that are then applied to another task.\n\nTypically followed by **fine-tuning**: adapting the whole network to the target task with a small learning rate for limited iterations.\n\nPrevents over-fitting to small target datasets.",
+      "tags": ["ch05", "pretraining", "transfer-learning"]
+    },
+    {
+      "uid": "05-040",
+      "front": "What is fine-tuning in transfer learning?",
+      "back": "Adapting a pre-trained network to a new task by:\n\n1. Starting from pre-trained weights\n2. Training on new task data with a **very small learning rate**\n3. Running for **limited iterations**\n\nThis ensures the network doesn't over-fit to the (often smaller) target dataset.",
+      "tags": ["ch05", "fine-tuning", "transfer-learning"]
+    },
+    {
+      "uid": "05-041",
+      "front": "What is meta-learning (learning to learn)?",
+      "back": "Learning algorithms that improve their learning ability across multiple tasks.\n\nGoal: Learn to learn new tasks quickly from few examples.\n\nExtends transfer learning to learning across many tasks, adapting the learning process itself.",
+      "tags": ["ch05", "meta-learning", "neural-networks"]
+    },
+    {
+      "uid": "05-042",
+      "front": "What notation is used for the layers in a deep neural network?",
+      "back": "\\( \\vec{z}^{(l)} \\) = activations at layer \\( l \\)\n\nSpecial cases:\n\n- \\( \\vec{z}^{(0)} = \\vec{x} \\) (input vector)\n- \\( \\vec{z}^{(L)} = \\vec{y} \\) (output vector)\n\nNumber of layers counted by learnable weight matrices.",
+      "tags": ["ch05", "notation", "deep-learning"]
+    },
+    {
+      "uid": "05-043",
+      "front": "What is a support vector machine (SVM)?",
+      "back": "A classification model that:\n\n- Finds the maximum-margin hyperplane separating classes\n- Uses the **kernel trick** to work in high-dimensional feature spaces\n- Only depends on a subset of training points (support vectors)\n\nWas popular before deep learning for working with learned features.",
+      "tags": ["ch05", "svm", "classification"]
+    },
+    {
+      "uid": "05-044",
+      "front": "Why can neural networks learn deep hierarchical representations?",
+      "back": "Because:\n\n1. Each layer learns features from the previous layer's output\n2. Early layers learn simple features (edges, textures)\n3. Later layers combine these into complex features (objects, concepts)\n4. The composition creates a hierarchy of abstractions\n\nThis matches the compositional structure of many real problems.",
+      "tags": ["ch05", "hierarchical", "representation"]
+    }
+  ]
+}

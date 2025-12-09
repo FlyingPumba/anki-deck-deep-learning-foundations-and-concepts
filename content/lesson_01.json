@@ -1,0 +1,266 @@
+{
+  "id": "01",
+  "title": "Lesson 01: The Deep Learning Revolution",
+  "lesson_title": "The Deep Learning Revolution",
+  "objectives": [
+    "Understand the relationship between machine learning, AI, and deep learning",
+    "Distinguish between supervised, unsupervised, and self-supervised learning",
+    "Understand classification vs regression problems",
+    "Learn the concepts of overfitting, regularization, and model selection",
+    "Understand the historical development of neural networks"
+  ],
+  "cards": [
+    {
+      "uid": "01-001",
+      "front": "What is the relationship between the terms 'machine learning' and 'AI'?",
+      "back": "The terms machine learning and AI are often used interchangeably. Many AI systems in current use represent applications of machine learning designed to solve specific problems.",
+      "tags": ["ch01", "terminology", "definition"]
+    },
+    {
+      "uid": "01-002",
+      "front": "What are the adjustable parameters in a deep neural network called?",
+      "back": "They are called **weights**.",
+      "tags": ["ch01", "neural-networks", "terminology"]
+    },
+    {
+      "uid": "01-003",
+      "front": "What is the process of setting parameter values from data called in machine learning?",
+      "back": "It is called **learning** or **training**.",
+      "tags": ["ch01", "training", "definition"]
+    },
+    {
+      "uid": "01-004",
+      "front": "What is a classification problem?",
+      "back": "A **classification problem** is one where each input must be assigned to a discrete set of classes (e.g., benign or malignant).",
+      "tags": ["ch01", "classification", "supervised-learning"]
+    },
+    {
+      "uid": "01-005",
+      "front": "What is a regression problem?",
+      "back": "A **regression problem** is one where the output consists of one or more continuous variables (e.g., predicting the yield in a chemical process given temperature and pressure).",
+      "tags": ["ch01", "regression", "supervised-learning"]
+    },
+    {
+      "uid": "01-006",
+      "front": "What is supervised learning?",
+      "back": "**Supervised learning** is when the network is told the correct label for each training example. The training data consists of input-output pairs.",
+      "tags": ["ch01", "supervised-learning", "definition"]
+    },
+    {
+      "uid": "01-007",
+      "front": "What is unsupervised learning?",
+      "back": "**Unsupervised learning** is when the training data consists of unlabelled examples, and the goal is to discover structure or patterns in the data (e.g., generating new images that share statistical properties with training images).",
+      "tags": ["ch01", "unsupervised-learning", "definition"]
+    },
+    {
+      "uid": "01-008",
+      "front": "What is self-supervised learning?",
+      "back": "**Self-supervised learning** is when a function from inputs to outputs is learned, but the labelled outputs are obtained automatically from the input training data without needing separate human-derived labels.\n\nExample: predicting the next word in a sequence, where the target is derived from the text itself.",
+      "tags": ["ch01", "self-supervised-learning", "definition"]
+    },
+    {
+      "uid": "01-009",
+      "front": "What is generalization in machine learning?",
+      "back": "**Generalization** is the ability to make accurate predictions on previously unseen inputs. It is a key goal in machine learning.",
+      "tags": ["ch01", "generalization", "definition"]
+    },
+    {
+      "uid": "01-010",
+      "front": "What is a generative model?",
+      "back": "A **generative model** can generate new output examples that differ from those used to train the model but share the same statistical properties.",
+      "tags": ["ch01", "generative-models", "definition"]
+    },
+    {
+      "uid": "01-011",
+      "front": "What is a linear model in machine learning?",
+      "back": "A **linear model** is a function that is linear in its unknown parameters (weights), even if it is nonlinear in the input variables.\n\nExample: \\( y(x, w) = w_0 + w_1 x + w_2 x^2 + \\ldots + w_M x^M \\) is linear in \\( w \\) but nonlinear in \\( x \\).",
+      "tags": ["ch01", "linear-models", "definition"]
+    },
+    {
+      "uid": "01-012",
+      "front": "What is the sum-of-squares error function?",
+      "back": "The sum-of-squares error function measures the misfit between predictions and training data:\n\n\\( E(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 \\)\n\nwhere \\( y(x_n, w) \\) is the prediction and \\( t_n \\) is the target value.",
+      "tags": ["ch01", "error-function", "loss"]
+    },
+    {
+      "uid": "01-013",
+      "front": "What is overfitting?",
+      "back": "**Overfitting** occurs when a model fits the training data very well (possibly exactly) but gives poor predictions on new, unseen data. The model has essentially memorized the noise in the training data rather than learning the underlying pattern.",
+      "tags": ["ch01", "overfitting", "generalization"]
+    },
+    {
+      "uid": "01-014",
+      "front": "What is a test set used for?",
+      "back": "A **test set** is a separate set of data used to evaluate how well a model generalizes to new data. It measures the model's predictive performance on data not used during training.",
+      "tags": ["ch01", "test-set", "evaluation"]
+    },
+    {
+      "uid": "01-015",
+      "front": "What is the root-mean-square (RMS) error and why is it useful?",
+      "back": "\\( E_{RMS} = \\sqrt{\\frac{1}{N} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2} \\)\n\nIt is useful because:\n\n- Division by \\( N \\) allows comparison across different dataset sizes\n- The square root ensures the error is measured in the same units as the target variable",
+      "tags": ["ch01", "error-function", "evaluation"]
+    },
+    {
+      "uid": "01-016",
+      "front": "How does the size of the training data affect overfitting?",
+      "back": "For a given model complexity, the overfitting problem becomes less severe as the size of the data set increases. With a larger data set, we can afford to fit a more complex (more flexible) model to the data.",
+      "tags": ["ch01", "overfitting", "data-size"]
+    },
+    {
+      "uid": "01-017",
+      "front": "What is regularization in machine learning?",
+      "back": "**Regularization** involves adding a penalty term to the error function to discourage the coefficients from having large magnitudes. It controls overfitting as an alternative to limiting the number of parameters.",
+      "tags": ["ch01", "regularization", "overfitting"]
+    },
+    {
+      "uid": "01-018",
+      "front": "What is the regularized error function with L2 penalty?",
+      "back": "\\( \\tilde{E}(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\)\n\nwhere \\( \\|w\\|^2 = w^T w = w_0^2 + w_1^2 + \\ldots + w_M^2 \\)\n\nThe coefficient \\( \\lambda \\) governs the relative importance of the regularization term.",
+      "tags": ["ch01", "regularization", "l2-regularization"]
+    },
+    {
+      "uid": "01-019",
+      "front": "What are shrinkage methods? What is another name for this in neural networks?",
+      "back": "**Shrinkage methods** are techniques that reduce the value of the coefficients through regularization.\n\nIn the context of neural networks, this is called **weight decay** because the regularizer encourages the weights to decay towards zero.",
+      "tags": ["ch01", "regularization", "weight-decay"]
+    },
+    {
+      "uid": "01-020",
+      "front": "What is a hyperparameter?",
+      "back": "A **hyperparameter** is a parameter whose value is fixed during training (not learned from data). Examples include:\n\n- The regularization coefficient \\( \\lambda \\)\n- The order \\( M \\) of a polynomial\n- Learning rate",
+      "tags": ["ch01", "hyperparameters", "definition"]
+    },
+    {
+      "uid": "01-021",
+      "front": "What is the difference between a training set and a validation set?",
+      "back": "- **Training set**: Used to determine the model parameters (weights)\n- **Validation set** (also called hold-out or development set): Used to select hyperparameters and model architecture\n\nA third **test set** may be kept aside for final evaluation.",
+      "tags": ["ch01", "data-splits", "model-selection"]
+    },
+    {
+      "uid": "01-022",
+      "front": "What is S-fold cross-validation?",
+      "back": "**S-fold cross-validation** partitions data into S groups. For each run:\n\n- Train on S-1 groups\n- Evaluate on the remaining group\n\nRepeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
+      "tags": ["ch01", "cross-validation", "model-selection"]
+    },
+    {
+      "uid": "01-023",
+      "front": "What is the perceptron and what is its historical significance?",
+      "back": "The **perceptron** (Rosenblatt, 1962) is a single-layer neural network with a step activation function:\n\n\\( f(a) = \\begin{cases} 0, & \\text{if } a \\leq 0 \\\\ 1, & \\text{if } a > 0 \\end{cases} \\)\n\nIt was one of the first trainable neural network models, but Minsky and Papert (1969) gave formal proofs of its limited capabilities.",
+      "tags": ["ch01", "perceptron", "history"]
+    },
+    {
+      "uid": "01-024",
+      "front": "What is a multilayer perceptron (MLP)?",
+      "back": "A **multilayer perceptron (MLP)** is a modern neural network with multiple layers of learnable parameters. Despite the name, it uses continuous differentiable activation functions (not step functions like the original perceptron).",
+      "tags": ["ch01", "mlp", "neural-networks"]
+    },
+    {
+      "uid": "01-025",
+      "front": "What two key changes enabled training of multilayer neural networks?",
+      "back": "1. Replace the step function with **continuous differentiable activation functions** having non-zero gradients\n\n2. Introduce **differentiable error functions** that define how well parameter values predict target variables",
+      "tags": ["ch01", "backpropagation", "history"]
+    },
+    {
+      "uid": "01-026",
+      "front": "What are hidden units in a neural network?",
+      "back": "**Hidden units** are nodes in the middle layers of a network whose values do not appear in the training set (which only provides values for inputs and outputs).",
+      "tags": ["ch01", "neural-networks", "architecture"]
+    },
+    {
+      "uid": "01-027",
+      "front": "What is a feed-forward neural network?",
+      "back": "A **feed-forward neural network** is one where information flows forward through the network from inputs to outputs, with no cycles or feedback connections.",
+      "tags": ["ch01", "neural-networks", "architecture"]
+    },
+    {
+      "uid": "01-028",
+      "front": "What is error backpropagation?",
+      "back": "**Error backpropagation** (or just backprop) is an efficient algorithm for computing the derivatives of the error function with respect to all network parameters. Information flows backwards through the network from outputs towards inputs.",
+      "tags": ["ch01", "backpropagation", "training"]
+    },
+    {
+      "uid": "01-029",
+      "front": "What is stochastic gradient descent (SGD)?",
+      "back": "**Stochastic gradient descent** is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset. It is the most prevalent optimization method in machine learning.",
+      "tags": ["ch01", "sgd", "optimization"]
+    },
+    {
+      "uid": "01-030",
+      "front": "What are inductive biases (or prior knowledge) in machine learning?",
+      "back": "**Inductive biases** are background assumptions that influence learning from data. They can be:\n\n- **Explicit**: e.g., designing network structure so classification doesn't depend on object location in image\n- **Implicit**: arising from the model form or training procedure",
+      "tags": ["ch01", "inductive-bias", "definition"]
+    },
+    {
+      "uid": "01-031",
+      "front": "What is feature extraction in traditional machine learning?",
+      "back": "**Feature extraction** is hand-crafted pre-processing that transforms input variables into a new space where the machine learning problem is easier to solve. Deep learning largely eliminates the need for this by learning features directly from data.",
+      "tags": ["ch01", "feature-extraction", "history"]
+    },
+    {
+      "uid": "01-032",
+      "front": "What are deep neural networks?",
+      "back": "**Deep neural networks** are networks with many layers of learnable weights. The sub-field of machine learning focusing on such networks is called **deep learning**.",
+      "tags": ["ch01", "deep-learning", "definition"]
+    },
+    {
+      "uid": "01-033",
+      "front": "What role do GPUs play in deep learning?",
+      "back": "**GPUs (Graphics Processing Units)** are specialist processors originally developed for graphics rendering. They are well-suited for training neural networks because units in one layer can be evaluated in parallel, mapping well onto the massive parallelism of GPUs.",
+      "tags": ["ch01", "gpu", "hardware"]
+    },
+    {
+      "uid": "01-034",
+      "front": "How did compute requirements for state-of-the-art neural networks change before and after 2012?",
+      "back": "- **Before 2012 (perceptron era)**: Compute doubled roughly every 2 years (following Moore's law)\n- **After 2012 (deep learning era)**: Doubling time reduced to 3.4 months (10x increase per year)",
+      "tags": ["ch01", "compute", "history"]
+    },
+    {
+      "uid": "01-035",
+      "front": "What is representation learning?",
+      "back": "**Representation learning** views hidden layers as transforming input data into new representations that are semantically meaningful, creating an easier problem for final layers to solve. These learned representations can be repurposed for related problems via transfer learning.",
+      "tags": ["ch01", "representation-learning", "deep-learning"]
+    },
+    {
+      "uid": "01-036",
+      "front": "What are foundation models?",
+      "back": "**Foundation models** are large neural networks that can be adapted or fine-tuned to a range of downstream tasks. They take advantage of large, heterogeneous data sets to create models with broad applicability.",
+      "tags": ["ch01", "foundation-models", "transfer-learning"]
+    },
+    {
+      "uid": "01-037",
+      "front": "What problem do residual connections address in deep networks?",
+      "back": "In deep networks, training signals become weaker as they are backpropagated through successive layers. **Residual connections** (He et al., 2015) address this by providing shortcut paths, facilitating training of networks with hundreds of layers.",
+      "tags": ["ch01", "residual-connections", "architecture"]
+    },
+    {
+      "uid": "01-038",
+      "front": "What is automatic differentiation and why is it important?",
+      "back": "**Automatic differentiation** automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.\n\nThis allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
+      "tags": ["ch01", "autodiff", "training"]
+    },
+    {
+      "uid": "01-039",
+      "front": "How many neurons and synapses does a human brain contain?",
+      "back": "A human brain contains:\n\n- Around **90 billion neurons**\n- Each neuron has on average several thousand synapses\n- Total of around **100 trillion (10^14) synapses**",
+      "tags": ["ch01", "neuroscience", "background"]
+    },
+    {
+      "uid": "01-040",
+      "front": "What is the mathematical model of a single artificial neuron?",
+      "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)\n\nActivation: \\( y = f(a) \\)\n\nwhere:\n- \\( x_1, \\ldots, x_M \\) are inputs\n- \\( w_1, \\ldots, w_M \\) are weights (synapse strengths)\n- \\( f(\\cdot) \\) is the activation function",
+      "tags": ["ch01", "neural-networks", "mathematics"]
+    },
+    {
+      "uid": "01-041",
+      "front": "What is transfer learning?",
+      "back": "**Transfer learning** is when a network trained on one task (e.g., classifying everyday objects) is adapted or fine-tuned for a related task (e.g., skin lesion classification). The network learns general features from the first task that are useful for the second.",
+      "tags": ["ch01", "transfer-learning", "definition"]
+    },
+    {
+      "uid": "01-042",
+      "front": "Why can't we determine hyperparameters by minimizing the training error jointly with model parameters?",
+      "back": "Minimizing training error jointly would lead to extreme values:\n\n- Regularization \\( \\lambda \\to 0 \\) (no regularization)\n- Polynomial order \\( M \\to \\) large values\n\nBoth result in overfitting with small/zero training error but poor generalization.",
+      "tags": ["ch01", "hyperparameters", "overfitting"]
+    }
+  ]
+}

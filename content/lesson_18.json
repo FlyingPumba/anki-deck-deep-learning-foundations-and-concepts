@@ -1,0 +1,116 @@
+{
+  "id": "18",
+  "title": "Lesson 18: Normalizing Flows",
+  "lesson_title": "Normalizing Flows",
+  "objectives": [
+    "Understand normalizing flows and invertible transformations",
+    "Learn the change of variables formula for densities",
+    "Master coupling flows and their architecture",
+    "Understand autoregressive flows",
+    "Learn about continuous normalizing flows"
+  ],
+  "cards": [
+    {
+      "uid": "18-001",
+      "front": "What is a normalizing flow?",
+      "back": "A generative model using an **invertible neural network** to transform a simple distribution (e.g., Gaussian) into a complex data distribution.\n\nKey requirement: Both forward x = f(z) and inverse z = g(x) must be computable.\n\nName origin: Probability 'flows' through sequence of transformations.",
+      "tags": ["ch18", "normalizing-flow", "definition"]
+    },
+    {
+      "uid": "18-002",
+      "front": "What is the change of variables formula for normalizing flows?",
+      "back": "\\( p_x(x) = p_z(z(x)) |\\det J(x)| \\)\n\nwhere J is the Jacobian matrix:\n\\( J_{ij} = \\frac{\\partial z_i}{\\partial x_j} \\)\n\nThe determinant accounts for how the transformation stretches/compresses volume.",
+      "tags": ["ch18", "change-of-variables", "jacobian"]
+    },
+    {
+      "uid": "18-003",
+      "front": "Why must latent and data spaces have the same dimensionality in normalizing flows?",
+      "back": "For the transformation to be **bijective** (invertible):\n\n- Each x corresponds to unique z and vice versa\n- Different dimensionalities would make the mapping non-invertible\n\nThis is a significant limitation compared to VAEs or GANs.",
+      "tags": ["ch18", "normalizing-flow", "constraint"]
+    },
+    {
+      "uid": "18-004",
+      "front": "Why is the Jacobian determinant important in normalizing flows?",
+      "back": "The determinant measures **volume change** under transformation.\n\nFor invertible functions:\n\n- If det J > 1: Volume expands\n- If det J < 1: Volume contracts\n- If det J = 0: Not invertible\n\nMust be efficiently computable for practical training.",
+      "tags": ["ch18", "jacobian", "determinant"]
+    },
+    {
+      "uid": "18-005",
+      "front": "How are multiple normalizing flow layers composed?",
+      "back": "Chain multiple invertible transformations:\n\n\\( x = f_L \\circ f_{L-1} \\circ \\cdots \\circ f_1(z) \\)\n\nKey property: **Determinant of composition is product of determinants**.\n\n\\( \\det J = \\prod_{l=1}^{L} \\det J_l \\)\n\nEach layer must be individually invertible.",
+      "tags": ["ch18", "composition", "architecture"]
+    },
+    {
+      "uid": "18-006",
+      "front": "Why can't standard neural network layers be used for normalizing flows?",
+      "back": "Standard layers are typically **not invertible**:\n\n- ReLU zeros out negative values (information lost)\n- Many-to-one mappings common\n- Dimensionality changes between layers\n\nNeed specially designed invertible architectures.",
+      "tags": ["ch18", "invertibility", "architecture"]
+    },
+    {
+      "uid": "18-007",
+      "front": "What is a coupling flow?",
+      "back": "An invertible layer that splits input into two parts:\n\n\\( x_A = z_A \\)\n\\( x_B = z_B \\odot s(z_A) + t(z_A) \\)\n\nwhere s, t are arbitrary neural networks (scale and translate).\n\n**Invertible** because \\( z_B = (x_B - t(x_A)) / s(x_A) \\)\n\nJacobian is triangular → determinant is product of diagonal.",
+      "tags": ["ch18", "coupling-flow", "architecture"]
+    },
+    {
+      "uid": "18-008",
+      "front": "What is the Hadamard product in normalizing flows?",
+      "back": "**Element-wise multiplication** of two vectors:\n\n\\( (a \\odot b)_i = a_i \\cdot b_i \\)\n\nUsed in coupling flows: \\( x_B = z_B \\odot s(z_A) + t(z_A) \\)\n\nAllows different scaling factors for each dimension.",
+      "tags": ["ch18", "hadamard", "operation"]
+    },
+    {
+      "uid": "18-009",
+      "front": "Why do coupling flows have triangular Jacobians?",
+      "back": "Because one part (A) passes through unchanged:\n\n\\( \\frac{\\partial x_A}{\\partial z_B} = 0 \\)\n\nThe Jacobian is block triangular.\n\nDeterminant of triangular matrix = **product of diagonal elements**.\n\nThis makes training computationally efficient.",
+      "tags": ["ch18", "coupling-flow", "jacobian"]
+    },
+    {
+      "uid": "18-010",
+      "front": "How do coupling flows achieve expressiveness despite limited per-layer transformations?",
+      "back": "By **composing two coupling layers** with different partitions:\n\nLayer 1: Transform B conditioned on A\nLayer 2: Transform A conditioned on B\n\nAlternating which part is transformed allows all dimensions to interact.",
+      "tags": ["ch18", "coupling-flow", "expressiveness"]
+    },
+    {
+      "uid": "18-011",
+      "front": "What is RealNVP?",
+      "back": "**Real-valued Non-Volume Preserving** flow.\n\nA type of coupling flow where:\n\n\\( x_B = z_B \\odot \\exp(s(z_A)) + t(z_A) \\)\n\nThe exponential ensures positive scaling.\n\nLog-determinant = sum of s(z_A) outputs.",
+      "tags": ["ch18", "realnvp", "architecture"]
+    },
+    {
+      "uid": "18-012",
+      "front": "What is an autoregressive flow?",
+      "back": "A flow where each output depends on **all previous inputs**:\n\n\\( x_i = z_i \\cdot s_i(z_{<i}) + t_i(z_{<i}) \\)\n\nJacobian is triangular by construction.\n\n**Trade-off**: Sampling is sequential (slow), but density evaluation can be parallelized.",
+      "tags": ["ch18", "autoregressive-flow", "architecture"]
+    },
+    {
+      "uid": "18-013",
+      "front": "What is MAF (Masked Autoregressive Flow)?",
+      "back": "An autoregressive flow using **masking** to enforce autoregressive structure.\n\nForward pass (density evaluation): Parallelizable\n\nInverse pass (sampling): Sequential\n\nOpposite trade-off to IAF (Inverse Autoregressive Flow).",
+      "tags": ["ch18", "maf", "autoregressive"]
+    },
+    {
+      "uid": "18-014",
+      "front": "What is a continuous normalizing flow?",
+      "back": "A flow defined by a **differential equation**:\n\n\\( \\frac{dz}{dt} = f(z(t), t) \\)\n\nContinuous transformation from z(0) to z(T).\n\nAdvantage: More flexible than discrete layer stacking.\n\nRelated to neural ODEs.",
+      "tags": ["ch18", "continuous-flow", "ode"]
+    },
+    {
+      "uid": "18-015",
+      "front": "What are the advantages of normalizing flows over GANs?",
+      "back": "1. **Exact likelihood**: Can compute p(x) directly\n\n2. **Stable training**: Standard maximum likelihood\n\n3. **No mode collapse**: Bijective mapping covers full distribution\n\n4. **Latent inference**: Can map data x back to latent z",
+      "tags": ["ch18", "normalizing-flow", "advantages"]
+    },
+    {
+      "uid": "18-016",
+      "front": "What are the limitations of normalizing flows?",
+      "back": "1. **Same dimensionality**: Latent space = data space\n\n2. **Architectural constraints**: Must maintain invertibility\n\n3. **Computational cost**: Jacobian determinant calculation\n\n4. **Expressiveness**: May need many layers for complex distributions",
+      "tags": ["ch18", "normalizing-flow", "limitations"]
+    },
+    {
+      "uid": "18-017",
+      "front": "Why are linear transformations insufficient for normalizing flows?",
+      "back": "Linear transformations are **closed under composition**.\n\nA sequence of linear layers = single linear transformation.\n\nNo increase in expressiveness from stacking.\n\nNeed **nonlinear** invertible transformations.",
+      "tags": ["ch18", "linear", "limitation"]
+    }
+  ]
+}
