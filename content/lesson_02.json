@@ -262,6 +262,30 @@
       "front": "What is the Laplace distribution?",
       "back": "The **Laplace distribution** is:\n\n\\( p(x|\\mu, \\gamma) = \\frac{1}{2\\gamma} \\exp\\left(-\\frac{|x-\\mu|}{\\gamma}\\right) \\)\n\nIt has a peak at \\( \\mu \\) and decays exponentially. Has heavier tails than a Gaussian.",
       "tags": ["ch02", "laplace-distribution", "distribution"]
+    },
+    {
+      "uid": "02-043",
+      "front": "What is conditional entropy?",
+      "back": "The average additional information needed to specify y given x:\n\n\\( H[Y|X] = -\\sum_{x,y} p(x,y) \\ln p(y|x) \\)\n\nUsing the product rule:\n\\( H[X,Y] = H[Y|X] + H[X] \\)\n\nThe information needed to describe X and Y equals the information for X alone plus the additional information for Y given X.",
+      "tags": ["ch02", "conditional-entropy", "information-theory"]
+    },
+    {
+      "uid": "02-044",
+      "front": "What is mutual information?",
+      "back": "The reduction in uncertainty about X from knowing Y (or vice versa):\n\n\\( I[X,Y] = H[X] - H[X|Y] = H[Y] - H[Y|X] \\)\n\nEquivalently, the KL divergence between joint and product of marginals:\n\n\\( I[X,Y] = KL(p(x,y) || p(x)p(y)) \\)\n\nIf X and Y are independent, \\( I[X,Y] = 0 \\).",
+      "tags": ["ch02", "mutual-information", "information-theory"]
+    },
+    {
+      "uid": "02-045",
+      "front": "What is the uniform distribution?",
+      "back": "A distribution where p(x) is constant over a finite interval:\n\n\\( U(x|a,b) = \\frac{1}{b-a} \\) for \\( x \\in [a,b] \\), zero elsewhere.\n\nThe simplest form of distribution. Integrates to 1 over the interval.",
+      "tags": ["ch02", "uniform-distribution", "distribution"]
+    },
+    {
+      "uid": "02-046",
+      "front": "What is the exponential distribution?",
+      "back": "A distribution for non-negative values:\n\n\\( p(x|\\lambda) = \\lambda e^{-\\lambda x} \\) for \\( x \\geq 0 \\)\n\nMean: \\( 1/\\lambda \\)\nVariance: \\( 1/\\lambda^2 \\)\n\nOften used for modeling time between events.",
+      "tags": ["ch02", "exponential-distribution", "distribution"]
     }
   ]
 }
