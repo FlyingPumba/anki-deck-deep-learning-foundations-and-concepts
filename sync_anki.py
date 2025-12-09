@@ -196,7 +196,7 @@ def sync(content_dir: Path) -> None:
     """Sync all lessons to Anki."""
     config, lessons = load_lessons(content_dir)
 
-    parent_deck = config.get("deck", "Deep Learning")
+    parent_deck = config.get("deck", "Deep Learning: Foundations and Concepts")
     course = config.get("course", "Unknown Course")
 
     print(f"Syncing: {course}")
