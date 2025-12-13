@@ -13,7 +13,7 @@
     {
       "uid": "03-001",
       "front": "What is density estimation and why is it fundamentally ill-posed?",
-      "back": "<b>Density estimation</b> is the problem of modeling the probability distribution \\( p(x) \\) given a finite set of observations.<br>It is <b>ill-posed</b> because infinitely many distributions could have generated the finite data. Any distribution \\( p(x) \\) that is non-zero at each data point is a potential candidate.",
+      "back": "<b>Density estimation</b> is the problem of modeling the probability distribution \\( p(x) \\) given a finite set of observations.<br><b>Intuition</b>: Given some data points, we want to figure out the underlying \"recipe\" that generated them. It's <b>ill-posed</b> because many different recipes could produce the same finite sample - like trying to guess an entire song from hearing just a few notes.",
       "tags": [
         "ch03",
         "density-estimation",
@@ -23,7 +23,7 @@
     {
       "uid": "03-002",
       "front": "What are parametric distributions?",
-      "back": "<b>Parametric distributions</b> are governed by a relatively small number of adjustable parameters (e.g., mean and variance of a Gaussian).<br>To apply them for density estimation, we determine parameter values from data, typically by maximizing the likelihood function.",
+      "back": "<b>Parametric distributions</b> assume a specific shape (like a bell curve) controlled by a few knobs (parameters).<br><b>Intuition</b>: Like fitting a pre-made template to your data. You pick a shape (e.g., Gaussian) and adjust its knobs (mean, variance) until it fits best. Simple and efficient, but only works if your data actually follows that shape.",
       "tags": [
         "ch03",
         "parametric",
@@ -33,7 +33,7 @@
     {
       "uid": "03-003",
       "front": "What are nonparametric density estimation methods?",
-      "back": "<b>Nonparametric methods</b> are density estimation approaches where the form of the distribution typically depends on the size of the data set.<br>They still contain parameters, but these control model complexity rather than the distribution form. Examples: histograms, kernel density estimation, K-nearest neighbors.",
+      "back": "<b>Nonparametric methods</b> let the data speak for itself without assuming a fixed shape.<br><b>Intuition</b>: Instead of forcing data into a template, these methods build a flexible model that grows with the data. More data = more detailed model. The downside: you must keep all the data around, which gets expensive for large datasets.<br><b>Examples</b>: histograms, kernel density estimation, K-nearest neighbors.",
       "tags": [
         "ch03",
         "nonparametric",
@@ -43,7 +43,7 @@
     {
       "uid": "03-004",
       "front": "How does deep learning relate to parametric and nonparametric methods?",
-      "back": "Deep learning combines the <b>efficiency of parametric models</b> with the <b>generality of nonparametric methods</b> by considering flexible distributions based on neural networks having a large, but fixed, number of parameters.",
+      "back": "Deep learning gets the best of both worlds.<br><b>Intuition</b>: Neural networks are like having millions of knobs (parameters) that can model almost any shape (like nonparametric), but once trained, you only need to store the knobs, not all the data (like parametric). Fixed storage cost, flexible modeling power.",
       "tags": [
         "ch03",
         "deep-learning",
@@ -53,7 +53,7 @@
     {
       "uid": "03-005",
       "front": "What is the Bernoulli distribution?",
-      "back": "The <b>Bernoulli distribution</b> models a binary random variable \\( x \\in \\{0, 1\\} \\):<br>\\( \\text{Bern}(x|\\mu) = \\mu^x (1-\\mu)^{1-x} \\)<br>where \\( \\mu = p(x=1) \\).<br>Mean: \\( E[x] = \\mu \\)<br>Variance: \\( \\text{var}[x] = \\mu(1-\\mu) \\)",
+      "back": "The <b>Bernoulli distribution</b> models a single coin flip with two outcomes: success (1) or failure (0).<br><b>Intuition</b>: Flip a (possibly biased) coin. Parameter \\( \\mu \\) is the probability of heads. A fair coin has \\( \\mu = 0.5 \\).<br><b>Formula</b>: \\( \\text{Bern}(x|\\mu) = \\mu^x (1-\\mu)^{1-x} \\)<br>Mean: \\( \\mu \\), Variance: \\( \\mu(1-\\mu) \\) (highest variance at \\( \\mu = 0.5 \\)).",
       "tags": [
         "ch03",
         "bernoulli",
@@ -63,7 +63,7 @@
     {
       "uid": "03-006",
       "front": "What is the binomial distribution?",
-      "back": "The <b>binomial distribution</b> gives the probability of \\( m \\) successes in \\( N \\) independent Bernoulli trials:<br>\\( \\text{Bin}(m|N,\\mu) = \\binom{N}{m} \\mu^m (1-\\mu)^{N-m} \\)<br>Mean: \\( E[m] = N\\mu \\)<br>Variance: \\( \\text{var}[m] = N\\mu(1-\\mu) \\)",
+      "back": "The <b>binomial distribution</b> counts successes in multiple coin flips.<br><b>Intuition</b>: Flip a coin N times. How many heads will you get? The binomial tells you the probability of getting exactly m heads.<br><b>Example</b>: Flip a fair coin 10 times - what's the chance of exactly 7 heads?<br><b>Formula</b>: \\( \\text{Bin}(m|N,\\mu) = \\binom{N}{m} \\mu^m (1-\\mu)^{N-m} \\)<br>Mean: \\( N\\mu \\), Variance: \\( N\\mu(1-\\mu) \\)",
       "tags": [
         "ch03",
         "binomial",
@@ -73,7 +73,7 @@
     {
       "uid": "03-007",
       "front": "What is the binomial coefficient \\( \\binom{N}{m} \\)?",
-      "back": "The <b>binomial coefficient</b> is the number of ways to choose \\( m \\) objects from \\( N \\) identical objects without replacement:<br>\\( \\binom{N}{m} = \\frac{N!}{(N-m)!m!} \\)<br>Also written as \\( C(N,m) \\) or \"N choose m\".",
+      "back": "The <b>binomial coefficient</b> counts the number of ways to arrange outcomes.<br><b>Intuition</b>: If you flip 10 coins and get 7 heads, those 7 heads could appear in many different positions. The binomial coefficient counts all these arrangements.<br><b>Example</b>: \\( \\binom{10}{7} = 120 \\) ways to arrange 7 heads among 10 flips.<br><b>Formula</b>: \\( \\binom{N}{m} = \\frac{N!}{(N-m)!m!} \\) (\"N choose m\")",
       "tags": [
         "ch03",
         "binomial-coefficient",
@@ -83,7 +83,7 @@
     {
       "uid": "03-008",
       "front": "What is one-hot encoding (1-of-K scheme)?",
-      "back": "<b>One-hot encoding</b> represents a discrete variable with K states as a K-dimensional vector where exactly one element equals 1 and all others equal 0.<br>Example: For K=6 states, if state 3 is active:<br>\\( \\mathbf{x} = (0, 0, 1, 0, 0, 0)^T \\)<br>Property: \\( \\sum_{k=1}^{K} x_k = 1 \\)",
+      "back": "<b>One-hot encoding</b> represents a category as a vector of 0s with a single 1.<br><b>Intuition</b>: Like a row of light switches where exactly one is ON. If you have 6 categories and category 3 is active: \\( (0, 0, 1, 0, 0, 0) \\).<br><b>Why useful</b>: Converts categorical data into numbers that neural networks can process. Each category gets its own dimension.",
       "tags": [
         "ch03",
         "one-hot",
@@ -93,7 +93,7 @@
     {
       "uid": "03-009",
       "front": "What is the multinomial distribution?",
-      "back": "The <b>multinomial distribution</b> is a generalization of the Bernoulli to more than two outcomes (K states).<br>For one observation: \\( p(\\mathbf{x}|\\boldsymbol{\\mu}) = \\prod_{k=1}^{K} \\mu_k^{x_k} \\)<br>where \\( \\sum_k \\mu_k = 1 \\) and \\( \\mu_k = p(x_k = 1) \\).",
+      "back": "The <b>multinomial distribution</b> generalizes coin flips (Bernoulli) to dice rolls with K sides.<br><b>Intuition</b>: Instead of just heads/tails, you have K possible outcomes (like rolling a die). Each outcome k has probability \\( \\mu_k \\), and all probabilities must sum to 1.<br><b>Example</b>: A 6-sided die has K=6, with \\( \\mu_k = 1/6 \\) for a fair die.<br><b>Formula</b>: \\( p(\\mathbf{x}|\\boldsymbol{\\mu}) = \\prod_{k=1}^{K} \\mu_k^{x_k} \\) where \\( \\mathbf{x} \\) is one-hot encoded.",
       "tags": [
         "ch03",
         "multinomial",
@@ -103,7 +103,7 @@
     {
       "uid": "03-010",
       "front": "What is the multivariate Gaussian distribution?",
-      "back": "For a D-dimensional vector \\( \\mathbf{x} \\):<br>\\( \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma}) = \\frac{1}{(2\\pi)^{D/2}|\\boldsymbol{\\Sigma}|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu})\\right) \\)<br>where \\( \\boldsymbol{\\mu} \\) is the mean vector and \\( \\boldsymbol{\\Sigma} \\) is the covariance matrix.",
+      "back": "The <b>multivariate Gaussian</b> extends the bell curve to multiple dimensions.<br><b>Intuition</b>: Instead of a 1D bell curve, imagine a \"probability hill\" in D dimensions. The peak is at the mean \\( \\boldsymbol{\\mu} \\), and the covariance matrix \\( \\boldsymbol{\\Sigma} \\) controls the shape (stretched, rotated, or spherical).<br><b>Key idea</b>: Points closer to the mean are more likely; the covariance determines how \"closeness\" is measured in each direction.<br><b>Formula</b>: \\( \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma}) = \\frac{1}{(2\\pi)^{D/2}|\\boldsymbol{\\Sigma}|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu})\\right) \\)",
       "tags": [
         "ch03",
         "multivariate-gaussian",
@@ -111,19 +111,9 @@
       ]
     },
     {
-      "uid": "03-011",
-      "front": "What is the Mahalanobis distance?",
-      "back": "The <b>Mahalanobis distance</b> from \\( \\mathbf{x} \\) to \\( \\boldsymbol{\\mu} \\) is:<br>\\( \\Delta^2 = (\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu}) \\)<br>It appears in the exponent of the multivariate Gaussian. When \\( \\boldsymbol{\\Sigma} = \\mathbf{I} \\), it reduces to Euclidean distance.",
-      "tags": [
-        "ch03",
-        "mahalanobis",
-        "distance"
-      ]
-    },
-    {
       "uid": "03-012",
       "front": "What is the covariance matrix of a random vector?",
-      "back": "The <b>covariance matrix</b> of a random vector \\( \\mathbf{x} \\) is:<br>\\( \\text{cov}[\\mathbf{x}] = E[(\\mathbf{x} - E[\\mathbf{x}])(\\mathbf{x} - E[\\mathbf{x}])^T] \\)<br>For the multivariate Gaussian: \\( \\text{cov}[\\mathbf{x}] = \\boldsymbol{\\Sigma} \\)",
+      "back": "The <b>covariance matrix</b> captures how variables vary together.<br><b>Intuition</b>: Diagonal entries = how much each variable varies on its own. Off-diagonal entries = how pairs of variables move together (positive = same direction, negative = opposite).<br><b>Example</b>: Height and weight have positive covariance (tall people tend to weigh more).<br><b>Formula</b>: \\( \\text{cov}[\\mathbf{x}] = E[(\\mathbf{x} - E[\\mathbf{x}])(\\mathbf{x} - E[\\mathbf{x}])^T] \\)",
       "tags": [
         "ch03",
         "covariance-matrix",
@@ -133,7 +123,7 @@
     {
       "uid": "03-013",
       "front": "What geometric shape do the contours of constant density form for a multivariate Gaussian?",
-      "back": "Contours of constant density form <b>ellipsoids</b> centered at \\( \\boldsymbol{\\mu} \\).<br>The axes are oriented along the <b>eigenvectors</b> \\( \\mathbf{u}_i \\) of the covariance matrix, with scaling factors \\( \\lambda_i^{1/2} \\) where \\( \\lambda_i \\) are the eigenvalues.",
+      "back": "Contours of constant density form <b>ellipsoids</b> (stretched circles in 2D, stretched spheres in 3D).<br><b>Intuition</b>: Imagine a hill viewed from above. Lines of equal height form ellipses. The covariance matrix determines if the ellipse is round, stretched, or tilted.<br><b>Technical</b>: Eigenvectors of \\( \\boldsymbol{\\Sigma} \\) give the ellipse orientation; eigenvalues \\( \\lambda_i \\) determine how stretched each axis is (length \\( \\propto \\sqrt{\\lambda_i} \\)).",
       "tags": [
         "ch03",
         "gaussian-geometry",
@@ -143,7 +133,7 @@
     {
       "uid": "03-014",
       "front": "When is a covariance matrix positive definite vs positive semidefinite?",
-      "back": "<ul><li><b>Positive definite</b>: All eigenvalues are strictly positive (\\( \\lambda_i > 0 \\)). Required for a well-defined, normalizable Gaussian.</li></ul><ul><li><b>Positive semidefinite</b>: All eigenvalues are non-negative (\\( \\lambda_i \\geq 0 \\)). If some eigenvalues are zero, the distribution is singular and confined to a lower-dimensional subspace.</li></ul>",
+      "back": "<b>Intuition</b>: The eigenvalues determine how \"spread out\" the Gaussian is in each direction.<br><ul><li><b>Positive definite</b> (all \\( \\lambda_i > 0 \\)): The Gaussian spreads in all directions - a proper \"blob\" in D dimensions. Required for a valid probability distribution.</li><li><b>Positive semidefinite</b> (some \\( \\lambda_i = 0 \\)): The Gaussian is \"flat\" in some directions - squished onto a lower-dimensional surface (like a pancake instead of a ball).</li></ul>",
       "tags": [
         "ch03",
         "positive-definite",
@@ -153,7 +143,7 @@
     {
       "uid": "03-015",
       "front": "How many free parameters does a general multivariate Gaussian have in D dimensions?",
-      "back": "A general multivariate Gaussian has:<br><ul><li>Mean \\( \\boldsymbol{\\mu} \\): D parameters</li><li>Covariance \\( \\boldsymbol{\\Sigma} \\) (symmetric): \\( D(D+1)/2 \\) parameters</li></ul><b>Total</b>: \\( D(D+3)/2 \\) parameters<br>This grows quadratically with D, which can be computationally prohibitive.",
+      "back": "<b>Intuition</b>: The covariance matrix is symmetric, so we only count the upper triangle.<br><ul><li>Mean: D parameters (one per dimension)</li><li>Covariance: \\( D(D+1)/2 \\) parameters (D variances + D(D-1)/2 covariances)</li></ul><b>Total</b>: \\( D(D+3)/2 \\) - grows quadratically!<br><b>Example</b>: For D=100 dimensions, you need ~5,000 covariance parameters. This is why we often use simpler (diagonal/isotropic) covariances.",
       "tags": [
         "ch03",
         "gaussian-parameters",
@@ -163,7 +153,7 @@
     {
       "uid": "03-016",
       "front": "What are the three common restricted forms of covariance matrices?",
-      "back": "<ol><li><b>General</b>: Full \\( D(D+1)/2 \\) parameters, ellipsoidal contours</li></ol><ol><li><b>Diagonal</b>: \\( \\boldsymbol{\\Sigma} = \\text{diag}(\\sigma_i^2) \\), 2D parameters, axis-aligned ellipsoids</li></ol><ol><li><b>Isotropic</b>: \\( \\boldsymbol{\\Sigma} = \\sigma^2 \\mathbf{I} \\), D+1 parameters, spherical contours</li></ol>",
+      "back": "<b>Intuition</b>: Trade-off between flexibility and number of parameters.<br><ol><li><b>General</b>: Ellipse can be any shape/orientation. Most flexible, most parameters.</li><li><b>Diagonal</b>: Ellipse axes align with coordinate axes (no rotation). Variables are uncorrelated but can have different variances.</li><li><b>Isotropic</b>: Perfect sphere - same variance in all directions. Simplest, fewest parameters (just one \\( \\sigma^2 \\)).</li></ol>",
       "tags": [
         "ch03",
         "covariance-types",
@@ -173,7 +163,7 @@
     {
       "uid": "03-017",
       "front": "What are the maximum likelihood estimates for the multivariate Gaussian?",
-      "back": "<b>Mean</b>: \\( \\boldsymbol{\\mu}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} \\mathbf{x}_n \\) (sample mean)<br><b>Covariance</b>: \\( \\boldsymbol{\\Sigma}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)<br>Note: The ML covariance estimate is biased (underestimates true covariance).",
+      "back": "<b>Intuition</b>: The best-fit Gaussian is centered at the average of your data, with spread matching how scattered the data is.<br><b>Mean</b>: \\( \\boldsymbol{\\mu}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} \\mathbf{x}_n \\) (just the sample average)<br><b>Covariance</b>: \\( \\boldsymbol{\\Sigma}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)<br><b>Note</b>: ML covariance slightly underestimates true variance (use N-1 for unbiased).",
       "tags": [
         "ch03",
         "maximum-likelihood",
@@ -183,7 +173,7 @@
     {
       "uid": "03-018",
       "front": "What is a mixture distribution?",
-      "back": "A <b>mixture distribution</b> is formed by taking linear combinations of more basic distributions.<br>General form: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k p_k(\\mathbf{x}) \\)<br>where \\( \\pi_k \\) are mixing coefficients satisfying \\( \\sum_k \\pi_k = 1 \\) and \\( 0 \\leq \\pi_k \\leq 1 \\).",
+      "back": "A <b>mixture distribution</b> combines simpler distributions to model complex data.<br><b>Intuition</b>: Like mixing paint colors. If your data has multiple clusters, use one \"paint\" (distribution) per cluster and blend them. Each component has a weight \\( \\pi_k \\) saying how much of that \"paint\" to use.<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k p_k(\\mathbf{x}) \\) where weights sum to 1.",
       "tags": [
         "ch03",
         "mixture-models",
@@ -193,7 +183,7 @@
     {
       "uid": "03-019",
       "front": "What is a Gaussian mixture model (GMM)?",
-      "back": "A <b>Gaussian mixture model</b> is a superposition of K Gaussian densities:<br>\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)<br>Each component has its own mean \\( \\boldsymbol{\\mu}_k \\) and covariance \\( \\boldsymbol{\\Sigma}_k \\). By using enough components, almost any continuous distribution can be approximated.",
+      "back": "A <b>Gaussian mixture model</b> uses multiple Gaussians to model complex distributions.<br><b>Intuition</b>: One bell curve can't capture multiple clusters. Solution: use K bell curves, each centered on a different cluster. The GMM learns where to place each bell curve and how big to make it.<br><b>Power</b>: With enough Gaussians, you can approximate almost any distribution - like building any shape from overlapping hills.<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)",
       "tags": [
         "ch03",
         "gmm",
@@ -203,7 +193,7 @@
     {
       "uid": "03-020",
       "front": "What are the mixing coefficients in a mixture model?",
-      "back": "<b>Mixing coefficients</b> \\( \\pi_k \\) can be interpreted as the prior probability of selecting component k:<br>\\( \\pi_k = p(k) \\)<br>Constraints:<ul><li>\\( \\sum_{k=1}^{K} \\pi_k = 1 \\)</li><li>\\( 0 \\leq \\pi_k \\leq 1 \\)</li></ul>",
+      "back": "<b>Mixing coefficients</b> \\( \\pi_k \\) represent how \"popular\" each cluster is.<br><b>Intuition</b>: Before seeing a data point, \\( \\pi_k \\) is the probability it came from cluster k. If cluster 1 contains 70% of your data, then \\( \\pi_1 = 0.7 \\).<br><b>Constraints</b>: Must be valid probabilities - all non-negative and sum to 1.",
       "tags": [
         "ch03",
         "mixing-coefficients",
@@ -213,7 +203,7 @@
     {
       "uid": "03-021",
       "front": "What are responsibilities in a Gaussian mixture model?",
-      "back": "<b>Responsibilities</b> \\( \\gamma_k(\\mathbf{x}) \\) are the posterior probabilities that component k generated observation \\( \\mathbf{x} \\):<br>\\( \\gamma_k(\\mathbf{x}) = p(k|\\mathbf{x}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_l \\pi_l \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_l, \\boldsymbol{\\Sigma}_l)} \\)<br>Computed using Bayes' theorem.",
+      "back": "<b>Responsibilities</b> answer: \"which cluster generated this point?\"<br><b>Intuition</b>: After seeing point \\( \\mathbf{x} \\), we update our belief about which cluster it belongs to. A point near cluster 2's center will have high \\( \\gamma_2 \\) and low values for other clusters.<br><b>Soft assignment</b>: Unlike hard clustering, responsibilities can be fractional (e.g., 60% cluster 1, 40% cluster 2).<br><b>Formula</b>: \\( \\gamma_k(\\mathbf{x}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_l \\pi_l \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_l, \\boldsymbol{\\Sigma}_l)} \\)",
       "tags": [
         "ch03",
         "responsibilities",
@@ -223,7 +213,7 @@
     {
       "uid": "03-022",
       "front": "Why is maximum likelihood for Gaussian mixtures more complex than for a single Gaussian?",
-      "back": "The log likelihood for a GMM contains a <b>sum inside the logarithm</b>:<br>\\( \\ln p(X|\\pi,\\mu,\\Sigma) = \\sum_{n=1}^{N} \\ln \\left( \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\right) \\)<br>This means no closed-form solution exists. Instead, use iterative optimization or the <b>Expectation-Maximization (EM)</b> algorithm.",
+      "back": "<b>Intuition</b>: For a single Gaussian, we can solve for the best parameters directly (closed-form). For mixtures, the components are \"entangled\" - we don't know which points belong to which cluster.<br><b>The problem</b>: Log of a sum \\( \\ln(\\sum_k ...) \\) doesn't simplify nicely, unlike sum of logs.<br><b>Solution</b>: Use iterative methods like <b>EM algorithm</b> - alternate between guessing cluster assignments and updating parameters.",
       "tags": [
         "ch03",
         "gmm",
@@ -233,7 +223,7 @@
     {
       "uid": "03-023",
       "front": "What is sequential estimation and why is it useful?",
-      "back": "<b>Sequential estimation</b> processes data points one at a time rather than in a batch.<br>For the mean: \\( \\mu_{ML}^{(N)} = \\mu_{ML}^{(N-1)} + \\frac{1}{N}(x_N - \\mu_{ML}^{(N-1)}) \\)<br>Useful for:<ul><li>Online applications</li><li>Large datasets where batch processing is infeasible</li><li>Memory-constrained settings</li></ul>",
+      "back": "<b>Sequential estimation</b> updates parameters one data point at a time.<br><b>Intuition</b>: Instead of waiting for all data and computing the average, update your running average as each point arrives. New estimate = old estimate + small correction based on new point.<br><b>Formula</b>: \\( \\mu^{(N)} = \\mu^{(N-1)} + \\frac{1}{N}(x_N - \\mu^{(N-1)}) \\)<br><b>Why useful</b>: Streaming data, huge datasets that don't fit in memory, real-time applications.",
       "tags": [
         "ch03",
         "sequential-estimation",
@@ -243,7 +233,7 @@
     {
       "uid": "03-024",
       "front": "What is a limitation of using a single Gaussian for multimodal data?",
-      "back": "A single Gaussian has only one mode (peak). If the data-generating process is <b>multimodal</b> (has multiple clusters), a single Gaussian will:<br><ul><li>Fail to capture the cluster structure</li><li>Place probability mass in regions with sparse data (between clusters)</li></ul>Solution: Use a mixture of Gaussians.",
+      "back": "<b>Intuition</b>: A single bell curve has one peak. If your data has multiple clusters (like heights of children vs adults), one Gaussian will awkwardly sit between them.<br><b>Problems</b>:<ul><li>Misses the cluster structure entirely</li><li>Assigns high probability to the \"gap\" between clusters where no data exists</li></ul><b>Solution</b>: Use a mixture of Gaussians - one bell curve per cluster.",
       "tags": [
         "ch03",
         "gaussian-limitations",
@@ -253,7 +243,7 @@
     {
       "uid": "03-025",
       "front": "How do histograms work for density estimation?",
-      "back": "<b>Histograms</b> partition the input space into distinct bins of width \\( \\Delta_i \\) and count the number \\( n_i \\) of observations in each bin.<br>Density estimate: \\( p_i = \\frac{n_i}{N \\Delta_i} \\)<br>Advantage: Once computed, original data can be discarded.<br>Disadvantage: Estimated density has discontinuities at bin edges.",
+      "back": "<b>Histograms</b> divide space into bins and count how many points fall in each.<br><b>Intuition</b>: Like sorting balls into buckets. More balls in a bucket = higher density there.<br><b>Formula</b>: \\( p_i = \\frac{n_i}{N \\Delta_i} \\) (count / total / bin width)<br><b>Trade-off</b>: Narrow bins capture detail but are noisy; wide bins are smooth but miss features.<br><b>Downside</b>: Jagged edges where bins meet (not smooth like real distributions).",
       "tags": [
         "ch03",
         "histogram",
@@ -263,7 +253,7 @@
     {
       "uid": "03-026",
       "front": "What are the two fundamental approaches to nonparametric density estimation from a region R?",
-      "back": "Given probability \\( P \\) of falling in region R with volume V and K points inside:<br><ol><li><b>Fix K, determine V from data</b>: K-nearest neighbors</li></ol><ol><li><b>Fix V, determine K from data</b>: Kernel density estimation</li></ol>Both use: \\( p(\\mathbf{x}) \\approx \\frac{K}{NV} \\)",
+      "back": "<b>Key insight</b>: Density \\( \\approx \\) (points in region) / (region size).<br><b>Intuition</b>: To estimate density at a point, look at a region around it. Two strategies:<ol><li><b>KNN</b>: Fix how many neighbors (K) to include, let the region size adjust. Dense areas = small regions.</li><li><b>Kernel density</b>: Fix region size (bandwidth h), count how many points fall inside.</li></ol><b>Formula</b>: \\( p(\\mathbf{x}) \\approx \\frac{K}{NV} \\)",
       "tags": [
         "ch03",
         "nonparametric",
@@ -273,7 +263,7 @@
     {
       "uid": "03-027",
       "front": "What is kernel density estimation (Parzen window)?",
-      "back": "<b>Kernel density estimation</b> fixes the volume V and counts points K:<br>\\( p(\\mathbf{x}) = \\frac{1}{N} \\sum_{n=1}^{N} \\frac{1}{h^D} k\\left(\\frac{\\mathbf{x} - \\mathbf{x}_n}{h}\\right) \\)<br>where \\( k(\\cdot) \\) is a kernel function (e.g., Gaussian) and h is the bandwidth controlling smoothness.",
+      "back": "<b>Kernel density estimation</b> places a small \"bump\" (kernel) at each data point and sums them up.<br><b>Intuition</b>: Each data point contributes a smooth hill to the density. Where points cluster together, hills overlap and density is high.<br><b>Bandwidth h</b>: Controls hill width. Small h = spiky (overfits), large h = too smooth (underfits).<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\frac{1}{N} \\sum_{n=1}^{N} \\frac{1}{h^D} k\\left(\\frac{\\mathbf{x} - \\mathbf{x}_n}{h}\\right) \\)",
       "tags": [
         "ch03",
         "kernel-density",
@@ -283,7 +273,7 @@
     {
       "uid": "03-028",
       "front": "What is K-nearest neighbors (KNN) density estimation?",
-      "back": "<b>K-nearest neighbors</b> fixes K and finds the volume V containing exactly K neighbors:<br>\\( p(\\mathbf{x}) = \\frac{K}{NV} \\)<br>where V is the volume of a sphere centered at \\( \\mathbf{x} \\) containing exactly K data points.<br>The density estimate adapts to local data density.",
+      "back": "<b>K-nearest neighbors</b> estimates density by looking at how far you must go to find K neighbors.<br><b>Intuition</b>: In crowded areas, K neighbors are close by (small volume = high density). In sparse areas, you must reach far (large volume = low density).<br><b>Self-adapting</b>: Unlike fixed-bandwidth methods, KNN automatically uses small regions where data is dense and large regions where it's sparse.<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\frac{K}{NV} \\)",
       "tags": [
         "ch03",
         "knn",
@@ -293,7 +283,7 @@
     {
       "uid": "03-029",
       "front": "How does K-nearest neighbors work for classification?",
-      "back": "To classify a new point:<br><ol><li>Identify the K nearest points from training data</li><li>Assign the new point to the class having the <b>largest number of representatives</b> among those K neighbors</li></ol>This is a simple, non-parametric classifier that requires storing all training data.",
+      "back": "<b>Intuition</b>: \"You are who your friends are.\" To classify a new point, look at its K nearest neighbors and take a vote.<br><b>Example</b>: If K=5 and 3 neighbors are cats, 2 are dogs, classify as cat.<br><b>Choosing K</b>: Small K = sensitive to noise, large K = smoother boundaries but may miss local patterns.<br><b>Downside</b>: Must store all training data and compare against each for every prediction.",
       "tags": [
         "ch03",
         "knn-classification",
@@ -303,7 +293,7 @@
     {
       "uid": "03-030",
       "front": "What is a major limitation of nonparametric methods like KNN and kernel density estimation?",
-      "back": "Both methods require storing the <b>entire training data set</b>.<br>The number of parameters effectively grows with dataset size, making them very inefficient for large datasets.<br>Deep learning overcomes this by using flexible neural networks with a large but <b>fixed</b> number of parameters.",
+      "back": "<b>The problem</b>: Both KNN and kernel density estimation must keep all training data forever.<br><b>Intuition</b>: It's like memorizing every example rather than learning general rules. More data = more memory needed, and predictions get slower.<br><b>Scale issue</b>: With millions of data points, storing and searching through all of them becomes impractical.<br><b>Deep learning solution</b>: Learn patterns in fixed-size weights - once trained, you can throw away the data.",
       "tags": [
         "ch03",
         "nonparametric-limitations",
@@ -313,7 +303,7 @@
     {
       "uid": "03-031",
       "front": "What is the unbiased estimator for the covariance matrix of a multivariate Gaussian?",
-      "back": "The unbiased covariance estimator is:<br>\\( \\tilde{\\boldsymbol{\\Sigma}} = \\frac{1}{N-1}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)<br>Note the \\( N-1 \\) in the denominator instead of \\( N \\).",
+      "back": "<b>Intuition</b>: Dividing by N systematically underestimates variance because we're measuring distances from our estimated mean (which is in the \"center\" of our sample) rather than the true mean.<br><b>Fix</b>: Divide by N-1 instead of N (Bessel's correction).<br><b>Formula</b>: \\( \\tilde{\\boldsymbol{\\Sigma}} = \\frac{1}{N-1}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)<br><b>Why N-1</b>: We \"used up\" one degree of freedom estimating the mean.",
       "tags": [
         "ch03",
         "bias-correction",
@@ -323,7 +313,7 @@
     {
       "uid": "03-032",
       "front": "What is the conditional distribution of a subset of variables in a multivariate Gaussian?",
-      "back": "If \\( \\mathbf{x} = (\\mathbf{x}_a, \\mathbf{x}_b) \\) follows a multivariate Gaussian, then the conditional \\( p(\\mathbf{x}_a | \\mathbf{x}_b) \\) is also Gaussian.<br>This is a key property making Gaussians analytically tractable for probabilistic inference.",
+      "back": "<b>Key property</b>: If you know some variables, the remaining ones are still Gaussian.<br><b>Intuition</b>: Imagine a 2D Gaussian (like a tilted ellipse). If you fix x=5 and \"slice\" vertically, the resulting 1D distribution of y is a Gaussian (not some weird shape).<br><b>Why powerful</b>: Makes Bayesian inference tractable - conditioning and marginalizing stay in the Gaussian family, so formulas remain closed-form.",
       "tags": [
         "ch03",
         "conditional-gaussian",
@@ -333,7 +323,7 @@
     {
       "uid": "03-033",
       "front": "What is the marginal distribution of a subset of variables in a multivariate Gaussian?",
-      "back": "If \\( \\mathbf{x} = (\\mathbf{x}_a, \\mathbf{x}_b) \\) follows a multivariate Gaussian with mean \\( (\\boldsymbol{\\mu}_a, \\boldsymbol{\\mu}_b) \\), then:<br>\\( p(\\mathbf{x}_a) = \\mathcal{N}(\\mathbf{x}_a | \\boldsymbol{\\mu}_a, \\boldsymbol{\\Sigma}_{aa}) \\)<br>where \\( \\boldsymbol{\\Sigma}_{aa} \\) is the corresponding block of the covariance matrix.",
+      "back": "<b>Key property</b>: If you ignore some variables, the rest are still Gaussian.<br><b>Intuition</b>: Imagine a 3D Gaussian blob. If you only look at the shadow it casts on the xy-plane (ignoring z), that shadow is a 2D Gaussian.<br><b>Formula</b>: \\( p(\\mathbf{x}_a) = \\mathcal{N}(\\mathbf{x}_a | \\boldsymbol{\\mu}_a, \\boldsymbol{\\Sigma}_{aa}) \\) - just take the corresponding parts of the mean and covariance.",
       "tags": [
         "ch03",
         "marginal-gaussian",
@@ -343,7 +333,7 @@
     {
       "uid": "03-034",
       "front": "What is the log likelihood function for the multivariate Gaussian?",
-      "back": "\\( \\ln p(X|\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma}) = -\\frac{ND}{2}\\ln(2\\pi) - \\frac{N}{2}\\ln|\\boldsymbol{\\Sigma}| - \\frac{1}{2}\\sum_{n=1}^{N}(\\mathbf{x}_n - \\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1}(\\mathbf{x}_n - \\boldsymbol{\\mu}) \\)<br>Maximizing this gives the ML estimates for mean and covariance.",
+      "back": "<b>Intuition</b>: The log likelihood measures how well the Gaussian explains the data. Higher = better fit.<br><b>Three terms</b>:<ol><li>Constant (depends on dimensions)</li><li>\\( -\\frac{N}{2}\\ln|\\boldsymbol{\\Sigma}| \\): Penalizes large variance (spreading probability too thin)</li><li>Sum of squared distances to mean (weighted by precision): Penalizes points far from center</li></ol><b>Maximize</b> this to find the best \\( \\boldsymbol{\\mu} \\) and \\( \\boldsymbol{\\Sigma} \\).",
       "tags": [
         "ch03",
         "log-likelihood",
@@ -353,7 +343,7 @@
     {
       "uid": "03-035",
       "front": "What is the precision matrix?",
-      "back": "The <b>precision matrix</b> is the inverse of the covariance matrix:<br>\\( \\boldsymbol{\\Lambda} = \\boldsymbol{\\Sigma}^{-1} \\)<br>It appears naturally in the exponent of the multivariate Gaussian. Working with precision is sometimes more convenient for inference.",
+      "back": "The <b>precision matrix</b> is the inverse of the covariance matrix: \\( \\boldsymbol{\\Lambda} = \\boldsymbol{\\Sigma}^{-1} \\)<br><b>Intuition</b>: Precision measures how \"tightly\" the distribution is concentrated. High precision = low variance = more confidence.<br><b>Why useful</b>: In the Gaussian formula, \\( \\boldsymbol{\\Sigma}^{-1} \\) appears naturally. Some algorithms work directly with precision to avoid repeated matrix inversions.",
       "tags": [
         "ch03",
         "precision-matrix",

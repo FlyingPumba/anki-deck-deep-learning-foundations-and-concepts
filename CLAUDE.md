@@ -6,6 +6,13 @@
 
 ## Card Content Formatting
 
+### Style
+- Lead with **intuition** using everyday analogies (coin flips, dice, paint mixing, hills, shadows, etc.)
+- Include concrete **examples** where helpful
+- Preserve key **formulas** for reference, but don't make them the focus
+- Add practical notes like **Why useful** or **Trade-offs** where relevant
+- Avoid dry, formula-first definitions - make concepts memorable and relatable
+
 ### LaTeX
 - Use LaTeX for all mathematical equations
 - Inline math: `\( ... \)`
