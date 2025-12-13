@@ -98,7 +98,7 @@
     {
       "uid": "02-015",
       "front": "What is a probability density function?",
-      "back": "A **probability density** \\( p(x) \\) for a continuous variable x is defined such that:\n\n\\( p(x \\in (a,b)) = \\int_a^b p(x) dx \\)\n\nConstraints:\n- \\( p(x) \\geq 0 \\)\n- \\( \\int_{-\\infty}^{\\infty} p(x) dx = 1 \\)",
+      "back": "A function that describes the likelihood of a **continuous random variable** falling within a specific range.\n\nRepresented by a curve where the **area under it equals the probability**:\n\n\\( P(x \\in (a,b)) = \\int_a^b f(x) dx \\)\n\nConstraints:\n\n- Non-negative: \\( f(x) \\geq 0 \\)\n- Total area equals 1: \\( \\int_{-\\infty}^{\\infty} f(x) dx = 1 \\)",
       "tags": ["ch02", "probability-density", "definition"]
     },
     {
