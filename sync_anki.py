@@ -168,13 +168,13 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             if norm_current_front == norm_new_front and norm_current_back == norm_new_back:
                 return "unchanged", existing_id, ""
 
-            # Determine what changed for logging
-            changes = []
+            # Determine what changed for logging with details
+            details = []
             if norm_current_front != norm_new_front:
-                changes.append("front")
+                details.append(f"front: {repr(current_front[:80])} -> {repr(front[:80])}")
             if norm_current_back != norm_new_back:
-                changes.append("back")
-            reason = f"changed: {', '.join(changes)}"
+                details.append(f"back: {repr(current_back[:80])} -> {repr(back[:80])}")
+            reason = "\n      ".join(details)
 
         else:
             reason = "note info not found"
@@ -295,7 +295,8 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
                 print(f"  added: {uid} ({reason})")
                 added += 1
             elif status == "updated":
-                print(f"  updated: {uid} ({reason})")
+                print(f"  updated: {uid}")
+                print(f"      {reason}")
                 updated += 1
             else:
                 unchanged += 1
