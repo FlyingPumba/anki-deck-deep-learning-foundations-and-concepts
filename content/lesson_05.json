@@ -54,7 +54,7 @@
     {
       "uid": "05-005",
       "front": "What is the advantage of discriminative models over generative models?",
-      "back": "In the discriminative approach:<br><ul><li>Model \\( p(C_k|\\vec{x}) \\) directly</li><li><b>Fewer learnable parameters</b> to determine</li><li>Don't need to model \\( p(\\vec{x}) \\) which may have complex structure irrelevant to classification</li></ul>Generative models must model the full joint distribution.",
+      "back": "<b>Intuition</b>: To tell cats from dogs, you don't need to know everything about what makes a cat - just what makes them <i>different</i>.<br><b>Advantages</b>:<ul><li><b>Fewer parameters</b>: Only model the decision boundary, not the full data distribution</li><li><b>Focused</b>: Ignores complex structure in \\( p(\\vec{x}) \\) that's irrelevant for classification</li><li><b>Often more accurate</b>: All capacity goes toward the classification task</li></ul>",
       "tags": [
         "ch05",
         "discriminative",
@@ -104,7 +104,7 @@
     {
       "uid": "05-010",
       "front": "How is the error function for logistic regression derived?",
-      "back": "Take the <b>negative logarithm of the likelihood</b>:<br>\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)<br>where \\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\)<br>This is the <b>cross-entropy error function</b>.",
+      "back": "Take the <b>negative logarithm of the likelihood</b>:<br>\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)<br>where:<ul><li>\\( t_n \\in \\{0, 1\\} \\) is the target class label for example n</li><li>\\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\) is the predicted probability</li></ul>This is the <b>cross-entropy error function</b>.",
       "tags": [
         "ch05",
         "cross-entropy",
@@ -124,7 +124,7 @@
     {
       "uid": "05-012",
       "front": "What are shortcomings of linear models with fixed basis functions?",
-      "back": "The assumption that basis functions are fixed independent of training data leads to:<br><ol><li><b>Poor scaling</b> with dimensionality (curse of dimensionality)</li><li><b>Inability to adapt</b> features to the problem</li><li><b>Exponential growth</b> in number of parameters for expressive models</li></ol>Solution: Learn the basis functions from data (neural networks).",
+      "back": "<b>Basis functions</b> \\( \\phi_j(\\vec{x}) \\) transform the input before the linear combination (e.g., polynomials, Gaussians). In fixed basis models, these are chosen beforehand.<br><b>Shortcomings</b>:<ol><li><b>Poor scaling</b> with dimensionality (curse of dimensionality)</li><li><b>Inability to adapt</b> features to the problem</li><li><b>Exponential growth</b> in parameters for expressive models</li></ol><b>Solution</b>: Learn the basis functions from data (neural networks).",
       "tags": [
         "ch05",
         "linear-models",

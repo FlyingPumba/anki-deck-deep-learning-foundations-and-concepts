@@ -162,16 +162,6 @@
       ]
     },
     {
-      "uid": "04-017",
-      "front": "What is the difference between an error function and a loss function?",
-      "back": "<b>Error function</b>: Used to set parameters during training to determine the conditional probability distribution \\( p(t|\\vec{x}) \\)<br><b>Loss function</b>: Governs how the conditional distribution is used to arrive at a predictive function \\( f(\\vec{x}) \\)<br>They serve different purposes in the learning pipeline.",
-      "tags": [
-        "ch04",
-        "loss-function",
-        "error-function"
-      ]
-    },
-    {
       "uid": "04-018",
       "front": "What is the optimal prediction under squared loss?",
       "back": "The <b>conditional mean</b> (regression function):<br>\\( f^*(\\vec{x}) = E[t|\\vec{x}] = \\int t \\, p(t|\\vec{x}) \\, dt \\)<br>This minimizes the expected squared loss:<br>\\( E[L] = \\int\\int \\{f(\\vec{x}) - t\\}^2 p(\\vec{x}, t) \\, d\\vec{x} \\, dt \\)",
@@ -194,7 +184,7 @@
     {
       "uid": "04-020",
       "front": "What is the bias-variance trade-off?",
-      "back": "A decomposition showing that expected loss has three components:<br>\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)<br>Very flexible models have <b>low bias but high variance</b>.<br>Simple models have <b>high bias but low variance</b>.<br>Optimal model complexity balances these.",
+      "back": "<b>Bias</b>: How far off the average prediction is from the truth (systematic error).<br><b>Variance</b>: How much predictions change across different training sets (sensitivity to data).<br><b>Trade-off</b>:<br>\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)<br><ul><li>Flexible models: low bias, high variance (overfit)</li><li>Simple models: high bias, low variance (underfit)</li></ul>Optimal complexity balances these.",
       "tags": [
         "ch04",
         "bias-variance",
