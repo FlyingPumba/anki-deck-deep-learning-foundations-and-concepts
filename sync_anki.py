@@ -259,9 +259,11 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             # Determine what changed for logging with details
             details = []
             if norm_current_front != norm_new_front:
-                details.append(f"front: {repr(current_front[:80])} -> {repr(front[:80])}")
+                details.append(f"front (before): {current_front}")
+                details.append(f"front (after):  {front}")
             if norm_current_back != norm_new_back:
-                details.append(f"back: {repr(current_back[:80])} -> {repr(back[:80])}")
+                details.append(f"back (before): {current_back}")
+                details.append(f"back (after):  {back}")
             if tags_to_add:
                 details.append(f"tags added: {tags_to_add}")
             if tags_to_remove:
