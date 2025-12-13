@@ -104,7 +104,7 @@
     {
       "uid": "05-010",
       "front": "How is the error function for logistic regression derived?",
-      "back": "Take the <b>negative logarithm of the likelihood</b>:<br>\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)<br>where:<ul><li>\\( t_n \\in \\{0, 1\\} \\) is the target class label for example n</li><li>\\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\) is the predicted probability</li></ul>This is the <b>cross-entropy error function</b>.",
+      "back": "Take the <b>negative logarithm of the likelihood</b>:<br>\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)<br>where:<ul><li>\\( t_n \\in \\{0, 1\\} \\) is the target class label for example n</li><li>\\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\) is the predicted probability</li></ul><b>Why log?</b> Turns products into sums, making optimization easier and numerically stable.<br><b>Why negative?</b> We want to <i>minimize</i> error, but <i>maximize</i> likelihood. Negating converts max to min.<br>This is the <b>cross-entropy error function</b>.",
       "tags": [
         "ch05",
         "cross-entropy",

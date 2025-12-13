@@ -142,6 +142,16 @@
       ]
     },
     {
+      "uid": "06-044",
+      "front": "What is the Hessian matrix?",
+      "back": "The <b>Hessian</b> is the matrix of second derivatives of a function:<br>\\( H_{ij} = \\frac{\\partial^2 E}{\\partial w_i \\partial w_j} \\)<br><b>Intuition</b>: Analogous to the second derivative \\( f''(x) \\) in single-variable calculus, but for multiple dimensions. While the gradient tells you the slope, the Hessian tells you the <i>curvature</i> - how the slope is changing.<br><b>Uses</b>:<ul><li>Determines if a stationary point is a min, max, or saddle</li><li>Enables second-order optimization (Newton's method)</li></ul>",
+      "tags": [
+        "ch06",
+        "hessian",
+        "optimization"
+      ]
+    },
+    {
       "uid": "06-014",
       "front": "When is a matrix H positive definite?",
       "back": "When \\( \\vec{v}^T H \\vec{v} > 0 \\) for all non-zero vectors \\( \\vec{v} \\).<br>Equivalently: all eigenvalues are positive.<br>At a local minimum, the Hessian matrix must be positive definite.",
