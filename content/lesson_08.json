@@ -12,104 +12,172 @@
     {
       "uid": "08-001",
       "front": "What is weight sharing (parameter tying)?",
-      "back": "Using the **same weight value** for multiple connections in a network.\n\nThe shared value is learned from data.\n\nBenefits:\n\n- Reduces number of parameters\n- Encodes prior knowledge about structure\n- Key mechanism in CNNs (same filter applied everywhere)",
-      "tags": ["ch08", "weight-sharing", "architecture"]
+      "back": "Using the <b>same weight value</b> for multiple connections in a network.\n\nThe shared value is learned from data.\n\nBenefits:\n\n- Reduces number of parameters\n- Encodes prior knowledge about structure\n- Key mechanism in CNNs (same filter applied everywhere)",
+      "tags": [
+        "ch08",
+        "weight-sharing",
+        "architecture"
+      ]
     },
     {
       "uid": "08-002",
       "front": "What is the shattered gradients problem?",
-      "back": "In very deep networks, gradients become increasingly **uncorrelated** and noisy across layers.\n\nWith ReLU activations: exponential increase in the number of linear regions.\n\nThis makes optimization difficult without special techniques like residual connections.",
-      "tags": ["ch08", "shattered-gradients", "deep-networks"]
+      "back": "In very deep networks, gradients become increasingly <b>uncorrelated</b> and noisy across layers.\n\nWith ReLU activations: exponential increase in the number of linear regions.\n\nThis makes optimization difficult without special techniques like residual connections.",
+      "tags": [
+        "ch08",
+        "shattered-gradients",
+        "deep-networks"
+      ]
     },
     {
       "uid": "08-003",
       "front": "What are residual connections (skip connections)?",
-      "back": "Connections that **add the input directly to the output** of a layer:\n\n\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)\n\nA particular form of skip-layer connections.\n\nAllow gradients to flow directly through the network, mitigating vanishing gradients.",
-      "tags": ["ch08", "residual-connections", "architecture"]
+      "back": "Connections that <b>add the input directly to the output</b> of a layer:\n\n\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)\n\nA particular form of skip-layer connections.\n\nAllow gradients to flow directly through the network, mitigating vanishing gradients.",
+      "tags": [
+        "ch08",
+        "residual-connections",
+        "architecture"
+      ]
     },
     {
       "uid": "08-004",
       "front": "What is a residual block?",
-      "back": "A network module where input is added to output:\n\n\\( \\vec{y} = F(\\vec{x}; \\vec{w}) + \\vec{x} \\)\n\nThe function \\( F \\) learns the **residual** - what needs to be added to the input.\n\nEasier to learn small corrections than full transformations.",
-      "tags": ["ch08", "residual-block", "architecture"]
+      "back": "A network module where input is added to output:\n\n\\( \\vec{y} = F(\\vec{x}; \\vec{w}) + \\vec{x} \\)\n\nThe function \\( F \\) learns the <b>residual</b> - what needs to be added to the input.\n\nEasier to learn small corrections than full transformations.",
+      "tags": [
+        "ch08",
+        "residual-block",
+        "architecture"
+      ]
     },
     {
       "uid": "08-005",
       "front": "What is a ResNet?",
-      "back": "**Residual Network**: A deep network composed of multiple residual blocks.\n\nKey properties:\n\n- Can train very deep networks (100+ layers)\n- Gradients flow through skip connections\n- Each block learns residual mapping\n\nEnabled breakthrough in image recognition (He et al., 2016).",
-      "tags": ["ch08", "resnet", "architecture"]
+      "back": "<b>Residual Network</b>: A deep network composed of multiple residual blocks.\n\nKey properties:\n\n- Can train very deep networks (100+ layers)\n- Gradients flow through skip connections\n- Each block learns residual mapping\n\nEnabled breakthrough in image recognition (He et al., 2016).",
+      "tags": [
+        "ch08",
+        "resnet",
+        "architecture"
+      ]
     },
     {
       "uid": "08-006",
       "front": "Why is the term 'residual' used in ResNets?",
-      "back": "Because each block learns \\( F(\\vec{x}) = H(\\vec{x}) - \\vec{x} \\), the **residual** between desired output \\( H(\\vec{x}) \\) and input \\( \\vec{x} \\).\n\nIf identity mapping is optimal, the residual is just zero.\n\nEasier to push residual to zero than learn identity explicitly.",
-      "tags": ["ch08", "residual", "intuition"]
+      "back": "Because each block learns \\( F(\\vec{x}) = H(\\vec{x}) - \\vec{x} \\), the <b>residual</b> between desired output \\( H(\\vec{x}) \\) and input \\( \\vec{x} \\).\n\nIf identity mapping is optimal, the residual is just zero.\n\nEasier to push residual to zero than learn identity explicitly.",
+      "tags": [
+        "ch08",
+        "residual",
+        "intuition"
+      ]
     },
     {
       "uid": "08-007",
       "front": "What are committees (ensembles) in machine learning?",
-      "back": "Combining predictions from **multiple models** to improve performance.\n\nMethods:\n\n- **Averaging**: Mean of predictions\n- **Voting**: Majority vote for classification\n- **Weighted combination**: Based on model quality\n\nReduces variance and often improves accuracy.",
-      "tags": ["ch08", "ensemble", "committees"]
+      "back": "Combining predictions from <b>multiple models</b> to improve performance.\n\nMethods:\n\n- <b>Averaging</b>: Mean of predictions\n- <b>Voting</b>: Majority vote for classification\n- <b>Weighted combination</b>: Based on model quality\n\nReduces variance and often improves accuracy.",
+      "tags": [
+        "ch08",
+        "ensemble",
+        "committees"
+      ]
     },
     {
       "uid": "08-008",
       "front": "What is bootstrap aggregation (bagging)?",
-      "back": "Creating multiple models trained on **bootstrap samples** of the data.\n\nBootstrap sample: Draw N points **with replacement** from original N points.\n\nEach model sees different subset. Average predictions for final output.\n\nReduces variance without increasing bias.",
-      "tags": ["ch08", "bagging", "ensemble"]
+      "back": "Creating multiple models trained on <b>bootstrap samples</b> of the data.\n\nBootstrap sample: Draw N points <b>with replacement</b> from original N points.\n\nEach model sees different subset. Average predictions for final output.\n\nReduces variance without increasing bias.",
+      "tags": [
+        "ch08",
+        "bagging",
+        "ensemble"
+      ]
     },
     {
       "uid": "08-009",
       "front": "What is a bootstrap dataset?",
-      "back": "A dataset \\( X_B \\) created by drawing N points **at random with replacement** from original dataset X of N points.\n\nSome points appear multiple times, others not at all.\n\nOn average, ~63.2% of original points appear in each bootstrap sample.",
-      "tags": ["ch08", "bootstrap", "sampling"]
+      "back": "A dataset \\( X_B \\) created by drawing N points <b>at random with replacement</b> from original dataset X of N points.\n\nSome points appear multiple times, others not at all.\n\nOn average, ~63.2% of original points appear in each bootstrap sample.",
+      "tags": [
+        "ch08",
+        "bootstrap",
+        "sampling"
+      ]
     },
     {
       "uid": "08-010",
       "front": "Why doesn't ensemble averaging reduce error as much as theory suggests?",
-      "back": "Theory: Averaging M models reduces error by factor of M.\n\nReality: **Errors are typically highly correlated** between models.\n\nCorrelated errors don't cancel out. Reduction is much smaller than 1/M.\n\nDiversity among ensemble members is key to improvement.",
-      "tags": ["ch08", "ensemble", "correlation"]
+      "back": "Theory: Averaging M models reduces error by factor of M.\n\nReality: <b>Errors are typically highly correlated</b> between models.\n\nCorrelated errors don't cancel out. Reduction is much smaller than 1/M.\n\nDiversity among ensemble members is key to improvement.",
+      "tags": [
+        "ch08",
+        "ensemble",
+        "correlation"
+      ]
     },
     {
       "uid": "08-011",
       "front": "What is boosting?",
-      "back": "An ensemble method that combines multiple **weak classifiers** sequentially.\n\nEach new classifier focuses on examples the previous ones got wrong.\n\nFinal prediction is weighted combination.\n\nExamples: AdaBoost, Gradient Boosting, XGBoost.",
-      "tags": ["ch08", "boosting", "ensemble"]
+      "back": "An ensemble method that combines multiple <b>weak classifiers</b> sequentially.\n\nEach new classifier focuses on examples the previous ones got wrong.\n\nFinal prediction is weighted combination.\n\nExamples: AdaBoost, Gradient Boosting, XGBoost.",
+      "tags": [
+        "ch08",
+        "boosting",
+        "ensemble"
+      ]
     },
     {
       "uid": "08-012",
       "front": "What is dropout?",
-      "back": "A regularization technique that **randomly deletes nodes** during training.\n\nWith probability p, each hidden/input node is 'dropped' (set to zero).\n\nAt test time: Use all nodes but scale activations by (1-p).\n\nCan be viewed as implicit model averaging.",
-      "tags": ["ch08", "dropout", "regularization"]
+      "back": "A regularization technique that <b>randomly deletes nodes</b> during training.\n\nWith probability p, each hidden/input node is 'dropped' (set to zero).\n\nAt test time: Use all nodes but scale activations by (1-p).\n\nCan be viewed as implicit model averaging.",
+      "tags": [
+        "ch08",
+        "dropout",
+        "regularization"
+      ]
     },
     {
       "uid": "08-013",
       "front": "Which nodes does dropout apply to?",
-      "back": "Dropout is applied to:\n\n- **Hidden nodes**: Yes\n- **Input nodes**: Yes (sometimes)\n- **Output nodes**: No\n\nOutput nodes are never dropped as they define the prediction.",
-      "tags": ["ch08", "dropout", "nodes"]
+      "back": "Dropout is applied to:\n\n- <b>Hidden nodes</b>: Yes\n- <b>Input nodes</b>: Yes (sometimes)\n- <b>Output nodes</b>: No\n\nOutput nodes are never dropped as they define the prediction.",
+      "tags": [
+        "ch08",
+        "dropout",
+        "nodes"
+      ]
     },
     {
       "uid": "08-014",
       "front": "Why is dropout interpreted as model averaging?",
-      "back": "Each dropout mask defines a **different sub-network**.\n\nWith N droppable nodes, there are \\( 2^N \\) possible sub-networks.\n\nTraining samples different networks; inference averages them.\n\nApproximate ensemble without training multiple models explicitly.",
-      "tags": ["ch08", "dropout", "ensemble"]
+      "back": "Each dropout mask defines a <b>different sub-network</b>.\n\nWith N droppable nodes, there are \\( 2^N \\) possible sub-networks.\n\nTraining samples different networks; inference averages them.\n\nApproximate ensemble without training multiple models explicitly.",
+      "tags": [
+        "ch08",
+        "dropout",
+        "ensemble"
+      ]
     },
     {
       "uid": "08-015",
       "front": "How does dropout affect training time?",
-      "back": "Training takes **longer** with dropout because:\n\n- Each parameter update uses only a subset of nodes\n- Updates are noisier (higher variance)\n- More epochs needed for convergence\n\nBut generalization often improves, justifying the extra training.",
-      "tags": ["ch08", "dropout", "training"]
+      "back": "Training takes <b>longer</b> with dropout because:\n\n- Each parameter update uses only a subset of nodes\n- Updates are noisier (higher variance)\n- More epochs needed for convergence\n\nBut generalization often improves, justifying the extra training.",
+      "tags": [
+        "ch08",
+        "dropout",
+        "training"
+      ]
     },
     {
       "uid": "08-016",
       "front": "What is Monte Carlo dropout?",
-      "back": "Using dropout at **test time** (not just training) to estimate uncertainty.\n\nRun multiple forward passes with different dropout masks.\n\nVariance in predictions indicates model uncertainty.\n\nProvides approximate Bayesian inference cheaply.",
-      "tags": ["ch08", "mc-dropout", "uncertainty"]
+      "back": "Using dropout at <b>test time</b> (not just training) to estimate uncertainty.\n\nRun multiple forward passes with different dropout masks.\n\nVariance in predictions indicates model uncertainty.\n\nProvides approximate Bayesian inference cheaply.",
+      "tags": [
+        "ch08",
+        "mc-dropout",
+        "uncertainty"
+      ]
     },
     {
       "uid": "08-017",
       "front": "How does dropout prevent co-adaptation of features?",
-      "back": "With dropout, each node **cannot rely on specific other nodes** being present.\n\nNodes must learn robust features useful independently.\n\nPrevents complex co-adaptations that might overfit.\n\nForces redundancy and distributed representations.",
-      "tags": ["ch08", "dropout", "co-adaptation"]
+      "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.\n\nNodes must learn robust features useful independently.\n\nPrevents complex co-adaptations that might overfit.\n\nForces redundancy and distributed representations.",
+      "tags": [
+        "ch08",
+        "dropout",
+        "co-adaptation"
+      ]
     }
   ]
 }

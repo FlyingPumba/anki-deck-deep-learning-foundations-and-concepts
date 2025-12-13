@@ -14,308 +14,512 @@
     {
       "uid": "04-001",
       "front": "What is the goal of regression?",
-      "back": "To predict the value of one or more **continuous target variables** \\( t \\) given the value of a D-dimensional vector \\( \\vec{x} \\) of input variables.",
-      "tags": ["ch04", "regression", "basics"]
+      "back": "To predict the value of one or more <b>continuous target variables</b> \\( t \\) given the value of a D-dimensional vector \\( \\vec{x} \\) of input variables.",
+      "tags": [
+        "ch04",
+        "regression",
+        "basics"
+      ]
     },
     {
       "uid": "04-002",
       "front": "What is the bias parameter in a linear regression model?",
       "back": "The parameter \\( w_0 \\) that allows for any fixed offset in the data:\n\n\\( y(\\vec{x}, \\vec{w}) = w_0 + w_1 x_1 + \\ldots + w_D x_D \\)\n\nAlso called the intercept. Not to be confused with statistical bias.",
-      "tags": ["ch04", "regression", "parameters"]
+      "tags": [
+        "ch04",
+        "regression",
+        "parameters"
+      ]
     },
     {
       "uid": "04-003",
       "front": "What was feature extraction in pre-deep learning machine learning?",
-      "back": "A form of fixed pre-processing of input variables \\( \\vec{x} \\) expressed as a set of **basis functions** \\( \\{\\phi_j(\\vec{x})\\} \\).\n\nThe goal was to choose sufficiently powerful basis functions that the learning task could be solved with a simple network model.\n\nDeep learning avoids this by learning nonlinear transformations from data itself.",
-      "tags": ["ch04", "feature-extraction", "basis-functions"]
+      "back": "A form of fixed pre-processing of input variables \\( \\vec{x} \\) expressed as a set of <b>basis functions</b> \\( \\{\\phi_j(\\vec{x})\\} \\).\n\nThe goal was to choose sufficiently powerful basis functions that the learning task could be solved with a simple network model.\n\nDeep learning avoids this by learning nonlinear transformations from data itself.",
+      "tags": [
+        "ch04",
+        "feature-extraction",
+        "basis-functions"
+      ]
     },
     {
       "uid": "04-004",
       "front": "How can a polynomial regression model be expressed using basis functions?",
       "back": "For a single input variable \\( x \\), use basis functions:\n\n\\( \\phi_j(x) = x^j \\)\n\nSo:\n\\( y(x, \\vec{w}) = w_0 + w_1 x + w_2 x^2 + \\ldots = \\sum_{j=0}^{M-1} w_j x^j \\)",
-      "tags": ["ch04", "polynomial", "basis-functions"]
+      "tags": [
+        "ch04",
+        "polynomial",
+        "basis-functions"
+      ]
     },
     {
       "uid": "04-005",
       "front": "Why are models of the form \\( y(\\vec{x}, \\vec{w}) = \\sum_j w_j \\phi_j(\\vec{x}) \\) called linear models?",
-      "back": "Because they are **linear in the parameters** \\( \\vec{w} \\), even though they can be nonlinear in the inputs \\( \\vec{x} \\) (via the basis functions \\( \\phi_j \\)).\n\nThis linearity in parameters greatly simplifies the analysis.",
-      "tags": ["ch04", "linear-models", "basis-functions"]
+      "back": "Because they are <b>linear in the parameters</b> \\( \\vec{w} \\), even though they can be nonlinear in the inputs \\( \\vec{x} \\) (via the basis functions \\( \\phi_j \\)).\n\nThis linearity in parameters greatly simplifies the analysis.",
+      "tags": [
+        "ch04",
+        "linear-models",
+        "basis-functions"
+      ]
     },
     {
       "uid": "04-006",
       "front": "What is least-squares regression?",
-      "back": "A method to find parameters by minimizing the **sum-of-squares error function**:\n\n\\( E_D(\\vec{w}) = \\frac{1}{2} \\sum_{n=1}^{N} \\{t_n - \\vec{w}^T \\phi(\\vec{x}_n)\\}^2 \\)\n\nEquivalent to maximum likelihood under Gaussian noise assumption.",
-      "tags": ["ch04", "least-squares", "optimization"]
+      "back": "A method to find parameters by minimizing the <b>sum-of-squares error function</b>:\n\n\\( E_D(\\vec{w}) = \\frac{1}{2} \\sum_{n=1}^{N} \\{t_n - \\vec{w}^T \\phi(\\vec{x}_n)\\}^2 \\)\n\nEquivalent to maximum likelihood under Gaussian noise assumption.",
+      "tags": [
+        "ch04",
+        "least-squares",
+        "optimization"
+      ]
     },
     {
       "uid": "04-007",
       "front": "Why is maximizing likelihood under Gaussian noise equivalent to minimizing sum-of-squares error?",
       "back": "The log likelihood under Gaussian noise is:\n\n\\( \\ln p(\\mathbf{t}|X, \\vec{w}, \\sigma^2) = -\\frac{N}{2}\\ln\\sigma^2 - \\frac{N}{2}\\ln(2\\pi) - \\frac{1}{\\sigma^2}E_D(\\vec{w}) \\)\n\nThe first two terms are constants w.r.t. \\( \\vec{w} \\), so maximizing likelihood is equivalent to minimizing \\( E_D(\\vec{w}) \\).",
-      "tags": ["ch04", "maximum-likelihood", "least-squares"]
+      "tags": [
+        "ch04",
+        "maximum-likelihood",
+        "least-squares"
+      ]
     },
     {
       "uid": "04-008",
       "front": "What are the normal equations for least-squares regression?",
       "back": "The closed-form solution for \\( \\vec{w} \\):\n\n\\( \\vec{w}_{ML} = (\\Phi^T \\Phi)^{-1} \\Phi^T \\mathbf{t} \\)\n\nWhere \\( \\Phi \\) is the design matrix with elements \\( \\Phi_{nj} = \\phi_j(\\vec{x}_n) \\).",
-      "tags": ["ch04", "normal-equations", "least-squares"]
+      "tags": [
+        "ch04",
+        "normal-equations",
+        "least-squares"
+      ]
     },
     {
       "uid": "04-009",
       "front": "What is the Moore-Penrose pseudo-inverse?",
       "back": "A generalization of matrix inverse to non-square matrices:\n\n\\( \\Phi^\\dagger = (\\Phi^T \\Phi)^{-1} \\Phi^T \\)\n\nUsed in the normal equations: \\( \\vec{w}_{ML} = \\Phi^\\dagger \\mathbf{t} \\)\n\nIf \\( \\Phi \\) is square and invertible, \\( \\Phi^\\dagger = \\Phi^{-1} \\).",
-      "tags": ["ch04", "pseudo-inverse", "linear-algebra"]
+      "tags": [
+        "ch04",
+        "pseudo-inverse",
+        "linear-algebra"
+      ]
     },
     {
       "uid": "04-010",
       "front": "What is a batch method in machine learning?",
-      "back": "A method where the **entire training data set is processed at once** to update parameters.\n\nContrast with sequential/online methods that process data points one at a time.",
-      "tags": ["ch04", "batch-learning", "training"]
+      "back": "A method where the <b>entire training data set is processed at once</b> to update parameters.\n\nContrast with sequential/online methods that process data points one at a time.",
+      "tags": [
+        "ch04",
+        "batch-learning",
+        "training"
+      ]
     },
     {
       "uid": "04-011",
       "front": "What are sequential algorithms (online algorithms)?",
-      "back": "Algorithms that process data points **one at a time** and then discard them.\n\nImportant for:\n\n- Online applications\n- Large datasets where batch processing is infeasible\n\nAlso called online algorithms.",
-      "tags": ["ch04", "online-learning", "sequential"]
+      "back": "Algorithms that process data points <b>one at a time</b> and then discard them.\n\nImportant for:\n\n- Online applications\n- Large datasets where batch processing is infeasible\n\nAlso called online algorithms.",
+      "tags": [
+        "ch04",
+        "online-learning",
+        "sequential"
+      ]
     },
     {
       "uid": "04-012",
       "front": "What is stochastic gradient descent (SGD)?",
       "back": "A sequential optimization algorithm where parameters are updated after each data point:\n\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\)\n\nWhere:\n\n- \\( \\eta \\) is the learning rate\n- \\( \\tau \\) is the iteration number\n- \\( E_n \\) is the error for point \\( n \\)\n\nAlso called sequential gradient descent.",
-      "tags": ["ch04", "sgd", "optimization"]
+      "tags": [
+        "ch04",
+        "sgd",
+        "optimization"
+      ]
     },
     {
       "uid": "04-013",
       "front": "What is the LMS (least-mean-squares) algorithm?",
       "back": "The application of stochastic gradient descent to the sum-of-squares error function:\n\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} + \\eta(t_n - \\vec{w}^{(\\tau)T}\\phi_n)\\phi_n \\)\n\nA classic sequential learning algorithm for linear regression.",
-      "tags": ["ch04", "lms", "sgd"]
+      "tags": [
+        "ch04",
+        "lms",
+        "sgd"
+      ]
     },
     {
       "uid": "04-014",
       "front": "What is the simplest form of regularizer in regression?",
-      "back": "The sum of squares of the weight vector elements (L2 regularization):\n\n\\( E_W(\\vec{w}) = \\frac{1}{2}\\vec{w}^T\\vec{w} = \\frac{1}{2}\\|\\vec{w}\\|^2 \\)\n\nTotal error: \\( E(\\vec{w}) = E_D(\\vec{w}) + \\lambda E_W(\\vec{w}) \\)\n\nAlso called **parameter shrinkage** or **weight decay**.",
-      "tags": ["ch04", "regularization", "weight-decay"]
+      "back": "The sum of squares of the weight vector elements (L2 regularization):\n\n\\( E_W(\\vec{w}) = \\frac{1}{2}\\vec{w}^T\\vec{w} = \\frac{1}{2}\\|\\vec{w}\\|^2 \\)\n\nTotal error: \\( E(\\vec{w}) = E_D(\\vec{w}) + \\lambda E_W(\\vec{w}) \\)\n\nAlso called <b>parameter shrinkage</b> or <b>weight decay</b>.",
+      "tags": [
+        "ch04",
+        "regularization",
+        "weight-decay"
+      ]
     },
     {
       "uid": "04-015",
       "front": "What are the two stages in solving a regression problem using probabilistic methods?",
-      "back": "1. **Inference stage**: Learn a model for the predictive distribution \\( p(t|\\vec{x}) \\) from training data\n\n2. **Decision stage**: Use the predictive distribution to make predictions, minimizing a loss function\n\nThis separation is a key principle of decision theory.",
-      "tags": ["ch04", "decision-theory", "inference"]
+      "back": "1. <b>Inference stage</b>: Learn a model for the predictive distribution \\( p(t|\\vec{x}) \\) from training data\n\n2. <b>Decision stage</b>: Use the predictive distribution to make predictions, minimizing a loss function\n\nThis separation is a key principle of decision theory.",
+      "tags": [
+        "ch04",
+        "decision-theory",
+        "inference"
+      ]
     },
     {
       "uid": "04-016",
       "front": "What is a loss function in regression?",
-      "back": "A function that quantifies the penalty for predicting \\( f(\\vec{x}) \\) when the true value is \\( t \\):\n\n\\( L(t, f(\\vec{x})) \\)\n\nThe goal is to choose \\( f \\) to minimize the **expected loss** under the predictive distribution.",
-      "tags": ["ch04", "loss-function", "decision-theory"]
+      "back": "A function that quantifies the penalty for predicting \\( f(\\vec{x}) \\) when the true value is \\( t \\):\n\n\\( L(t, f(\\vec{x})) \\)\n\nThe goal is to choose \\( f \\) to minimize the <b>expected loss</b> under the predictive distribution.",
+      "tags": [
+        "ch04",
+        "loss-function",
+        "decision-theory"
+      ]
     },
     {
       "uid": "04-017",
       "front": "What is the difference between an error function and a loss function?",
-      "back": "**Error function**: Used to set parameters during training to determine the conditional probability distribution \\( p(t|\\vec{x}) \\)\n\n**Loss function**: Governs how the conditional distribution is used to arrive at a predictive function \\( f(\\vec{x}) \\)\n\nThey serve different purposes in the learning pipeline.",
-      "tags": ["ch04", "loss-function", "error-function"]
+      "back": "<b>Error function</b>: Used to set parameters during training to determine the conditional probability distribution \\( p(t|\\vec{x}) \\)\n\n<b>Loss function</b>: Governs how the conditional distribution is used to arrive at a predictive function \\( f(\\vec{x}) \\)\n\nThey serve different purposes in the learning pipeline.",
+      "tags": [
+        "ch04",
+        "loss-function",
+        "error-function"
+      ]
     },
     {
       "uid": "04-018",
       "front": "What is the optimal prediction under squared loss?",
-      "back": "The **conditional mean** (regression function):\n\n\\( f^*(\\vec{x}) = E[t|\\vec{x}] = \\int t \\, p(t|\\vec{x}) \\, dt \\)\n\nThis minimizes the expected squared loss:\n\\( E[L] = \\int\\int \\{f(\\vec{x}) - t\\}^2 p(\\vec{x}, t) \\, d\\vec{x} \\, dt \\)",
-      "tags": ["ch04", "regression-function", "squared-loss"]
+      "back": "The <b>conditional mean</b> (regression function):\n\n\\( f^*(\\vec{x}) = E[t|\\vec{x}] = \\int t \\, p(t|\\vec{x}) \\, dt \\)\n\nThis minimizes the expected squared loss:\n\\( E[L] = \\int\\int \\{f(\\vec{x}) - t\\}^2 p(\\vec{x}, t) \\, d\\vec{x} \\, dt \\)",
+      "tags": [
+        "ch04",
+        "regression-function",
+        "squared-loss"
+      ]
     },
     {
       "uid": "04-019",
       "front": "How can you determine a suitable value for the regularization coefficient \\( \\lambda \\)?",
-      "back": "Methods include:\n\n- **Validation set**: Hold out data to evaluate different \\( \\lambda \\) values\n- **Cross-validation**: K-fold validation to estimate generalization error\n- **Bayesian methods**: Place a prior on \\( \\lambda \\) and marginalize\n\nThe optimal \\( \\lambda \\) balances bias and variance.",
-      "tags": ["ch04", "regularization", "model-selection"]
+      "back": "Methods include:\n\n- <b>Validation set</b>: Hold out data to evaluate different \\( \\lambda \\) values\n- <b>Cross-validation</b>: K-fold validation to estimate generalization error\n- <b>Bayesian methods</b>: Place a prior on \\( \\lambda \\) and marginalize\n\nThe optimal \\( \\lambda \\) balances bias and variance.",
+      "tags": [
+        "ch04",
+        "regularization",
+        "model-selection"
+      ]
     },
     {
       "uid": "04-020",
       "front": "What is the bias-variance trade-off?",
-      "back": "A decomposition showing that expected loss has three components:\n\n\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)\n\nVery flexible models have **low bias but high variance**.\n\nSimple models have **high bias but low variance**.\n\nOptimal model complexity balances these.",
-      "tags": ["ch04", "bias-variance", "model-selection"]
+      "back": "A decomposition showing that expected loss has three components:\n\n\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)\n\nVery flexible models have <b>low bias but high variance</b>.\n\nSimple models have <b>high bias but low variance</b>.\n\nOptimal model complexity balances these.",
+      "tags": [
+        "ch04",
+        "bias-variance",
+        "model-selection"
+      ]
     },
     {
       "uid": "04-021",
       "front": "What is the squared bias in the bias-variance decomposition?",
-      "back": "The extent to which the **average prediction** over all possible datasets differs from the true value:\n\n\\( (\\text{bias})^2 = \\{E_D[f(\\vec{x}; D)] - h(\\vec{x})\\}^2 \\)\n\nWhere \\( h(\\vec{x}) \\) is the true underlying function.",
-      "tags": ["ch04", "bias-variance", "bias"]
+      "back": "The extent to which the <b>average prediction</b> over all possible datasets differs from the true value:\n\n\\( (\\text{bias})^2 = \\{E_D[f(\\vec{x}; D)] - h(\\vec{x})\\}^2 \\)\n\nWhere \\( h(\\vec{x}) \\) is the true underlying function.",
+      "tags": [
+        "ch04",
+        "bias-variance",
+        "bias"
+      ]
     },
     {
       "uid": "04-022",
       "front": "What is the variance in the bias-variance decomposition?",
       "back": "The extent to which solutions for individual datasets vary around their average:\n\n\\( \\text{variance} = E_D[\\{f(\\vec{x}; D) - E_D[f(\\vec{x}; D)]\\}^2] \\)\n\nMeasures sensitivity to the particular training set used.",
-      "tags": ["ch04", "bias-variance", "variance"]
+      "tags": [
+        "ch04",
+        "bias-variance",
+        "variance"
+      ]
     },
     {
       "uid": "04-023",
       "front": "Why does the bias-variance decomposition have limited practical value?",
-      "back": "Because it is based on **averages with respect to ensembles of datasets**.\n\nIn practice, we have only a single dataset, so we cannot directly measure these quantities.\n\nUseful conceptually but hard to apply directly.",
-      "tags": ["ch04", "bias-variance", "limitations"]
+      "back": "Because it is based on <b>averages with respect to ensembles of datasets</b>.\n\nIn practice, we have only a single dataset, so we cannot directly measure these quantities.\n\nUseful conceptually but hard to apply directly.",
+      "tags": [
+        "ch04",
+        "bias-variance",
+        "limitations"
+      ]
     },
     {
       "uid": "04-024",
       "front": "Does overfitting arise in Bayesian settings?",
-      "back": "**No** - overfitting does not arise when we marginalize over parameters in a Bayesian setting.\n\nThe Bayesian approach integrates over the posterior distribution of parameters rather than using a single point estimate, naturally incorporating uncertainty.",
-      "tags": ["ch04", "overfitting", "bayesian"]
+      "back": "<b>No</b> - overfitting does not arise when we marginalize over parameters in a Bayesian setting.\n\nThe Bayesian approach integrates over the posterior distribution of parameters rather than using a single point estimate, naturally incorporating uncertainty.",
+      "tags": [
+        "ch04",
+        "overfitting",
+        "bayesian"
+      ]
     },
     {
       "uid": "04-025",
       "front": "How can averaging help with the bias-variance trade-off?",
-      "back": "Averaging predictions from multiple models can reduce variance without increasing bias.\n\nThis is the basis for **ensemble methods** like:\n\n- Bagging\n- Random forests\n- Model averaging\n\nCombines multiple high-variance models to get lower variance.",
-      "tags": ["ch04", "ensemble", "averaging"]
+      "back": "Averaging predictions from multiple models can reduce variance without increasing bias.\n\nThis is the basis for <b>ensemble methods</b> like:\n\n- Bagging\n- Random forests\n- Model averaging\n\nCombines multiple high-variance models to get lower variance.",
+      "tags": [
+        "ch04",
+        "ensemble",
+        "averaging"
+      ]
     },
     {
       "uid": "04-026",
       "front": "What is a decision region in classification?",
       "back": "A region of input space where all points are assigned to the same class.\n\nThe input space is divided into decision regions \\( R_k \\) for each class \\( C_k \\).",
-      "tags": ["ch04", "classification", "decision-regions"]
+      "tags": [
+        "ch04",
+        "classification",
+        "decision-regions"
+      ]
     },
     {
       "uid": "04-027",
       "front": "What are decision boundaries (decision surfaces)?",
       "back": "The boundaries between decision regions.\n\nFor a linear discriminant: the hyperplane where \\( y(\\vec{x}) = 0 \\), i.e., \\( \\vec{w}^T\\vec{x} + w_0 = 0 \\).",
-      "tags": ["ch04", "classification", "decision-boundaries"]
+      "tags": [
+        "ch04",
+        "classification",
+        "decision-boundaries"
+      ]
     },
     {
       "uid": "04-028",
       "front": "What does it mean for data to be linearly separable?",
       "back": "Data from different classes can be separated by a linear decision boundary (hyperplane).\n\nIf classes overlap, they are not linearly separable.",
-      "tags": ["ch04", "classification", "linear-separability"]
+      "tags": [
+        "ch04",
+        "classification",
+        "linear-separability"
+      ]
     },
     {
       "uid": "04-029",
       "front": "What is a discriminant function?",
       "back": "A function that takes an input vector \\( \\vec{x} \\) and assigns it directly to one of K classes.\n\nSimplest form for two classes:\n\\( y(\\vec{x}) = \\vec{w}^T\\vec{x} + w_0 \\)\n\nClassify as \\( C_1 \\) if \\( y(\\vec{x}) > 0 \\), else \\( C_2 \\).",
-      "tags": ["ch04", "classification", "discriminant"]
+      "tags": [
+        "ch04",
+        "classification",
+        "discriminant"
+      ]
     },
     {
       "uid": "04-030",
       "front": "What is the geometric interpretation of the weight vector in a linear discriminant?",
-      "back": "The weight vector \\( \\vec{w} \\) is **orthogonal to the decision surface**.\n\nThe bias \\( w_0 \\) determines the **location** of the decision surface (its distance from the origin).",
-      "tags": ["ch04", "classification", "geometry"]
+      "back": "The weight vector \\( \\vec{w} \\) is <b>orthogonal to the decision surface</b>.\n\nThe bias \\( w_0 \\) determines the <b>location</b> of the decision surface (its distance from the origin).",
+      "tags": [
+        "ch04",
+        "classification",
+        "geometry"
+      ]
     },
     {
       "uid": "04-031",
       "front": "What is a one-versus-the-rest classifier?",
       "back": "For K classes, train K binary classifiers, each separating one class from all others combined.\n\nProblem: Can lead to ambiguous regions where multiple classifiers claim the point, or no classifier claims it.",
-      "tags": ["ch04", "multi-class", "classification"]
+      "tags": [
+        "ch04",
+        "multi-class",
+        "classification"
+      ]
     },
     {
       "uid": "04-032",
       "front": "What is a one-versus-one classifier?",
       "back": "For K classes, train \\( K(K-1)/2 \\) binary classifiers for every pair of classes.\n\nRequires more classifiers than one-versus-the-rest but can still lead to ambiguous regions.",
-      "tags": ["ch04", "multi-class", "classification"]
+      "tags": [
+        "ch04",
+        "multi-class",
+        "classification"
+      ]
     },
     {
       "uid": "04-033",
       "front": "For K-class linear discriminants, what shape are the decision regions?",
-      "back": "The decision regions are always **singly connected and convex**.\n\nThis follows from the linearity of the discriminant functions.",
-      "tags": ["ch04", "classification", "decision-regions"]
+      "back": "The decision regions are always <b>singly connected and convex</b>.\n\nThis follows from the linearity of the discriminant functions.",
+      "tags": [
+        "ch04",
+        "classification",
+        "decision-regions"
+      ]
     },
     {
       "uid": "04-034",
       "front": "What is a discriminative probabilistic model?",
       "back": "A model that directly models the posterior probability \\( p(C_k|\\vec{x}) \\) without modeling the class-conditional densities.\n\nExamples: Logistic regression, neural network classifiers.\n\nContrast with generative models.",
-      "tags": ["ch04", "discriminative", "probabilistic"]
+      "tags": [
+        "ch04",
+        "discriminative",
+        "probabilistic"
+      ]
     },
     {
       "uid": "04-035",
       "front": "What is a generative probabilistic model?",
       "back": "A model that computes posterior probabilities using Bayes' theorem by modeling:\n\n- Class-conditional densities \\( p(\\vec{x}|C_k) \\)\n- Prior probabilities \\( p(C_k) \\)\n\nThen uses: \\( p(C_k|\\vec{x}) = \\frac{p(\\vec{x}|C_k)p(C_k)}{p(\\vec{x})} \\)\n\nAlso models the input distribution \\( p(\\vec{x}) \\).",
-      "tags": ["ch04", "generative", "probabilistic"]
+      "tags": [
+        "ch04",
+        "generative",
+        "probabilistic"
+      ]
     },
     {
       "uid": "04-036",
       "front": "Why is least-squares sensitive to outliers?",
-      "back": "Because the squared error heavily penalizes large deviations.\n\nOutliers produce large residuals that disproportionately influence the solution.\n\nTechniques sensitive to a few data points are said to **lack robustness**.",
-      "tags": ["ch04", "least-squares", "robustness"]
+      "back": "Because the squared error heavily penalizes large deviations.\n\nOutliers produce large residuals that disproportionately influence the solution.\n\nTechniques sensitive to a few data points are said to <b>lack robustness</b>.",
+      "tags": [
+        "ch04",
+        "least-squares",
+        "robustness"
+      ]
     },
     {
       "uid": "04-037",
       "front": "What is logistic regression?",
       "back": "A discriminative model for classification that models the posterior probability directly:\n\n\\( p(C_1|\\vec{x}) = \\sigma(\\vec{w}^T\\vec{x}) = \\frac{1}{1 + e^{-\\vec{w}^T\\vec{x}}} \\)\n\nDespite the name, it's used for classification, not regression.",
-      "tags": ["ch04", "logistic-regression", "classification"]
+      "tags": [
+        "ch04",
+        "logistic-regression",
+        "classification"
+      ]
     },
     {
       "uid": "04-038",
       "front": "What is the naive Bayes model?",
-      "back": "A generative model that assumes **conditional independence** of features given the class:\n\n\\( p(\\vec{x}|C_k) = \\prod_i p(x_i|C_k) \\)\n\nOften works well despite the strong independence assumption.",
-      "tags": ["ch04", "naive-bayes", "generative"]
+      "back": "A generative model that assumes <b>conditional independence</b> of features given the class:\n\n\\( p(\\vec{x}|C_k) = \\prod_i p(x_i|C_k) \\)\n\nOften works well despite the strong independence assumption.",
+      "tags": [
+        "ch04",
+        "naive-bayes",
+        "generative"
+      ]
     },
     {
       "uid": "04-039",
       "front": "What is the confusion matrix in classification?",
       "back": "A table showing prediction outcomes:\n\n|  | Predicted + | Predicted - |\n|--|-------------|-------------|\n| Actual + | True Positive (TP) | False Negative (FN) |\n| Actual - | False Positive (FP) | True Negative (TN) |\n\nFalse positives = Type 1 errors\nFalse negatives = Type 2 errors",
-      "tags": ["ch04", "confusion-matrix", "evaluation"]
+      "tags": [
+        "ch04",
+        "confusion-matrix",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-040",
       "front": "Why can accuracy be misleading for imbalanced classes?",
       "back": "With strongly imbalanced classes, a naive classifier that always predicts the majority class can achieve high accuracy.\n\nExample: 99% negative class - predicting all negative gives 99% accuracy but is useless.\n\nNeed metrics like precision, recall, F-score instead.",
-      "tags": ["ch04", "accuracy", "imbalanced-classes"]
+      "tags": [
+        "ch04",
+        "accuracy",
+        "imbalanced-classes"
+      ]
     },
     {
       "uid": "04-041",
       "front": "What is precision in classification?",
       "back": "The fraction of positive predictions that are correct:\n\n\\( \\text{Precision} = \\frac{TP}{TP + FP} \\)\n\nRepresents the probability that a positive prediction is actually positive.\n\nAlso called Positive Predictive Value (PPV).",
-      "tags": ["ch04", "precision", "evaluation"]
+      "tags": [
+        "ch04",
+        "precision",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-042",
       "front": "What is recall in classification?",
       "back": "The fraction of actual positives that are correctly identified:\n\n\\( \\text{Recall} = \\frac{TP}{TP + FN} \\)\n\nAlso called sensitivity or True Positive Rate (TPR).",
-      "tags": ["ch04", "recall", "evaluation"]
+      "tags": [
+        "ch04",
+        "recall",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-043",
       "front": "What is the false positive rate (FPR)?",
       "back": "The fraction of actual negatives that are incorrectly classified as positive:\n\n\\( \\text{FPR} = \\frac{FP}{FP + TN} \\)\n\nAlso called the fall-out rate. Used in ROC curves.",
-      "tags": ["ch04", "fpr", "evaluation"]
+      "tags": [
+        "ch04",
+        "fpr",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-044",
       "front": "What is the false discovery rate (FDR)?",
       "back": "The fraction of positive predictions that are incorrect:\n\n\\( \\text{FDR} = \\frac{FP}{FP + TP} = 1 - \\text{Precision} \\)\n\nThe complement of precision.",
-      "tags": ["ch04", "fdr", "evaluation"]
+      "tags": [
+        "ch04",
+        "fdr",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-045",
       "front": "What is an ROC curve?",
-      "back": "**Receiver Operating Characteristic** curve: a plot of True Positive Rate vs False Positive Rate as the classification threshold varies.\n\nEach point represents a different threshold, giving a different confusion matrix.\n\nUseful for comparing classifiers and choosing operating points.",
-      "tags": ["ch04", "roc", "evaluation"]
+      "back": "<b>Receiver Operating Characteristic</b> curve: a plot of True Positive Rate vs False Positive Rate as the classification threshold varies.\n\nEach point represents a different threshold, giving a different confusion matrix.\n\nUseful for comparing classifiers and choosing operating points.",
+      "tags": [
+        "ch04",
+        "roc",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-046",
       "front": "What does a classifier below the diagonal mean on an ROC curve?",
-      "back": "It performs **worse than random guessing**.\n\nThe diagonal represents random classification.\n\nAbove diagonal = better than random.\nPerfect classifier = top-left corner (TPR=1, FPR=0).",
-      "tags": ["ch04", "roc", "evaluation"]
+      "back": "It performs <b>worse than random guessing</b>.\n\nThe diagonal represents random classification.\n\nAbove diagonal = better than random.\nPerfect classifier = top-left corner (TPR=1, FPR=0).",
+      "tags": [
+        "ch04",
+        "roc",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-047",
       "front": "What is AUC (Area Under the ROC Curve)?",
       "back": "A summary measure of classifier performance:\n\n- AUC = 0.5: Random guessing\n- AUC = 1.0: Perfect classifier\n\nRepresents the probability that a randomly chosen positive example ranks higher than a randomly chosen negative example.",
-      "tags": ["ch04", "auc", "evaluation"]
+      "tags": [
+        "ch04",
+        "auc",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-048",
       "front": "What is the F-score?",
       "back": "The harmonic mean of precision and recall:\n\n\\( F_1 = 2 \\cdot \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}} \\)\n\nBalances precision and recall. The general \\( F_\\beta \\) score weights recall \\( \\beta \\) times as much as precision.",
-      "tags": ["ch04", "f-score", "evaluation"]
+      "tags": [
+        "ch04",
+        "f-score",
+        "evaluation"
+      ]
     },
     {
       "uid": "04-049",
       "front": "What is the reject option in classification?",
       "back": "Refusing to classify inputs where the classifier is uncertain.\n\nImplemented by introducing a threshold \\( \\theta \\) and rejecting inputs where the largest posterior probability \\( \\max_k p(C_k|\\vec{x}) < \\theta \\).\n\nReduces errors at the cost of leaving some inputs unclassified.",
-      "tags": ["ch04", "reject-option", "classification"]
+      "tags": [
+        "ch04",
+        "reject-option",
+        "classification"
+      ]
     },
     {
       "uid": "04-050",
       "front": "What are four reasons to compute posterior probabilities even if you just need class predictions?",
-      "back": "1. **Minimizing risk**: Incorporate different misclassification costs\n\n2. **Reject option**: Refuse uncertain predictions\n\n3. **Compensating for class priors**: Adjust for different train/test class distributions\n\n4. **Combining models**: Properly combine predictions from multiple models",
-      "tags": ["ch04", "posterior", "decision-theory"]
+      "back": "1. <b>Minimizing risk</b>: Incorporate different misclassification costs\n\n2. <b>Reject option</b>: Refuse uncertain predictions\n\n3. <b>Compensating for class priors</b>: Adjust for different train/test class distributions\n\n4. <b>Combining models</b>: Properly combine predictions from multiple models",
+      "tags": [
+        "ch04",
+        "posterior",
+        "decision-theory"
+      ]
     },
     {
       "uid": "04-051",
       "front": "What is outlier detection (novelty detection)?",
       "back": "Identifying inputs that differ significantly from the training data.\n\nImportant when test data may contain examples from classes not seen during training.\n\nGenerative models are naturally suited for this since they model \\( p(\\vec{x}) \\).",
-      "tags": ["ch04", "outlier-detection", "novelty-detection"]
+      "tags": [
+        "ch04",
+        "outlier-detection",
+        "novelty-detection"
+      ]
     }
   ]
 }

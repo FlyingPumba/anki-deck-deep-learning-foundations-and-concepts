@@ -14,284 +14,472 @@
     {
       "uid": "12-001",
       "front": "What are transformers in deep learning?",
-      "back": "Models that **transform a set of input vectors into output vectors** using attention mechanisms.\n\nKey properties:\n\n- Process sequences without recurrence\n- Capture long-range dependencies\n- Enable parallel computation\n- Foundation for modern NLP and beyond",
-      "tags": ["ch12", "transformers", "architecture"]
+      "back": "Models that <b>transform a set of input vectors into output vectors</b> using attention mechanisms.\n\nKey properties:\n\n- Process sequences without recurrence\n- Capture long-range dependencies\n- Enable parallel computation\n- Foundation for modern NLP and beyond",
+      "tags": [
+        "ch12",
+        "transformers",
+        "architecture"
+      ]
     },
     {
       "uid": "12-002",
       "front": "What is a foundation model?",
-      "back": "A **large-scale model** trained on broad data that can be **adapted to solve multiple downstream tasks**.\n\nExamples: GPT, BERT, CLIP\n\nTypically:\n\n- Pre-trained on massive datasets\n- Fine-tuned for specific applications\n- Transfer learning across tasks",
-      "tags": ["ch12", "foundation-models", "transfer-learning"]
+      "back": "A <b>large-scale model</b> trained on broad data that can be <b>adapted to solve multiple downstream tasks</b>.\n\nExamples: GPT, BERT, CLIP\n\nTypically:\n\n- Pre-trained on massive datasets\n- Fine-tuned for specific applications\n- Transfer learning across tasks",
+      "tags": [
+        "ch12",
+        "foundation-models",
+        "transfer-learning"
+      ]
     },
     {
       "uid": "12-003",
       "front": "How can transformers be trained without labelled data?",
-      "back": "Using **self-supervised learning** on unlabelled data.\n\nExamples:\n\n- **Masked language modeling**: Predict masked words\n- **Next token prediction**: Predict next word\n- **Contrastive learning**: Learn similar/different pairs\n\nNo manual labels required.",
-      "tags": ["ch12", "self-supervised", "training"]
+      "back": "Using <b>self-supervised learning</b> on unlabelled data.\n\nExamples:\n\n- <b>Masked language modeling</b>: Predict masked words\n- <b>Next token prediction</b>: Predict next word\n- <b>Contrastive learning</b>: Learn similar/different pairs\n\nNo manual labels required.",
+      "tags": [
+        "ch12",
+        "self-supervised",
+        "training"
+      ]
     },
     {
       "uid": "12-004",
       "front": "What does 'attend to' mean in transformers?",
-      "back": "Using **context provided by other elements** to process the current element.\n\nAttention uses **weighting factors** whose values depend on the specific input sequence.\n\nDifferent from fixed weights - attention is **data-dependent**.",
-      "tags": ["ch12", "attention", "mechanism"]
+      "back": "Using <b>context provided by other elements</b> to process the current element.\n\nAttention uses <b>weighting factors</b> whose values depend on the specific input sequence.\n\nDifferent from fixed weights - attention is <b>data-dependent</b>.",
+      "tags": [
+        "ch12",
+        "attention",
+        "mechanism"
+      ]
     },
     {
       "uid": "12-005",
       "front": "What is a token in transformer terminology?",
-      "back": "An individual **data vector** in the input sequence.\n\nTokens can represent:\n\n- Words or subwords (NLP)\n- Image patches (vision)\n- Audio segments\n\nInput is a matrix X of dimensions N x D (N tokens, D features).",
-      "tags": ["ch12", "tokens", "input"]
+      "back": "An individual <b>data vector</b> in the input sequence.\n\nTokens can represent:\n\n- Words or subwords (NLP)\n- Image patches (vision)\n- Audio segments\n\nInput is a matrix X of dimensions N x D (N tokens, D features).",
+      "tags": [
+        "ch12",
+        "tokens",
+        "input"
+      ]
     },
     {
       "uid": "12-006",
       "front": "What is the basic operation of a transformer layer?",
-      "back": "Transform input tokens into output tokens where each output is a **linear combination of inputs**:\n\n\\( \\vec{y}_m = \\sum_n a_{mn} \\vec{v}_n \\)\n\nWhere \\( a_{mn} \\) are **attention weights** (data-dependent).\n\nMultiple layers can be applied successively.",
-      "tags": ["ch12", "transformer-layer", "operation"]
+      "back": "Transform input tokens into output tokens where each output is a <b>linear combination of inputs</b>:\n\n\\( \\vec{y}_m = \\sum_n a_{mn} \\vec{v}_n \\)\n\nWhere \\( a_{mn} \\) are <b>attention weights</b> (data-dependent).\n\nMultiple layers can be applied successively.",
+      "tags": [
+        "ch12",
+        "transformer-layer",
+        "operation"
+      ]
     },
     {
       "uid": "12-007",
       "front": "What are attention weights?",
       "back": "Coefficients \\( a_{mn} \\) that determine how much output m 'attends to' input n.\n\nProperties:\n\n- Non-negative: \\( a_{mn} \\geq 0 \\)\n- Sum to one: \\( \\sum_n a_{mn} = 1 \\) (partition of unity)\n- Data-dependent: Computed from input\n\nHigher weight = more attention.",
-      "tags": ["ch12", "attention-weights", "mechanism"]
+      "tags": [
+        "ch12",
+        "attention-weights",
+        "mechanism"
+      ]
     },
     {
       "uid": "12-008",
       "front": "What are queries, keys, and values in attention?",
-      "back": "Movie database analogy:\n\n**Key**: Attributes of each item (movie metadata)\n**Value**: The actual content (movie file)\n**Query**: What you're searching for (your preferences)\n\nAttention finds values whose keys match the query.",
-      "tags": ["ch12", "query-key-value", "attention"]
+      "back": "Movie database analogy:\n\n<b>Key</b>: Attributes of each item (movie metadata)\n<b>Value</b>: The actual content (movie file)\n<b>Query</b>: What you're searching for (your preferences)\n\nAttention finds values whose keys match the query.",
+      "tags": [
+        "ch12",
+        "query-key-value",
+        "attention"
+      ]
     },
     {
       "uid": "12-009",
       "front": "What is soft attention?",
-      "back": "Attention where weights are **continuous values** (not binary).\n\nComputed via softmax, producing a **weighted average** of values.\n\nContrast with hard attention which selects discrete items.\n\nSoft attention is differentiable and easier to train.",
-      "tags": ["ch12", "soft-attention", "mechanism"]
+      "back": "Attention where weights are <b>continuous values</b> (not binary).\n\nComputed via softmax, producing a <b>weighted average</b> of values.\n\nContrast with hard attention which selects discrete items.\n\nSoft attention is differentiable and easier to train.",
+      "tags": [
+        "ch12",
+        "soft-attention",
+        "mechanism"
+      ]
     },
     {
       "uid": "12-010",
       "front": "What is self-attention?",
-      "back": "Attention where queries, keys, and values all come from the **same sequence**.\n\nEach position attends to all positions in the same sequence.\n\nAlso called **intra-attention**.\n\nContrast with cross-attention where queries come from a different sequence.",
-      "tags": ["ch12", "self-attention", "mechanism"]
+      "back": "Attention where queries, keys, and values all come from the <b>same sequence</b>.\n\nEach position attends to all positions in the same sequence.\n\nAlso called <b>intra-attention</b>.\n\nContrast with cross-attention where queries come from a different sequence.",
+      "tags": [
+        "ch12",
+        "self-attention",
+        "mechanism"
+      ]
     },
     {
       "uid": "12-011",
       "front": "What is dot-product self-attention?",
       "back": "Computing attention weights using dot products:\n\n1. Query \\( \\vec{q}_m \\) = input \\( \\vec{x}_m \\)\n2. Key \\( \\vec{k}_n \\) = input \\( \\vec{x}_n \\)\n3. Similarity = \\( \\vec{q}_m \\cdot \\vec{k}_n \\)\n4. Weights = softmax over similarities\n\nSimplest form before adding learnable projections.",
-      "tags": ["ch12", "dot-product", "self-attention"]
+      "tags": [
+        "ch12",
+        "dot-product",
+        "self-attention"
+      ]
     },
     {
       "uid": "12-012",
       "front": "Why use separate Q, K, V matrices in attention?",
-      "back": "1. **Feature flexibility**: Focus on different aspects of input\n2. **Asymmetry**: Query and key can be different (A attending to B ≠ B attending to A)\n3. **Learnable transformations**: Network learns optimal projections\n\nQ, K, V matrices have **independent learnable parameters**.",
-      "tags": ["ch12", "qkv-matrices", "attention"]
+      "back": "1. <b>Feature flexibility</b>: Focus on different aspects of input\n2. <b>Asymmetry</b>: Query and key can be different (A attending to B ≠ B attending to A)\n3. <b>Learnable transformations</b>: Network learns optimal projections\n\nQ, K, V matrices have <b>independent learnable parameters</b>.",
+      "tags": [
+        "ch12",
+        "qkv-matrices",
+        "attention"
+      ]
     },
     {
       "uid": "12-013",
       "front": "What is the computational complexity of computing QK^T?",
-      "back": "**O(N²D)** for N tokens with D dimensions.\n\nThe N x N attention matrix is the main bottleneck for long sequences.\n\nThis quadratic scaling limits maximum sequence length in practice.",
-      "tags": ["ch12", "complexity", "attention"]
+      "back": "<b>O(N²D)</b> for N tokens with D dimensions.\n\nThe N x N attention matrix is the main bottleneck for long sequences.\n\nThis quadratic scaling limits maximum sequence length in practice.",
+      "tags": [
+        "ch12",
+        "complexity",
+        "attention"
+      ]
     },
     {
       "uid": "12-014",
       "front": "Why is scaled dot-product attention needed?",
-      "back": "Without scaling, dot products can be very large, causing softmax to have **exponentially small gradients**.\n\nIf Q and K elements are independent random variables with variance 1, the dot product has variance D.\n\nScale by \\( 1/\\sqrt{D_k} \\) to normalize:\n\n\\( \\text{Attention}(Q,K,V) = \\text{softmax}(\\frac{QK^T}{\\sqrt{D_k}})V \\)",
-      "tags": ["ch12", "scaled-attention", "numerical-stability"]
+      "back": "Without scaling, dot products can be very large, causing softmax to have <b>exponentially small gradients</b>.\n\nIf Q and K elements are independent random variables with variance 1, the dot product has variance D.\n\nScale by \\( 1/\\sqrt{D_k} \\) to normalize:\n\n\\( \\text{Attention}(Q,K,V) = \\text{softmax}(\\frac{QK^T}{\\sqrt{D_k}})V \\)",
+      "tags": [
+        "ch12",
+        "scaled-attention",
+        "numerical-stability"
+      ]
     },
     {
       "uid": "12-015",
       "front": "What is multi-head attention?",
-      "back": "Running **multiple attention operations in parallel** with independent parameters.\n\nEach 'head' can attend to different aspects of the input.\n\nOutputs are **concatenated** then linearly projected.\n\nTypically \\( D_v = D/H \\) so final dimension matches input.",
-      "tags": ["ch12", "multi-head", "attention"]
+      "back": "Running <b>multiple attention operations in parallel</b> with independent parameters.\n\nEach 'head' can attend to different aspects of the input.\n\nOutputs are <b>concatenated</b> then linearly projected.\n\nTypically \\( D_v = D/H \\) so final dimension matches input.",
+      "tags": [
+        "ch12",
+        "multi-head",
+        "attention"
+      ]
     },
     {
       "uid": "12-016",
       "front": "Why use multiple attention heads?",
-      "back": "A single head **averages** over different effects.\n\nMultiple heads can capture:\n\n- Different relationship types\n- Different distance ranges\n- Different semantic aspects\n\nEach head has independent learnable parameters.",
-      "tags": ["ch12", "multi-head", "motivation"]
+      "back": "A single head <b>averages</b> over different effects.\n\nMultiple heads can capture:\n\n- Different relationship types\n- Different distance ranges\n- Different semantic aspects\n\nEach head has independent learnable parameters.",
+      "tags": [
+        "ch12",
+        "multi-head",
+        "motivation"
+      ]
     },
     {
       "uid": "12-017",
       "front": "What is a transformer layer (block)?",
-      "back": "Combines:\n\n1. **Multi-head attention** sublayer\n2. **Feed-forward network** sublayer\n3. **Layer normalization** after each sublayer\n4. **Residual connections** around each sublayer\n\nImproves training efficiency and gradient flow.",
-      "tags": ["ch12", "transformer-layer", "architecture"]
+      "back": "Combines:\n\n1. <b>Multi-head attention</b> sublayer\n2. <b>Feed-forward network</b> sublayer\n3. <b>Layer normalization</b> after each sublayer\n4. <b>Residual connections</b> around each sublayer\n\nImproves training efficiency and gradient flow.",
+      "tags": [
+        "ch12",
+        "transformer-layer",
+        "architecture"
+      ]
     },
     {
       "uid": "12-018",
       "front": "Why add a feed-forward network after attention?",
-      "back": "Attention outputs are **linear functions** of input values.\n\nNon-linearity only enters through attention weights.\n\nThe feed-forward network (MLP) adds **position-wise non-linearity** to enhance flexibility.\n\nTypically: Linear -> ReLU/GELU -> Linear",
-      "tags": ["ch12", "ffn", "non-linearity"]
+      "back": "Attention outputs are <b>linear functions</b> of input values.\n\nNon-linearity only enters through attention weights.\n\nThe feed-forward network (MLP) adds <b>position-wise non-linearity</b> to enhance flexibility.\n\nTypically: Linear -> ReLU/GELU -> Linear",
+      "tags": [
+        "ch12",
+        "ffn",
+        "non-linearity"
+      ]
     },
     {
       "uid": "12-019",
       "front": "Why is positional encoding needed in transformers?",
-      "back": "Self-attention is **permutation equivariant**: shuffling inputs shuffles outputs.\n\nIt doesn't inherently know **position** or **order** of tokens.\n\nPositional encodings add position information so the model can use sequence order.",
-      "tags": ["ch12", "positional-encoding", "motivation"]
+      "back": "Self-attention is <b>permutation equivariant</b>: shuffling inputs shuffles outputs.\n\nIt doesn't inherently know <b>position</b> or <b>order</b> of tokens.\n\nPositional encodings add position information so the model can use sequence order.",
+      "tags": [
+        "ch12",
+        "positional-encoding",
+        "motivation"
+      ]
     },
     {
       "uid": "12-020",
       "front": "What properties should an ideal positional encoding have?",
-      "back": "1. **Unique** representation for each position\n2. **Consistent distance** between adjacent positions\n3. **Generalize** to longer sequences than training\n4. Encoding at position n+k should be **representable** as function of encoding at n",
-      "tags": ["ch12", "positional-encoding", "properties"]
+      "back": "1. <b>Unique</b> representation for each position\n2. <b>Consistent distance</b> between adjacent positions\n3. <b>Generalize</b> to longer sequences than training\n4. Encoding at position n+k should be <b>representable</b> as function of encoding at n",
+      "tags": [
+        "ch12",
+        "positional-encoding",
+        "properties"
+      ]
     },
     {
       "uid": "12-021",
       "front": "How does sinusoidal positional encoding work?",
-      "back": "Uses sine and cosine functions of different frequencies:\n\n\\( PE_{(pos, 2i)} = \\sin(pos / 10000^{2i/d}) \\)\n\\( PE_{(pos, 2i+1)} = \\cos(pos / 10000^{2i/d}) \\)\n\nFor any fixed offset k, encoding at position n+k is a **linear function** of encoding at n.",
-      "tags": ["ch12", "sinusoidal", "positional-encoding"]
+      "back": "Uses sine and cosine functions of different frequencies:\n\n\\( PE_{(pos, 2i)} = \\sin(pos / 10000^{2i/d}) \\)\n\\( PE_{(pos, 2i+1)} = \\cos(pos / 10000^{2i/d}) \\)\n\nFor any fixed offset k, encoding at position n+k is a <b>linear function</b> of encoding at n.",
+      "tags": [
+        "ch12",
+        "sinusoidal",
+        "positional-encoding"
+      ]
     },
     {
       "uid": "12-022",
       "front": "What is word embedding?",
-      "back": "Mapping discrete words to **continuous vectors** in a learned embedding space.\n\nEmbedding matrix E of size D x K (D dimensions, K vocabulary size).\n\nWord n is represented by column n of E.\n\nCaptures semantic relationships (similar words = similar vectors).",
-      "tags": ["ch12", "word-embedding", "representation"]
+      "back": "Mapping discrete words to <b>continuous vectors</b> in a learned embedding space.\n\nEmbedding matrix E of size D x K (D dimensions, K vocabulary size).\n\nWord n is represented by column n of E.\n\nCaptures semantic relationships (similar words = similar vectors).",
+      "tags": [
+        "ch12",
+        "word-embedding",
+        "representation"
+      ]
     },
     {
       "uid": "12-023",
       "front": "What is the continuous bag of words (CBOW) model?",
-      "back": "A word embedding training method where the **target is the center word** predicted from surrounding context words.\n\nInput: Context words (before and after)\nOutput: Predict center word\n\nForm of self-supervised learning.",
-      "tags": ["ch12", "cbow", "word-embedding"]
+      "back": "A word embedding training method where the <b>target is the center word</b> predicted from surrounding context words.\n\nInput: Context words (before and after)\nOutput: Predict center word\n\nForm of self-supervised learning.",
+      "tags": [
+        "ch12",
+        "cbow",
+        "word-embedding"
+      ]
     },
     {
       "uid": "12-024",
       "front": "What is the skip-gram model?",
-      "back": "Word embedding training that **reverses CBOW**:\n\nInput: Center word\nOutput: Predict surrounding context words\n\nOften works better for rare words than CBOW.\n\nBoth are forms of self-supervised learning.",
-      "tags": ["ch12", "skip-gram", "word-embedding"]
+      "back": "Word embedding training that <b>reverses CBOW</b>:\n\nInput: Center word\nOutput: Predict surrounding context words\n\nOften works better for rare words than CBOW.\n\nBoth are forms of self-supervised learning.",
+      "tags": [
+        "ch12",
+        "skip-gram",
+        "word-embedding"
+      ]
     },
     {
       "uid": "12-025",
       "front": "What is tokenization?",
-      "back": "Converting text into a sequence of **tokens** (discrete units).\n\nOptions:\n\n- Word-level: Each word is a token\n- Character-level: Each character is a token\n- Subword: Compromise (e.g., byte pair encoding)\n\nTradeoff between vocabulary size and sequence length.",
-      "tags": ["ch12", "tokenization", "preprocessing"]
+      "back": "Converting text into a sequence of <b>tokens</b> (discrete units).\n\nOptions:\n\n- Word-level: Each word is a token\n- Character-level: Each character is a token\n- Subword: Compromise (e.g., byte pair encoding)\n\nTradeoff between vocabulary size and sequence length.",
+      "tags": [
+        "ch12",
+        "tokenization",
+        "preprocessing"
+      ]
     },
     {
       "uid": "12-026",
       "front": "What is byte pair encoding (BPE)?",
       "back": "A subword tokenization algorithm:\n\n1. Start with individual characters\n2. Find most frequent adjacent pair\n3. Merge into new token\n4. Repeat until vocabulary size reached\n\nBalances vocabulary size and sequence length. Handles rare/unknown words.",
-      "tags": ["ch12", "bpe", "tokenization"]
+      "tags": [
+        "ch12",
+        "bpe",
+        "tokenization"
+      ]
     },
     {
       "uid": "12-027",
       "front": "What is a bag-of-words model?",
-      "back": "A model that **ignores word order**, treating text as unordered collection.\n\nLimitation: 'Dog bites man' = 'Man bites dog'\n\nMaximum likelihood just counts word frequencies.\n\nSimple baseline but loses sequential information.",
-      "tags": ["ch12", "bag-of-words", "language-model"]
+      "back": "A model that <b>ignores word order</b>, treating text as unordered collection.\n\nLimitation: 'Dog bites man' = 'Man bites dog'\n\nMaximum likelihood just counts word frequencies.\n\nSimple baseline but loses sequential information.",
+      "tags": [
+        "ch12",
+        "bag-of-words",
+        "language-model"
+      ]
     },
     {
       "uid": "12-028",
       "front": "What are n-gram language models?",
-      "back": "Models that predict next word based on previous **n-1 words**:\n\n- Unigram (n=1): Word frequencies only\n- Bigram (n=2): P(word | previous word)\n- Trigram (n=3): P(word | previous 2 words)\n\nPoor scaling with sequence length; can't capture long-range dependencies.",
-      "tags": ["ch12", "n-gram", "language-model"]
+      "back": "Models that predict next word based on previous <b>n-1 words</b>:\n\n- Unigram (n=1): Word frequencies only\n- Bigram (n=2): P(word | previous word)\n- Trigram (n=3): P(word | previous 2 words)\n\nPoor scaling with sequence length; can't capture long-range dependencies.",
+      "tags": [
+        "ch12",
+        "n-gram",
+        "language-model"
+      ]
     },
     {
       "uid": "12-029",
       "front": "What is a recurrent neural network (RNN)?",
-      "back": "A network that processes sequences by maintaining a **hidden state**:\n\n\\( \\vec{h}_n = f(\\vec{h}_{n-1}, \\vec{x}_n) \\)\n\nState carries information from previous steps.\n\nLimitations: Sequential (no parallelism), vanishing gradients, bottleneck for long sequences.",
-      "tags": ["ch12", "rnn", "sequence-models"]
+      "back": "A network that processes sequences by maintaining a <b>hidden state</b>:\n\n\\( \\vec{h}_n = f(\\vec{h}_{n-1}, \\vec{x}_n) \\)\n\nState carries information from previous steps.\n\nLimitations: Sequential (no parallelism), vanishing gradients, bottleneck for long sequences.",
+      "tags": [
+        "ch12",
+        "rnn",
+        "sequence-models"
+      ]
     },
     {
       "uid": "12-030",
       "front": "What is backpropagation through time (BPTT)?",
-      "back": "Training RNNs by **unrolling** the network over time steps and applying standard backpropagation.\n\nGradients flow backward through all time steps.\n\nProblems: Vanishing/exploding gradients for long sequences.",
-      "tags": ["ch12", "bptt", "rnn"]
+      "back": "Training RNNs by <b>unrolling</b> the network over time steps and applying standard backpropagation.\n\nGradients flow backward through all time steps.\n\nProblems: Vanishing/exploding gradients for long sequences.",
+      "tags": [
+        "ch12",
+        "bptt",
+        "rnn"
+      ]
     },
     {
       "uid": "12-031",
       "front": "What is the bottleneck problem in sequence-to-sequence models?",
-      "back": "A sequence of **arbitrary length** must be compressed into a **single hidden state** before decoding.\n\nThis fixed-size vector limits information capacity.\n\nSolution: Attention mechanisms that can access all encoder states.",
-      "tags": ["ch12", "bottleneck", "seq2seq"]
+      "back": "A sequence of <b>arbitrary length</b> must be compressed into a <b>single hidden state</b> before decoding.\n\nThis fixed-size vector limits information capacity.\n\nSolution: Attention mechanisms that can access all encoder states.",
+      "tags": [
+        "ch12",
+        "bottleneck",
+        "seq2seq"
+      ]
     },
     {
       "uid": "12-032",
       "front": "What are LSTM and GRU?",
-      "back": "**Long Short-Term Memory** and **Gated Recurrent Unit**: RNN variants with gating mechanisms.\n\nGates control information flow, allowing longer-range dependencies.\n\nBetter than vanilla RNN but still:\n\n- Sequential (no parallelism)\n- Superseded by transformers for most tasks",
-      "tags": ["ch12", "lstm", "gru"]
+      "back": "<b>Long Short-Term Memory</b> and <b>Gated Recurrent Unit</b>: RNN variants with gating mechanisms.\n\nGates control information flow, allowing longer-range dependencies.\n\nBetter than vanilla RNN but still:\n\n- Sequential (no parallelism)\n- Superseded by transformers for most tasks",
+      "tags": [
+        "ch12",
+        "lstm",
+        "gru"
+      ]
     },
     {
       "uid": "12-033",
       "front": "What are the three categories of large language models?",
-      "back": "1. **Encoder-only** (e.g., BERT): Bidirectional, good for understanding\n\n2. **Decoder-only** (e.g., GPT): Autoregressive, good for generation\n\n3. **Encoder-decoder** (e.g., T5): Sequence-to-sequence tasks",
-      "tags": ["ch12", "llm", "categories"]
+      "back": "1. <b>Encoder-only</b> (e.g., BERT): Bidirectional, good for understanding\n\n2. <b>Decoder-only</b> (e.g., GPT): Autoregressive, good for generation\n\n3. <b>Encoder-decoder</b> (e.g., T5): Sequence-to-sequence tasks",
+      "tags": [
+        "ch12",
+        "llm",
+        "categories"
+      ]
     },
     {
       "uid": "12-034",
       "front": "What is GPT?",
-      "back": "**Generative Pre-trained Transformer**: A decoder-only transformer.\n\nTrained to predict next token given previous tokens.\n\nAutoregressive generation: Output becomes input for next step.\n\nPre-trained on large corpus, can be fine-tuned.",
-      "tags": ["ch12", "gpt", "decoder"]
+      "back": "<b>Generative Pre-trained Transformer</b>: A decoder-only transformer.\n\nTrained to predict next token given previous tokens.\n\nAutoregressive generation: Output becomes input for next step.\n\nPre-trained on large corpus, can be fine-tuned.",
+      "tags": [
+        "ch12",
+        "gpt",
+        "decoder"
+      ]
     },
     {
       "uid": "12-035",
       "front": "What is masked attention (causal attention)?",
-      "back": "Attention where tokens can only attend to **previous positions** (not future).\n\nImplemented by setting attention weights to -∞ (before softmax) for future positions.\n\nRequired for autoregressive generation to prevent 'cheating'.",
-      "tags": ["ch12", "masked-attention", "causal"]
+      "back": "Attention where tokens can only attend to <b>previous positions</b> (not future).\n\nImplemented by setting attention weights to -∞ (before softmax) for future positions.\n\nRequired for autoregressive generation to prevent 'cheating'.",
+      "tags": [
+        "ch12",
+        "masked-attention",
+        "causal"
+      ]
     },
     {
       "uid": "12-036",
       "front": "What is the padding token in transformers?",
-      "back": "A special token \\( \\langle pad \\rangle \\) used to **fill sequences to equal length** for batching.\n\nPadding positions are masked in attention to avoid influencing computation.\n\nAllows parallel processing of variable-length sequences.",
-      "tags": ["ch12", "padding", "batching"]
+      "back": "A special token \\( \\langle pad \\rangle \\) used to <b>fill sequences to equal length</b> for batching.\n\nPadding positions are masked in attention to avoid influencing computation.\n\nAllows parallel processing of variable-length sequences.",
+      "tags": [
+        "ch12",
+        "padding",
+        "batching"
+      ]
     },
     {
       "uid": "12-037",
       "front": "Why can transformer decoding reuse computation?",
-      "back": "Due to masked attention, the embedding for position n **doesn't change** when new tokens are added.\n\nKey-value pairs for previous positions can be **cached** (KV cache).\n\nOnly need to compute attention for new token, not entire sequence.",
-      "tags": ["ch12", "kv-cache", "efficiency"]
+      "back": "Due to masked attention, the embedding for position n <b>doesn't change</b> when new tokens are added.\n\nKey-value pairs for previous positions can be <b>cached</b> (KV cache).\n\nOnly need to compute attention for new token, not entire sequence.",
+      "tags": [
+        "ch12",
+        "kv-cache",
+        "efficiency"
+      ]
     },
     {
       "uid": "12-038",
       "front": "What is greedy search in text generation?",
-      "back": "Selecting the **highest probability token** at each step.\n\nCost: O(KN) for K vocabulary, N steps.\n\nProblem: Locally optimal choices may not give globally optimal sequence.\n\nSimple but often produces repetitive or suboptimal text.",
-      "tags": ["ch12", "greedy-search", "decoding"]
+      "back": "Selecting the <b>highest probability token</b> at each step.\n\nCost: O(KN) for K vocabulary, N steps.\n\nProblem: Locally optimal choices may not give globally optimal sequence.\n\nSimple but often produces repetitive or suboptimal text.",
+      "tags": [
+        "ch12",
+        "greedy-search",
+        "decoding"
+      ]
     },
     {
       "uid": "12-039",
       "front": "What is beam search?",
-      "back": "Maintaining **B best hypotheses** (beam width) at each step.\n\nFor each hypothesis, expand all K possible next tokens.\nPrune to keep top B by probability.\n\nCost: O(BKN). Better than greedy but still not optimal.\n\nNormalize by length to avoid favoring short sequences.",
-      "tags": ["ch12", "beam-search", "decoding"]
+      "back": "Maintaining <b>B best hypotheses</b> (beam width) at each step.\n\nFor each hypothesis, expand all K possible next tokens.\nPrune to keep top B by probability.\n\nCost: O(BKN). Better than greedy but still not optimal.\n\nNormalize by length to avoid favoring short sequences.",
+      "tags": [
+        "ch12",
+        "beam-search",
+        "decoding"
+      ]
     },
     {
       "uid": "12-040",
       "front": "Why do deterministic decoding methods produce unnatural text?",
-      "back": "Human text has a **long tail** of many low-probability tokens.\n\nDeterministic methods always pick high-probability tokens.\n\nResult: Repetitive, predictable, 'boring' text.\n\nSampling introduces needed diversity.",
-      "tags": ["ch12", "decoding", "diversity"]
+      "back": "Human text has a <b>long tail</b> of many low-probability tokens.\n\nDeterministic methods always pick high-probability tokens.\n\nResult: Repetitive, predictable, 'boring' text.\n\nSampling introduces needed diversity.",
+      "tags": [
+        "ch12",
+        "decoding",
+        "diversity"
+      ]
     },
     {
       "uid": "12-041",
       "front": "What is top-K sampling?",
-      "back": "Sample from only the **K most probable** tokens.\n\nRe-normalize probabilities over the top K.\n\nReduces probability of nonsensical tokens while maintaining diversity.\n\nK is a hyperparameter (e.g., K=40).",
-      "tags": ["ch12", "top-k", "sampling"]
+      "back": "Sample from only the <b>K most probable</b> tokens.\n\nRe-normalize probabilities over the top K.\n\nReduces probability of nonsensical tokens while maintaining diversity.\n\nK is a hyperparameter (e.g., K=40).",
+      "tags": [
+        "ch12",
+        "top-k",
+        "sampling"
+      ]
     },
     {
       "uid": "12-042",
       "front": "What is nucleus sampling (top-p)?",
-      "back": "Sample from tokens whose **cumulative probability** exceeds threshold p.\n\nDynamically adjusts number of candidates based on distribution.\n\nIf confident: Few candidates. If uncertain: Many candidates.\n\nOften works better than fixed top-K.",
-      "tags": ["ch12", "nucleus-sampling", "top-p"]
+      "back": "Sample from tokens whose <b>cumulative probability</b> exceeds threshold p.\n\nDynamically adjusts number of candidates based on distribution.\n\nIf confident: Few candidates. If uncertain: Many candidates.\n\nOften works better than fixed top-K.",
+      "tags": [
+        "ch12",
+        "nucleus-sampling",
+        "top-p"
+      ]
     },
     {
       "uid": "12-043",
       "front": "What is temperature in softmax sampling?",
       "back": "A parameter T that controls distribution sharpness:\n\n\\( p_k = \\frac{\\exp(a_k/T)}{\\sum_j \\exp(a_j/T)} \\)\n\n- T=0: Deterministic (argmax)\n- T=1: Original distribution\n- T>1: Flatter (more random)\n- T<1: Sharper (more deterministic)",
-      "tags": ["ch12", "temperature", "sampling"]
+      "tags": [
+        "ch12",
+        "temperature",
+        "sampling"
+      ]
     },
     {
       "uid": "12-044",
       "front": "What is BERT?",
-      "back": "**Bidirectional Encoder Representations from Transformers**.\n\nEncoder-only model that sees words **both before and after** target.\n\nPre-trained with masked language modeling.\n\nGood for understanding tasks (classification, NER) but not generation.",
-      "tags": ["ch12", "bert", "encoder"]
+      "back": "<b>Bidirectional Encoder Representations from Transformers</b>.\n\nEncoder-only model that sees words <b>both before and after</b> target.\n\nPre-trained with masked language modeling.\n\nGood for understanding tasks (classification, NER) but not generation.",
+      "tags": [
+        "ch12",
+        "bert",
+        "encoder"
+      ]
     },
     {
       "uid": "12-045",
       "front": "How does BERT training differ from GPT?",
-      "back": "**BERT**: Masked language modeling - predict randomly masked words (15%)\n\n**GPT**: Next token prediction - predict each next word\n\nBERT is bidirectional (sees full context), GPT is unidirectional.\n\nBERT less efficient: Only masked tokens provide training signal.",
-      "tags": ["ch12", "bert-vs-gpt", "training"]
+      "back": "<b>BERT</b>: Masked language modeling - predict randomly masked words (15%)\n\n<b>GPT</b>: Next token prediction - predict each next word\n\nBERT is bidirectional (sees full context), GPT is unidirectional.\n\nBERT less efficient: Only masked tokens provide training signal.",
+      "tags": [
+        "ch12",
+        "bert-vs-gpt",
+        "training"
+      ]
     },
     {
       "uid": "12-046",
       "front": "What is cross-attention in encoder-decoder transformers?",
-      "back": "Attention where **queries come from decoder** and **keys/values come from encoder**.\n\nAllows decoder to attend to relevant parts of encoder output.\n\nSame as self-attention except Q and K/V sources differ.",
-      "tags": ["ch12", "cross-attention", "encoder-decoder"]
+      "back": "Attention where <b>queries come from decoder</b> and <b>keys/values come from encoder</b>.\n\nAllows decoder to attend to relevant parts of encoder output.\n\nSame as self-attention except Q and K/V sources differ.",
+      "tags": [
+        "ch12",
+        "cross-attention",
+        "encoder-decoder"
+      ]
     },
     {
       "uid": "12-047",
       "front": "What is a vision transformer (ViT)?",
-      "back": "Applying transformers to images by treating **image patches as tokens**.\n\nSplit image into fixed-size patches (e.g., 16x16).\nFlatten and linearly embed each patch.\nAdd positional encoding.\nProcess with standard transformer.",
-      "tags": ["ch12", "vit", "vision"]
+      "back": "Applying transformers to images by treating <b>image patches as tokens</b>.\n\nSplit image into fixed-size patches (e.g., 16x16).\nFlatten and linearly embed each patch.\nAdd positional encoding.\nProcess with standard transformer.",
+      "tags": [
+        "ch12",
+        "vit",
+        "vision"
+      ]
     }
   ]
 }

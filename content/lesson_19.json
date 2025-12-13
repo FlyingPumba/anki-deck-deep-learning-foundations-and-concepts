@@ -13,110 +13,182 @@
     {
       "uid": "19-001",
       "front": "What is an autoencoder?",
-      "back": "A neural network trained to **map each input onto itself**.\n\nStructure:\n\n- **Encoder**: Maps input x to latent representation z\n- **Decoder**: Reconstructs x from z\n\nAlso called auto-associative neural network.\n\nConstraint forces network to learn useful representations.",
-      "tags": ["ch19", "autoencoder", "definition"]
+      "back": "A neural network trained to <b>map each input onto itself</b>.\n\nStructure:\n\n- <b>Encoder</b>: Maps input x to latent representation z\n- <b>Decoder</b>: Reconstructs x from z\n\nAlso called auto-associative neural network.\n\nConstraint forces network to learn useful representations.",
+      "tags": [
+        "ch19",
+        "autoencoder",
+        "definition"
+      ]
     },
     {
       "uid": "19-002",
       "front": "What is the bottleneck in an autoencoder?",
-      "back": "A hidden layer with **fewer units** than input dimensionality.\n\nForces compression of information.\n\nEncoder: D → M dimensions (M < D)\nDecoder: M → D dimensions\n\nNetwork must learn efficient representation to reconstruct accurately.",
-      "tags": ["ch19", "bottleneck", "architecture"]
+      "back": "A hidden layer with <b>fewer units</b> than input dimensionality.\n\nForces compression of information.\n\nEncoder: D → M dimensions (M < D)\nDecoder: M → D dimensions\n\nNetwork must learn efficient representation to reconstruct accurately.",
+      "tags": [
+        "ch19",
+        "bottleneck",
+        "architecture"
+      ]
     },
     {
       "uid": "19-003",
       "front": "How do linear autoencoders relate to PCA?",
-      "back": "With **linear activations** and bottleneck:\n\n- Global minimum projects onto M-dimensional subspace\n- Subspace is spanned by first M principal components\n\nBut: No advantage over standard PCA (SVD gives correct answer in finite time).",
-      "tags": ["ch19", "linear-autoencoder", "pca"]
+      "back": "With <b>linear activations</b> and bottleneck:\n\n- Global minimum projects onto M-dimensional subspace\n- Subspace is spanned by first M principal components\n\nBut: No advantage over standard PCA (SVD gives correct answer in finite time).",
+      "tags": [
+        "ch19",
+        "linear-autoencoder",
+        "pca"
+      ]
     },
     {
       "uid": "19-004",
       "front": "Why use nonlinear autoencoders instead of PCA?",
-      "back": "Nonlinear autoencoders perform **nonlinear dimensionality reduction**.\n\nCan capture:\n\n- Curved manifolds\n- Complex data distributions\n- Nonlinear relationships\n\nPCA limited to linear subspaces.",
-      "tags": ["ch19", "nonlinear", "advantage"]
+      "back": "Nonlinear autoencoders perform <b>nonlinear dimensionality reduction</b>.\n\nCan capture:\n\n- Curved manifolds\n- Complex data distributions\n- Nonlinear relationships\n\nPCA limited to linear subspaces.",
+      "tags": [
+        "ch19",
+        "nonlinear",
+        "advantage"
+      ]
     },
     {
       "uid": "19-005",
       "front": "What is a sparse autoencoder?",
-      "back": "An autoencoder with **sparsity constraint** on hidden activations.\n\nRegularizer on activations:\n\\( \\Omega = \\sum_k |h_k| \\)\n\nEncourages most hidden units to be inactive.\n\nNote: Regularizes **activations** (not weights).\n\nCan have more hidden units than inputs (overcomplete).",
-      "tags": ["ch19", "sparse-autoencoder", "regularization"]
+      "back": "An autoencoder with <b>sparsity constraint</b> on hidden activations.\n\nRegularizer on activations:\n\\( \\Omega = \\sum_k |h_k| \\)\n\nEncourages most hidden units to be inactive.\n\nNote: Regularizes <b>activations</b> (not weights).\n\nCan have more hidden units than inputs (overcomplete).",
+      "tags": [
+        "ch19",
+        "sparse-autoencoder",
+        "regularization"
+      ]
     },
     {
       "uid": "19-006",
       "front": "What is a denoising autoencoder?",
-      "back": "Trained to **reconstruct clean input from corrupted input**.\n\nProcess:\n\n1. Corrupt input x with noise → \\( \\tilde{x} \\)\n2. Encode \\( \\tilde{x} \\) to latent z\n3. Decode to reconstruct original x\n\nForces network to learn robust features by undoing corruption.",
-      "tags": ["ch19", "denoising", "architecture"]
+      "back": "Trained to <b>reconstruct clean input from corrupted input</b>.\n\nProcess:\n\n1. Corrupt input x with noise → \\( \\tilde{x} \\)\n2. Encode \\( \\tilde{x} \\) to latent z\n3. Decode to reconstruct original x\n\nForces network to learn robust features by undoing corruption.",
+      "tags": [
+        "ch19",
+        "denoising",
+        "architecture"
+      ]
     },
     {
       "uid": "19-007",
       "front": "What is a masked autoencoder?",
-      "back": "A denoising autoencoder where corruption is **masking parts of input**.\n\nProcess:\n\n1. Randomly mask patches of input image\n2. Encoder sees only visible patches\n3. Decoder reconstructs full image\n\nLoss computed only on masked regions.\n\nImages have high redundancy, so high masking ratios (75%) work well.",
-      "tags": ["ch19", "masked-autoencoder", "architecture"]
+      "back": "A denoising autoencoder where corruption is <b>masking parts of input</b>.\n\nProcess:\n\n1. Randomly mask patches of input image\n2. Encoder sees only visible patches\n3. Decoder reconstructs full image\n\nLoss computed only on masked regions.\n\nImages have high redundancy, so high masking ratios (75%) work well.",
+      "tags": [
+        "ch19",
+        "masked-autoencoder",
+        "architecture"
+      ]
     },
     {
       "uid": "19-008",
       "front": "What is a Variational Autoencoder (VAE)?",
-      "back": "A **probabilistic** generative model combining:\n\n1. **Encoder** (inference network): Approximates posterior q(z|x)\n2. **Decoder** (generator): Models p(x|z)\n3. **Prior**: p(z) typically standard Gaussian\n\nTrained by maximizing the **ELBO** (evidence lower bound).",
-      "tags": ["ch19", "vae", "definition"]
+      "back": "A <b>probabilistic</b> generative model combining:\n\n1. <b>Encoder</b> (inference network): Approximates posterior q(z|x)\n2. <b>Decoder</b> (generator): Models p(x|z)\n3. <b>Prior</b>: p(z) typically standard Gaussian\n\nTrained by maximizing the <b>ELBO</b> (evidence lower bound).",
+      "tags": [
+        "ch19",
+        "vae",
+        "definition"
+      ]
     },
     {
       "uid": "19-009",
       "front": "What are the three key ideas behind VAEs?",
-      "back": "1. **ELBO**: Approximate intractable likelihood with lower bound\n\n2. **Amortized inference**: Neural network approximates posterior for all x (not just one)\n\n3. **Reparameterization trick**: Enable backpropagation through stochastic sampling",
-      "tags": ["ch19", "vae", "key-ideas"]
+      "back": "1. <b>ELBO</b>: Approximate intractable likelihood with lower bound\n\n2. <b>Amortized inference</b>: Neural network approximates posterior for all x (not just one)\n\n3. <b>Reparameterization trick</b>: Enable backpropagation through stochastic sampling",
+      "tags": [
+        "ch19",
+        "vae",
+        "key-ideas"
+      ]
     },
     {
       "uid": "19-010",
       "front": "What is the ELBO in VAEs?",
-      "back": "**Evidence Lower BOund** on log likelihood:\n\n\\( \\ln p(x) \\geq E_{q(z|x)}[\\ln p(x|z)] - D_{KL}(q(z|x) || p(z)) \\)\n\nTwo terms:\n\n1. **Reconstruction**: Expected log likelihood\n2. **KL divergence**: Regularizes posterior toward prior",
-      "tags": ["ch19", "elbo", "objective"]
+      "back": "<b>Evidence Lower BOund</b> on log likelihood:\n\n\\( \\ln p(x) \\geq E_{q(z|x)}[\\ln p(x|z)] - D_{KL}(q(z|x) || p(z)) \\)\n\nTwo terms:\n\n1. <b>Reconstruction</b>: Expected log likelihood\n2. <b>KL divergence</b>: Regularizes posterior toward prior",
+      "tags": [
+        "ch19",
+        "elbo",
+        "objective"
+      ]
     },
     {
       "uid": "19-011",
       "front": "What is amortized inference?",
-      "back": "Using a **single neural network** to approximate the posterior for all data points.\n\nTraditional VI: Optimize separate q(z) for each x\n\nAmortized: Encoder network q(z|x; \\( \\phi \\)) works for any x\n\n**Cost amortized** across all data points during training.",
-      "tags": ["ch19", "amortized-inference", "efficiency"]
+      "back": "Using a <b>single neural network</b> to approximate the posterior for all data points.\n\nTraditional VI: Optimize separate q(z) for each x\n\nAmortized: Encoder network q(z|x; \\( \\phi \\)) works for any x\n\n<b>Cost amortized</b> across all data points during training.",
+      "tags": [
+        "ch19",
+        "amortized-inference",
+        "efficiency"
+      ]
     },
     {
       "uid": "19-012",
       "front": "What is the reparameterization trick?",
       "back": "A technique to backpropagate through stochastic sampling.\n\nInstead of: \\( z \\sim \\mathcal{N}(\\mu, \\sigma^2) \\)\n\nWrite: \\( z = \\mu + \\sigma \\cdot \\epsilon \\) where \\( \\epsilon \\sim \\mathcal{N}(0, 1) \\)\n\nGradients flow through \\( \\mu \\) and \\( \\sigma \\), not through sampling operation.",
-      "tags": ["ch19", "reparameterization", "training"]
+      "tags": [
+        "ch19",
+        "reparameterization",
+        "training"
+      ]
     },
     {
       "uid": "19-013",
       "front": "What does the encoder output in a VAE?",
       "back": "Parameters of the approximate posterior:\n\n\\( q(z|x) = \\mathcal{N}(z | \\mu(x), \\sigma^2(x)) \\)\n\nEncoder outputs:\n\n- Mean \\( \\mu(x) \\)\n- Variance \\( \\sigma^2(x) \\) (often log-variance for numerical stability)\n\nDifferent from deterministic autoencoder which outputs z directly.",
-      "tags": ["ch19", "vae", "encoder"]
+      "tags": [
+        "ch19",
+        "vae",
+        "encoder"
+      ]
     },
     {
       "uid": "19-014",
       "front": "Why does the KL term in ELBO act as regularization?",
       "back": "KL divergence \\( D_{KL}(q(z|x) || p(z)) \\) penalizes deviation from prior.\n\nEffects:\n\n- Prevents encoder from producing delta functions\n- Encourages smooth, structured latent space\n- Enables meaningful interpolation between points\n\nWithout it: VAE degenerates to deterministic autoencoder.",
-      "tags": ["ch19", "kl-divergence", "regularization"]
+      "tags": [
+        "ch19",
+        "kl-divergence",
+        "regularization"
+      ]
     },
     {
       "uid": "19-015",
       "front": "How do you sample from a trained VAE?",
       "back": "1. Sample latent: \\( z \\sim p(z) = \\mathcal{N}(0, I) \\)\n\n2. Decode: Pass z through decoder network\n\n3. Output: Either use decoder mean directly, or sample from p(x|z)\n\nNo need for encoder at generation time.",
-      "tags": ["ch19", "vae", "sampling"]
+      "tags": [
+        "ch19",
+        "vae",
+        "sampling"
+      ]
     },
     {
       "uid": "19-016",
       "front": "What is the difference between VAE encoder and decoder roles?",
-      "back": "**Encoder** (inference): Compresses data x → approximate posterior q(z|x)\n\nUsed for: Latent representation, inference\n\n**Decoder** (generative): Maps latent z → data distribution p(x|z)\n\nUsed for: Generation, reconstruction",
-      "tags": ["ch19", "vae", "architecture"]
+      "back": "<b>Encoder</b> (inference): Compresses data x → approximate posterior q(z|x)\n\nUsed for: Latent representation, inference\n\n<b>Decoder</b> (generative): Maps latent z → data distribution p(x|z)\n\nUsed for: Generation, reconstruction",
+      "tags": [
+        "ch19",
+        "vae",
+        "architecture"
+      ]
     },
     {
       "uid": "19-017",
       "front": "Why are VAE samples sometimes blurry compared to GANs?",
-      "back": "VAEs optimize a **reconstruction loss** (often MSE).\n\nMSE encourages average of possible reconstructions → blurry.\n\nGANs optimize adversarial loss → sharper but may miss modes.\n\nTrade-off: VAEs more stable, GANs sharper.",
-      "tags": ["ch19", "vae-vs-gan", "quality"]
+      "back": "VAEs optimize a <b>reconstruction loss</b> (often MSE).\n\nMSE encourages average of possible reconstructions → blurry.\n\nGANs optimize adversarial loss → sharper but may miss modes.\n\nTrade-off: VAEs more stable, GANs sharper.",
+      "tags": [
+        "ch19",
+        "vae-vs-gan",
+        "quality"
+      ]
     },
     {
       "uid": "19-018",
       "front": "What makes the VAE latent space structured?",
-      "back": "The **KL regularization** toward standard Gaussian:\n\n- Latent space is continuous (no gaps)\n- Nearby points in z-space → similar reconstructions\n- Enables smooth interpolation\n- Standard Gaussian prior makes sampling easy",
-      "tags": ["ch19", "latent-space", "structure"]
+      "back": "The <b>KL regularization</b> toward standard Gaussian:\n\n- Latent space is continuous (no gaps)\n- Nearby points in z-space → similar reconstructions\n- Enables smooth interpolation\n- Standard Gaussian prior makes sampling easy",
+      "tags": [
+        "ch19",
+        "latent-space",
+        "structure"
+      ]
     }
   ]
 }

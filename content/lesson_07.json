@@ -14,199 +14,331 @@
       "uid": "07-001",
       "front": "What is automatic differentiation (autodiff)?",
       "back": "A technique to compute exact derivatives by:\n\n1. Taking code that evaluates a function\n2. Augmenting it to also compute derivatives\n\nUnlike numerical differentiation (finite differences) or symbolic differentiation, autodiff:\n\n- Has no approximation error\n- Handles control flow (loops, conditionals)\n- Scales efficiently",
-      "tags": ["ch07", "autodiff", "differentiation"]
+      "tags": [
+        "ch07",
+        "autodiff",
+        "differentiation"
+      ]
     },
     {
       "uid": "07-002",
       "front": "What is the evaluation trace in automatic differentiation?",
       "back": "A directed acyclic graph (DAG) representing the sequence of elementary operations in a computation.\n\nEach node is an intermediate variable. Edges connect operations.\n\n- pa(i): parents of node i (inputs to the operation)\n- ch(i): children of node i (operations that use this value)",
-      "tags": ["ch07", "autodiff", "evaluation-trace"]
+      "tags": [
+        "ch07",
+        "autodiff",
+        "evaluation-trace"
+      ]
     },
     {
       "uid": "07-003",
       "front": "What are primal and tangent variables in forward-mode autodiff?",
-      "back": "**Primal variable** \\( z_i \\): The actual computed value at node i\n\n**Tangent variable** \\( \\dot{z}_i \\): The derivative \\( \\frac{\\partial z_i}{\\partial x_j} \\) with respect to one input \\( x_j \\)\n\nBoth are computed together in a single forward pass.",
-      "tags": ["ch07", "forward-mode", "autodiff"]
+      "back": "<b>Primal variable</b> \\( z_i \\): The actual computed value at node i\n\n<b>Tangent variable</b> \\( \\dot{z}_i \\): The derivative \\( \\frac{\\partial z_i}{\\partial x_j} \\) with respect to one input \\( x_j \\)\n\nBoth are computed together in a single forward pass.",
+      "tags": [
+        "ch07",
+        "forward-mode",
+        "autodiff"
+      ]
     },
     {
       "uid": "07-004",
       "front": "What is forward propagation in neural networks?",
       "back": "Computing the network output by passing inputs through layers sequentially:\n\n\\( \\vec{x} \\to \\vec{z}^{(1)} \\to \\vec{z}^{(2)} \\to \\cdots \\to \\vec{y} \\)\n\nEach layer applies: linear transformation + activation function.\n\nMust be done before backpropagation.",
-      "tags": ["ch07", "forward-propagation", "neural-networks"]
+      "tags": [
+        "ch07",
+        "forward-propagation",
+        "neural-networks"
+      ]
     },
     {
       "uid": "07-005",
       "front": "What is the backpropagation formula?",
       "back": "For hidden unit j:\n\n\\( \\delta_j = h'(a_j) \\sum_{k} w_{kj} \\delta_k \\)\n\nWhere:\n\n- \\( \\delta_j = \\frac{\\partial E}{\\partial a_j} \\) is the error signal\n- Sum is over units k that receive input from j\n- \\( h' \\) is the activation derivative\n\nErrors propagate backwards from output to input.",
-      "tags": ["ch07", "backpropagation", "formula"]
+      "tags": [
+        "ch07",
+        "backpropagation",
+        "formula"
+      ]
     },
     {
       "uid": "07-006",
       "front": "How is the gradient with respect to a weight computed in backpropagation?",
       "back": "\\( \\frac{\\partial E}{\\partial w_{ji}} = \\delta_j \\cdot z_i \\)\n\nThe derivative is the product of:\n\n- The error signal \\( \\delta_j \\) at the receiving unit\n- The activation \\( z_i \\) of the sending unit\n\nSimply multiply 'error signal' by 'input to the link'.",
-      "tags": ["ch07", "backpropagation", "weight-gradient"]
+      "tags": [
+        "ch07",
+        "backpropagation",
+        "weight-gradient"
+      ]
     },
     {
       "uid": "07-007",
       "front": "What is the computational complexity of backpropagation?",
-      "back": "**O(W)** where W is the number of weights.\n\nFor networks with non-sparse connections, W dominates and the cost is essentially the same as a forward pass.\n\nThis is why gradient-based training is practical for large networks.",
-      "tags": ["ch07", "backpropagation", "complexity"]
+      "back": "<b>O(W)</b> where W is the number of weights.\n\nFor networks with non-sparse connections, W dominates and the cost is essentially the same as a forward pass.\n\nThis is why gradient-based training is practical for large networks.",
+      "tags": [
+        "ch07",
+        "backpropagation",
+        "complexity"
+      ]
     },
     {
       "uid": "07-008",
       "front": "What is the Jacobian matrix in neural networks?",
-      "back": "Matrix of partial derivatives of outputs with respect to inputs:\n\n\\( J_{ki} = \\frac{\\partial y_k}{\\partial x_i} \\)\n\nProvides a measure of **local sensitivity** of outputs to input changes.\n\nUseful for understanding network behavior and some training algorithms.",
-      "tags": ["ch07", "jacobian", "sensitivity"]
+      "back": "Matrix of partial derivatives of outputs with respect to inputs:\n\n\\( J_{ki} = \\frac{\\partial y_k}{\\partial x_i} \\)\n\nProvides a measure of <b>local sensitivity</b> of outputs to input changes.\n\nUseful for understanding network behavior and some training algorithms.",
+      "tags": [
+        "ch07",
+        "jacobian",
+        "sensitivity"
+      ]
     },
     {
       "uid": "07-009",
       "front": "What are the drawbacks of numerical differentiation?",
-      "back": "**Limited accuracy**: Finite difference approximation has truncation error.\n\n**Computational cost**: O(W) function evaluations needed for W parameters.\n\nSymmetrical central differences improve accuracy but double the cost.",
-      "tags": ["ch07", "numerical-differentiation", "limitations"]
+      "back": "<b>Limited accuracy</b>: Finite difference approximation has truncation error.\n\n<b>Computational cost</b>: O(W) function evaluations needed for W parameters.\n\nSymmetrical central differences improve accuracy but double the cost.",
+      "tags": [
+        "ch07",
+        "numerical-differentiation",
+        "limitations"
+      ]
     },
     {
       "uid": "07-010",
       "front": "What are the drawbacks of symbolic differentiation?",
-      "back": "1. **Expression swell**: Resulting expressions can be exponentially larger than original\n\n2. **Requires closed-form expressions**: Cannot handle control flow (loops, conditionals)\n\n3. **Redundant computation**: May recompute shared subexpressions",
-      "tags": ["ch07", "symbolic-differentiation", "limitations"]
+      "back": "1. <b>Expression swell</b>: Resulting expressions can be exponentially larger than original\n\n2. <b>Requires closed-form expressions</b>: Cannot handle control flow (loops, conditionals)\n\n3. <b>Redundant computation</b>: May recompute shared subexpressions",
+      "tags": [
+        "ch07",
+        "symbolic-differentiation",
+        "limitations"
+      ]
     },
     {
       "uid": "07-011",
       "front": "What is forward-mode automatic differentiation?",
-      "back": "Computes derivatives by propagating tangent values **forward** through the computation graph.\n\nFor function with D inputs and K outputs:\n\n- One forward pass computes derivatives w.r.t. **one input**\n- Need D passes to get all gradients\n\nEfficient when K >> D (few inputs, many outputs).",
-      "tags": ["ch07", "forward-mode", "autodiff"]
+      "back": "Computes derivatives by propagating tangent values <b>forward</b> through the computation graph.\n\nFor function with D inputs and K outputs:\n\n- One forward pass computes derivatives w.r.t. <b>one input</b>\n- Need D passes to get all gradients\n\nEfficient when K >> D (few inputs, many outputs).",
+      "tags": [
+        "ch07",
+        "forward-mode",
+        "autodiff"
+      ]
     },
     {
       "uid": "07-012",
       "front": "What is reverse-mode automatic differentiation?",
-      "back": "Computes derivatives by propagating **adjoint variables** backward through the computation graph.\n\nFor function with D inputs and K outputs:\n\n- One backward pass computes derivatives w.r.t. **all inputs**\n- Need K passes for all output gradients\n\nEfficient when D >> K (many inputs, few outputs). **Backpropagation is a special case.**",
-      "tags": ["ch07", "reverse-mode", "autodiff"]
+      "back": "Computes derivatives by propagating <b>adjoint variables</b> backward through the computation graph.\n\nFor function with D inputs and K outputs:\n\n- One backward pass computes derivatives w.r.t. <b>all inputs</b>\n- Need K passes for all output gradients\n\nEfficient when D >> K (many inputs, few outputs). <b>Backpropagation is a special case.</b>",
+      "tags": [
+        "ch07",
+        "reverse-mode",
+        "autodiff"
+      ]
     },
     {
       "uid": "07-013",
       "front": "What are adjoint variables in reverse-mode autodiff?",
       "back": "\\( \\bar{z}_i = \\frac{\\partial E}{\\partial z_i} \\)\n\nThe derivative of the final output (loss) with respect to intermediate variable \\( z_i \\).\n\nComputed by backward propagation:\n\\( \\bar{z}_i = \\sum_{j \\in \\text{ch}(i)} \\bar{z}_j \\frac{\\partial z_j}{\\partial z_i} \\)",
-      "tags": ["ch07", "adjoint", "reverse-mode"]
+      "tags": [
+        "ch07",
+        "adjoint",
+        "reverse-mode"
+      ]
     },
     {
       "uid": "07-014",
       "front": "Why is reverse-mode autodiff more memory intensive than forward-mode?",
-      "back": "Reverse mode requires storing **all intermediate values** from the forward pass to use during the backward pass.\n\nForward mode computes primal and tangent values together, discarding them as it goes.\n\nMemory vs. computation tradeoff.",
-      "tags": ["ch07", "memory", "autodiff"]
+      "back": "Reverse mode requires storing <b>all intermediate values</b> from the forward pass to use during the backward pass.\n\nForward mode computes primal and tangent values together, discarding them as it goes.\n\nMemory vs. computation tradeoff.",
+      "tags": [
+        "ch07",
+        "memory",
+        "autodiff"
+      ]
     },
     {
       "uid": "07-015",
       "front": "What is a regularization penalty term?",
       "back": "An additional term in the loss function that penalizes model complexity:\n\n\\( \\tilde{E}(\\vec{w}) = E(\\vec{w}) + \\lambda \\Omega(\\vec{w}) \\)\n\nWhere:\n\n- \\( E \\) is the data error\n- \\( \\Omega \\) is the regularizer\n- \\( \\lambda \\) controls the strength\n\nReduces overfitting by constraining parameter values.",
-      "tags": ["ch07", "regularization", "penalty"]
+      "tags": [
+        "ch07",
+        "regularization",
+        "penalty"
+      ]
     },
     {
       "uid": "07-016",
       "front": "What is the bias-variance trade-off in the context of regularization?",
-      "back": "Regularization:\n\n- **Increases bias**: Model is more constrained, may underfit\n- **Decreases variance**: Less sensitive to training data variations\n\nOptimal regularization balances these to minimize total error on test data.",
-      "tags": ["ch07", "bias-variance", "regularization"]
+      "back": "Regularization:\n\n- <b>Increases bias</b>: Model is more constrained, may underfit\n- <b>Decreases variance</b>: Less sensitive to training data variations\n\nOptimal regularization balances these to minimize total error on test data.",
+      "tags": [
+        "ch07",
+        "bias-variance",
+        "regularization"
+      ]
     },
     {
       "uid": "07-017",
       "front": "What is weight decay (L2 regularization)?",
-      "back": "Regularizer that penalizes large weight magnitudes:\n\n\\( \\Omega(\\vec{w}) = \\frac{1}{2}\\|\\vec{w}\\|^2 = \\frac{1}{2}\\sum_i w_i^2 \\)\n\nCalled 'weight decay' because it encourages weights to **decay towards zero** unless supported by data.\n\nGradient contribution: \\( \\lambda w_i \\)",
-      "tags": ["ch07", "weight-decay", "l2-regularization"]
+      "back": "Regularizer that penalizes large weight magnitudes:\n\n\\( \\Omega(\\vec{w}) = \\frac{1}{2}\\|\\vec{w}\\|^2 = \\frac{1}{2}\\sum_i w_i^2 \\)\n\nCalled 'weight decay' because it encourages weights to <b>decay towards zero</b> unless supported by data.\n\nGradient contribution: \\( \\lambda w_i \\)",
+      "tags": [
+        "ch07",
+        "weight-decay",
+        "l2-regularization"
+      ]
     },
     {
       "uid": "07-018",
       "front": "How does L2 regularization affect the effective number of parameters?",
-      "back": "L2 regularization **suppresses parameters** that have little effect on the data fit.\n\nThe **effective number of parameters** is the number that remain active (non-negligible) after regularization.\n\nThis can be much smaller than the total parameter count.",
-      "tags": ["ch07", "effective-parameters", "l2-regularization"]
+      "back": "L2 regularization <b>suppresses parameters</b> that have little effect on the data fit.\n\nThe <b>effective number of parameters</b> is the number that remain active (non-negligible) after regularization.\n\nThis can be much smaller than the total parameter count.",
+      "tags": [
+        "ch07",
+        "effective-parameters",
+        "l2-regularization"
+      ]
     },
     {
       "uid": "07-019",
       "front": "Why are biases typically excluded from weight decay regularization?",
-      "back": "Regularizers should be **invariant to re-scaling of weights and shifts in biases**.\n\nIncluding biases in regularization would:\n\n- Penalize constant offsets in the data\n- Not be invariant to data preprocessing\n\nOnly weights connecting units are regularized.",
-      "tags": ["ch07", "bias", "regularization"]
+      "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts in biases</b>.\n\nIncluding biases in regularization would:\n\n- Penalize constant offsets in the data\n- Not be invariant to data preprocessing\n\nOnly weights connecting units are regularized.",
+      "tags": [
+        "ch07",
+        "bias",
+        "regularization"
+      ]
     },
     {
       "uid": "07-020",
       "front": "What is L1 regularization (lasso)?",
-      "back": "Regularizer using absolute values:\n\n\\( \\Omega(\\vec{w}) = \\sum_i |w_i| \\)\n\nKey property: Produces **sparse solutions** where many weights are exactly zero.\n\nAs \\( \\lambda \\) increases, more parameters are driven to zero.\n\nUseful for feature selection.",
-      "tags": ["ch07", "l1-regularization", "lasso"]
+      "back": "Regularizer using absolute values:\n\n\\( \\Omega(\\vec{w}) = \\sum_i |w_i| \\)\n\nKey property: Produces <b>sparse solutions</b> where many weights are exactly zero.\n\nAs \\( \\lambda \\) increases, more parameters are driven to zero.\n\nUseful for feature selection.",
+      "tags": [
+        "ch07",
+        "l1-regularization",
+        "lasso"
+      ]
     },
     {
       "uid": "07-021",
       "front": "Why does L1 regularization produce sparse solutions while L2 does not?",
-      "back": "L1 penalty has a **discontinuous gradient** at zero (corners in the constraint region).\n\nL2 penalty has a **smooth gradient** that approaches zero as weights approach zero.\n\nThe corners of the L1 constraint region tend to intersect the error contours at sparse points.",
-      "tags": ["ch07", "sparsity", "l1-vs-l2"]
+      "back": "L1 penalty has a <b>discontinuous gradient</b> at zero (corners in the constraint region).\n\nL2 penalty has a <b>smooth gradient</b> that approaches zero as weights approach zero.\n\nThe corners of the L1 constraint region tend to intersect the error contours at sparse points.",
+      "tags": [
+        "ch07",
+        "sparsity",
+        "l1-vs-l2"
+      ]
     },
     {
       "uid": "07-022",
       "front": "What is early stopping?",
-      "back": "A regularization technique that **stops training before convergence** based on validation error.\n\nAs training progresses:\n\n- Training error decreases\n- Validation error initially decreases, then increases (overfitting)\n\nStop at minimum validation error.",
-      "tags": ["ch07", "early-stopping", "regularization"]
+      "back": "A regularization technique that <b>stops training before convergence</b> based on validation error.\n\nAs training progresses:\n\n- Training error decreases\n- Validation error initially decreases, then increases (overfitting)\n\nStop at minimum validation error.",
+      "tags": [
+        "ch07",
+        "early-stopping",
+        "regularization"
+      ]
     },
     {
       "uid": "07-023",
       "front": "How does early stopping relate to weight decay?",
-      "back": "Early stopping is approximately equivalent to L2 regularization.\n\nThe **effective number of parameters grows** during training as weights move from initialization.\n\nStopping early limits how far weights can move, similar to constraining their magnitude.",
-      "tags": ["ch07", "early-stopping", "weight-decay"]
+      "back": "Early stopping is approximately equivalent to L2 regularization.\n\nThe <b>effective number of parameters grows</b> during training as weights move from initialization.\n\nStopping early limits how far weights can move, similar to constraining their magnitude.",
+      "tags": [
+        "ch07",
+        "early-stopping",
+        "weight-decay"
+      ]
     },
     {
       "uid": "07-024",
       "front": "What are learning curves?",
       "back": "Plots of performance measures (training/validation error) vs. training progress.\n\nUsed to diagnose:\n\n- Overfitting (training error << validation error)\n- Underfitting (both errors high)\n- When to apply early stopping\n\nCan also plot vs. dataset size or model complexity.",
-      "tags": ["ch07", "learning-curves", "diagnostics"]
+      "tags": [
+        "ch07",
+        "learning-curves",
+        "diagnostics"
+      ]
     },
     {
       "uid": "07-025",
       "front": "What is inductive bias in machine learning?",
-      "back": "The preference for one hypothesis over others, beyond what the data supports.\n\nAlso called **learning bias**.\n\nExamples:\n\n- Preference for simpler models (Occam's razor)\n- Assumption of smoothness\n- Translation equivariance in CNNs\n\nNecessary for generalization beyond training data.",
-      "tags": ["ch07", "inductive-bias", "learning"]
+      "back": "The preference for one hypothesis over others, beyond what the data supports.\n\nAlso called <b>learning bias</b>.\n\nExamples:\n\n- Preference for simpler models (Occam's razor)\n- Assumption of smoothness\n- Translation equivariance in CNNs\n\nNecessary for generalization beyond training data.",
+      "tags": [
+        "ch07",
+        "inductive-bias",
+        "learning"
+      ]
     },
     {
       "uid": "07-026",
       "front": "What is the no free lunch theorem?",
-      "back": "States that **every learning algorithm is as good as any other when averaged over all possible problems**.\n\nImplication: If an algorithm is better than average on some problems, it must be **worse than average on others**.\n\nNo universal best algorithm exists.",
-      "tags": ["ch07", "no-free-lunch", "theory"]
+      "back": "States that <b>every learning algorithm is as good as any other when averaged over all possible problems</b>.\n\nImplication: If an algorithm is better than average on some problems, it must be <b>worse than average on others</b>.\n\nNo universal best algorithm exists.",
+      "tags": [
+        "ch07",
+        "no-free-lunch",
+        "theory"
+      ]
     },
     {
       "uid": "07-027",
       "front": "What is translation invariance vs. translation equivariance?",
-      "back": "**Invariance**: Output unchanged when input is translated.\n\\( f(T(x)) = f(x) \\)\n\n**Equivariance**: Output transforms in the same way as input.\n\\( f(T(x)) = T(f(x)) \\)\n\nInvariance is a special case where the output transformation is identity.",
-      "tags": ["ch07", "invariance", "equivariance"]
+      "back": "<b>Invariance</b>: Output unchanged when input is translated.\n\\( f(T(x)) = f(x) \\)\n\n<b>Equivariance</b>: Output transforms in the same way as input.\n\\( f(T(x)) = T(f(x)) \\)\n\nInvariance is a special case where the output transformation is identity.",
+      "tags": [
+        "ch07",
+        "invariance",
+        "equivariance"
+      ]
     },
     {
       "uid": "07-028",
       "front": "What is geometric deep learning?",
-      "back": "A framework for designing neural networks that respect **symmetries** in data.\n\nKey idea: Build invariances/equivariances into network architecture.\n\nExamples:\n\n- CNNs: Translation equivariance\n- Graph NNs: Permutation equivariance\n- Spherical CNNs: Rotation equivariance",
-      "tags": ["ch07", "geometric-deep-learning", "symmetry"]
+      "back": "A framework for designing neural networks that respect <b>symmetries</b> in data.\n\nKey idea: Build invariances/equivariances into network architecture.\n\nExamples:\n\n- CNNs: Translation equivariance\n- Graph NNs: Permutation equivariance\n- Spherical CNNs: Rotation equivariance",
+      "tags": [
+        "ch07",
+        "geometric-deep-learning",
+        "symmetry"
+      ]
     },
     {
       "uid": "07-029",
       "front": "What are four ways to incorporate symmetries into neural networks?",
-      "back": "1. **Pre-processing**: Transform inputs to be invariant\n\n2. **Regularized error function**: Penalize changes under transformations\n\n3. **Data augmentation**: Expand training set with transformed examples\n\n4. **Network architecture**: Build equivariance into structure (e.g., CNNs)",
-      "tags": ["ch07", "symmetry", "approaches"]
+      "back": "1. <b>Pre-processing</b>: Transform inputs to be invariant\n\n2. <b>Regularized error function</b>: Penalize changes under transformations\n\n3. <b>Data augmentation</b>: Expand training set with transformed examples\n\n4. <b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)",
+      "tags": [
+        "ch07",
+        "symmetry",
+        "approaches"
+      ]
     },
     {
       "uid": "07-030",
       "front": "What is the double descent phenomenon?",
-      "back": "A non-monotonic relationship between model complexity and test error:\n\n1. **Classic regime**: Test error decreases then increases (bias-variance tradeoff)\n2. **Interpolation threshold**: Error peaks when model can exactly fit training data\n3. **Modern regime**: Error decreases again with over-parameterization\n\nChallenges classical understanding of overfitting.",
-      "tags": ["ch07", "double-descent", "generalization"]
+      "back": "A non-monotonic relationship between model complexity and test error:\n\n1. <b>Classic regime</b>: Test error decreases then increases (bias-variance tradeoff)\n2. <b>Interpolation threshold</b>: Error peaks when model can exactly fit training data\n3. <b>Modern regime</b>: Error decreases again with over-parameterization\n\nChallenges classical understanding of overfitting.",
+      "tags": [
+        "ch07",
+        "double-descent",
+        "generalization"
+      ]
     },
     {
       "uid": "07-031",
       "front": "What is effective model complexity?",
-      "back": "The **maximum training set size** that a model can interpolate (fit exactly).\n\nEffective complexity increases with:\n\n- More parameters\n- More training epochs\n- Smaller regularization\n\nNot just parameter count, but capacity to fit data.",
-      "tags": ["ch07", "effective-complexity", "model-capacity"]
+      "back": "The <b>maximum training set size</b> that a model can interpolate (fit exactly).\n\nEffective complexity increases with:\n\n- More parameters\n- More training epochs\n- Smaller regularization\n\nNot just parameter count, but capacity to fit data.",
+      "tags": [
+        "ch07",
+        "effective-complexity",
+        "model-capacity"
+      ]
     },
     {
       "uid": "07-032",
       "front": "Why can increasing model size sometimes improve generalization?",
-      "back": "In the over-parameterized regime:\n\n- Many solutions can interpolate training data\n- Optimization and regularization select **simpler** solutions\n- Larger models can find smoother interpolations\n\nThis explains double descent: after the interpolation threshold, more capacity helps.",
-      "tags": ["ch07", "over-parameterization", "generalization"]
+      "back": "In the over-parameterized regime:\n\n- Many solutions can interpolate training data\n- Optimization and regularization select <b>simpler</b> solutions\n- Larger models can find smoother interpolations\n\nThis explains double descent: after the interpolation threshold, more capacity helps.",
+      "tags": [
+        "ch07",
+        "over-parameterization",
+        "generalization"
+      ]
     },
     {
       "uid": "07-033",
       "front": "What is model-based machine learning?",
-      "back": "An approach where:\n\n1. **Domain knowledge** is encoded in model structure\n2. **Inductive biases** are explicitly designed\n3. Learning is constrained by the model's assumptions\n\nContrast with purely data-driven approaches. Combines expert knowledge with learning from data.",
-      "tags": ["ch07", "model-based", "inductive-bias"]
+      "back": "An approach where:\n\n1. <b>Domain knowledge</b> is encoded in model structure\n2. <b>Inductive biases</b> are explicitly designed\n3. Learning is constrained by the model's assumptions\n\nContrast with purely data-driven approaches. Combines expert knowledge with learning from data.",
+      "tags": [
+        "ch07",
+        "model-based",
+        "inductive-bias"
+      ]
     }
   ]
 }

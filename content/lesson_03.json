@@ -13,212 +13,352 @@
     {
       "uid": "03-001",
       "front": "What is density estimation and why is it fundamentally ill-posed?",
-      "back": "**Density estimation** is the problem of modeling the probability distribution \\( p(x) \\) given a finite set of observations.\n\nIt is **ill-posed** because infinitely many distributions could have generated the finite data. Any distribution \\( p(x) \\) that is non-zero at each data point is a potential candidate.",
-      "tags": ["ch03", "density-estimation", "definition"]
+      "back": "<b>Density estimation</b> is the problem of modeling the probability distribution \\( p(x) \\) given a finite set of observations.\n\nIt is <b>ill-posed</b> because infinitely many distributions could have generated the finite data. Any distribution \\( p(x) \\) that is non-zero at each data point is a potential candidate.",
+      "tags": [
+        "ch03",
+        "density-estimation",
+        "definition"
+      ]
     },
     {
       "uid": "03-002",
       "front": "What are parametric distributions?",
-      "back": "**Parametric distributions** are governed by a relatively small number of adjustable parameters (e.g., mean and variance of a Gaussian).\n\nTo apply them for density estimation, we determine parameter values from data, typically by maximizing the likelihood function.",
-      "tags": ["ch03", "parametric", "definition"]
+      "back": "<b>Parametric distributions</b> are governed by a relatively small number of adjustable parameters (e.g., mean and variance of a Gaussian).\n\nTo apply them for density estimation, we determine parameter values from data, typically by maximizing the likelihood function.",
+      "tags": [
+        "ch03",
+        "parametric",
+        "definition"
+      ]
     },
     {
       "uid": "03-003",
       "front": "What are nonparametric density estimation methods?",
-      "back": "**Nonparametric methods** are density estimation approaches where the form of the distribution typically depends on the size of the data set.\n\nThey still contain parameters, but these control model complexity rather than the distribution form. Examples: histograms, kernel density estimation, K-nearest neighbors.",
-      "tags": ["ch03", "nonparametric", "definition"]
+      "back": "<b>Nonparametric methods</b> are density estimation approaches where the form of the distribution typically depends on the size of the data set.\n\nThey still contain parameters, but these control model complexity rather than the distribution form. Examples: histograms, kernel density estimation, K-nearest neighbors.",
+      "tags": [
+        "ch03",
+        "nonparametric",
+        "definition"
+      ]
     },
     {
       "uid": "03-004",
       "front": "How does deep learning relate to parametric and nonparametric methods?",
-      "back": "Deep learning combines the **efficiency of parametric models** with the **generality of nonparametric methods** by considering flexible distributions based on neural networks having a large, but fixed, number of parameters.",
-      "tags": ["ch03", "deep-learning", "density-estimation"]
+      "back": "Deep learning combines the <b>efficiency of parametric models</b> with the <b>generality of nonparametric methods</b> by considering flexible distributions based on neural networks having a large, but fixed, number of parameters.",
+      "tags": [
+        "ch03",
+        "deep-learning",
+        "density-estimation"
+      ]
     },
     {
       "uid": "03-005",
       "front": "What is the Bernoulli distribution?",
-      "back": "The **Bernoulli distribution** models a binary random variable \\( x \\in \\{0, 1\\} \\):\n\n\\( \\text{Bern}(x|\\mu) = \\mu^x (1-\\mu)^{1-x} \\)\n\nwhere \\( \\mu = p(x=1) \\).\n\nMean: \\( E[x] = \\mu \\)\nVariance: \\( \\text{var}[x] = \\mu(1-\\mu) \\)",
-      "tags": ["ch03", "bernoulli", "distribution"]
+      "back": "The <b>Bernoulli distribution</b> models a binary random variable \\( x \\in \\{0, 1\\} \\):\n\n\\( \\text{Bern}(x|\\mu) = \\mu^x (1-\\mu)^{1-x} \\)\n\nwhere \\( \\mu = p(x=1) \\).\n\nMean: \\( E[x] = \\mu \\)\nVariance: \\( \\text{var}[x] = \\mu(1-\\mu) \\)",
+      "tags": [
+        "ch03",
+        "bernoulli",
+        "distribution"
+      ]
     },
     {
       "uid": "03-006",
       "front": "What is the binomial distribution?",
-      "back": "The **binomial distribution** gives the probability of \\( m \\) successes in \\( N \\) independent Bernoulli trials:\n\n\\( \\text{Bin}(m|N,\\mu) = \\binom{N}{m} \\mu^m (1-\\mu)^{N-m} \\)\n\nMean: \\( E[m] = N\\mu \\)\nVariance: \\( \\text{var}[m] = N\\mu(1-\\mu) \\)",
-      "tags": ["ch03", "binomial", "distribution"]
+      "back": "The <b>binomial distribution</b> gives the probability of \\( m \\) successes in \\( N \\) independent Bernoulli trials:\n\n\\( \\text{Bin}(m|N,\\mu) = \\binom{N}{m} \\mu^m (1-\\mu)^{N-m} \\)\n\nMean: \\( E[m] = N\\mu \\)\nVariance: \\( \\text{var}[m] = N\\mu(1-\\mu) \\)",
+      "tags": [
+        "ch03",
+        "binomial",
+        "distribution"
+      ]
     },
     {
       "uid": "03-007",
       "front": "What is the binomial coefficient \\( \\binom{N}{m} \\)?",
-      "back": "The **binomial coefficient** is the number of ways to choose \\( m \\) objects from \\( N \\) identical objects without replacement:\n\n\\( \\binom{N}{m} = \\frac{N!}{(N-m)!m!} \\)\n\nAlso written as \\( C(N,m) \\) or \"N choose m\".",
-      "tags": ["ch03", "binomial-coefficient", "combinatorics"]
+      "back": "The <b>binomial coefficient</b> is the number of ways to choose \\( m \\) objects from \\( N \\) identical objects without replacement:\n\n\\( \\binom{N}{m} = \\frac{N!}{(N-m)!m!} \\)\n\nAlso written as \\( C(N,m) \\) or \"N choose m\".",
+      "tags": [
+        "ch03",
+        "binomial-coefficient",
+        "combinatorics"
+      ]
     },
     {
       "uid": "03-008",
       "front": "What is one-hot encoding (1-of-K scheme)?",
-      "back": "**One-hot encoding** represents a discrete variable with K states as a K-dimensional vector where exactly one element equals 1 and all others equal 0.\n\nExample: For K=6 states, if state 3 is active:\n\\( \\mathbf{x} = (0, 0, 1, 0, 0, 0)^T \\)\n\nProperty: \\( \\sum_{k=1}^{K} x_k = 1 \\)",
-      "tags": ["ch03", "one-hot", "encoding"]
+      "back": "<b>One-hot encoding</b> represents a discrete variable with K states as a K-dimensional vector where exactly one element equals 1 and all others equal 0.\n\nExample: For K=6 states, if state 3 is active:\n\\( \\mathbf{x} = (0, 0, 1, 0, 0, 0)^T \\)\n\nProperty: \\( \\sum_{k=1}^{K} x_k = 1 \\)",
+      "tags": [
+        "ch03",
+        "one-hot",
+        "encoding"
+      ]
     },
     {
       "uid": "03-009",
       "front": "What is the multinomial distribution?",
-      "back": "The **multinomial distribution** is a generalization of the Bernoulli to more than two outcomes (K states).\n\nFor one observation: \\( p(\\mathbf{x}|\\boldsymbol{\\mu}) = \\prod_{k=1}^{K} \\mu_k^{x_k} \\)\n\nwhere \\( \\sum_k \\mu_k = 1 \\) and \\( \\mu_k = p(x_k = 1) \\).",
-      "tags": ["ch03", "multinomial", "distribution"]
+      "back": "The <b>multinomial distribution</b> is a generalization of the Bernoulli to more than two outcomes (K states).\n\nFor one observation: \\( p(\\mathbf{x}|\\boldsymbol{\\mu}) = \\prod_{k=1}^{K} \\mu_k^{x_k} \\)\n\nwhere \\( \\sum_k \\mu_k = 1 \\) and \\( \\mu_k = p(x_k = 1) \\).",
+      "tags": [
+        "ch03",
+        "multinomial",
+        "distribution"
+      ]
     },
     {
       "uid": "03-010",
       "front": "What is the multivariate Gaussian distribution?",
       "back": "For a D-dimensional vector \\( \\mathbf{x} \\):\n\n\\( \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma}) = \\frac{1}{(2\\pi)^{D/2}|\\boldsymbol{\\Sigma}|^{1/2}} \\exp\\left(-\\frac{1}{2}(\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu})\\right) \\)\n\nwhere \\( \\boldsymbol{\\mu} \\) is the mean vector and \\( \\boldsymbol{\\Sigma} \\) is the covariance matrix.",
-      "tags": ["ch03", "multivariate-gaussian", "distribution"]
+      "tags": [
+        "ch03",
+        "multivariate-gaussian",
+        "distribution"
+      ]
     },
     {
       "uid": "03-011",
       "front": "What is the Mahalanobis distance?",
-      "back": "The **Mahalanobis distance** from \\( \\mathbf{x} \\) to \\( \\boldsymbol{\\mu} \\) is:\n\n\\( \\Delta^2 = (\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu}) \\)\n\nIt appears in the exponent of the multivariate Gaussian. When \\( \\boldsymbol{\\Sigma} = \\mathbf{I} \\), it reduces to Euclidean distance.",
-      "tags": ["ch03", "mahalanobis", "distance"]
+      "back": "The <b>Mahalanobis distance</b> from \\( \\mathbf{x} \\) to \\( \\boldsymbol{\\mu} \\) is:\n\n\\( \\Delta^2 = (\\mathbf{x}-\\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1} (\\mathbf{x}-\\boldsymbol{\\mu}) \\)\n\nIt appears in the exponent of the multivariate Gaussian. When \\( \\boldsymbol{\\Sigma} = \\mathbf{I} \\), it reduces to Euclidean distance.",
+      "tags": [
+        "ch03",
+        "mahalanobis",
+        "distance"
+      ]
     },
     {
       "uid": "03-012",
       "front": "What is the covariance matrix of a random vector?",
-      "back": "The **covariance matrix** of a random vector \\( \\mathbf{x} \\) is:\n\n\\( \\text{cov}[\\mathbf{x}] = E[(\\mathbf{x} - E[\\mathbf{x}])(\\mathbf{x} - E[\\mathbf{x}])^T] \\)\n\nFor the multivariate Gaussian: \\( \\text{cov}[\\mathbf{x}] = \\boldsymbol{\\Sigma} \\)",
-      "tags": ["ch03", "covariance-matrix", "definition"]
+      "back": "The <b>covariance matrix</b> of a random vector \\( \\mathbf{x} \\) is:\n\n\\( \\text{cov}[\\mathbf{x}] = E[(\\mathbf{x} - E[\\mathbf{x}])(\\mathbf{x} - E[\\mathbf{x}])^T] \\)\n\nFor the multivariate Gaussian: \\( \\text{cov}[\\mathbf{x}] = \\boldsymbol{\\Sigma} \\)",
+      "tags": [
+        "ch03",
+        "covariance-matrix",
+        "definition"
+      ]
     },
     {
       "uid": "03-013",
       "front": "What geometric shape do the contours of constant density form for a multivariate Gaussian?",
-      "back": "Contours of constant density form **ellipsoids** centered at \\( \\boldsymbol{\\mu} \\).\n\nThe axes are oriented along the **eigenvectors** \\( \\mathbf{u}_i \\) of the covariance matrix, with scaling factors \\( \\lambda_i^{1/2} \\) where \\( \\lambda_i \\) are the eigenvalues.",
-      "tags": ["ch03", "gaussian-geometry", "eigenvectors"]
+      "back": "Contours of constant density form <b>ellipsoids</b> centered at \\( \\boldsymbol{\\mu} \\).\n\nThe axes are oriented along the <b>eigenvectors</b> \\( \\mathbf{u}_i \\) of the covariance matrix, with scaling factors \\( \\lambda_i^{1/2} \\) where \\( \\lambda_i \\) are the eigenvalues.",
+      "tags": [
+        "ch03",
+        "gaussian-geometry",
+        "eigenvectors"
+      ]
     },
     {
       "uid": "03-014",
       "front": "When is a covariance matrix positive definite vs positive semidefinite?",
-      "back": "- **Positive definite**: All eigenvalues are strictly positive (\\( \\lambda_i > 0 \\)). Required for a well-defined, normalizable Gaussian.\n\n- **Positive semidefinite**: All eigenvalues are non-negative (\\( \\lambda_i \\geq 0 \\)). If some eigenvalues are zero, the distribution is singular and confined to a lower-dimensional subspace.",
-      "tags": ["ch03", "positive-definite", "linear-algebra"]
+      "back": "- <b>Positive definite</b>: All eigenvalues are strictly positive (\\( \\lambda_i > 0 \\)). Required for a well-defined, normalizable Gaussian.\n\n- <b>Positive semidefinite</b>: All eigenvalues are non-negative (\\( \\lambda_i \\geq 0 \\)). If some eigenvalues are zero, the distribution is singular and confined to a lower-dimensional subspace.",
+      "tags": [
+        "ch03",
+        "positive-definite",
+        "linear-algebra"
+      ]
     },
     {
       "uid": "03-015",
       "front": "How many free parameters does a general multivariate Gaussian have in D dimensions?",
-      "back": "A general multivariate Gaussian has:\n\n- Mean \\( \\boldsymbol{\\mu} \\): D parameters\n- Covariance \\( \\boldsymbol{\\Sigma} \\) (symmetric): \\( D(D+1)/2 \\) parameters\n\n**Total**: \\( D(D+3)/2 \\) parameters\n\nThis grows quadratically with D, which can be computationally prohibitive.",
-      "tags": ["ch03", "gaussian-parameters", "complexity"]
+      "back": "A general multivariate Gaussian has:\n\n- Mean \\( \\boldsymbol{\\mu} \\): D parameters\n- Covariance \\( \\boldsymbol{\\Sigma} \\) (symmetric): \\( D(D+1)/2 \\) parameters\n\n<b>Total</b>: \\( D(D+3)/2 \\) parameters\n\nThis grows quadratically with D, which can be computationally prohibitive.",
+      "tags": [
+        "ch03",
+        "gaussian-parameters",
+        "complexity"
+      ]
     },
     {
       "uid": "03-016",
       "front": "What are the three common restricted forms of covariance matrices?",
-      "back": "1. **General**: Full \\( D(D+1)/2 \\) parameters, ellipsoidal contours\n\n2. **Diagonal**: \\( \\boldsymbol{\\Sigma} = \\text{diag}(\\sigma_i^2) \\), 2D parameters, axis-aligned ellipsoids\n\n3. **Isotropic**: \\( \\boldsymbol{\\Sigma} = \\sigma^2 \\mathbf{I} \\), D+1 parameters, spherical contours",
-      "tags": ["ch03", "covariance-types", "gaussian"]
+      "back": "1. <b>General</b>: Full \\( D(D+1)/2 \\) parameters, ellipsoidal contours\n\n2. <b>Diagonal</b>: \\( \\boldsymbol{\\Sigma} = \\text{diag}(\\sigma_i^2) \\), 2D parameters, axis-aligned ellipsoids\n\n3. <b>Isotropic</b>: \\( \\boldsymbol{\\Sigma} = \\sigma^2 \\mathbf{I} \\), D+1 parameters, spherical contours",
+      "tags": [
+        "ch03",
+        "covariance-types",
+        "gaussian"
+      ]
     },
     {
       "uid": "03-017",
       "front": "What are the maximum likelihood estimates for the multivariate Gaussian?",
-      "back": "**Mean**: \\( \\boldsymbol{\\mu}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} \\mathbf{x}_n \\) (sample mean)\n\n**Covariance**: \\( \\boldsymbol{\\Sigma}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)\n\nNote: The ML covariance estimate is biased (underestimates true covariance).",
-      "tags": ["ch03", "maximum-likelihood", "multivariate-gaussian"]
+      "back": "<b>Mean</b>: \\( \\boldsymbol{\\mu}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} \\mathbf{x}_n \\) (sample mean)\n\n<b>Covariance</b>: \\( \\boldsymbol{\\Sigma}_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)\n\nNote: The ML covariance estimate is biased (underestimates true covariance).",
+      "tags": [
+        "ch03",
+        "maximum-likelihood",
+        "multivariate-gaussian"
+      ]
     },
     {
       "uid": "03-018",
       "front": "What is a mixture distribution?",
-      "back": "A **mixture distribution** is formed by taking linear combinations of more basic distributions.\n\nGeneral form: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k p_k(\\mathbf{x}) \\)\n\nwhere \\( \\pi_k \\) are mixing coefficients satisfying \\( \\sum_k \\pi_k = 1 \\) and \\( 0 \\leq \\pi_k \\leq 1 \\).",
-      "tags": ["ch03", "mixture-models", "definition"]
+      "back": "A <b>mixture distribution</b> is formed by taking linear combinations of more basic distributions.\n\nGeneral form: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k p_k(\\mathbf{x}) \\)\n\nwhere \\( \\pi_k \\) are mixing coefficients satisfying \\( \\sum_k \\pi_k = 1 \\) and \\( 0 \\leq \\pi_k \\leq 1 \\).",
+      "tags": [
+        "ch03",
+        "mixture-models",
+        "definition"
+      ]
     },
     {
       "uid": "03-019",
       "front": "What is a Gaussian mixture model (GMM)?",
-      "back": "A **Gaussian mixture model** is a superposition of K Gaussian densities:\n\n\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)\n\nEach component has its own mean \\( \\boldsymbol{\\mu}_k \\) and covariance \\( \\boldsymbol{\\Sigma}_k \\). By using enough components, almost any continuous distribution can be approximated.",
-      "tags": ["ch03", "gmm", "mixture-models"]
+      "back": "A <b>Gaussian mixture model</b> is a superposition of K Gaussian densities:\n\n\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)\n\nEach component has its own mean \\( \\boldsymbol{\\mu}_k \\) and covariance \\( \\boldsymbol{\\Sigma}_k \\). By using enough components, almost any continuous distribution can be approximated.",
+      "tags": [
+        "ch03",
+        "gmm",
+        "mixture-models"
+      ]
     },
     {
       "uid": "03-020",
       "front": "What are the mixing coefficients in a mixture model?",
-      "back": "**Mixing coefficients** \\( \\pi_k \\) can be interpreted as the prior probability of selecting component k:\n\n\\( \\pi_k = p(k) \\)\n\nConstraints:\n- \\( \\sum_{k=1}^{K} \\pi_k = 1 \\)\n- \\( 0 \\leq \\pi_k \\leq 1 \\)",
-      "tags": ["ch03", "mixing-coefficients", "mixture-models"]
+      "back": "<b>Mixing coefficients</b> \\( \\pi_k \\) can be interpreted as the prior probability of selecting component k:\n\n\\( \\pi_k = p(k) \\)\n\nConstraints:\n- \\( \\sum_{k=1}^{K} \\pi_k = 1 \\)\n- \\( 0 \\leq \\pi_k \\leq 1 \\)",
+      "tags": [
+        "ch03",
+        "mixing-coefficients",
+        "mixture-models"
+      ]
     },
     {
       "uid": "03-021",
       "front": "What are responsibilities in a Gaussian mixture model?",
-      "back": "**Responsibilities** \\( \\gamma_k(\\mathbf{x}) \\) are the posterior probabilities that component k generated observation \\( \\mathbf{x} \\):\n\n\\( \\gamma_k(\\mathbf{x}) = p(k|\\mathbf{x}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_l \\pi_l \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_l, \\boldsymbol{\\Sigma}_l)} \\)\n\nComputed using Bayes' theorem.",
-      "tags": ["ch03", "responsibilities", "gmm"]
+      "back": "<b>Responsibilities</b> \\( \\gamma_k(\\mathbf{x}) \\) are the posterior probabilities that component k generated observation \\( \\mathbf{x} \\):\n\n\\( \\gamma_k(\\mathbf{x}) = p(k|\\mathbf{x}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_l \\pi_l \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_l, \\boldsymbol{\\Sigma}_l)} \\)\n\nComputed using Bayes' theorem.",
+      "tags": [
+        "ch03",
+        "responsibilities",
+        "gmm"
+      ]
     },
     {
       "uid": "03-022",
       "front": "Why is maximum likelihood for Gaussian mixtures more complex than for a single Gaussian?",
-      "back": "The log likelihood for a GMM contains a **sum inside the logarithm**:\n\n\\( \\ln p(X|\\pi,\\mu,\\Sigma) = \\sum_{n=1}^{N} \\ln \\left( \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\right) \\)\n\nThis means no closed-form solution exists. Instead, use iterative optimization or the **Expectation-Maximization (EM)** algorithm.",
-      "tags": ["ch03", "gmm", "maximum-likelihood"]
+      "back": "The log likelihood for a GMM contains a <b>sum inside the logarithm</b>:\n\n\\( \\ln p(X|\\pi,\\mu,\\Sigma) = \\sum_{n=1}^{N} \\ln \\left( \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\right) \\)\n\nThis means no closed-form solution exists. Instead, use iterative optimization or the <b>Expectation-Maximization (EM)</b> algorithm.",
+      "tags": [
+        "ch03",
+        "gmm",
+        "maximum-likelihood"
+      ]
     },
     {
       "uid": "03-023",
       "front": "What is sequential estimation and why is it useful?",
-      "back": "**Sequential estimation** processes data points one at a time rather than in a batch.\n\nFor the mean: \\( \\mu_{ML}^{(N)} = \\mu_{ML}^{(N-1)} + \\frac{1}{N}(x_N - \\mu_{ML}^{(N-1)}) \\)\n\nUseful for:\n- Online applications\n- Large datasets where batch processing is infeasible\n- Memory-constrained settings",
-      "tags": ["ch03", "sequential-estimation", "online-learning"]
+      "back": "<b>Sequential estimation</b> processes data points one at a time rather than in a batch.\n\nFor the mean: \\( \\mu_{ML}^{(N)} = \\mu_{ML}^{(N-1)} + \\frac{1}{N}(x_N - \\mu_{ML}^{(N-1)}) \\)\n\nUseful for:\n- Online applications\n- Large datasets where batch processing is infeasible\n- Memory-constrained settings",
+      "tags": [
+        "ch03",
+        "sequential-estimation",
+        "online-learning"
+      ]
     },
     {
       "uid": "03-024",
       "front": "What is a limitation of using a single Gaussian for multimodal data?",
-      "back": "A single Gaussian has only one mode (peak). If the data-generating process is **multimodal** (has multiple clusters), a single Gaussian will:\n\n- Fail to capture the cluster structure\n- Place probability mass in regions with sparse data (between clusters)\n\nSolution: Use a mixture of Gaussians.",
-      "tags": ["ch03", "gaussian-limitations", "multimodal"]
+      "back": "A single Gaussian has only one mode (peak). If the data-generating process is <b>multimodal</b> (has multiple clusters), a single Gaussian will:\n\n- Fail to capture the cluster structure\n- Place probability mass in regions with sparse data (between clusters)\n\nSolution: Use a mixture of Gaussians.",
+      "tags": [
+        "ch03",
+        "gaussian-limitations",
+        "multimodal"
+      ]
     },
     {
       "uid": "03-025",
       "front": "How do histograms work for density estimation?",
-      "back": "**Histograms** partition the input space into distinct bins of width \\( \\Delta_i \\) and count the number \\( n_i \\) of observations in each bin.\n\nDensity estimate: \\( p_i = \\frac{n_i}{N \\Delta_i} \\)\n\nAdvantage: Once computed, original data can be discarded.\nDisadvantage: Estimated density has discontinuities at bin edges.",
-      "tags": ["ch03", "histogram", "nonparametric"]
+      "back": "<b>Histograms</b> partition the input space into distinct bins of width \\( \\Delta_i \\) and count the number \\( n_i \\) of observations in each bin.\n\nDensity estimate: \\( p_i = \\frac{n_i}{N \\Delta_i} \\)\n\nAdvantage: Once computed, original data can be discarded.\nDisadvantage: Estimated density has discontinuities at bin edges.",
+      "tags": [
+        "ch03",
+        "histogram",
+        "nonparametric"
+      ]
     },
     {
       "uid": "03-026",
       "front": "What are the two fundamental approaches to nonparametric density estimation from a region R?",
-      "back": "Given probability \\( P \\) of falling in region R with volume V and K points inside:\n\n1. **Fix K, determine V from data**: K-nearest neighbors\n\n2. **Fix V, determine K from data**: Kernel density estimation\n\nBoth use: \\( p(\\mathbf{x}) \\approx \\frac{K}{NV} \\)",
-      "tags": ["ch03", "nonparametric", "density-estimation"]
+      "back": "Given probability \\( P \\) of falling in region R with volume V and K points inside:\n\n1. <b>Fix K, determine V from data</b>: K-nearest neighbors\n\n2. <b>Fix V, determine K from data</b>: Kernel density estimation\n\nBoth use: \\( p(\\mathbf{x}) \\approx \\frac{K}{NV} \\)",
+      "tags": [
+        "ch03",
+        "nonparametric",
+        "density-estimation"
+      ]
     },
     {
       "uid": "03-027",
       "front": "What is kernel density estimation (Parzen window)?",
-      "back": "**Kernel density estimation** fixes the volume V and counts points K:\n\n\\( p(\\mathbf{x}) = \\frac{1}{N} \\sum_{n=1}^{N} \\frac{1}{h^D} k\\left(\\frac{\\mathbf{x} - \\mathbf{x}_n}{h}\\right) \\)\n\nwhere \\( k(\\cdot) \\) is a kernel function (e.g., Gaussian) and h is the bandwidth controlling smoothness.",
-      "tags": ["ch03", "kernel-density", "nonparametric"]
+      "back": "<b>Kernel density estimation</b> fixes the volume V and counts points K:\n\n\\( p(\\mathbf{x}) = \\frac{1}{N} \\sum_{n=1}^{N} \\frac{1}{h^D} k\\left(\\frac{\\mathbf{x} - \\mathbf{x}_n}{h}\\right) \\)\n\nwhere \\( k(\\cdot) \\) is a kernel function (e.g., Gaussian) and h is the bandwidth controlling smoothness.",
+      "tags": [
+        "ch03",
+        "kernel-density",
+        "nonparametric"
+      ]
     },
     {
       "uid": "03-028",
       "front": "What is K-nearest neighbors (KNN) density estimation?",
-      "back": "**K-nearest neighbors** fixes K and finds the volume V containing exactly K neighbors:\n\n\\( p(\\mathbf{x}) = \\frac{K}{NV} \\)\n\nwhere V is the volume of a sphere centered at \\( \\mathbf{x} \\) containing exactly K data points.\n\nThe density estimate adapts to local data density.",
-      "tags": ["ch03", "knn", "nonparametric"]
+      "back": "<b>K-nearest neighbors</b> fixes K and finds the volume V containing exactly K neighbors:\n\n\\( p(\\mathbf{x}) = \\frac{K}{NV} \\)\n\nwhere V is the volume of a sphere centered at \\( \\mathbf{x} \\) containing exactly K data points.\n\nThe density estimate adapts to local data density.",
+      "tags": [
+        "ch03",
+        "knn",
+        "nonparametric"
+      ]
     },
     {
       "uid": "03-029",
       "front": "How does K-nearest neighbors work for classification?",
-      "back": "To classify a new point:\n\n1. Identify the K nearest points from training data\n2. Assign the new point to the class having the **largest number of representatives** among those K neighbors\n\nThis is a simple, non-parametric classifier that requires storing all training data.",
-      "tags": ["ch03", "knn-classification", "nonparametric"]
+      "back": "To classify a new point:\n\n1. Identify the K nearest points from training data\n2. Assign the new point to the class having the <b>largest number of representatives</b> among those K neighbors\n\nThis is a simple, non-parametric classifier that requires storing all training data.",
+      "tags": [
+        "ch03",
+        "knn-classification",
+        "nonparametric"
+      ]
     },
     {
       "uid": "03-030",
       "front": "What is a major limitation of nonparametric methods like KNN and kernel density estimation?",
-      "back": "Both methods require storing the **entire training data set**.\n\nThe number of parameters effectively grows with dataset size, making them very inefficient for large datasets.\n\nDeep learning overcomes this by using flexible neural networks with a large but **fixed** number of parameters.",
-      "tags": ["ch03", "nonparametric-limitations", "scalability"]
+      "back": "Both methods require storing the <b>entire training data set</b>.\n\nThe number of parameters effectively grows with dataset size, making them very inefficient for large datasets.\n\nDeep learning overcomes this by using flexible neural networks with a large but <b>fixed</b> number of parameters.",
+      "tags": [
+        "ch03",
+        "nonparametric-limitations",
+        "scalability"
+      ]
     },
     {
       "uid": "03-031",
       "front": "What is the unbiased estimator for the covariance matrix of a multivariate Gaussian?",
       "back": "The unbiased covariance estimator is:\n\n\\( \\tilde{\\boldsymbol{\\Sigma}} = \\frac{1}{N-1}\\sum_{n=1}^{N} (\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})(\\mathbf{x}_n - \\boldsymbol{\\mu}_{ML})^T \\)\n\nNote the \\( N-1 \\) in the denominator instead of \\( N \\).",
-      "tags": ["ch03", "bias-correction", "covariance"]
+      "tags": [
+        "ch03",
+        "bias-correction",
+        "covariance"
+      ]
     },
     {
       "uid": "03-032",
       "front": "What is the conditional distribution of a subset of variables in a multivariate Gaussian?",
       "back": "If \\( \\mathbf{x} = (\\mathbf{x}_a, \\mathbf{x}_b) \\) follows a multivariate Gaussian, then the conditional \\( p(\\mathbf{x}_a | \\mathbf{x}_b) \\) is also Gaussian.\n\nThis is a key property making Gaussians analytically tractable for probabilistic inference.",
-      "tags": ["ch03", "conditional-gaussian", "properties"]
+      "tags": [
+        "ch03",
+        "conditional-gaussian",
+        "properties"
+      ]
     },
     {
       "uid": "03-033",
       "front": "What is the marginal distribution of a subset of variables in a multivariate Gaussian?",
       "back": "If \\( \\mathbf{x} = (\\mathbf{x}_a, \\mathbf{x}_b) \\) follows a multivariate Gaussian with mean \\( (\\boldsymbol{\\mu}_a, \\boldsymbol{\\mu}_b) \\), then:\n\n\\( p(\\mathbf{x}_a) = \\mathcal{N}(\\mathbf{x}_a | \\boldsymbol{\\mu}_a, \\boldsymbol{\\Sigma}_{aa}) \\)\n\nwhere \\( \\boldsymbol{\\Sigma}_{aa} \\) is the corresponding block of the covariance matrix.",
-      "tags": ["ch03", "marginal-gaussian", "properties"]
+      "tags": [
+        "ch03",
+        "marginal-gaussian",
+        "properties"
+      ]
     },
     {
       "uid": "03-034",
       "front": "What is the log likelihood function for the multivariate Gaussian?",
       "back": "\\( \\ln p(X|\\boldsymbol{\\mu}, \\boldsymbol{\\Sigma}) = -\\frac{ND}{2}\\ln(2\\pi) - \\frac{N}{2}\\ln|\\boldsymbol{\\Sigma}| - \\frac{1}{2}\\sum_{n=1}^{N}(\\mathbf{x}_n - \\boldsymbol{\\mu})^T \\boldsymbol{\\Sigma}^{-1}(\\mathbf{x}_n - \\boldsymbol{\\mu}) \\)\n\nMaximizing this gives the ML estimates for mean and covariance.",
-      "tags": ["ch03", "log-likelihood", "multivariate-gaussian"]
+      "tags": [
+        "ch03",
+        "log-likelihood",
+        "multivariate-gaussian"
+      ]
     },
     {
       "uid": "03-035",
       "front": "What is the precision matrix?",
-      "back": "The **precision matrix** is the inverse of the covariance matrix:\n\n\\( \\boldsymbol{\\Lambda} = \\boldsymbol{\\Sigma}^{-1} \\)\n\nIt appears naturally in the exponent of the multivariate Gaussian. Working with precision is sometimes more convenient for inference.",
-      "tags": ["ch03", "precision-matrix", "definition"]
+      "back": "The <b>precision matrix</b> is the inverse of the covariance matrix:\n\n\\( \\boldsymbol{\\Lambda} = \\boldsymbol{\\Sigma}^{-1} \\)\n\nIt appears naturally in the exponent of the multivariate Gaussian. Working with precision is sometimes more convenient for inference.",
+      "tags": [
+        "ch03",
+        "precision-matrix",
+        "definition"
+      ]
     }
   ]
 }

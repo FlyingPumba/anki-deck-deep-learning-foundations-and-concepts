@@ -13,6 +13,11 @@
 - Vectors: `\vec{v}`, `\hat{i}`
 - Greek letters: `\lambda`, `\theta`, etc.
 
+### Text Formatting
+- Use HTML tags for formatting (not Markdown)
+- Bold: `<b>text</b>` (not `**text**`)
+- Italics: `<i>text</i>` (not `*text*`)
+
 ### Lists
 - Add an extra newline before lists so they display correctly in Anki
 - Use `\n\n-` instead of `\n-` before list items

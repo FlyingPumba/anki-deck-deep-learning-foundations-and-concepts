@@ -14,272 +14,452 @@
     {
       "uid": "06-001",
       "front": "What is few-shot learning?",
-      "back": "Learning from only a few labelled examples per class.\n\nWhen only a **single labelled example** is available per class, it's called **one-shot learning**.\n\nRequires models that can generalize from very limited data.",
-      "tags": ["ch06", "few-shot", "learning-paradigms"]
+      "back": "Learning from only a few labelled examples per class.\n\nWhen only a <b>single labelled example</b> is available per class, it's called <b>one-shot learning</b>.\n\nRequires models that can generalize from very limited data.",
+      "tags": [
+        "ch06",
+        "few-shot",
+        "learning-paradigms"
+      ]
     },
     {
       "uid": "06-002",
       "front": "What is data augmentation?",
       "back": "Artificially expanding training data by applying transformations that preserve labels:\n\n- Image: rotations, flips, crops, color jitter\n- Text: synonym replacement, back-translation\n- Audio: pitch shifting, time stretching\n\nReduces overfitting and improves generalization.",
-      "tags": ["ch06", "data-augmentation", "regularization"]
+      "tags": [
+        "ch06",
+        "data-augmentation",
+        "regularization"
+      ]
     },
     {
       "uid": "06-003",
       "front": "What is a feed-forward architecture in neural networks?",
-      "back": "A network where information flows in **one direction only**: from input to output, with no cycles or loops.\n\nConnections go from layer \\( l \\) to layer \\( l+1 \\), never backwards.\n\nContrast with recurrent networks that have feedback connections.",
-      "tags": ["ch06", "feed-forward", "architecture"]
+      "back": "A network where information flows in <b>one direction only</b>: from input to output, with no cycles or loops.\n\nConnections go from layer \\( l \\) to layer \\( l+1 \\), never backwards.\n\nContrast with recurrent networks that have feedback connections.",
+      "tags": [
+        "ch06",
+        "feed-forward",
+        "architecture"
+      ]
     },
     {
       "uid": "06-004",
       "front": "What are tensors in machine learning?",
       "back": "Higher-dimensional arrays:\n\n- Scalar: 0D tensor (single number)\n- Vector: 1D tensor\n- Matrix: 2D tensor\n- 3D+ arrays: higher-order tensors\n\nUsed to represent batches of data, images (height x width x channels), etc.",
-      "tags": ["ch06", "tensors", "data-structures"]
+      "tags": [
+        "ch06",
+        "tensors",
+        "data-structures"
+      ]
     },
     {
       "uid": "06-005",
       "front": "In machine learning, do we typically maximize likelihood or minimize a loss?",
-      "back": "We typically **minimize a loss/error function**.\n\nThe error function is the **negative log likelihood**.\n\nMaximizing likelihood = Minimizing negative log likelihood.\n\nThis convention aligns with optimization literature.",
-      "tags": ["ch06", "loss-function", "optimization"]
+      "back": "We typically <b>minimize a loss/error function</b>.\n\nThe error function is the <b>negative log likelihood</b>.\n\nMaximizing likelihood = Minimizing negative log likelihood.\n\nThis convention aligns with optimization literature.",
+      "tags": [
+        "ch06",
+        "loss-function",
+        "optimization"
+      ]
     },
     {
       "uid": "06-006",
       "front": "What error function matches Gaussian noise assumption in regression?",
-      "back": "**Sum-of-squares error**:\n\n\\( E = \\frac{1}{2}\\sum_{n=1}^{N}(y_n - t_n)^2 \\)\n\nMaximizing likelihood under Gaussian noise is equivalent to minimizing sum-of-squares.\n\nUse with **linear output activations**.",
-      "tags": ["ch06", "regression", "error-function"]
+      "back": "<b>Sum-of-squares error</b>:\n\n\\( E = \\frac{1}{2}\\sum_{n=1}^{N}(y_n - t_n)^2 \\)\n\nMaximizing likelihood under Gaussian noise is equivalent to minimizing sum-of-squares.\n\nUse with <b>linear output activations</b>.",
+      "tags": [
+        "ch06",
+        "regression",
+        "error-function"
+      ]
     },
     {
       "uid": "06-007",
       "front": "What error function should be used for classification problems?",
-      "back": "**Cross-entropy error**:\n\n\\( E = -\\sum_{n=1}^{N}\\sum_{k=1}^{K} t_{nk} \\ln y_{nk} \\)\n\nUsing cross-entropy instead of sum-of-squares for classification leads to **faster training** and **better generalization**.",
-      "tags": ["ch06", "classification", "cross-entropy"]
+      "back": "<b>Cross-entropy error</b>:\n\n\\( E = -\\sum_{n=1}^{N}\\sum_{k=1}^{K} t_{nk} \\ln y_{nk} \\)\n\nUsing cross-entropy instead of sum-of-squares for classification leads to <b>faster training</b> and <b>better generalization</b>.",
+      "tags": [
+        "ch06",
+        "classification",
+        "cross-entropy"
+      ]
     },
     {
       "uid": "06-008",
       "front": "What is the natural pairing of output activation and error function for different tasks?",
-      "back": "**Regression**: Linear outputs + sum-of-squares error\n\n**Binary classification**: Sigmoid output + binary cross-entropy\n\n**Multi-class classification**: Softmax outputs + categorical cross-entropy\n\nThese pairings come from maximum likelihood under appropriate distributions.",
-      "tags": ["ch06", "output-activation", "error-function"]
+      "back": "<b>Regression</b>: Linear outputs + sum-of-squares error\n\n<b>Binary classification</b>: Sigmoid output + binary cross-entropy\n\n<b>Multi-class classification</b>: Softmax outputs + categorical cross-entropy\n\nThese pairings come from maximum likelihood under appropriate distributions.",
+      "tags": [
+        "ch06",
+        "output-activation",
+        "error-function"
+      ]
     },
     {
       "uid": "06-009",
       "front": "What is a mixture density network?",
-      "back": "A neural network that outputs parameters of a **mixture model** (e.g., Gaussian mixture).\n\nOutputs: mixing coefficients \\( \\pi_k \\), means \\( \\mu_k \\), variances \\( \\sigma_k^2 \\)\n\nUseful for multi-modal distributions where a single prediction is insufficient.",
-      "tags": ["ch06", "mixture-density", "probabilistic"]
+      "back": "A neural network that outputs parameters of a <b>mixture model</b> (e.g., Gaussian mixture).\n\nOutputs: mixing coefficients \\( \\pi_k \\), means \\( \\mu_k \\), variances \\( \\sigma_k^2 \\)\n\nUseful for multi-modal distributions where a single prediction is insufficient.",
+      "tags": [
+        "ch06",
+        "mixture-density",
+        "probabilistic"
+      ]
     },
     {
       "uid": "06-010",
       "front": "Why can neural network error functions be optimized efficiently?",
-      "back": "Because:\n\n1. The network function is **differentiable by design** (smooth activation functions)\n2. The error function is also **differentiable**\n3. **Backpropagation** efficiently computes gradients\n\nThis enables gradient-based optimization.",
-      "tags": ["ch06", "differentiable", "optimization"]
+      "back": "Because:\n\n1. The network function is <b>differentiable by design</b> (smooth activation functions)\n2. The error function is also <b>differentiable</b>\n3. <b>Backpropagation</b> efficiently computes gradients\n\nThis enables gradient-based optimization.",
+      "tags": [
+        "ch06",
+        "differentiable",
+        "optimization"
+      ]
     },
     {
       "uid": "06-011",
       "front": "What is the goal when training a neural network?",
-      "back": "Find weights and biases that achieve **good generalization** on unseen data.\n\nNot just minimizing training error, but finding parameters that work well on new inputs.\n\nThis typically involves finding a point where \\( \\nabla E(\\vec{w}) = 0 \\).",
-      "tags": ["ch06", "training", "generalization"]
+      "back": "Find weights and biases that achieve <b>good generalization</b> on unseen data.\n\nNot just minimizing training error, but finding parameters that work well on new inputs.\n\nThis typically involves finding a point where \\( \\nabla E(\\vec{w}) = 0 \\).",
+      "tags": [
+        "ch06",
+        "training",
+        "generalization"
+      ]
     },
     {
       "uid": "06-012",
       "front": "What are stationary points in optimization?",
-      "back": "Points where the gradient vanishes: \\( \\nabla E(\\vec{w}) = 0 \\)\n\nTypes of stationary points:\n\n- **Local minima**: Lower than all nearby points\n- **Local maxima**: Higher than all nearby points\n- **Saddle points**: Minimum in some directions, maximum in others",
-      "tags": ["ch06", "stationary-points", "optimization"]
+      "back": "Points where the gradient vanishes: \\( \\nabla E(\\vec{w}) = 0 \\)\n\nTypes of stationary points:\n\n- <b>Local minima</b>: Lower than all nearby points\n- <b>Local maxima</b>: Higher than all nearby points\n- <b>Saddle points</b>: Minimum in some directions, maximum in others",
+      "tags": [
+        "ch06",
+        "stationary-points",
+        "optimization"
+      ]
     },
     {
       "uid": "06-013",
       "front": "What is the difference between global and local minima?",
-      "back": "**Global minimum**: The smallest value of the error function across the entire weight space.\n\n**Local minimum**: A point lower than all nearby points, but not necessarily the lowest overall.\n\nNeural networks typically have many local minima.",
-      "tags": ["ch06", "minima", "optimization"]
+      "back": "<b>Global minimum</b>: The smallest value of the error function across the entire weight space.\n\n<b>Local minimum</b>: A point lower than all nearby points, but not necessarily the lowest overall.\n\nNeural networks typically have many local minima.",
+      "tags": [
+        "ch06",
+        "minima",
+        "optimization"
+      ]
     },
     {
       "uid": "06-014",
       "front": "When is a matrix H positive definite?",
       "back": "When \\( \\vec{v}^T H \\vec{v} > 0 \\) for all non-zero vectors \\( \\vec{v} \\).\n\nEquivalently: all eigenvalues are positive.\n\nAt a local minimum, the Hessian matrix must be positive definite.",
-      "tags": ["ch06", "positive-definite", "hessian"]
+      "tags": [
+        "ch06",
+        "positive-definite",
+        "hessian"
+      ]
     },
     {
       "uid": "06-015",
       "front": "What conditions must hold for a point to be a local minimum?",
-      "back": "Necessary and sufficient conditions:\n\n1. Gradient is zero: \\( \\nabla E(\\vec{w}^*) = 0 \\)\n2. Hessian is **positive definite**: all eigenvalues > 0\n\nIf the Hessian has negative eigenvalues, it's a saddle point or maximum.",
-      "tags": ["ch06", "local-minimum", "conditions"]
+      "back": "Necessary and sufficient conditions:\n\n1. Gradient is zero: \\( \\nabla E(\\vec{w}^*) = 0 \\)\n2. Hessian is <b>positive definite</b>: all eigenvalues > 0\n\nIf the Hessian has negative eigenvalues, it's a saddle point or maximum.",
+      "tags": [
+        "ch06",
+        "local-minimum",
+        "conditions"
+      ]
     },
     {
       "uid": "06-016",
       "front": "Why does the solution found by gradient descent depend on initialization?",
-      "back": "Because the error surface has **multiple local minima**.\n\nGradient descent finds a local minimum near the starting point.\n\nDifferent initializations \\( \\vec{w}^{(0)} \\) lead to different final solutions.",
-      "tags": ["ch06", "initialization", "local-minima"]
+      "back": "Because the error surface has <b>multiple local minima</b>.\n\nGradient descent finds a local minimum near the starting point.\n\nDifferent initializations \\( \\vec{w}^{(0)} \\) lead to different final solutions.",
+      "tags": [
+        "ch06",
+        "initialization",
+        "local-minima"
+      ]
     },
     {
       "uid": "06-017",
       "front": "Why is gradient information essential for training neural networks?",
-      "back": "The gradient \\( \\nabla E \\) is a vector of length W (number of weights).\n\nEach evaluation provides **W pieces of information** about the error surface.\n\nThis makes gradient-based methods far more efficient than gradient-free approaches.",
-      "tags": ["ch06", "gradient", "efficiency"]
+      "back": "The gradient \\( \\nabla E \\) is a vector of length W (number of weights).\n\nEach evaluation provides <b>W pieces of information</b> about the error surface.\n\nThis makes gradient-based methods far more efficient than gradient-free approaches.",
+      "tags": [
+        "ch06",
+        "gradient",
+        "efficiency"
+      ]
     },
     {
       "uid": "06-018",
       "front": "What is the gradient descent update rule?",
-      "back": "\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E(\\vec{w}^{(\\tau)}) \\)\n\nWhere:\n\n- \\( \\eta > 0 \\) is the **learning rate**\n- \\( \\tau \\) is the iteration number\n\nTakes a small step in the direction of steepest descent.",
-      "tags": ["ch06", "gradient-descent", "update-rule"]
+      "back": "\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E(\\vec{w}^{(\\tau)}) \\)\n\nWhere:\n\n- \\( \\eta > 0 \\) is the <b>learning rate</b>\n- \\( \\tau \\) is the iteration number\n\nTakes a small step in the direction of steepest descent.",
+      "tags": [
+        "ch06",
+        "gradient-descent",
+        "update-rule"
+      ]
     },
     {
       "uid": "06-019",
       "front": "What are batch methods in optimization?",
-      "back": "Methods that use the **whole dataset at once** to compute the gradient.\n\nAdvantages: Stable gradient estimates\n\nDisadvantages: Computationally expensive for large datasets, requires all data in memory.",
-      "tags": ["ch06", "batch", "optimization"]
+      "back": "Methods that use the <b>whole dataset at once</b> to compute the gradient.\n\nAdvantages: Stable gradient estimates\n\nDisadvantages: Computationally expensive for large datasets, requires all data in memory.",
+      "tags": [
+        "ch06",
+        "batch",
+        "optimization"
+      ]
     },
     {
       "uid": "06-020",
       "front": "What is stochastic gradient descent (SGD)?",
-      "back": "Updates weights based on **one data point at a time**:\n\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n(\\vec{w}^{(\\tau)}) \\)\n\nAdvantages:\n\n- Can escape local minima (due to noise)\n- Efficient for large datasets\n- Online learning capability",
-      "tags": ["ch06", "sgd", "optimization"]
+      "back": "Updates weights based on <b>one data point at a time</b>:\n\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n(\\vec{w}^{(\\tau)}) \\)\n\nAdvantages:\n\n- Can escape local minima (due to noise)\n- Efficient for large datasets\n- Online learning capability",
+      "tags": [
+        "ch06",
+        "sgd",
+        "optimization"
+      ]
     },
     {
       "uid": "06-021",
       "front": "What is a training epoch?",
-      "back": "A **complete pass through the entire training set**.\n\nIn SGD, one epoch = N weight updates (for N data points).\n\nTraining typically runs for many epochs until convergence.",
-      "tags": ["ch06", "epoch", "training"]
+      "back": "A <b>complete pass through the entire training set</b>.\n\nIn SGD, one epoch = N weight updates (for N data points).\n\nTraining typically runs for many epochs until convergence.",
+      "tags": [
+        "ch06",
+        "epoch",
+        "training"
+      ]
     },
     {
       "uid": "06-022",
       "front": "What is online gradient descent?",
       "back": "SGD applied to streaming data where examples arrive one at a time and may not be stored.\n\nUseful when:\n\n- Data arrives continuously\n- Dataset doesn't fit in memory\n- Real-time adaptation is needed",
-      "tags": ["ch06", "online-learning", "sgd"]
+      "tags": [
+        "ch06",
+        "online-learning",
+        "sgd"
+      ]
     },
     {
       "uid": "06-023",
       "front": "How can SGD escape local minima?",
-      "back": "The **stochasticity** (randomness) in gradient estimates acts like noise.\n\nThis noise can push the optimization out of shallow local minima.\n\nBatch gradient descent follows the exact gradient and gets trapped more easily.",
-      "tags": ["ch06", "sgd", "local-minima"]
+      "back": "The <b>stochasticity</b> (randomness) in gradient estimates acts like noise.\n\nThis noise can push the optimization out of shallow local minima.\n\nBatch gradient descent follows the exact gradient and gets trapped more easily.",
+      "tags": [
+        "ch06",
+        "sgd",
+        "local-minima"
+      ]
     },
     {
       "uid": "06-024",
       "front": "What is a downside of pure SGD (single-point updates)?",
-      "back": "The gradient estimate from one data point is **noisy** (high variance).\n\nThis can cause:\n\n- Erratic updates\n- Slower convergence\n- Difficulty reaching precise minima",
-      "tags": ["ch06", "sgd", "variance"]
+      "back": "The gradient estimate from one data point is <b>noisy</b> (high variance).\n\nThis can cause:\n\n- Erratic updates\n- Slower convergence\n- Difficulty reaching precise minima",
+      "tags": [
+        "ch06",
+        "sgd",
+        "variance"
+      ]
     },
     {
       "uid": "06-025",
       "front": "What is mini-batch gradient descent?",
-      "back": "Uses a **small subset of data points** (mini-batch) to estimate the gradient:\n\n\\( \\nabla E \\approx \\frac{1}{B}\\sum_{n \\in \\text{batch}} \\nabla E_n \\)\n\nBalances:\n\n- Computational efficiency (parallelism)\n- Gradient accuracy (lower variance than SGD)\n- Memory constraints",
-      "tags": ["ch06", "mini-batch", "optimization"]
+      "back": "Uses a <b>small subset of data points</b> (mini-batch) to estimate the gradient:\n\n\\( \\nabla E \\approx \\frac{1}{B}\\sum_{n \\in \\text{batch}} \\nabla E_n \\)\n\nBalances:\n\n- Computational efficiency (parallelism)\n- Gradient accuracy (lower variance than SGD)\n- Memory constraints",
+      "tags": [
+        "ch06",
+        "mini-batch",
+        "optimization"
+      ]
     },
     {
       "uid": "06-026",
       "front": "Why are there diminishing returns from increasing mini-batch size?",
       "back": "Standard error of gradient estimate decreases as \\( 1/\\sqrt{B} \\).\n\nDoubling batch size only reduces noise by \\( \\sqrt{2} \\approx 1.4 \\).\n\nComputational cost increases linearly while accuracy improves sub-linearly.",
-      "tags": ["ch06", "mini-batch", "batch-size"]
+      "tags": [
+        "ch06",
+        "mini-batch",
+        "batch-size"
+      ]
     },
     {
       "uid": "06-027",
       "front": "What is symmetry breaking in neural network initialization?",
-      "back": "Initializing weights **randomly** rather than identically.\n\nIf all weights start the same, all hidden units compute the same function and learn the same features.\n\nRandom initialization breaks this symmetry, allowing diverse features to emerge.",
-      "tags": ["ch06", "initialization", "symmetry-breaking"]
+      "back": "Initializing weights <b>randomly</b> rather than identically.\n\nIf all weights start the same, all hidden units compute the same function and learn the same features.\n\nRandom initialization breaks this symmetry, allowing diverse features to emerge.",
+      "tags": [
+        "ch06",
+        "initialization",
+        "symmetry-breaking"
+      ]
     },
     {
       "uid": "06-028",
       "front": "What is He initialization?",
       "back": "Weight initialization scaled by \\( \\sqrt{2/M} \\) where M is the number of input units:\n\n\\( w \\sim N(0, 2/M) \\)\n\nDesigned for ReLU activations to maintain variance of activations across layers.\n\nPrevents vanishing/exploding gradients.",
-      "tags": ["ch06", "he-initialization", "initialization"]
+      "tags": [
+        "ch06",
+        "he-initialization",
+        "initialization"
+      ]
     },
     {
       "uid": "06-029",
       "front": "What happens if the learning rate is too large?",
-      "back": "**Divergent oscillations**: steps overshoot the minimum and bounce back and forth with increasing amplitude.\n\nThe optimization diverges instead of converging.\n\nMust keep \\( \\eta \\) small enough to avoid this.",
-      "tags": ["ch06", "learning-rate", "divergence"]
+      "back": "<b>Divergent oscillations</b>: steps overshoot the minimum and bounce back and forth with increasing amplitude.\n\nThe optimization diverges instead of converging.\n\nMust keep \\( \\eta \\) small enough to avoid this.",
+      "tags": [
+        "ch06",
+        "learning-rate",
+        "divergence"
+      ]
     },
     {
       "uid": "06-030",
       "front": "What is the convergence rate of gradient descent near a minimum?",
-      "back": "**Linear convergence**: error decreases by a constant factor per iteration.\n\n\\( E^{(\\tau+1)} - E^* \\approx c(E^{(\\tau)} - E^*) \\)\n\nwhere \\( 0 < c < 1 \\).\n\nSlower than quadratic (Newton's method) but each iteration is cheaper.",
-      "tags": ["ch06", "convergence", "gradient-descent"]
+      "back": "<b>Linear convergence</b>: error decreases by a constant factor per iteration.\n\n\\( E^{(\\tau+1)} - E^<i> \\approx c(E^{(\\tau)} - E^</i>) \\)\n\nwhere \\( 0 < c < 1 \\).\n\nSlower than quadratic (Newton's method) but each iteration is cheaper.",
+      "tags": [
+        "ch06",
+        "convergence",
+        "gradient-descent"
+      ]
     },
     {
       "uid": "06-031",
       "front": "What problem arises with elongated error surfaces (different eigenvalues)?",
-      "back": "Gradient descent **oscillates** across narrow valleys while making slow progress along them.\n\nThe step size must be small enough for the steepest direction, causing slow convergence in shallow directions.\n\nMomentum helps address this.",
-      "tags": ["ch06", "eigenvalues", "oscillation"]
+      "back": "Gradient descent <b>oscillates</b> across narrow valleys while making slow progress along them.\n\nThe step size must be small enough for the steepest direction, causing slow convergence in shallow directions.\n\nMomentum helps address this.",
+      "tags": [
+        "ch06",
+        "eigenvalues",
+        "oscillation"
+      ]
     },
     {
       "uid": "06-032",
       "front": "What is momentum in gradient descent?",
-      "back": "Adding a fraction of the previous update to the current update:\n\n\\( \\vec{v}^{(\\tau+1)} = \\mu \\vec{v}^{(\\tau)} - \\eta \\nabla E \\)\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} + \\vec{v}^{(\\tau+1)} \\)\n\nEffectively adds **inertia** to motion through weight space, smoothing out oscillations.",
-      "tags": ["ch06", "momentum", "optimization"]
+      "back": "Adding a fraction of the previous update to the current update:\n\n\\( \\vec{v}^{(\\tau+1)} = \\mu \\vec{v}^{(\\tau)} - \\eta \\nabla E \\)\n\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} + \\vec{v}^{(\\tau+1)} \\)\n\nEffectively adds <b>inertia</b> to motion through weight space, smoothing out oscillations.",
+      "tags": [
+        "ch06",
+        "momentum",
+        "optimization"
+      ]
     },
     {
       "uid": "06-033",
       "front": "How does momentum help optimization?",
-      "back": "1. **Smooths oscillations** across valleys\n2. **Accelerates** along consistent gradient directions\n3. Leads to **faster convergence** without needing larger learning rates\n\nMomentum accumulates in directions of consistent gradient.",
-      "tags": ["ch06", "momentum", "benefits"]
+      "back": "1. <b>Smooths oscillations</b> across valleys\n2. <b>Accelerates</b> along consistent gradient directions\n3. Leads to <b>faster convergence</b> without needing larger learning rates\n\nMomentum accumulates in directions of consistent gradient.",
+      "tags": [
+        "ch06",
+        "momentum",
+        "benefits"
+      ]
     },
     {
       "uid": "06-034",
       "front": "What is the best strategy for setting the learning rate during training?",
-      "back": "Use a **larger learning rate at the start** and **reduce it during training**.\n\nEarly: Large steps for fast initial progress\nLate: Small steps for fine-tuning near minimum\n\nCalled learning rate scheduling or annealing.",
-      "tags": ["ch06", "learning-rate", "scheduling"]
+      "back": "Use a <b>larger learning rate at the start</b> and <b>reduce it during training</b>.\n\nEarly: Large steps for fast initial progress\nLate: Small steps for fine-tuning near minimum\n\nCalled learning rate scheduling or annealing.",
+      "tags": [
+        "ch06",
+        "learning-rate",
+        "scheduling"
+      ]
     },
     {
       "uid": "06-035",
       "front": "What is RMSProp?",
-      "back": "**Root Mean Square Propagation**: An adaptive learning rate method.\n\nMaintains moving average of squared gradients per parameter:\n\\( v_i^{(\\tau+1)} = \\rho v_i^{(\\tau)} + (1-\\rho)(g_i^{(\\tau)})^2 \\)\n\nScales learning rate: \\( \\Delta w_i = -\\frac{\\eta}{\\sqrt{v_i + \\epsilon}} g_i \\)\n\nGives each parameter its own effective learning rate.",
-      "tags": ["ch06", "rmsprop", "adaptive-learning"]
+      "back": "<b>Root Mean Square Propagation</b>: An adaptive learning rate method.\n\nMaintains moving average of squared gradients per parameter:\n\\( v_i^{(\\tau+1)} = \\rho v_i^{(\\tau)} + (1-\\rho)(g_i^{(\\tau)})^2 \\)\n\nScales learning rate: \\( \\Delta w_i = -\\frac{\\eta}{\\sqrt{v_i + \\epsilon}} g_i \\)\n\nGives each parameter its own effective learning rate.",
+      "tags": [
+        "ch06",
+        "rmsprop",
+        "adaptive-learning"
+      ]
     },
     {
       "uid": "06-036",
       "front": "What is Adam optimization?",
-      "back": "**Adaptive Moments**: Combines RMSProp with momentum.\n\nMaintains:\n\n- First moment (momentum): \\( m_i \\) (moving average of gradients)\n- Second moment: \\( v_i \\) (moving average of squared gradients)\n\n**Most widely adopted** learning algorithm in deep learning.",
-      "tags": ["ch06", "adam", "optimization"]
+      "back": "<b>Adaptive Moments</b>: Combines RMSProp with momentum.\n\nMaintains:\n\n- First moment (momentum): \\( m_i \\) (moving average of gradients)\n- Second moment: \\( v_i \\) (moving average of squared gradients)\n\n<b>Most widely adopted</b> learning algorithm in deep learning.",
+      "tags": [
+        "ch06",
+        "adam",
+        "optimization"
+      ]
     },
     {
       "uid": "06-037",
       "front": "What are the three kinds of normalization in neural networks?",
-      "back": "Normalized across:\n\n1. **Input normalization**: Across training examples per input feature\n2. **Batch normalization**: Across mini-batch per hidden unit\n3. **Layer normalization**: Across hidden units per example",
-      "tags": ["ch06", "normalization", "types"]
+      "back": "Normalized across:\n\n1. <b>Input normalization</b>: Across training examples per input feature\n2. <b>Batch normalization</b>: Across mini-batch per hidden unit\n3. <b>Layer normalization</b>: Across hidden units per example",
+      "tags": [
+        "ch06",
+        "normalization",
+        "types"
+      ]
     },
     {
       "uid": "06-038",
       "front": "Why is input normalization beneficial?",
-      "back": "When input variables span **very different ranges**, gradients can be poorly scaled.\n\nRe-scaling inputs to have zero mean and unit variance:\n\\( \\tilde{x}_i = \\frac{x_i - \\mu_i}{\\sigma_i} \\)\n\nMakes optimization more efficient and stable.",
-      "tags": ["ch06", "input-normalization", "preprocessing"]
+      "back": "When input variables span <b>very different ranges</b>, gradients can be poorly scaled.\n\nRe-scaling inputs to have zero mean and unit variance:\n\\( \\tilde{x}_i = \\frac{x_i - \\mu_i}{\\sigma_i} \\)\n\nMakes optimization more efficient and stable.",
+      "tags": [
+        "ch06",
+        "input-normalization",
+        "preprocessing"
+      ]
     },
     {
       "uid": "06-039",
       "front": "What is batch normalization?",
-      "back": "Normalizing hidden unit activations **across the mini-batch**:\n\n\\( \\hat{a}_i = \\frac{a_i - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}} \\)\n\nThen rescale: \\( \\tilde{a}_i = \\gamma_i \\hat{a}_i + \\beta_i \\)\n\nwhere \\( \\gamma_i, \\beta_i \\) are learned parameters.\n\nHelps with vanishing/exploding gradients.",
-      "tags": ["ch06", "batch-normalization", "normalization"]
+      "back": "Normalizing hidden unit activations <b>across the mini-batch</b>:\n\n\\( \\hat{a}_i = \\frac{a_i - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}} \\)\n\nThen rescale: \\( \\tilde{a}_i = \\gamma_i \\hat{a}_i + \\beta_i \\)\n\nwhere \\( \\gamma_i, \\beta_i \\) are learned parameters.\n\nHelps with vanishing/exploding gradients.",
+      "tags": [
+        "ch06",
+        "batch-normalization",
+        "normalization"
+      ]
     },
     {
       "uid": "06-040",
       "front": "What are vanishing gradients and exploding gradients?",
-      "back": "In deep networks, gradients are products of many terms (chain rule).\n\n**Vanishing**: Product tends to 0 if terms < 1 - early layers don't learn\n\n**Exploding**: Product tends to infinity if terms > 1 - training becomes unstable\n\nBatch normalization and careful initialization help prevent both.",
-      "tags": ["ch06", "vanishing-gradients", "exploding-gradients"]
+      "back": "In deep networks, gradients are products of many terms (chain rule).\n\n<b>Vanishing</b>: Product tends to 0 if terms < 1 - early layers don't learn\n\n<b>Exploding</b>: Product tends to infinity if terms > 1 - training becomes unstable\n\nBatch normalization and careful initialization help prevent both.",
+      "tags": [
+        "ch06",
+        "vanishing-gradients",
+        "exploding-gradients"
+      ]
     },
     {
       "uid": "06-041",
       "front": "Why does batch normalization include learnable scale and shift parameters?",
-      "back": "The parameters \\( \\gamma_i \\) and \\( \\beta_i \\) let the network **undo the normalization** if needed.\n\nWithout them, normalization might remove useful information.\n\nWith them, the network can learn the optimal scaling while still benefiting from normalized gradients.",
-      "tags": ["ch06", "batch-normalization", "parameters"]
+      "back": "The parameters \\( \\gamma_i \\) and \\( \\beta_i \\) let the network <b>undo the normalization</b> if needed.\n\nWithout them, normalization might remove useful information.\n\nWith them, the network can learn the optimal scaling while still benefiting from normalized gradients.",
+      "tags": [
+        "ch06",
+        "batch-normalization",
+        "parameters"
+      ]
     },
     {
       "uid": "06-042",
       "front": "How is batch normalization applied at inference time?",
-      "back": "Use **moving averages** of mean and variance computed during training, not the current batch statistics.\n\nThese moving averages are updated during training:\n\\( \\mu_{\\text{running}} = \\alpha \\mu_{\\text{running}} + (1-\\alpha)\\mu_B \\)\n\nThis allows consistent predictions for single examples.",
-      "tags": ["ch06", "batch-normalization", "inference"]
+      "back": "Use <b>moving averages</b> of mean and variance computed during training, not the current batch statistics.\n\nThese moving averages are updated during training:\n\\( \\mu_{\\text{running}} = \\alpha \\mu_{\\text{running}} + (1-\\alpha)\\mu_B \\)\n\nThis allows consistent predictions for single examples.",
+      "tags": [
+        "ch06",
+        "batch-normalization",
+        "inference"
+      ]
     },
     {
       "uid": "06-043",
       "front": "What is layer normalization?",
-      "back": "Normalizing **across hidden units for each example separately** (not across the batch).\n\nAdvantages over batch normalization:\n\n- Works with any batch size (even size 1)\n- Same computation at training and inference\n- Useful in transformers and RNNs",
-      "tags": ["ch06", "layer-normalization", "normalization"]
+      "back": "Normalizing <b>across hidden units for each example separately</b> (not across the batch).\n\nAdvantages over batch normalization:\n\n- Works with any batch size (even size 1)\n- Same computation at training and inference\n- Useful in transformers and RNNs",
+      "tags": [
+        "ch06",
+        "layer-normalization",
+        "normalization"
+      ]
     },
     {
       "uid": "06-044",
       "front": "When is layer normalization preferred over batch normalization?",
-      "back": "Layer normalization is useful when:\n\n- **Small batch sizes** (batch norm estimates are noisy)\n- **Transformers** (standard choice)\n- **Recurrent networks** (variable sequence lengths)\n- **Inference** on single examples\n\nSame normalization function at train and test time.",
-      "tags": ["ch06", "layer-normalization", "applications"]
+      "back": "Layer normalization is useful when:\n\n- <b>Small batch sizes</b> (batch norm estimates are noisy)\n- <b>Transformers</b> (standard choice)\n- <b>Recurrent networks</b> (variable sequence lengths)\n- <b>Inference</b> on single examples\n\nSame normalization function at train and test time.",
+      "tags": [
+        "ch06",
+        "layer-normalization",
+        "applications"
+      ]
     },
     {
       "uid": "06-045",
       "front": "Should batch normalization be applied before or after the activation function?",
-      "back": "We have a choice: normalize **pre-activation values** \\( a_i \\) or **post-activation values** \\( z_i \\).\n\nBoth approaches are used in practice.\n\nOriginal paper normalized before activation, but normalizing after also works well.",
-      "tags": ["ch06", "batch-normalization", "placement"]
+      "back": "We have a choice: normalize <b>pre-activation values</b> \\( a_i \\) or <b>post-activation values</b> \\( z_i \\).\n\nBoth approaches are used in practice.\n\nOriginal paper normalized before activation, but normalizing after also works well.",
+      "tags": [
+        "ch06",
+        "batch-normalization",
+        "placement"
+      ]
     }
   ]
 }
