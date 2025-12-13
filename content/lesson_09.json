@@ -71,26 +71,6 @@
       ]
     },
     {
-      "uid": "09-007",
-      "front": "What is weight decay (L2 regularization)?",
-      "back": "A regularizer that penalizes large weight magnitudes:<br>\\( \\tilde{E}(\\mathbf{w}) = E(\\mathbf{w}) + \\frac{\\lambda}{2} \\mathbf{w}^T \\mathbf{w} \\)<br>Gradient contribution: \\( \\lambda \\mathbf{w} \\)<br>Called 'weight decay' because weights decay towards zero unless supported by data.<br>Can be interpreted as Gaussian prior over weights.",
-      "tags": [
-        "ch09",
-        "weight-decay",
-        "l2"
-      ]
-    },
-    {
-      "uid": "09-008",
-      "front": "How does L2 regularization affect the effective number of parameters?",
-      "back": "L2 regularization <b>suppresses parameters</b> that have little effect on data fit.<br>Parameters with small effect are pushed towards zero.<br>Effective number of parameters = number that remain 'active' after regularization.<br><ul><li>\\( \\lambda \\to \\infty \\): Effective parameters \\( \\to 0 \\)</li><li>\\( \\lambda = 0 \\): Effective parameters = total parameters</li></ul>",
-      "tags": [
-        "ch09",
-        "effective-parameters",
-        "regularization"
-      ]
-    },
-    {
       "uid": "09-009",
       "front": "Why should biases typically be excluded from weight decay?",
       "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts of biases</b>.<br>Including biases would:<br><ul><li>Penalize constant offsets in data</li><li>Not be invariant to data preprocessing</li></ul>Consistent regularizer: \\( \\frac{\\lambda_1}{2} \\sum_{w \\in W_1} w^2 + \\frac{\\lambda_2}{2} \\sum_{w \\in W_2} w^2 \\)<br>where biases are excluded from both sums.",
@@ -121,26 +101,6 @@
       ]
     },
     {
-      "uid": "09-012",
-      "front": "What are learning curves?",
-      "back": "Plots of performance (training/validation error) vs training progress.<br>Used to diagnose:<br><ul><li><b>Overfitting</b>: Training error << validation error</li><li><b>Underfitting</b>: Both errors high</li><li>When to apply <b>early stopping</b></li></ul>Can also plot vs dataset size or model complexity.",
-      "tags": [
-        "ch09",
-        "learning-curves",
-        "diagnostics"
-      ]
-    },
-    {
-      "uid": "09-013",
-      "front": "What is early stopping?",
-      "back": "A regularization technique that <b>stops training before convergence</b> based on validation error.<br>As training progresses:<br><ul><li>Training error decreases</li><li>Validation error initially decreases, then increases (overfitting)</li></ul>Stop at minimum validation error.<br>Approximately equivalent to L2 regularization.",
-      "tags": [
-        "ch09",
-        "early-stopping",
-        "regularization"
-      ]
-    },
-    {
       "uid": "09-014",
       "front": "How does early stopping relate to L2 regularization?",
       "back": "Early stopping is approximately <b>equivalent to L2 regularization</b>.<br>The effective number of parameters <b>grows during training</b> as weights move from initialization.<br>Stopping early limits how far weights can move, similar to constraining their magnitude with L2.",
@@ -148,16 +108,6 @@
         "ch09",
         "early-stopping",
         "l2-relation"
-      ]
-    },
-    {
-      "uid": "09-015",
-      "front": "What is the double descent phenomenon?",
-      "back": "A non-monotonic relationship between model complexity and test error:<br><ol><li><b>Classic regime</b>: Error decreases then increases (bias-variance tradeoff)</li></ol><ol><li><b>Interpolation threshold</b>: Error peaks when model can exactly fit training data</li></ol><ol><li><b>Modern regime</b>: Error decreases again with over-parameterization</li></ol>Challenges classical understanding of overfitting.",
-      "tags": [
-        "ch09",
-        "double-descent",
-        "generalization"
       ]
     },
     {
@@ -181,26 +131,6 @@
       ]
     },
     {
-      "uid": "09-018",
-      "front": "What is dropout?",
-      "back": "A regularization technique that <b>randomly drops nodes</b> during training.<br>With probability p, each hidden/input node is set to zero.<br>At test time: Use all nodes but scale activations by (1-p).<br>Interpretation: Implicit ensemble of \\( 2^N \\) sub-networks.",
-      "tags": [
-        "ch09",
-        "dropout",
-        "regularization"
-      ]
-    },
-    {
-      "uid": "09-019",
-      "front": "Why is dropout interpreted as model averaging?",
-      "back": "Each dropout mask defines a <b>different sub-network</b>.<br>With N droppable nodes, there are \\( 2^N \\) possible sub-networks.<br><ul><li>Training: Sample different networks</li><li>Inference: Approximate average of all networks</li></ul>Achieves ensemble benefits without training multiple models explicitly.",
-      "tags": [
-        "ch09",
-        "dropout",
-        "ensemble"
-      ]
-    },
-    {
       "uid": "09-020",
       "front": "How does dropout prevent co-adaptation of features?",
       "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.<br>Nodes must learn robust features useful independently.<br>Prevents complex co-adaptations that might overfit.<br>Forces redundancy and distributed representations.",
@@ -208,26 +138,6 @@
         "ch09",
         "dropout",
         "co-adaptation"
-      ]
-    },
-    {
-      "uid": "09-021",
-      "front": "What is Monte Carlo dropout?",
-      "back": "Using dropout at <b>test time</b> (not just training) to estimate uncertainty.<br>Method:<br><ol><li>Run multiple forward passes with different dropout masks</li><li>Variance in predictions indicates model uncertainty</li></ol>Provides approximate Bayesian inference cheaply.",
-      "tags": [
-        "ch09",
-        "mc-dropout",
-        "uncertainty"
-      ]
-    },
-    {
-      "uid": "09-022",
-      "front": "How does dropout affect training time?",
-      "back": "Training takes <b>longer</b> with dropout because:<br><ul><li>Each update uses only a subset of nodes</li><li>Updates are noisier (higher variance)</li><li>More epochs needed for convergence</li></ul>But generalization often improves, justifying extra training.",
-      "tags": [
-        "ch09",
-        "dropout",
-        "training"
       ]
     },
     {
@@ -247,16 +157,6 @@
       "tags": [
         "ch09",
         "groups",
-        "symmetry"
-      ]
-    },
-    {
-      "uid": "09-025",
-      "front": "What is geometric deep learning?",
-      "back": "A framework for designing neural networks that respect <b>geometric symmetries</b>.<br>Key idea: Build invariances/equivariances into network architecture.<br>Examples:<br><ul><li>CNNs: Translation equivariance</li><li>Graph NNs: Permutation equivariance</li><li>Spherical CNNs: Rotation equivariance</li></ul>Unifying principle for many network architectures.",
-      "tags": [
-        "ch09",
-        "geometric-deep-learning",
         "symmetry"
       ]
     }

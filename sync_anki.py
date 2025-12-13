@@ -77,6 +77,9 @@ def find_note_in_deck_by_front(deck: str, front: str) -> int | None:
 
     This is used to upgrade existing notes that predate uid:* tags,
     so we do not create duplicate notes when the content already exists.
+
+    IMPORTANT: Only returns notes that do NOT already have a uid:* tag.
+    This prevents merging different cards that happen to have the same question.
     """
     # Search across the whole parent deck tree (e.g., "Deep Learning::*"),
     # since earlier experiments may have created notes in a slightly different subdeck.
@@ -91,6 +94,11 @@ def find_note_in_deck_by_front(deck: str, front: str) -> int | None:
         current_front = note.get("fields", {}).get("Front", {}).get("value", "")
         canon = _canonicalize_front(current_front)
         if canon == target:
+            # Check if this note already has a uid tag - if so, don't reuse it
+            # (it belongs to a different card with the same question)
+            has_uid = any(tag.startswith("uid:") for tag in note.get("tags", []))
+            if has_uid:
+                continue
             # AnkiConnect uses the key "noteId" for the identifier in notesInfo
             return note.get("noteId")
 
@@ -152,12 +160,13 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
     all_tags = tags + [uid_tag]
 
     if existing_id:
-        # Check if content changed
+        # Check if content or tags changed
         notes_info = invoke("notesInfo", {"notes": [existing_id]})
         if notes_info:
             current = notes_info[0]
             current_front = current.get("fields", {}).get("Front", {}).get("value", "")
             current_back = current.get("fields", {}).get("Back", {}).get("value", "")
+            current_tags = set(current.get("tags", []))
 
             # Normalize for comparison
             norm_current_front = _normalize_for_comparison(current_front)
@@ -165,7 +174,13 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             norm_new_front = _normalize_for_comparison(front)
             norm_new_back = _normalize_for_comparison(back)
 
-            if norm_current_front == norm_new_front and norm_current_back == norm_new_back:
+            # Check what needs to change
+            content_changed = norm_current_front != norm_new_front or norm_current_back != norm_new_back
+            desired_tags = set(all_tags)
+            tags_to_add = desired_tags - current_tags
+            tags_to_remove = current_tags - desired_tags
+
+            if not content_changed and not tags_to_add and not tags_to_remove:
                 return "unchanged", existing_id, ""
 
             # Determine what changed for logging with details
@@ -174,21 +189,34 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
                 details.append(f"front: {repr(current_front[:80])} -> {repr(front[:80])}")
             if norm_current_back != norm_new_back:
                 details.append(f"back: {repr(current_back[:80])} -> {repr(back[:80])}")
+            if tags_to_add:
+                details.append(f"tags added: {tags_to_add}")
+            if tags_to_remove:
+                details.append(f"tags removed: {tags_to_remove}")
             reason = "\n      ".join(details)
 
         else:
             reason = "note info not found"
+            content_changed = True
+            tags_to_add = set(all_tags)
+            tags_to_remove = set()
 
         if not dry_run:
-            # Update fields
-            invoke("updateNoteFields", {
-                "note": {
-                    "id": existing_id,
-                    "fields": {"Front": front, "Back": back}
-                }
-            })
-            # Update tags
-            invoke("addTags", {"notes": [existing_id], "tags": " ".join(all_tags)})
+            # Update fields if content changed
+            if content_changed:
+                invoke("updateNoteFields", {
+                    "note": {
+                        "id": existing_id,
+                        "fields": {"Front": front, "Back": back}
+                    }
+                })
+            # Add missing tags
+            if tags_to_add:
+                invoke("addTags", {"notes": [existing_id], "tags": " ".join(tags_to_add)})
+            # Remove incorrect tags
+            if tags_to_remove:
+                for tag in tags_to_remove:
+                    invoke("removeTags", {"notes": [existing_id], "tags": tag})
         return "updated", existing_id, reason
 
     # Add new note

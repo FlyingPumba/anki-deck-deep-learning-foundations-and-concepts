@@ -261,16 +261,6 @@
       ]
     },
     {
-      "uid": "01-026",
-      "front": "What are hidden units in a neural network?",
-      "back": "<b>Hidden units</b> are nodes in the middle layers of a network whose values do not appear in the training set (which only provides values for inputs and outputs).",
-      "tags": [
-        "ch01",
-        "neural-networks",
-        "architecture"
-      ]
-    },
-    {
       "uid": "01-027",
       "front": "What is a feed-forward neural network?",
       "back": "A <b>feed-forward neural network</b> is one where information flows forward through the network from inputs to outputs, with no cycles or feedback connections.",
@@ -293,7 +283,7 @@
     {
       "uid": "01-029",
       "front": "What is stochastic gradient descent (SGD)?",
-      "back": "<b>Stochastic gradient descent</b> is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset. It is the most prevalent optimization method in machine learning.",
+      "back": "<b>Stochastic gradient descent</b> is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset.<br><b>Formula</b>: \\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\) where \\( \\eta \\) is the learning rate.<br><b>Advantages</b>:<br><ul><li>Can escape local minima (due to noise)</li><li>Efficient for large datasets</li><li>Online learning capability</li></ul>",
       "tags": [
         "ch01",
         "sgd",

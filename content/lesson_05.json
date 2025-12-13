@@ -234,7 +234,7 @@
     {
       "uid": "05-023",
       "front": "What is the no free lunch theorem?",
-      "back": "Averaged over all possible problems, no learning algorithm is better than any other (including random guessing).<br>Implication: Every successful algorithm must have <b>inductive biases</b> suited to the problems it solves.<br>No universal algorithm works best on everything.",
+      "back": "Averaged over all possible problems, no learning algorithm is better than any other (including random guessing).<br><b>Implications</b>:<br><ul><li>Every successful algorithm must have <b>inductive biases</b> suited to the problems it solves</li><li>If an algorithm is better than average on some problems, it must be <b>worse than average on others</b></li></ul>No universal algorithm works best on everything.",
       "tags": [
         "ch05",
         "no-free-lunch",
@@ -362,16 +362,6 @@
       ]
     },
     {
-      "uid": "05-036",
-      "front": "What is unsupervised learning?",
-      "back": "Learning from <b>unlabelled data</b>.<br>Goal: Discover internal structure or representations useful for downstream tasks.<br>Examples:<br><ul><li>Clustering</li><li>Dimensionality reduction</li><li>Autoencoders</li><li>Density estimation</li></ul>",
-      "tags": [
-        "ch05",
-        "unsupervised-learning",
-        "representation"
-      ]
-    },
-    {
       "uid": "05-037",
       "front": "What is an autoencoder?",
       "back": "A neural network trained to reconstruct its input:<br>Input \\( \\to \\) Encoder \\( \\to \\) Bottleneck \\( \\to \\) Decoder \\( \\to \\) Output \\( \\approx \\) Input<br>The bottleneck forces learning a compressed representation.<br>Useful for unsupervised feature learning.",
@@ -379,16 +369,6 @@
         "ch05",
         "autoencoder",
         "unsupervised"
-      ]
-    },
-    {
-      "uid": "05-038",
-      "front": "What is transfer learning?",
-      "back": "Using knowledge learned on one task to improve performance on a different task.<br>Example: Train on ImageNet for object classification, then apply to medical image analysis.<br>Works when tasks share underlying structure or features.",
-      "tags": [
-        "ch05",
-        "transfer-learning",
-        "neural-networks"
       ]
     },
     {

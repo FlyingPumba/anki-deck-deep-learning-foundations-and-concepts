@@ -261,16 +261,6 @@
       ]
     },
     {
-      "uid": "07-026",
-      "front": "What is the no free lunch theorem?",
-      "back": "States that <b>every learning algorithm is as good as any other when averaged over all possible problems</b>.<br>Implication: If an algorithm is better than average on some problems, it must be <b>worse than average on others</b>.<br>No universal best algorithm exists.",
-      "tags": [
-        "ch07",
-        "no-free-lunch",
-        "theory"
-      ]
-    },
-    {
       "uid": "07-027",
       "front": "What is translation invariance vs. translation equivariance?",
       "back": "<b>Invariance</b>: Output unchanged when input is translated.<br>\\( f(T(x)) = f(x) \\)<br><b>Equivariance</b>: Output transforms in the same way as input.<br>\\( f(T(x)) = T(f(x)) \\)<br>Invariance is a special case where the output transformation is identity.",

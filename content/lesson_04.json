@@ -122,16 +122,6 @@
       ]
     },
     {
-      "uid": "04-012",
-      "front": "What is stochastic gradient descent (SGD)?",
-      "back": "A sequential optimization algorithm where parameters are updated after each data point:<br>\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\)<br>Where:<br><ul><li>\\( \\eta \\) is the learning rate</li><li>\\( \\tau \\) is the iteration number</li><li>\\( E_n \\) is the error for point \\( n \\)</li></ul>Also called sequential gradient descent.",
-      "tags": [
-        "ch04",
-        "sgd",
-        "optimization"
-      ]
-    },
-    {
       "uid": "04-013",
       "front": "What is the LMS (least-mean-squares) algorithm?",
       "back": "The application of stochastic gradient descent to the sum-of-squares error function:<br>\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} + \\eta(t_n - \\vec{w}^{(\\tau)T}\\phi_n)\\phi_n \\)<br>A classic sequential learning algorithm for linear regression.",
@@ -369,16 +359,6 @@
         "ch04",
         "least-squares",
         "robustness"
-      ]
-    },
-    {
-      "uid": "04-037",
-      "front": "What is logistic regression?",
-      "back": "A discriminative model for classification that models the posterior probability directly:<br>\\( p(C_1|\\vec{x}) = \\sigma(\\vec{w}^T\\vec{x}) = \\frac{1}{1 + e^{-\\vec{w}^T\\vec{x}}} \\)<br>Despite the name, it's used for classification, not regression.",
-      "tags": [
-        "ch04",
-        "logistic-regression",
-        "classification"
       ]
     },
     {

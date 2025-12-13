@@ -219,16 +219,6 @@
         "dropout",
         "regularization"
       ]
-    },
-    {
-      "uid": "13-022",
-      "front": "What is geometric deep learning?",
-      "back": "A framework unifying neural networks that respect <b>geometric symmetries</b>:<br><ul><li>GNNs: Permutation symmetry</li><li>CNNs: Translation symmetry</li><li>Spherical CNNs: Rotation symmetry</li></ul>Design networks based on the symmetry group of the domain.",
-      "tags": [
-        "ch13",
-        "geometric-deep-learning",
-        "symmetry"
-      ]
     }
   ]
 }

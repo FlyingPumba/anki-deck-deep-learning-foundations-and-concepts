@@ -202,16 +202,6 @@
       ]
     },
     {
-      "uid": "06-020",
-      "front": "What is stochastic gradient descent (SGD)?",
-      "back": "Updates weights based on <b>one data point at a time</b>:<br>\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n(\\vec{w}^{(\\tau)}) \\)<br>Advantages:<br><ul><li>Can escape local minima (due to noise)</li><li>Efficient for large datasets</li><li>Online learning capability</li></ul>",
-      "tags": [
-        "ch06",
-        "sgd",
-        "optimization"
-      ]
-    },
-    {
       "uid": "06-021",
       "front": "What is a training epoch?",
       "back": "A <b>complete pass through the entire training set</b>.<br>In SGD, one epoch = N weight updates (for N data points).<br>Training typically runs for many epochs until convergence.",
