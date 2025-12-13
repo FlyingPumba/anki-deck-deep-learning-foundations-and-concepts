@@ -127,6 +127,76 @@ def get_all_uid_tags_in_deck_tree(parent_deck: str) -> set[str]:
     return uid_tags
 
 
+SUBDECK_CONFIG_NAME = "Lesson Subdecks (unlimited new)"
+
+# Cache for the subdeck config ID to avoid creating duplicates
+_subdeck_config_id: int | None = None
+
+
+def get_or_create_subdeck_config(parent_deck: str, new_per_day: int = 9999) -> int:
+    """
+    Get or create a dedicated config for lesson subdecks.
+
+    Returns the config ID.
+    """
+    global _subdeck_config_id
+
+    if _subdeck_config_id is not None:
+        return _subdeck_config_id
+
+    # Check if any deck is already using our custom config
+    for deck in invoke("deckNames"):
+        config = invoke("getDeckConfig", {"deck": deck})
+        if config and config.get("name") == SUBDECK_CONFIG_NAME:
+            _subdeck_config_id = config["id"]
+            # Ensure it has the right settings
+            if config["new"]["perDay"] != new_per_day:
+                config["new"]["perDay"] = new_per_day
+                invoke("saveDeckConfig", {"config": config})
+            return _subdeck_config_id
+
+    # Create new config by cloning from parent's config
+    parent_config = invoke("getDeckConfig", {"deck": parent_deck})
+    _subdeck_config_id = invoke("cloneDeckConfigId", {"name": SUBDECK_CONFIG_NAME, "cloneFrom": parent_config["id"]})
+
+    return _subdeck_config_id
+
+
+def configure_subdeck_new_cards(deck_name: str, parent_deck: str, new_per_day: int = 9999, dry_run: bool = False) -> bool:
+    """
+    Configure a subdeck to show many new cards per day using a dedicated config.
+
+    Creates a shared config group for all lesson subdecks if needed, so the parent
+    deck's config remains untouched.
+    Returns True if config was changed, False if already correct.
+    """
+    # Get current config for the deck
+    config = invoke("getDeckConfig", {"deck": deck_name})
+    if not config:
+        return False
+
+    # Already using our subdeck config with correct settings
+    if config.get("name") == SUBDECK_CONFIG_NAME and config.get("new", {}).get("perDay") == new_per_day:
+        return False
+
+    if dry_run:
+        return True
+
+    # Get or create the subdeck config
+    subdeck_config_id = get_or_create_subdeck_config(parent_deck, new_per_day)
+
+    # Assign this deck to use the subdeck config
+    invoke("setDeckConfigId", {"decks": [deck_name], "configId": subdeck_config_id})
+
+    # Ensure the config has the right perDay setting
+    config = invoke("getDeckConfig", {"deck": deck_name})
+    if config["new"]["perDay"] != new_per_day:
+        config["new"]["perDay"] = new_per_day
+        invoke("saveDeckConfig", {"config": config})
+
+    return True
+
+
 def _normalize_for_comparison(text: str) -> str:
     """Normalize text for comparison, handling Anki's HTML formatting."""
     # Convert <br> tags to newlines
@@ -304,6 +374,9 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
         lesson_deck = f"{parent_deck}::{lesson_title}"
         if not dry_run:
             ensure_deck(lesson_deck)
+            # Configure subdeck to show unlimited new cards
+            if configure_subdeck_new_cards(lesson_deck, parent_deck, new_per_day=9999):
+                print(f"Configured {lesson_title}: new cards/day = 9999")
 
         print(f"Lesson {lesson_id}: {lesson_title}")
 
