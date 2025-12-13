@@ -344,7 +344,7 @@
     {
       "uid": "02-034",
       "front": "What is entropy in information theory?",
-      "back": "<b>Entropy</b> is the average information content (or 'degree of surprise'):<br>\\( H[x] = -\\sum_x p(x) \\log p(x) \\)<br>Using log base 2: units are <b>bits</b><br>Using natural log: units are <b>nats</b><br>Higher entropy = more uncertainty/disorder.",
+      "back": "<b>Entropy</b> measures how <i>unpredictable</i> a random variable is - the average 'surprise' when you observe an outcome.<br><br><b>Intuition</b>:<ul><li><b>Low entropy</b>: Outcomes are predictable. A coin that lands heads 99% of the time - you're rarely surprised.</li><li><b>High entropy</b>: Outcomes are uncertain. A fair coin or fair die - every outcome is equally surprising.</li></ul><b>Formula</b>: \\( H[x] = -\\sum_x p(x) \\log p(x) \\)<br><br><b>Units</b>: bits (log base 2) or nats (natural log).<br><br><b>Extremes</b>:<ul><li>Minimum (0): One outcome is certain</li><li>Maximum: All outcomes equally likely (uniform distribution)</li></ul>",
       "tags": [
         "ch02",
         "entropy",
@@ -384,7 +384,7 @@
     {
       "uid": "02-038",
       "front": "What is the Kullback-Leibler (KL) divergence?",
-      "back": "<b>KL divergence</b> (or <b>relative entropy</b>) measures how different distribution q is from p:<br>\\( KL(p\\|q) = -\\int p(x) \\ln \\frac{q(x)}{p(x)} dx \\)<br>Properties:<ul><li>\\( KL(p\\|q) \\geq 0 \\)</li><li>\\( KL(p\\|q) = 0 \\) iff \\( p = q \\)</li><li><b>Not symmetric</b>: \\( KL(p\\|q) \\neq KL(q\\|p) \\)</li></ul>",
+      "back": "<b>KL divergence</b> (or <b>relative entropy</b>) measures how different distribution \\( q \\) is from \\( p \\):<br>\\( D_{KL}(p\\|q) = -\\int p(x) \\ln \\frac{q(x)}{p(x)} dx \\)<br><br><b>Intuitions</b>:<ul><li><b>Expected surprise</b>: How much <i>more</i> surprised you expect to be observing data from \\( p \\), if you falsely believe the distribution is \\( q \\) vs knowing the true distribution \\( p \\).</li><li><b>Suboptimal coding</b>: The number of bits wasted if you compress data from \\( p \\) using a code optimized for \\( q \\).</li></ul><b>Properties</b>:<ul><li>\\( D_{KL}(p\\|q) \\geq 0 \\)</li><li>\\( D_{KL}(p\\|q) = 0 \\) iff \\( p = q \\)</li><li><b>Not symmetric</b>: \\( D_{KL}(p\\|q) \\neq D_{KL}(q\\|p) \\)</li></ul>",
       "tags": [
         "ch02",
         "kl-divergence",
