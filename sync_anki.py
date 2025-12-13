@@ -119,12 +119,29 @@ def get_all_uid_tags_in_deck_tree(parent_deck: str) -> set[str]:
     return uid_tags
 
 
-def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str) -> tuple[str, int]:
+def _normalize_for_comparison(text: str) -> str:
+    """Normalize text for comparison, handling Anki's HTML formatting."""
+    # Convert <br> tags to newlines
+    text = text.replace("<br>", "\n").replace("<br />", "\n").replace("<br/>", "\n")
+    # Remove other HTML tags
+    text = re.sub(r"<[^>]*>", "", text)
+    # Normalize HTML entities
+    text = text.replace("&nbsp;", " ")
+    text = text.replace("&lt;", "<")
+    text = text.replace("&gt;", ">")
+    text = text.replace("&amp;", "&")
+    # Normalize whitespace
+    text = text.strip()
+    return text
+
+
+def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str, dry_run: bool = False) -> tuple[str, int | None, str]:
     """
     Add or update a note.
 
     Uses a unique tag (uid:xxx) to identify existing notes.
-    Returns (status, note_id) where status is 'added', 'updated', or 'unchanged'.
+    Returns (status, note_id, reason) where status is 'added', 'updated', or 'unchanged'.
+    If dry_run is True, no changes are made to Anki.
     """
     existing_id = find_note_by_uid(uid_tag)
     if existing_id is None:
@@ -142,21 +159,42 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str)
             current_front = current.get("fields", {}).get("Front", {}).get("value", "")
             current_back = current.get("fields", {}).get("Back", {}).get("value", "")
 
-            if current_front == front and current_back == back:
-                return "unchanged", existing_id
+            # Normalize for comparison
+            norm_current_front = _normalize_for_comparison(current_front)
+            norm_current_back = _normalize_for_comparison(current_back)
+            norm_new_front = _normalize_for_comparison(front)
+            norm_new_back = _normalize_for_comparison(back)
 
-        # Update fields
-        invoke("updateNoteFields", {
-            "note": {
-                "id": existing_id,
-                "fields": {"Front": front, "Back": back}
-            }
-        })
-        # Update tags
-        invoke("addTags", {"notes": [existing_id], "tags": " ".join(all_tags)})
-        return "updated", existing_id
+            if norm_current_front == norm_new_front and norm_current_back == norm_new_back:
+                return "unchanged", existing_id, ""
+
+            # Determine what changed for logging
+            changes = []
+            if norm_current_front != norm_new_front:
+                changes.append("front")
+            if norm_current_back != norm_new_back:
+                changes.append("back")
+            reason = f"changed: {', '.join(changes)}"
+
+        else:
+            reason = "note info not found"
+
+        if not dry_run:
+            # Update fields
+            invoke("updateNoteFields", {
+                "note": {
+                    "id": existing_id,
+                    "fields": {"Front": front, "Back": back}
+                }
+            })
+            # Update tags
+            invoke("addTags", {"notes": [existing_id], "tags": " ".join(all_tags)})
+        return "updated", existing_id, reason
 
     # Add new note
+    if dry_run:
+        return "added", None, "new card"
+
     note = {
         "deckName": deck,
         "modelName": "Basic",
@@ -173,7 +211,7 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str)
         }
     }
     note_id = invoke("addNote", {"note": note})
-    return "added", note_id
+    return "added", note_id, "new card"
 
 
 def load_lessons(content_dir: Path) -> tuple[dict, list[dict]]:
@@ -198,12 +236,16 @@ def load_lessons(content_dir: Path) -> tuple[dict, list[dict]]:
     return config, lessons
 
 
-def sync(content_dir: Path) -> None:
+def sync(content_dir: Path, dry_run: bool = False) -> None:
     """Sync all lessons to Anki."""
     config, lessons = load_lessons(content_dir)
 
     parent_deck = config.get("deck", "Deep Learning: Foundations and Concepts")
     course = config.get("course", "Unknown Course")
+
+    if dry_run:
+        print("=== DRY RUN MODE (no changes will be made) ===")
+        print()
 
     print(f"Syncing: {course}")
     print(f"Parent deck: {parent_deck}")
@@ -211,7 +253,8 @@ def sync(content_dir: Path) -> None:
     print()
 
     # Ensure parent deck exists
-    ensure_deck(parent_deck)
+    if not dry_run:
+        ensure_deck(parent_deck)
 
     # Track all UIDs and front texts we process
     current_uids: set[str] = set()
@@ -228,7 +271,8 @@ def sync(content_dir: Path) -> None:
 
         # Create subdeck for each lesson: "Parent::Lesson Title"
         lesson_deck = f"{parent_deck}::{lesson_title}"
-        ensure_deck(lesson_deck)
+        if not dry_run:
+            ensure_deck(lesson_deck)
 
         print(f"Lesson {lesson_id}: {lesson_title}")
 
@@ -238,19 +282,20 @@ def sync(content_dir: Path) -> None:
             current_uids.add(uid_tag)
             current_fronts.add(card["front"].strip())
 
-            status, note_id = upsert_note(
+            status, note_id, reason = upsert_note(
                 deck=lesson_deck,
                 front=card["front"],
                 back=card["back"],
                 tags=card.get("tags", []),
-                uid_tag=uid_tag
+                uid_tag=uid_tag,
+                dry_run=dry_run
             )
 
             if status == "added":
-                print(f"  added: {uid}")
+                print(f"  added: {uid} ({reason})")
                 added += 1
             elif status == "updated":
-                print(f"  updated: {uid}")
+                print(f"  updated: {uid} ({reason})")
                 updated += 1
             else:
                 unchanged += 1
@@ -265,7 +310,8 @@ def sync(content_dir: Path) -> None:
     for uid_tag in orphaned_uids:
         note_id = find_note_by_uid(uid_tag)
         if note_id:
-            invoke("deleteNotes", {"notes": [note_id]})
+            if not dry_run:
+                invoke("deleteNotes", {"notes": [note_id]})
             print(f"  deleted: {uid_tag.replace('uid:', '')}")
             deleted += 1
 
@@ -281,7 +327,8 @@ def sync(content_dir: Path) -> None:
         current_front = note.get("fields", {}).get("Front", {}).get("value", "")
         canon_front = _canonicalize_front(current_front)
         if canon_front not in current_fronts:
-            invoke("deleteNotes", {"notes": [note_id]})
+            if not dry_run:
+                invoke("deleteNotes", {"notes": [note_id]})
             preview = canon_front[:50] + "..." if len(canon_front) > 50 else canon_front
             print(f"  deleted (no uid): {preview}")
             deleted += 1
@@ -296,13 +343,19 @@ def sync(content_dir: Path) -> None:
 
 
 def main():
+    import argparse
     import sys
+
+    parser = argparse.ArgumentParser(description="Sync Anki deck from JSON files")
+    parser.add_argument("-d", "--dry-run", action="store_true",
+                        help="Show what would be done without making changes")
+    args = parser.parse_args()
 
     script_dir = Path(__file__).parent
     content_dir = script_dir / "content"
 
     try:
-        sync(content_dir)
+        sync(content_dir, dry_run=args.dry_run)
     except RuntimeError as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
