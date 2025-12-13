@@ -354,7 +354,7 @@
     {
       "uid": "04-038",
       "front": "What is the naive Bayes model?",
-      "back": "A generative model that assumes <b>conditional independence</b> of features given the class:<br>\\( p(\\vec{x}|C_k) = \\prod_i p(x_i|C_k) \\)<br>Often works well despite the strong independence assumption.",
+      "back": "A generative model that assumes <b>conditional independence</b> of features given the class.<br><br><b>Intuition</b>: Imagine classifying emails as spam. Naive Bayes assumes that given an email is spam, the presence of the word 'free' is independent of the word 'money' - each word contributes evidence independently. This is 'naive' because words often <i>do</i> correlate, but the simplification works surprisingly well.<br><br><b>Formula</b>: \\( p(\\vec{x}|C_k) = \\prod_i p(x_i|C_k) \\)<br><br><b>Why it works</b>: Even if independence is violated, the model often ranks classes correctly. We only need the <i>most probable</i> class, not accurate probabilities.",
       "tags": [
         "ch04",
         "naive-bayes",
