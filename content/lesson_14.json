@@ -13,7 +13,7 @@
     {
       "uid": "14-001",
       "front": "What is Monte Carlo sampling?",
-      "back": "The process of creating synthetic examples of a variable z from a probability distribution p(z).\n\nUsed to:\n\n- Evaluate expectations\n- Generate samples from complex distributions\n- Train energy-based models",
+      "back": "The process of creating synthetic examples of a variable z from a probability distribution p(z).<br>Used to:<br><ul><li>Evaluate expectations</li><li>Generate samples from complex distributions</li><li>Train energy-based models</li></ul>",
       "tags": [
         "ch14",
         "sampling",
@@ -23,7 +23,7 @@
     {
       "uid": "14-002",
       "front": "How can expectations be approximated using sampling?",
-      "back": "Given L independent samples \\( z^{(l)} \\) from p(z):\n\n\\( E[f] \\approx \\frac{1}{L} \\sum_{l=1}^{L} f(z^{(l)}) \\)\n\nThe variance decreases as 1/L, <b>independent of dimensionality</b>.\n\nKey challenge: samples might not be truly independent.",
+      "back": "Given L independent samples \\( z^{(l)} \\) from p(z):<br>\\( E[f] \\approx \\frac{1}{L} \\sum_{l=1}^{L} f(z^{(l)}) \\)<br>The variance decreases as 1/L, <b>independent of dimensionality</b>.<br>Key challenge: samples might not be truly independent.",
       "tags": [
         "ch14",
         "expectations",
@@ -33,7 +33,7 @@
     {
       "uid": "14-003",
       "front": "What is the transformation method for sampling?",
-      "back": "If z is uniform over (0,1), transform using \\( y = h^{-1}(z) \\) where h(y) is the <b>indefinite integral</b> of desired distribution p(y).\n\nLimitation: Only works when the inverse of the indefinite integral can be computed analytically.",
+      "back": "If z is uniform over (0,1), transform using \\( y = h^{-1}(z) \\) where h(y) is the <b>indefinite integral</b> of desired distribution p(y).<br>Limitation: Only works when the inverse of the indefinite integral can be computed analytically.",
       "tags": [
         "ch14",
         "transformation",
@@ -43,7 +43,7 @@
     {
       "uid": "14-004",
       "front": "What is the Box-Muller method?",
-      "back": "A technique for generating <b>Gaussian-distributed</b> random numbers from uniform samples.\n\nSteps:\n\n1. Generate pairs uniformly in unit circle\n2. Transform using specific equations\n3. Result: two independent standard Gaussians\n\nFor general multivariate Gaussian: use Cholesky decomposition.",
+      "back": "A technique for generating <b>Gaussian-distributed</b> random numbers from uniform samples.<br>Steps:<br><ol><li>Generate pairs uniformly in unit circle</li><li>Transform using specific equations</li><li>Result: two independent standard Gaussians</li></ol>For general multivariate Gaussian: use Cholesky decomposition.",
       "tags": [
         "ch14",
         "box-muller",
@@ -53,7 +53,7 @@
     {
       "uid": "14-005",
       "front": "What is rejection sampling?",
-      "back": "A method to sample from complex distribution p(z) using a simpler proposal q(z).\n\nRequirements:\n\n- Find k such that \\( kq(z) \\geq \\tilde{p}(z) \\) everywhere\n- Sample from q(z)\n- Accept with probability \\( \\tilde{p}(z)/kq(z) \\)\n\nRejected samples are discarded.",
+      "back": "A method to sample from complex distribution p(z) using a simpler proposal q(z).<br>Requirements:<br><ul><li>Find k such that \\( kq(z) \\geq \\tilde{p}(z) \\) everywhere</li><li>Sample from q(z)</li><li>Accept with probability \\( \\tilde{p}(z)/kq(z) \\)</li></ul>Rejected samples are discarded.",
       "tags": [
         "ch14",
         "rejection-sampling",
@@ -63,7 +63,7 @@
     {
       "uid": "14-006",
       "front": "Why does rejection sampling fail in high dimensions?",
-      "back": "The acceptance rate <b>decreases exponentially</b> with dimensionality.\n\nEven if proposal q(z) is close to p(z), the ratio of volumes causes exponential rejection.\n\nExample: If \\( \\sigma_q \\) exceeds \\( \\sigma_p \\) by 1%, acceptance rate in D=1000 dimensions is approximately 1/20,000.",
+      "back": "The acceptance rate <b>decreases exponentially</b> with dimensionality.<br>Even if proposal q(z) is close to p(z), the ratio of volumes causes exponential rejection.<br>Example: If \\( \\sigma_q \\) exceeds \\( \\sigma_p \\) by 1%, acceptance rate in D=1000 dimensions is approximately 1/20,000.",
       "tags": [
         "ch14",
         "rejection-sampling",
@@ -73,7 +73,7 @@
     {
       "uid": "14-007",
       "front": "What is importance sampling?",
-      "back": "A framework for approximating <b>expectations</b> directly (not for drawing samples).\n\n\\( E[f] \\approx \\frac{1}{L} \\sum_{l=1}^{L} \\frac{p(z^{(l)})}{q(z^{(l)})} f(z^{(l)}) \\)\n\nThe ratios \\( r_l = p(z^{(l)})/q(z^{(l)}) \\) are <b>importance weights</b>.\n\nAll generated samples are retained.",
+      "back": "A framework for approximating <b>expectations</b> directly (not for drawing samples).<br>\\( E[f] \\approx \\frac{1}{L} \\sum_{l=1}^{L} \\frac{p(z^{(l)})}{q(z^{(l)})} f(z^{(l)}) \\)<br>The ratios \\( r_l = p(z^{(l)})/q(z^{(l)}) \\) are <b>importance weights</b>.<br>All generated samples are retained.",
       "tags": [
         "ch14",
         "importance-sampling",
@@ -83,7 +83,7 @@
     {
       "uid": "14-008",
       "front": "What is a key drawback of importance sampling?",
-      "back": "Can produce results that are <b>arbitrarily wrong with no diagnostic indication</b>.\n\nIf p(z)f(z) is concentrated in regions where q(z) is small:\n\n- Few samples have large weights\n- Effective sample size much smaller than L\n- Estimate may be severely wrong",
+      "back": "Can produce results that are <b>arbitrarily wrong with no diagnostic indication</b>.<br>If p(z)f(z) is concentrated in regions where q(z) is small:<br><ul><li>Few samples have large weights</li><li>Effective sample size much smaller than L</li><li>Estimate may be severely wrong</li></ul>",
       "tags": [
         "ch14",
         "importance-sampling",
@@ -93,7 +93,7 @@
     {
       "uid": "14-009",
       "front": "What is Markov chain Monte Carlo (MCMC)?",
-      "back": "A framework for sampling from complex distributions that <b>scales well with dimensionality</b>.\n\nKey idea: Generate a sequence of samples forming a <b>Markov chain</b> that converges to the target distribution.\n\nThe proposal distribution \\( q(z|z^{(\\tau)}) \\) is conditioned on the current state.",
+      "back": "A framework for sampling from complex distributions that <b>scales well with dimensionality</b>.<br>Key idea: Generate a sequence of samples forming a <b>Markov chain</b> that converges to the target distribution.<br>The proposal distribution \\( q(z|z^{(\\tau)}) \\) is conditioned on the current state.",
       "tags": [
         "ch14",
         "mcmc",
@@ -103,7 +103,7 @@
     {
       "uid": "14-010",
       "front": "Why are random walks inefficient for sampling?",
-      "back": "After \\( \\tau \\) steps, a random walk travels only distance proportional to \\( \\sqrt{\\tau} \\).\n\nThis square-root dependence means very slow exploration of state space.\n\n<b>Central goal</b> of MCMC design: avoid random walk behaviour.",
+      "back": "After \\( \\tau \\) steps, a random walk travels only distance proportional to \\( \\sqrt{\\tau} \\).<br>This square-root dependence means very slow exploration of state space.<br><b>Central goal</b> of MCMC design: avoid random walk behaviour.",
       "tags": [
         "ch14",
         "random-walk",
@@ -113,7 +113,7 @@
     {
       "uid": "14-011",
       "front": "What is a first-order Markov chain?",
-      "back": "A sequence of random variables where each depends <b>only on the previous state</b>:\n\n\\( p(z^{(m+1)}|z^{(1)}, \\ldots, z^{(m)}) = p(z^{(m+1)}|z^{(m)}) \\)\n\nCan be represented as a directed graphical model in chain form.",
+      "back": "A sequence of random variables where each depends <b>only on the previous state</b>:<br>\\( p(z^{(m+1)}|z^{(1)}, \\ldots, z^{(m)}) = p(z^{(m+1)}|z^{(m)}) \\)<br>Can be represented as a directed graphical model in chain form.",
       "tags": [
         "ch14",
         "markov-chain",
@@ -123,7 +123,7 @@
     {
       "uid": "14-012",
       "front": "What are transition probabilities in a Markov chain?",
-      "back": "Conditional distributions \\( T(z', z) \\equiv p(z'|z) \\) specifying how the chain moves between states.\n\nA chain is <b>homogeneous</b> if transition probabilities are the same for all steps.",
+      "back": "Conditional distributions \\( T(z', z) \\equiv p(z'|z) \\) specifying how the chain moves between states.<br>A chain is <b>homogeneous</b> if transition probabilities are the same for all steps.",
       "tags": [
         "ch14",
         "markov-chain",
@@ -133,7 +133,7 @@
     {
       "uid": "14-013",
       "front": "What is an invariant (stationary) distribution?",
-      "back": "A distribution \\( p^<i>(z) \\) that is <b>unchanged</b> by one step of the Markov chain:\n\n\\( p^</i>(z) = \\int T(z', z) p^*(z') dz' \\)\n\nA Markov chain may have more than one invariant distribution.",
+      "back": "A distribution \\( p^<i>(z) \\) that is <b>unchanged</b> by one step of the Markov chain:<br>\\( p^</i>(z) = \\int T(z', z) p^*(z') dz' \\)<br>A Markov chain may have more than one invariant distribution.",
       "tags": [
         "ch14",
         "invariant",
@@ -143,7 +143,7 @@
     {
       "uid": "14-014",
       "front": "What is the detailed balance condition?",
-      "back": "A <b>sufficient condition</b> for a distribution to be invariant:\n\n\\( p^<i>(z) T(z, z') = p^</i>(z') T(z', z) \\)\n\nA Markov chain satisfying detailed balance is called <b>reversible</b>.",
+      "back": "A <b>sufficient condition</b> for a distribution to be invariant:<br>\\( p^<i>(z) T(z, z') = p^</i>(z') T(z', z) \\)<br>A Markov chain satisfying detailed balance is called <b>reversible</b>.",
       "tags": [
         "ch14",
         "detailed-balance",
@@ -153,7 +153,7 @@
     {
       "uid": "14-015",
       "front": "What is ergodicity in Markov chains?",
-      "back": "The property that the chain converges to a unique <b>equilibrium distribution</b> \\( p^*(z) \\) regardless of the initial distribution.\n\nAn ergodic chain has exactly one invariant distribution.\n\nRequired for MCMC to sample correctly.",
+      "back": "The property that the chain converges to a unique <b>equilibrium distribution</b> \\( p^*(z) \\) regardless of the initial distribution.<br>An ergodic chain has exactly one invariant distribution.<br>Required for MCMC to sample correctly.",
       "tags": [
         "ch14",
         "ergodicity",
@@ -163,7 +163,7 @@
     {
       "uid": "14-016",
       "front": "What is the Metropolis algorithm?",
-      "back": "A basic MCMC algorithm with <b>symmetric</b> proposal distribution.\n\nAcceptance probability:\n\\( A(z^<i>, z^{(\\tau)}) = \\min\\left(1, \\frac{\\tilde{p}(z^</i>)}{\\tilde{p}(z^{(\\tau)})}\\right) \\)\n\nIf rejected, the <b>previous sample is kept</b> (unlike rejection sampling where samples are discarded).",
+      "back": "A basic MCMC algorithm with <b>symmetric</b> proposal distribution.<br>Acceptance probability:<br>\\( A(z^<i>, z^{(\\tau)}) = \\min\\left(1, \\frac{\\tilde{p}(z^</i>)}{\\tilde{p}(z^{(\\tau)})}\\right) \\)<br>If rejected, the <b>previous sample is kept</b> (unlike rejection sampling where samples are discarded).",
       "tags": [
         "ch14",
         "metropolis",
@@ -173,7 +173,7 @@
     {
       "uid": "14-017",
       "front": "What is the Metropolis-Hastings algorithm?",
-      "back": "Generalization of Metropolis for <b>asymmetric</b> proposals.\n\nAcceptance probability:\n\\( A(z^<i>, z^{(\\tau)}) = \\min\\left(1, \\frac{\\tilde{p}(z^</i>) q(z^{(\\tau)}|z^<i>)}{\\tilde{p}(z^{(\\tau)}) q(z^</i>|z^{(\\tau)})}\\right) \\)\n\nReduces to Metropolis when q is symmetric.",
+      "back": "Generalization of Metropolis for <b>asymmetric</b> proposals.<br>Acceptance probability:<br>\\( A(z^<i>, z^{(\\tau)}) = \\min\\left(1, \\frac{\\tilde{p}(z^</i>) q(z^{(\\tau)}|z^<i>)}{\\tilde{p}(z^{(\\tau)}) q(z^</i>|z^{(\\tau)})}\\right) \\)<br>Reduces to Metropolis when q is symmetric.",
       "tags": [
         "ch14",
         "metropolis-hastings",
@@ -183,7 +183,7 @@
     {
       "uid": "14-018",
       "front": "What is the trade-off in choosing proposal distribution variance for Metropolis-Hastings?",
-      "back": "<b>Small variance</b>:\n\n- High acceptance rate\n- Slow random walk, long correlation times\n\n<b>Large variance</b>:\n\n- High rejection rate\n- Many proposed steps to low-probability regions\n\nOptimal: variance similar to smallest length scale of target distribution.",
+      "back": "<b>Small variance</b>:<br><ul><li>High acceptance rate</li><li>Slow random walk, long correlation times</li></ul><b>Large variance</b>:<br><ul><li>High rejection rate</li><li>Many proposed steps to low-probability regions</li></ul>Optimal: variance similar to smallest length scale of target distribution.",
       "tags": [
         "ch14",
         "metropolis-hastings",
@@ -193,7 +193,7 @@
     {
       "uid": "14-019",
       "front": "What is Gibbs sampling?",
-      "back": "A special case of Metropolis-Hastings where each variable is updated by sampling from its <b>conditional distribution</b> given all others:\n\n\\( z_i \\sim p(z_i | z_{\\backslash i}) \\)\n\nAcceptance probability is always 1.\n\nWidely applicable when conditionals are tractable.",
+      "back": "A special case of Metropolis-Hastings where each variable is updated by sampling from its <b>conditional distribution</b> given all others:<br>\\( z_i \\sim p(z_i | z_{\\backslash i}) \\)<br>Acceptance probability is always 1.<br>Widely applicable when conditionals are tractable.",
       "tags": [
         "ch14",
         "gibbs-sampling",
@@ -203,7 +203,7 @@
     {
       "uid": "14-020",
       "front": "Why does Gibbs sampling suffer from slow mixing with correlated variables?",
-      "back": "Step size is governed by <b>conditional distributions</b> (width l), not marginals (width L).\n\nFor correlated Gaussian: number of steps for independent sample is \\( O((L/l)^2) \\).\n\nSolutions: Over-relaxation, blocking (sampling groups of variables together).",
+      "back": "Step size is governed by <b>conditional distributions</b> (width l), not marginals (width L).<br>For correlated Gaussian: number of steps for independent sample is \\( O((L/l)^2) \\).<br>Solutions: Over-relaxation, blocking (sampling groups of variables together).",
       "tags": [
         "ch14",
         "gibbs-sampling",
@@ -213,7 +213,7 @@
     {
       "uid": "14-021",
       "front": "What is over-relaxation in Gibbs sampling?",
-      "back": "A technique to reduce random walk behaviour when conditionals are Gaussian.\n\nUpdate: \\( z_i' = \\mu_i + \\alpha(z_i - \\mu_i) + \\sigma_i\\sqrt{1-\\alpha^2}\\nu \\)\n\nWith \\( \\alpha < 0 \\): step is biased to <b>opposite side of mean</b>, encouraging directed motion.",
+      "back": "A technique to reduce random walk behaviour when conditionals are Gaussian.<br>Update: \\( z_i' = \\mu_i + \\alpha(z_i - \\mu_i) + \\sigma_i\\sqrt{1-\\alpha^2}\\nu \\)<br>With \\( \\alpha < 0 \\): step is biased to <b>opposite side of mean</b>, encouraging directed motion.",
       "tags": [
         "ch14",
         "over-relaxation",
@@ -223,7 +223,7 @@
     {
       "uid": "14-022",
       "front": "What is ancestral sampling?",
-      "back": "Sampling from a directed graphical model by making <b>one pass</b> through variables in topological order:\n\nFor each node: sample from \\( p(z_i | \\text{pa}(i)) \\)\n\nWorks because parent values are already instantiated.\n\nProduces exact samples from joint distribution.",
+      "back": "Sampling from a directed graphical model by making <b>one pass</b> through variables in topological order:<br>For each node: sample from \\( p(z_i | \\text{pa}(i)) \\)<br>Works because parent values are already instantiated.<br>Produces exact samples from joint distribution.",
       "tags": [
         "ch14",
         "ancestral-sampling",
@@ -233,7 +233,7 @@
     {
       "uid": "14-023",
       "front": "What is an energy-based model?",
-      "back": "A model defined by an <b>energy function</b> E(x, w):\n\n\\( p(x|w) = \\frac{1}{Z(w)} \\exp\\{-E(x, w)\\} \\)\n\nHigher energy = lower probability.\n\nAdvantage: No normalization constraint on E.\n\nChallenge: Partition function Z(w) is often intractable.",
+      "back": "A model defined by an <b>energy function</b> E(x, w):<br>\\( p(x|w) = \\frac{1}{Z(w)} \\exp\\{-E(x, w)\\} \\)<br>Higher energy = lower probability.<br>Advantage: No normalization constraint on E.<br>Challenge: Partition function Z(w) is often intractable.",
       "tags": [
         "ch14",
         "energy-based",
@@ -243,7 +243,7 @@
     {
       "uid": "14-024",
       "front": "How is the gradient of log likelihood for energy-based models decomposed?",
-      "back": "\\( \\nabla_w E_{x \\sim p_D}[\\ln p(x|w)] = -E_{x \\sim p_D}[\\nabla_w E(x,w)] + E_{x \\sim p_M}[\\nabla_w E(x,w)] \\)\n\nFirst term: <b>push energy down</b> at data points\n\nSecond term: <b>push energy up</b> at model samples\n\nEquilibrium when model matches data distribution.",
+      "back": "\\( \\nabla_w E_{x \\sim p_D}[\\ln p(x|w)] = -E_{x \\sim p_D}[\\nabla_w E(x,w)] + E_{x \\sim p_M}[\\nabla_w E(x,w)] \\)<br>First term: <b>push energy down</b> at data points<br>Second term: <b>push energy up</b> at model samples<br>Equilibrium when model matches data distribution.",
       "tags": [
         "ch14",
         "energy-based",
@@ -253,7 +253,7 @@
     {
       "uid": "14-025",
       "front": "What is the score function?",
-      "back": "The gradient of log likelihood with respect to <b>data</b> x:\n\n\\( s(x, w) = \\nabla_x \\ln p(x|w) \\)\n\nFor energy-based models:\n\\( s(x, w) = -\\nabla_x E(x, w) \\)\n\nPartition function disappears since it's independent of x.",
+      "back": "The gradient of log likelihood with respect to <b>data</b> x:<br>\\( s(x, w) = \\nabla_x \\ln p(x|w) \\)<br>For energy-based models:<br>\\( s(x, w) = -\\nabla_x E(x, w) \\)<br>Partition function disappears since it's independent of x.",
       "tags": [
         "ch14",
         "score-function",
@@ -263,7 +263,7 @@
     {
       "uid": "14-026",
       "front": "What is Langevin sampling (stochastic gradient Langevin dynamics)?",
-      "back": "An MCMC method using gradient of log probability:\n\n\\( x^{(\\tau+1)} = x^{(\\tau)} + \\eta \\nabla_x \\ln p(x^{(\\tau)}, w) + \\sqrt{2\\eta} \\epsilon^{(\\tau)} \\)\n\nwhere \\( \\epsilon \\sim N(0, I) \\).\n\nAs \\( \\eta \\to 0 \\) and \\( T \\to \\infty \\): produces samples from p(x).",
+      "back": "An MCMC method using gradient of log probability:<br>\\( x^{(\\tau+1)} = x^{(\\tau)} + \\eta \\nabla_x \\ln p(x^{(\\tau)}, w) + \\sqrt{2\\eta} \\epsilon^{(\\tau)} \\)<br>where \\( \\epsilon \\sim N(0, I) \\).<br>As \\( \\eta \\to 0 \\) and \\( T \\to \\infty \\): produces samples from p(x).",
       "tags": [
         "ch14",
         "langevin",
@@ -273,7 +273,7 @@
     {
       "uid": "14-027",
       "front": "What is contrastive divergence?",
-      "back": "An approximation for training energy-based models.\n\nInstead of running long MCMC chains:\n\n- Start chain from a training data point\n- Run only <b>a few steps</b> (even just one)\n- Use resulting sample for gradient estimation\n\nTrade-off: Biased but computationally efficient.",
+      "back": "An approximation for training energy-based models.<br>Instead of running long MCMC chains:<br><ul><li>Start chain from a training data point</li><li>Run only <b>a few steps</b> (even just one)</li><li>Use resulting sample for gradient estimation</li></ul>Trade-off: Biased but computationally efficient.",
       "tags": [
         "ch14",
         "contrastive-divergence",
@@ -283,7 +283,7 @@
     {
       "uid": "14-028",
       "front": "What is sampling-importance-resampling (SIR)?",
-      "back": "A two-stage sampling approach:\n\n1. Draw L samples from proposal q(z)\n2. Compute importance weights\n3. Resample from discrete distribution with these weights\n\nResults are approximately from p(z), becoming exact as \\( L \\to \\infty \\).\n\nAvoids determining constant k needed for rejection sampling.",
+      "back": "A two-stage sampling approach:<br><ol><li>Draw L samples from proposal q(z)</li><li>Compute importance weights</li><li>Resample from discrete distribution with these weights</li></ol>Results are approximately from p(z), becoming exact as \\( L \\to \\infty \\).<br>Avoids determining constant k needed for rejection sampling.",
       "tags": [
         "ch14",
         "sir",
@@ -293,7 +293,7 @@
     {
       "uid": "14-029",
       "front": "What is adaptive rejection sampling?",
-      "back": "Constructing the envelope function <b>on the fly</b> during sampling.\n\nFor <b>log-concave</b> distributions:\n\n- Use tangent lines at grid points\n- Envelope is piecewise exponential\n- If sample rejected, add new grid point to refine envelope\n\nEnvelope improves with more samples.",
+      "back": "Constructing the envelope function <b>on the fly</b> during sampling.<br>For <b>log-concave</b> distributions:<br><ul><li>Use tangent lines at grid points</li><li>Envelope is piecewise exponential</li><li>If sample rejected, add new grid point to refine envelope</li></ul>Envelope improves with more samples.",
       "tags": [
         "ch14",
         "adaptive-rejection",
@@ -303,7 +303,7 @@
     {
       "uid": "14-030",
       "front": "How can base transitions be combined in MCMC?",
-      "back": "Two ways to combine transitions \\( B_1, \\ldots, B_K \\):\n\n1. <b>Mixture</b>: \\( T(z', z) = \\sum_k \\alpha_k B_k(z', z) \\)\n\n2. <b>Successive application</b>: Apply each in sequence\n\nIf each preserves invariant distribution, so does the combination.\n\nUseful for updating subsets of variables.",
+      "back": "Two ways to combine transitions \\( B_1, \\ldots, B_K \\):<br><ol><li><b>Mixture</b>: \\( T(z', z) = \\sum_k \\alpha_k B_k(z', z) \\)</li></ol><ol><li><b>Successive application</b>: Apply each in sequence</li></ol>If each preserves invariant distribution, so does the combination.<br>Useful for updating subsets of variables.",
       "tags": [
         "ch14",
         "mcmc",

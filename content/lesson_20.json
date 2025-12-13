@@ -13,7 +13,7 @@
     {
       "uid": "20-001",
       "front": "What is a diffusion model?",
-      "back": "A generative model that learns to <b>reverse a gradual noising process</b>.\n\nTwo processes:\n\n1. <b>Forward</b>: Gradually add noise until data becomes pure Gaussian noise\n2. <b>Reverse</b>: Learn neural network to denoise step by step\n\nSampling: Start from noise, iteratively denoise to generate data.",
+      "back": "A generative model that learns to <b>reverse a gradual noising process</b>.<br>Two processes:<br><ol><li><b>Forward</b>: Gradually add noise until data becomes pure Gaussian noise</li><li><b>Reverse</b>: Learn neural network to denoise step by step</li></ol>Sampling: Start from noise, iteratively denoise to generate data.",
       "tags": [
         "ch20",
         "diffusion",
@@ -23,7 +23,7 @@
     {
       "uid": "20-002",
       "front": "What is the forward noising process in diffusion models?",
-      "back": "A Markov chain that gradually adds Gaussian noise:\n\n\\( q(z_t | z_{t-1}) = \\mathcal{N}(z_t | \\sqrt{1-\\beta_t} z_{t-1}, \\beta_t I) \\)\n\nStarting from x = \\( z_0 \\), after T steps, \\( z_T \\) is approximately standard Gaussian.\n\nNo learnable parameters - just fixed noise schedule \\( \\{\\beta_t\\} \\).",
+      "back": "A Markov chain that gradually adds Gaussian noise:<br>\\( q(z_t | z_{t-1}) = \\mathcal{N}(z_t | \\sqrt{1-\\beta_t} z_{t-1}, \\beta_t I) \\)<br>Starting from x = \\( z_0 \\), after T steps, \\( z_T \\) is approximately standard Gaussian.<br>No learnable parameters - just fixed noise schedule \\( \\{\\beta_t\\} \\).",
       "tags": [
         "ch20",
         "forward-process",
@@ -33,7 +33,7 @@
     {
       "uid": "20-003",
       "front": "What is the diffusion kernel?",
-      "back": "A formula to sample <b>any step directly</b> without iterating:\n\n\\( q(z_t | x) = \\mathcal{N}(z_t | \\sqrt{\\alpha_t} x, (1-\\alpha_t) I) \\)\n\nwhere \\( \\alpha_t = \\prod_{\\tau=1}^{t} (1-\\beta_\\tau) \\)\n\nEnables efficient training by jumping to any timestep.",
+      "back": "A formula to sample <b>any step directly</b> without iterating:<br>\\( q(z_t | x) = \\mathcal{N}(z_t | \\sqrt{\\alpha_t} x, (1-\\alpha_t) I) \\)<br>where \\( \\alpha_t = \\prod_{\\tau=1}^{t} (1-\\beta_\\tau) \\)<br>Enables efficient training by jumping to any timestep.",
       "tags": [
         "ch20",
         "diffusion-kernel",
@@ -43,7 +43,7 @@
     {
       "uid": "20-004",
       "front": "What is the reverse denoising process in diffusion models?",
-      "back": "A learned Markov chain that removes noise:\n\n\\( p(z_{t-1} | z_t, w) = \\mathcal{N}(z_{t-1} | \\mu(z_t, w, t), \\beta_t I) \\)\n\nNeural network \\( \\mu(z_t, w, t) \\) predicts the mean of denoised distribution.\n\nOne network handles all timesteps (t is an input).",
+      "back": "A learned Markov chain that removes noise:<br>\\( p(z_{t-1} | z_t, w) = \\mathcal{N}(z_{t-1} | \\mu(z_t, w, t), \\beta_t I) \\)<br>Neural network \\( \\mu(z_t, w, t) \\) predicts the mean of denoised distribution.<br>One network handles all timesteps (t is an input).",
       "tags": [
         "ch20",
         "reverse-process",
@@ -53,7 +53,7 @@
     {
       "uid": "20-005",
       "front": "Why does the reverse process work for small noise steps?",
-      "back": "When \\( \\beta_t \\ll 1 \\):\n\n- Forward step changes z only slightly\n- True reverse \\( q(z_{t-1}|z_t) \\) is approximately Gaussian\n\nNeural network only needs to model Gaussian mean.\n\nTrade-off: Small steps → many steps needed (T often 1000+).",
+      "back": "When \\( \\beta_t \\ll 1 \\):<br><ul><li>Forward step changes z only slightly</li><li>True reverse \\( q(z_{t-1}|z_t) \\) is approximately Gaussian</li></ul>Neural network only needs to model Gaussian mean.<br>Trade-off: Small steps → many steps needed (T often 1000+).",
       "tags": [
         "ch20",
         "small-steps",
@@ -63,7 +63,7 @@
     {
       "uid": "20-006",
       "front": "How is the diffusion model trained?",
-      "back": "Maximize the <b>ELBO</b> (evidence lower bound):\n\n\\( L(w) = E_q[\\ln p(x|z_1)] - \\sum_{t=2}^{T} D_{KL}(q(z_{t-1}|z_t,x) || p(z_{t-1}|z_t,w)) \\)\n\nTwo parts:\n\n1. <b>Reconstruction</b>: Generate x from \\( z_1 \\)\n2. <b>Consistency</b>: Match reverse to true posterior at each step",
+      "back": "Maximize the <b>ELBO</b> (evidence lower bound):<br>\\( L(w) = E_q[\\ln p(x|z_1)] - \\sum_{t=2}^{T} D_{KL}(q(z_{t-1}|z_t,x) || p(z_{t-1}|z_t,w)) \\)<br>Two parts:<br><ol><li><b>Reconstruction</b>: Generate x from \\( z_1 \\)</li><li><b>Consistency</b>: Match reverse to true posterior at each step</li></ol>",
       "tags": [
         "ch20",
         "elbo",
@@ -73,7 +73,7 @@
     {
       "uid": "20-007",
       "front": "Why predict noise instead of the denoised image?",
-      "back": "Instead of network \\( \\mu \\) predicting denoised mean, network g predicts <b>total noise added</b>:\n\n\\( g(z_t, w, t) \\approx \\epsilon_t \\)\n\nAdvantages:\n\n- Simpler objective function\n- Better empirical results\n- Unified handling of all timesteps",
+      "back": "Instead of network \\( \\mu \\) predicting denoised mean, network g predicts <b>total noise added</b>:<br>\\( g(z_t, w, t) \\approx \\epsilon_t \\)<br>Advantages:<br><ul><li>Simpler objective function</li><li>Better empirical results</li><li>Unified handling of all timesteps</li></ul>",
       "tags": [
         "ch20",
         "noise-prediction",
@@ -83,7 +83,7 @@
     {
       "uid": "20-008",
       "front": "What is the simplified diffusion training loss?",
-      "back": "\\( L(w) = -\\sum_t ||g(\\sqrt{\\alpha_t} x + \\sqrt{1-\\alpha_t} \\epsilon, w, t) - \\epsilon||^2 \\)\n\nSimple interpretation:\n\n1. Create noisy version of x using sampled noise \\( \\epsilon \\)\n2. Train network to predict what noise was added\n3. Squared error between predicted and actual noise",
+      "back": "\\( L(w) = -\\sum_t ||g(\\sqrt{\\alpha_t} x + \\sqrt{1-\\alpha_t} \\epsilon, w, t) - \\epsilon||^2 \\)<br>Simple interpretation:<br><ol><li>Create noisy version of x using sampled noise \\( \\epsilon \\)</li><li>Train network to predict what noise was added</li><li>Squared error between predicted and actual noise</li></ol>",
       "tags": [
         "ch20",
         "loss-function",
@@ -93,7 +93,7 @@
     {
       "uid": "20-009",
       "front": "How does stochastic gradient descent work for diffusion training?",
-      "back": "For each training step:\n\n1. Sample data point x from training set\n2. Sample random timestep t from \\( \\{1, ..., T\\} \\)\n3. Sample noise \\( \\epsilon \\sim \\mathcal{N}(0, I) \\)\n4. Compute noisy \\( z_t \\) using diffusion kernel\n5. Train network to predict \\( \\epsilon \\)\n\nBuilt-in data augmentation: Same x gets different noise each time.",
+      "back": "For each training step:<br><ol><li>Sample data point x from training set</li><li>Sample random timestep t from \\( \\{1, ..., T\\} \\)</li><li>Sample noise \\( \\epsilon \\sim \\mathcal{N}(0, I) \\)</li><li>Compute noisy \\( z_t \\) using diffusion kernel</li><li>Train network to predict \\( \\epsilon \\)</li></ol>Built-in data augmentation: Same x gets different noise each time.",
       "tags": [
         "ch20",
         "sgd",
@@ -103,7 +103,7 @@
     {
       "uid": "20-010",
       "front": "How do you generate samples from a trained diffusion model?",
-      "back": "Starting from \\( z_T \\sim \\mathcal{N}(0, I) \\):\n\nFor t = T to 1:\n\n1. Predict noise: \\( \\hat{\\epsilon} = g(z_t, w, t) \\)\n2. Compute mean: \\( \\mu = \\frac{1}{\\sqrt{1-\\beta_t}}(z_t - \\frac{\\beta_t}{\\sqrt{1-\\alpha_t}} \\hat{\\epsilon}) \\)\n3. Sample: \\( z_{t-1} = \\mu + \\sqrt{\\beta_t} \\epsilon \\) (except t=1)\n\nFinal \\( z_0 \\) is the generated sample.",
+      "back": "Starting from \\( z_T \\sim \\mathcal{N}(0, I) \\):<br>For t = T to 1:<br><ol><li>Predict noise: \\( \\hat{\\epsilon} = g(z_t, w, t) \\)</li><li>Compute mean: \\( \\mu = \\frac{1}{\\sqrt{1-\\beta_t}}(z_t - \\frac{\\beta_t}{\\sqrt{1-\\alpha_t}} \\hat{\\epsilon}) \\)</li><li>Sample: \\( z_{t-1} = \\mu + \\sqrt{\\beta_t} \\epsilon \\) (except t=1)</li></ol>Final \\( z_0 \\) is the generated sample.",
       "tags": [
         "ch20",
         "sampling",
@@ -113,7 +113,7 @@
     {
       "uid": "20-011",
       "front": "What is the main computational drawback of diffusion models?",
-      "back": "Sampling requires <b>multiple sequential passes</b> through the network.\n\nTypically T = 1000+ steps.\n\nMuch slower than:\n\n- GANs (single forward pass)\n- VAEs (single forward pass)\n- Normalizing flows (single forward pass)\n\nMitigation: Faster sampling methods, continuous-time formulations.",
+      "back": "Sampling requires <b>multiple sequential passes</b> through the network.<br>Typically T = 1000+ steps.<br>Much slower than:<br><ul><li>GANs (single forward pass)</li><li>VAEs (single forward pass)</li><li>Normalizing flows (single forward pass)</li></ul>Mitigation: Faster sampling methods, continuous-time formulations.",
       "tags": [
         "ch20",
         "sampling",
@@ -123,7 +123,7 @@
     {
       "uid": "20-012",
       "front": "What is a U-Net in the context of diffusion models?",
-      "back": "A common neural network architecture for the denoising network.\n\nStructure:\n\n- Encoder: Progressively downsample\n- Decoder: Progressively upsample\n- Skip connections: Connect encoder to decoder at each scale\n\nOutput has same dimensionality as input (predicts noise).",
+      "back": "A common neural network architecture for the denoising network.<br>Structure:<br><ul><li>Encoder: Progressively downsample</li><li>Decoder: Progressively upsample</li><li>Skip connections: Connect encoder to decoder at each scale</li></ul>Output has same dimensionality as input (predicts noise).",
       "tags": [
         "ch20",
         "unet",
@@ -133,7 +133,7 @@
     {
       "uid": "20-013",
       "front": "How does the noise schedule \\( \\{\\beta_t\\} \\) affect diffusion models?",
-      "back": "The schedule controls how fast noise is added:\n\n- <b>Linear</b>: \\( \\beta_t \\) increases linearly\n- <b>Cosine</b>: Smoother noise addition, often works better\n\nKey property: After T steps, data should be approximately standard Gaussian.\n\nTypical: \\( \\beta_1 \\approx 10^{-4} \\), \\( \\beta_T \\approx 0.02 \\).",
+      "back": "The schedule controls how fast noise is added:<br><ul><li><b>Linear</b>: \\( \\beta_t \\) increases linearly</li><li><b>Cosine</b>: Smoother noise addition, often works better</li></ul>Key property: After T steps, data should be approximately standard Gaussian.<br>Typical: \\( \\beta_1 \\approx 10^{-4} \\), \\( \\beta_T \\approx 0.02 \\).",
       "tags": [
         "ch20",
         "noise-schedule",
@@ -143,7 +143,7 @@
     {
       "uid": "20-014",
       "front": "What is the relationship between diffusion models and score matching?",
-      "back": "The denoising network implicitly learns the <b>score function</b>:\n\n\\( \\nabla_z \\ln p(z) \\)\n\nNoise prediction ≈ negative score.\n\nConnects to:\n\n- Score-based generative models\n- Langevin dynamics sampling\n- Denoising score matching",
+      "back": "The denoising network implicitly learns the <b>score function</b>:<br>\\( \\nabla_z \\ln p(z) \\)<br>Noise prediction ≈ negative score.<br>Connects to:<br><ul><li>Score-based generative models</li><li>Langevin dynamics sampling</li><li>Denoising score matching</li></ul>",
       "tags": [
         "ch20",
         "score-matching",
@@ -153,7 +153,7 @@
     {
       "uid": "20-015",
       "front": "What are the advantages of diffusion models over GANs?",
-      "back": "1. <b>Stable training</b>: No adversarial dynamics\n\n2. <b>Mode coverage</b>: Don't suffer from mode collapse\n\n3. <b>Likelihood</b>: Can compute ELBO (approximate likelihood)\n\n4. <b>Quality</b>: State-of-the-art image generation\n\nTrade-off: Slower sampling than GANs.",
+      "back": "<ol><li><b>Stable training</b>: No adversarial dynamics</li></ol><ol><li><b>Mode coverage</b>: Don't suffer from mode collapse</li></ol><ol><li><b>Likelihood</b>: Can compute ELBO (approximate likelihood)</li></ol><ol><li><b>Quality</b>: State-of-the-art image generation</li></ol>Trade-off: Slower sampling than GANs.",
       "tags": [
         "ch20",
         "diffusion-vs-gan",
@@ -163,7 +163,7 @@
     {
       "uid": "20-016",
       "front": "Why do diffusion models have the same latent and data dimensionality?",
-      "back": "The forward process adds noise to x, creating latent \\( z_t \\) of same size.\n\nNo compression like VAE bottleneck.\n\nSimilar to normalizing flows in this respect.\n\nThe 'latent' is just a noisy version of data, not a compact representation.",
+      "back": "The forward process adds noise to x, creating latent \\( z_t \\) of same size.<br>No compression like VAE bottleneck.<br>Similar to normalizing flows in this respect.<br>The 'latent' is just a noisy version of data, not a compact representation.",
       "tags": [
         "ch20",
         "dimensionality",
@@ -173,7 +173,7 @@
     {
       "uid": "20-017",
       "front": "How does conditioning work in diffusion models?",
-      "back": "Add conditioning information c to the denoising network:\n\n\\( g(z_t, w, t, c) \\)\n\nExamples:\n\n- <b>Text-to-image</b>: c = text embedding\n- <b>Class-conditional</b>: c = class label\n- <b>Image editing</b>: c = input image + mask\n\nEnables controllable generation.",
+      "back": "Add conditioning information c to the denoising network:<br>\\( g(z_t, w, t, c) \\)<br>Examples:<br><ul><li><b>Text-to-image</b>: c = text embedding</li><li><b>Class-conditional</b>: c = class label</li><li><b>Image editing</b>: c = input image + mask</li></ul>Enables controllable generation.",
       "tags": [
         "ch20",
         "conditioning",
@@ -183,7 +183,7 @@
     {
       "uid": "20-018",
       "front": "What is classifier-free guidance in diffusion models?",
-      "back": "A technique to strengthen conditioning without a separate classifier.\n\nTrain both:\n\n- Conditional model: \\( g(z_t, w, t, c) \\)\n- Unconditional model: \\( g(z_t, w, t) \\)\n\nAt sampling: \\( \\hat{g} = g_{uncond} + s \\cdot (g_{cond} - g_{uncond}) \\)\n\nScale s > 1 strengthens conditioning effect.",
+      "back": "A technique to strengthen conditioning without a separate classifier.<br>Train both:<br><ul><li>Conditional model: \\( g(z_t, w, t, c) \\)</li><li>Unconditional model: \\( g(z_t, w, t) \\)</li></ul>At sampling: \\( \\hat{g} = g_{uncond} + s \\cdot (g_{cond} - g_{uncond}) \\)<br>Scale s > 1 strengthens conditioning effect.",
       "tags": [
         "ch20",
         "guidance",

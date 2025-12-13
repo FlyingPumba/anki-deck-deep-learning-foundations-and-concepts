@@ -13,7 +13,7 @@
     {
       "uid": "13-001",
       "front": "What are graph neural networks (GNNs)?",
-      "back": "Deep learning models for <b>graph-structured data</b>.\n\nKey requirement: Ensure <b>equivariance or invariance</b> with respect to node ordering.\n\nApplications:\n\n- Molecular property prediction\n- Social network analysis\n- Knowledge graphs\n- Traffic prediction",
+      "back": "Deep learning models for <b>graph-structured data</b>.<br>Key requirement: Ensure <b>equivariance or invariance</b> with respect to node ordering.<br>Applications:<br><ul><li>Molecular property prediction</li><li>Social network analysis</li><li>Knowledge graphs</li><li>Traffic prediction</li></ul>",
       "tags": [
         "ch13",
         "gnn",
@@ -23,7 +23,7 @@
     {
       "uid": "13-002",
       "front": "What types of predictions can graph neural networks make?",
-      "back": "Three levels:\n\n1. <b>Node-level</b>: Predict properties of individual nodes\n2. <b>Edge-level</b>: Predict properties of edges/relationships\n3. <b>Graph-level</b>: Predict properties of the entire graph\n\nAll must respect permutation symmetry.",
+      "back": "Three levels:<br><ol><li><b>Node-level</b>: Predict properties of individual nodes</li><li><b>Edge-level</b>: Predict properties of edges/relationships</li><li><b>Graph-level</b>: Predict properties of the entire graph</li></ol>All must respect permutation symmetry.",
       "tags": [
         "ch13",
         "gnn",
@@ -33,7 +33,7 @@
     {
       "uid": "13-003",
       "front": "What is the difference between inductive and transductive learning in GNNs?",
-      "back": "<b>Inductive</b>: Learn from training graphs, generalize to new unseen graphs\n\n<b>Transductive</b>: Given the entire graph structure, predict labels for unlabeled nodes\n\nTransductive nodes participate in message passing but aren't labeled during training.",
+      "back": "<b>Inductive</b>: Learn from training graphs, generalize to new unseen graphs<br><b>Transductive</b>: Given the entire graph structure, predict labels for unlabeled nodes<br>Transductive nodes participate in message passing but aren't labeled during training.",
       "tags": [
         "ch13",
         "inductive",
@@ -43,7 +43,7 @@
     {
       "uid": "13-004",
       "front": "What is graph representation learning?",
-      "back": "Learning <b>embedding vectors</b> for graph components (nodes, edges, or entire graph).\n\nGoal: Represent graph structure in a form useful for downstream tasks.\n\nSimilar to word embeddings but for graph elements.",
+      "back": "Learning <b>embedding vectors</b> for graph components (nodes, edges, or entire graph).<br>Goal: Represent graph structure in a form useful for downstream tasks.<br>Similar to word embeddings but for graph elements.",
       "tags": [
         "ch13",
         "representation-learning",
@@ -53,7 +53,7 @@
     {
       "uid": "13-005",
       "front": "What is the adjacency matrix of a graph?",
-      "back": "Matrix A where \\( A_{nm} = 1 \\) if edge exists between nodes n and m, else 0.\n\nProblem: The matrix <b>depends on arbitrary node ordering</b>.\n\nPermuting node labels gives different matrix for same graph.\n\nGNNs must handle this permutation ambiguity.",
+      "back": "Matrix A where \\( A_{nm} = 1 \\) if edge exists between nodes n and m, else 0.<br>Problem: The matrix <b>depends on arbitrary node ordering</b>.<br>Permuting node labels gives different matrix for same graph.<br>GNNs must handle this permutation ambiguity.",
       "tags": [
         "ch13",
         "adjacency-matrix",
@@ -63,7 +63,7 @@
     {
       "uid": "13-006",
       "front": "How does permuting node labels affect the adjacency matrix?",
-      "back": "If P is a permutation matrix:\n\n- Rows permuted by: \\( PA \\)\n- Columns permuted by: \\( AP^T \\)\n- Both: \\( PAP^T \\)\n\nThis represents the same graph with different node labeling.",
+      "back": "If P is a permutation matrix:<br><ul><li>Rows permuted by: \\( PA \\)</li><li>Columns permuted by: \\( AP^T \\)</li><li>Both: \\( PAP^T \\)</li></ul>This represents the same graph with different node labeling.",
       "tags": [
         "ch13",
         "permutation",
@@ -73,7 +73,7 @@
     {
       "uid": "13-007",
       "front": "What permutation properties must GNN predictions satisfy?",
-      "back": "<b>Graph-level predictions</b>: Must be <b>invariant</b> (same output regardless of node ordering)\n\n<b>Node-level predictions</b>: Must be <b>equivariant</b> (if inputs permuted, outputs permute the same way)\n\nNetwork structure must enforce this.",
+      "back": "<b>Graph-level predictions</b>: Must be <b>invariant</b> (same output regardless of node ordering)<br><b>Node-level predictions</b>: Must be <b>equivariant</b> (if inputs permuted, outputs permute the same way)<br>Network structure must enforce this.",
       "tags": [
         "ch13",
         "invariance",
@@ -83,7 +83,7 @@
     {
       "uid": "13-008",
       "front": "What is a message-passing neural network (MPNN)?",
-      "back": "A GNN architecture where nodes <b>exchange messages</b> with neighbors:\n\n1. Each node has embedding vector\n2. Messages aggregated from neighbors\n3. Node embedding updated based on messages\n4. Repeat for multiple layers\n\nGeneral framework for many GNN variants.",
+      "back": "A GNN architecture where nodes <b>exchange messages</b> with neighbors:<br><ol><li>Each node has embedding vector</li><li>Messages aggregated from neighbors</li><li>Node embedding updated based on messages</li><li>Repeat for multiple layers</li></ol>General framework for many GNN variants.",
       "tags": [
         "ch13",
         "mpnn",
@@ -93,7 +93,7 @@
     {
       "uid": "13-009",
       "front": "Why must message aggregation be order-independent?",
-      "back": "The aggregation function must depend <b>only on the set of inputs, not their ordering</b>.\n\nOtherwise, results would depend on arbitrary node labeling.\n\nTypical choices: Sum, mean, max (all permutation invariant).",
+      "back": "The aggregation function must depend <b>only on the set of inputs, not their ordering</b>.<br>Otherwise, results would depend on arbitrary node labeling.<br>Typical choices: Sum, mean, max (all permutation invariant).",
       "tags": [
         "ch13",
         "aggregation",
@@ -103,7 +103,7 @@
     {
       "uid": "13-010",
       "front": "How does summation vs. mean aggregation differ in GNNs?",
-      "back": "<b>Summation</b>: Nodes with many neighbors have stronger influence\n\n<b>Mean</b>: Normalizes by neighbor count\n\nSummation preserves degree information; mean treats all neighborhoods equally.\n\nChoice depends on application.",
+      "back": "<b>Summation</b>: Nodes with many neighbors have stronger influence<br><b>Mean</b>: Normalizes by neighbor count<br>Summation preserves degree information; mean treats all neighborhoods equally.<br>Choice depends on application.",
       "tags": [
         "ch13",
         "aggregation",
@@ -113,7 +113,7 @@
     {
       "uid": "13-011",
       "front": "What is the receptive field in a GNN?",
-      "back": "The set of nodes that can influence a given node's output.\n\nAfter L layers: Receptive field includes nodes up to L hops away.\n\nSparse graphs may require many layers for global information flow.",
+      "back": "The set of nodes that can influence a given node's output.<br>After L layers: Receptive field includes nodes up to L hops away.<br>Sparse graphs may require many layers for global information flow.",
       "tags": [
         "ch13",
         "receptive-field",
@@ -123,7 +123,7 @@
     {
       "uid": "13-012",
       "front": "What is a super-node in GNNs?",
-      "back": "A virtual node connected to <b>all other nodes</b> in the graph.\n\nAllows global information exchange in one hop.\n\nHelps with:\n\n- Long-range dependencies\n- Sparse graph connectivity\n- Graph-level predictions",
+      "back": "A virtual node connected to <b>all other nodes</b> in the graph.<br>Allows global information exchange in one hop.<br>Helps with:<br><ul><li>Long-range dependencies</li><li>Sparse graph connectivity</li><li>Graph-level predictions</li></ul>",
       "tags": [
         "ch13",
         "super-node",
@@ -133,7 +133,7 @@
     {
       "uid": "13-013",
       "front": "How do GNNs achieve permutation equivariance?",
-      "back": "By using <b>shared parameters</b> across all nodes and <b>order-invariant aggregation</b>.\n\nThe same transformation is applied to every node.\n\nIf inputs are permuted, the same permutation applies to outputs.",
+      "back": "By using <b>shared parameters</b> across all nodes and <b>order-invariant aggregation</b>.<br>The same transformation is applied to every node.<br>If inputs are permuted, the same permutation applies to outputs.",
       "tags": [
         "ch13",
         "equivariance",
@@ -143,7 +143,7 @@
     {
       "uid": "13-014",
       "front": "What is deep sets?",
-      "back": "Learning functions over <b>unstructured sets</b> of variables.\n\nSpecial case of GNNs where graph is fully connected (or has no edges).\n\nMust be permutation invariant/equivariant.\n\nFoundation for understanding set-based neural networks.",
+      "back": "Learning functions over <b>unstructured sets</b> of variables.<br>Special case of GNNs where graph is fully connected (or has no edges).<br>Must be permutation invariant/equivariant.<br>Foundation for understanding set-based neural networks.",
       "tags": [
         "ch13",
         "deep-sets",
@@ -153,7 +153,7 @@
     {
       "uid": "13-015",
       "front": "What is a readout layer in GNNs?",
-      "back": "The <b>output layer</b> that produces final predictions from node embeddings.\n\nFor graph-level tasks: Aggregates all node embeddings (e.g., sum, mean) into single vector.\n\nMust be permutation invariant for graph-level outputs.",
+      "back": "The <b>output layer</b> that produces final predictions from node embeddings.<br>For graph-level tasks: Aggregates all node embeddings (e.g., sum, mean) into single vector.<br>Must be permutation invariant for graph-level outputs.",
       "tags": [
         "ch13",
         "readout",
@@ -163,7 +163,7 @@
     {
       "uid": "13-016",
       "front": "What are the three types of nodes in semi-supervised GNN learning?",
-      "back": "1. <b>Training nodes</b> (\\( V_{train} \\)): Labeled, used for loss\n\n2. <b>Transductive nodes</b> (\\( V_{trans} \\)): Unlabeled, participate in message passing during training\n\n3. <b>Inductive nodes</b> (\\( V_{induct} \\)): Only seen at inference time",
+      "back": "<ol><li><b>Training nodes</b> (\\( V_{train} \\)): Labeled, used for loss</li></ol><ol><li><b>Transductive nodes</b> (\\( V_{trans} \\)): Unlabeled, participate in message passing during training</li></ol><ol><li><b>Inductive nodes</b> (\\( V_{induct} \\)): Only seen at inference time</li></ol>",
       "tags": [
         "ch13",
         "semi-supervised",
@@ -173,7 +173,7 @@
     {
       "uid": "13-017",
       "front": "What is a graph attention network (GAT)?",
-      "back": "GNN where messages are <b>weighted by learned attention coefficients</b>:\n\n\\( \\vec{h}_n^{(l+1)} = \\sum_m A_{nm} \\text{message}(\\vec{h}_m^{(l)}) \\)\n\nInductive bias: Some neighbors are more important than others.\n\nWith full connectivity, becomes similar to transformer.",
+      "back": "GNN where messages are <b>weighted by learned attention coefficients</b>:<br>\\( \\vec{h}_n^{(l+1)} = \\sum_m A_{nm} \\text{message}(\\vec{h}_m^{(l)}) \\)<br>Inductive bias: Some neighbors are more important than others.<br>With full connectivity, becomes similar to transformer.",
       "tags": [
         "ch13",
         "gat",
@@ -183,7 +183,7 @@
     {
       "uid": "13-018",
       "front": "How do graph attention networks relate to transformers?",
-      "back": "For a <b>fully-connected graph</b>, multi-head graph attention becomes equivalent to a <b>transformer encoder</b>.\n\nBoth use attention to weight contributions from other elements.\n\nGAT generalizes attention to arbitrary graph structures.",
+      "back": "For a <b>fully-connected graph</b>, multi-head graph attention becomes equivalent to a <b>transformer encoder</b>.<br>Both use attention to weight contributions from other elements.<br>GAT generalizes attention to arbitrary graph structures.",
       "tags": [
         "ch13",
         "gat",
@@ -193,7 +193,7 @@
     {
       "uid": "13-019",
       "front": "What are general message-passing equations in GNNs?",
-      "back": "Update rules that can maintain:\n\n- <b>Node embeddings</b> \\( \\vec{h}_n^{(l)} \\)\n- <b>Edge embeddings</b> \\( \\vec{e}_{nm}^{(l)} \\)\n- <b>Global embedding</b> \\( \\vec{g}^{(l)} \\)\n\nAll three can be updated based on each other, enabling rich interactions.",
+      "back": "Update rules that can maintain:<br><ul><li><b>Node embeddings</b> \\( \\vec{h}_n^{(l)} \\)</li><li><b>Edge embeddings</b> \\( \\vec{e}_{nm}^{(l)} \\)</li><li><b>Global embedding</b> \\( \\vec{g}^{(l)} \\)</li></ul>All three can be updated based on each other, enabling rich interactions.",
       "tags": [
         "ch13",
         "message-passing",
@@ -203,7 +203,7 @@
     {
       "uid": "13-020",
       "front": "What is over-smoothing in GNNs?",
-      "back": "Problem where node embeddings become <b>very similar</b> after many layers.\n\nInformation propagates and mixes, losing node-specific features.\n\nMitigations:\n\n- Residual connections\n- Fewer layers\n- Careful normalization",
+      "back": "Problem where node embeddings become <b>very similar</b> after many layers.<br>Information propagates and mixes, losing node-specific features.<br>Mitigations:<br><ul><li>Residual connections</li><li>Fewer layers</li><li>Careful normalization</li></ul>",
       "tags": [
         "ch13",
         "over-smoothing",
@@ -213,7 +213,7 @@
     {
       "uid": "13-021",
       "front": "How is dropout applied in GNNs?",
-      "back": "<b>Randomly omitting edges</b> during training (edge dropout).\n\nDifferent from standard dropout on activations.\n\nActs as regularization by encouraging robustness to missing connections.",
+      "back": "<b>Randomly omitting edges</b> during training (edge dropout).<br>Different from standard dropout on activations.<br>Acts as regularization by encouraging robustness to missing connections.",
       "tags": [
         "ch13",
         "dropout",
@@ -223,7 +223,7 @@
     {
       "uid": "13-022",
       "front": "What is geometric deep learning?",
-      "back": "A framework unifying neural networks that respect <b>geometric symmetries</b>:\n\n- GNNs: Permutation symmetry\n- CNNs: Translation symmetry\n- Spherical CNNs: Rotation symmetry\n\nDesign networks based on the symmetry group of the domain.",
+      "back": "A framework unifying neural networks that respect <b>geometric symmetries</b>:<br><ul><li>GNNs: Permutation symmetry</li><li>CNNs: Translation symmetry</li><li>Spherical CNNs: Rotation symmetry</li></ul>Design networks based on the symmetry group of the domain.",
       "tags": [
         "ch13",
         "geometric-deep-learning",

@@ -13,7 +13,7 @@
     {
       "uid": "09-001",
       "front": "What is inductive bias in machine learning?",
-      "back": "The <b>preference for one hypothesis over others</b> beyond what the data supports.\n\nAlso called prior knowledge or learning bias.\n\nExamples:\n\n- Preference for smoother functions\n- Translation invariance in images\n- Assumption of linearity\n\nNecessary because inverse problems are ill-posed with infinitely many solutions.",
+      "back": "The <b>preference for one hypothesis over others</b> beyond what the data supports.<br>Also called prior knowledge or learning bias.<br>Examples:<br><ul><li>Preference for smoother functions</li><li>Translation invariance in images</li><li>Assumption of linearity</li></ul>Necessary because inverse problems are ill-posed with infinitely many solutions.",
       "tags": [
         "ch09",
         "inductive-bias",
@@ -23,7 +23,7 @@
     {
       "uid": "09-002",
       "front": "Why are machine learning tasks considered inverse problems?",
-      "back": "We need to infer an <b>entire distribution</b> from only a finite number of samples.\n\nThis is intrinsically ill-posed: infinitely many distributions could have generated the observed data.\n\nAny distribution with non-zero density at observed points is a candidate.\n\nInductive bias is needed to choose among them.",
+      "back": "We need to infer an <b>entire distribution</b> from only a finite number of samples.<br>This is intrinsically ill-posed: infinitely many distributions could have generated the observed data.<br>Any distribution with non-zero density at observed points is a candidate.<br>Inductive bias is needed to choose among them.",
       "tags": [
         "ch09",
         "inverse-problems",
@@ -33,7 +33,7 @@
     {
       "uid": "09-003",
       "front": "What is the no free lunch theorem?",
-      "back": "States that <b>every learning algorithm is as good as any other when averaged over all possible problems</b>.\n\nIf an algorithm is better than average on some problems, it must be worse on others.\n\nHighlights that learning cannot happen purely from data without bias.",
+      "back": "States that <b>every learning algorithm is as good as any other when averaged over all possible problems</b>.<br>If an algorithm is better than average on some problems, it must be worse on others.<br>Highlights that learning cannot happen purely from data without bias.",
       "tags": [
         "ch09",
         "no-free-lunch",
@@ -43,7 +43,7 @@
     {
       "uid": "09-004",
       "front": "What are the four approaches to incorporate symmetries into neural networks?",
-      "back": "1. <b>Pre-processing</b>: Compute invariant features\n\n2. <b>Regularized error function</b>: Penalize changes under transformations\n\n3. <b>Data augmentation</b>: Expand training set with transformed examples\n\n4. <b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)",
+      "back": "<ol><li><b>Pre-processing</b>: Compute invariant features</li></ol><ol><li><b>Regularized error function</b>: Penalize changes under transformations</li></ol><ol><li><b>Data augmentation</b>: Expand training set with transformed examples</li></ol><ol><li><b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)</li></ol>",
       "tags": [
         "ch09",
         "symmetry",
@@ -53,7 +53,7 @@
     {
       "uid": "09-005",
       "front": "What is translation invariance vs translation equivariance?",
-      "back": "<b>Invariance</b>: Output unchanged when input is translated\n\\( f(T(\\mathbf{x})) = f(\\mathbf{x}) \\)\n\nExample: Object classification - cat remains a cat regardless of position\n\n<b>Equivariance</b>: Output transforms in the same way as input\n\\( f(T(\\mathbf{x})) = T(f(\\mathbf{x})) \\)\n\nExample: Image segmentation - translated input gives translated segmentation",
+      "back": "<b>Invariance</b>: Output unchanged when input is translated<br>\\( f(T(\\mathbf{x})) = f(\\mathbf{x}) \\)<br>Example: Object classification - cat remains a cat regardless of position<br><b>Equivariance</b>: Output transforms in the same way as input<br>\\( f(T(\\mathbf{x})) = T(f(\\mathbf{x})) \\)<br>Example: Image segmentation - translated input gives translated segmentation",
       "tags": [
         "ch09",
         "invariance",
@@ -63,7 +63,7 @@
     {
       "uid": "09-006",
       "front": "What is data augmentation?",
-      "back": "Expanding the training set with <b>transformed versions</b> of training examples.\n\nCommon transformations for images:\n\n- Translation, rotation, scaling\n- Horizontal flip\n- Brightness/contrast changes\n- Additive noise\n- Colour shifts\n\nEach transformed example keeps the same target label.",
+      "back": "Expanding the training set with <b>transformed versions</b> of training examples.<br>Common transformations for images:<br><ul><li>Translation, rotation, scaling</li><li>Horizontal flip</li><li>Brightness/contrast changes</li><li>Additive noise</li><li>Colour shifts</li></ul>Each transformed example keeps the same target label.",
       "tags": [
         "ch09",
         "data-augmentation",
@@ -73,7 +73,7 @@
     {
       "uid": "09-007",
       "front": "What is weight decay (L2 regularization)?",
-      "back": "A regularizer that penalizes large weight magnitudes:\n\n\\( \\tilde{E}(\\mathbf{w}) = E(\\mathbf{w}) + \\frac{\\lambda}{2} \\mathbf{w}^T \\mathbf{w} \\)\n\nGradient contribution: \\( \\lambda \\mathbf{w} \\)\n\nCalled 'weight decay' because weights decay towards zero unless supported by data.\n\nCan be interpreted as Gaussian prior over weights.",
+      "back": "A regularizer that penalizes large weight magnitudes:<br>\\( \\tilde{E}(\\mathbf{w}) = E(\\mathbf{w}) + \\frac{\\lambda}{2} \\mathbf{w}^T \\mathbf{w} \\)<br>Gradient contribution: \\( \\lambda \\mathbf{w} \\)<br>Called 'weight decay' because weights decay towards zero unless supported by data.<br>Can be interpreted as Gaussian prior over weights.",
       "tags": [
         "ch09",
         "weight-decay",
@@ -83,7 +83,7 @@
     {
       "uid": "09-008",
       "front": "How does L2 regularization affect the effective number of parameters?",
-      "back": "L2 regularization <b>suppresses parameters</b> that have little effect on data fit.\n\nParameters with small effect are pushed towards zero.\n\nEffective number of parameters = number that remain 'active' after regularization.\n\n- \\( \\lambda \\to \\infty \\): Effective parameters \\( \\to 0 \\)\n- \\( \\lambda = 0 \\): Effective parameters = total parameters",
+      "back": "L2 regularization <b>suppresses parameters</b> that have little effect on data fit.<br>Parameters with small effect are pushed towards zero.<br>Effective number of parameters = number that remain 'active' after regularization.<br><ul><li>\\( \\lambda \\to \\infty \\): Effective parameters \\( \\to 0 \\)</li><li>\\( \\lambda = 0 \\): Effective parameters = total parameters</li></ul>",
       "tags": [
         "ch09",
         "effective-parameters",
@@ -93,7 +93,7 @@
     {
       "uid": "09-009",
       "front": "Why should biases typically be excluded from weight decay?",
-      "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts of biases</b>.\n\nIncluding biases would:\n\n- Penalize constant offsets in data\n- Not be invariant to data preprocessing\n\nConsistent regularizer: \\( \\frac{\\lambda_1}{2} \\sum_{w \\in W_1} w^2 + \\frac{\\lambda_2}{2} \\sum_{w \\in W_2} w^2 \\)\n\nwhere biases are excluded from both sums.",
+      "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts of biases</b>.<br>Including biases would:<br><ul><li>Penalize constant offsets in data</li><li>Not be invariant to data preprocessing</li></ul>Consistent regularizer: \\( \\frac{\\lambda_1}{2} \\sum_{w \\in W_1} w^2 + \\frac{\\lambda_2}{2} \\sum_{w \\in W_2} w^2 \\)<br>where biases are excluded from both sums.",
       "tags": [
         "ch09",
         "weight-decay",
@@ -103,7 +103,7 @@
     {
       "uid": "09-010",
       "front": "What is L1 regularization (Lasso)?",
-      "back": "Regularizer using sum of absolute values:\n\n\\( \\Omega(\\mathbf{w}) = \\sum_i |w_i| \\)\n\nKey property: Produces <b>sparse solutions</b> where many weights are exactly zero.\n\nAs \\( \\lambda \\) increases, more parameters driven to zero.\n\nUseful for feature selection.",
+      "back": "Regularizer using sum of absolute values:<br>\\( \\Omega(\\mathbf{w}) = \\sum_i |w_i| \\)<br>Key property: Produces <b>sparse solutions</b> where many weights are exactly zero.<br>As \\( \\lambda \\) increases, more parameters driven to zero.<br>Useful for feature selection.",
       "tags": [
         "ch09",
         "l1",
@@ -113,7 +113,7 @@
     {
       "uid": "09-011",
       "front": "Why does L1 produce sparse solutions while L2 does not?",
-      "back": "<b>L1</b>: Constraint region has <b>corners</b> (diamond shape). Error contours tend to intersect at corners where some parameters are exactly zero.\n\n<b>L2</b>: Constraint region is <b>smooth</b> (circular). Gradient approaches zero as weights approach zero.\n\nL1's discontinuous gradient at zero drives parameters exactly to zero.",
+      "back": "<b>L1</b>: Constraint region has <b>corners</b> (diamond shape). Error contours tend to intersect at corners where some parameters are exactly zero.<br><b>L2</b>: Constraint region is <b>smooth</b> (circular). Gradient approaches zero as weights approach zero.<br>L1's discontinuous gradient at zero drives parameters exactly to zero.",
       "tags": [
         "ch09",
         "l1-vs-l2",
@@ -123,7 +123,7 @@
     {
       "uid": "09-012",
       "front": "What are learning curves?",
-      "back": "Plots of performance (training/validation error) vs training progress.\n\nUsed to diagnose:\n\n- <b>Overfitting</b>: Training error << validation error\n- <b>Underfitting</b>: Both errors high\n- When to apply <b>early stopping</b>\n\nCan also plot vs dataset size or model complexity.",
+      "back": "Plots of performance (training/validation error) vs training progress.<br>Used to diagnose:<br><ul><li><b>Overfitting</b>: Training error << validation error</li><li><b>Underfitting</b>: Both errors high</li><li>When to apply <b>early stopping</b></li></ul>Can also plot vs dataset size or model complexity.",
       "tags": [
         "ch09",
         "learning-curves",
@@ -133,7 +133,7 @@
     {
       "uid": "09-013",
       "front": "What is early stopping?",
-      "back": "A regularization technique that <b>stops training before convergence</b> based on validation error.\n\nAs training progresses:\n\n- Training error decreases\n- Validation error initially decreases, then increases (overfitting)\n\nStop at minimum validation error.\n\nApproximately equivalent to L2 regularization.",
+      "back": "A regularization technique that <b>stops training before convergence</b> based on validation error.<br>As training progresses:<br><ul><li>Training error decreases</li><li>Validation error initially decreases, then increases (overfitting)</li></ul>Stop at minimum validation error.<br>Approximately equivalent to L2 regularization.",
       "tags": [
         "ch09",
         "early-stopping",
@@ -143,7 +143,7 @@
     {
       "uid": "09-014",
       "front": "How does early stopping relate to L2 regularization?",
-      "back": "Early stopping is approximately <b>equivalent to L2 regularization</b>.\n\nThe effective number of parameters <b>grows during training</b> as weights move from initialization.\n\nStopping early limits how far weights can move, similar to constraining their magnitude with L2.",
+      "back": "Early stopping is approximately <b>equivalent to L2 regularization</b>.<br>The effective number of parameters <b>grows during training</b> as weights move from initialization.<br>Stopping early limits how far weights can move, similar to constraining their magnitude with L2.",
       "tags": [
         "ch09",
         "early-stopping",
@@ -153,7 +153,7 @@
     {
       "uid": "09-015",
       "front": "What is the double descent phenomenon?",
-      "back": "A non-monotonic relationship between model complexity and test error:\n\n1. <b>Classic regime</b>: Error decreases then increases (bias-variance tradeoff)\n\n2. <b>Interpolation threshold</b>: Error peaks when model can exactly fit training data\n\n3. <b>Modern regime</b>: Error decreases again with over-parameterization\n\nChallenges classical understanding of overfitting.",
+      "back": "A non-monotonic relationship between model complexity and test error:<br><ol><li><b>Classic regime</b>: Error decreases then increases (bias-variance tradeoff)</li></ol><ol><li><b>Interpolation threshold</b>: Error peaks when model can exactly fit training data</li></ol><ol><li><b>Modern regime</b>: Error decreases again with over-parameterization</li></ol>Challenges classical understanding of overfitting.",
       "tags": [
         "ch09",
         "double-descent",
@@ -163,7 +163,7 @@
     {
       "uid": "09-016",
       "front": "What is parameter sharing (weight tying)?",
-      "back": "Using the <b>same weight value</b> for multiple connections in a network.\n\nBenefits:\n\n- Reduces number of parameters\n- Encodes prior knowledge about structure\n- Key mechanism in CNNs (same filter everywhere)\n\nThe shared value is learned from data.",
+      "back": "Using the <b>same weight value</b> for multiple connections in a network.<br>Benefits:<br><ul><li>Reduces number of parameters</li><li>Encodes prior knowledge about structure</li><li>Key mechanism in CNNs (same filter everywhere)</li></ul>The shared value is learned from data.",
       "tags": [
         "ch09",
         "weight-sharing",
@@ -173,7 +173,7 @@
     {
       "uid": "09-017",
       "front": "What are residual connections (skip connections)?",
-      "back": "Connections that <b>add the input directly to the output</b> of a layer:\n\n\\( \\mathbf{y} = F(\\mathbf{x}) + \\mathbf{x} \\)\n\nBenefits:\n\n- Allow gradients to flow directly through network\n- Enable training of very deep networks (100+ layers)\n- Each block learns the 'residual' - what needs to be added\n\nFoundation of ResNets.",
+      "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\mathbf{y} = F(\\mathbf{x}) + \\mathbf{x} \\)<br>Benefits:<br><ul><li>Allow gradients to flow directly through network</li><li>Enable training of very deep networks (100+ layers)</li><li>Each block learns the 'residual' - what needs to be added</li></ul>Foundation of ResNets.",
       "tags": [
         "ch09",
         "residual",
@@ -183,7 +183,7 @@
     {
       "uid": "09-018",
       "front": "What is dropout?",
-      "back": "A regularization technique that <b>randomly drops nodes</b> during training.\n\nWith probability p, each hidden/input node is set to zero.\n\nAt test time: Use all nodes but scale activations by (1-p).\n\nInterpretation: Implicit ensemble of \\( 2^N \\) sub-networks.",
+      "back": "A regularization technique that <b>randomly drops nodes</b> during training.<br>With probability p, each hidden/input node is set to zero.<br>At test time: Use all nodes but scale activations by (1-p).<br>Interpretation: Implicit ensemble of \\( 2^N \\) sub-networks.",
       "tags": [
         "ch09",
         "dropout",
@@ -193,7 +193,7 @@
     {
       "uid": "09-019",
       "front": "Why is dropout interpreted as model averaging?",
-      "back": "Each dropout mask defines a <b>different sub-network</b>.\n\nWith N droppable nodes, there are \\( 2^N \\) possible sub-networks.\n\n- Training: Sample different networks\n- Inference: Approximate average of all networks\n\nAchieves ensemble benefits without training multiple models explicitly.",
+      "back": "Each dropout mask defines a <b>different sub-network</b>.<br>With N droppable nodes, there are \\( 2^N \\) possible sub-networks.<br><ul><li>Training: Sample different networks</li><li>Inference: Approximate average of all networks</li></ul>Achieves ensemble benefits without training multiple models explicitly.",
       "tags": [
         "ch09",
         "dropout",
@@ -203,7 +203,7 @@
     {
       "uid": "09-020",
       "front": "How does dropout prevent co-adaptation of features?",
-      "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.\n\nNodes must learn robust features useful independently.\n\nPrevents complex co-adaptations that might overfit.\n\nForces redundancy and distributed representations.",
+      "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.<br>Nodes must learn robust features useful independently.<br>Prevents complex co-adaptations that might overfit.<br>Forces redundancy and distributed representations.",
       "tags": [
         "ch09",
         "dropout",
@@ -213,7 +213,7 @@
     {
       "uid": "09-021",
       "front": "What is Monte Carlo dropout?",
-      "back": "Using dropout at <b>test time</b> (not just training) to estimate uncertainty.\n\nMethod:\n\n1. Run multiple forward passes with different dropout masks\n2. Variance in predictions indicates model uncertainty\n\nProvides approximate Bayesian inference cheaply.",
+      "back": "Using dropout at <b>test time</b> (not just training) to estimate uncertainty.<br>Method:<br><ol><li>Run multiple forward passes with different dropout masks</li><li>Variance in predictions indicates model uncertainty</li></ol>Provides approximate Bayesian inference cheaply.",
       "tags": [
         "ch09",
         "mc-dropout",
@@ -223,7 +223,7 @@
     {
       "uid": "09-022",
       "front": "How does dropout affect training time?",
-      "back": "Training takes <b>longer</b> with dropout because:\n\n- Each update uses only a subset of nodes\n- Updates are noisier (higher variance)\n- More epochs needed for convergence\n\nBut generalization often improves, justifying extra training.",
+      "back": "Training takes <b>longer</b> with dropout because:<br><ul><li>Each update uses only a subset of nodes</li><li>Updates are noisier (higher variance)</li><li>More epochs needed for convergence</li></ul>But generalization often improves, justifying extra training.",
       "tags": [
         "ch09",
         "dropout",
@@ -233,7 +233,7 @@
     {
       "uid": "09-023",
       "front": "What is the relationship between model size and generalization in modern deep learning?",
-      "back": "In the over-parameterized regime:\n\n- Many solutions can interpolate training data\n- Optimization and regularization select <b>simpler</b> solutions\n- Larger models can find smoother interpolations\n\nBest results: Large network + strong regularization\n\nNot: Small network with just enough capacity.",
+      "back": "In the over-parameterized regime:<br><ul><li>Many solutions can interpolate training data</li><li>Optimization and regularization select <b>simpler</b> solutions</li><li>Larger models can find smoother interpolations</li></ul>Best results: Large network + strong regularization<br>Not: Small network with just enough capacity.",
       "tags": [
         "ch09",
         "over-parameterization",
@@ -243,7 +243,7 @@
     {
       "uid": "09-024",
       "front": "What is a group in the context of symmetries?",
-      "back": "A mathematical structure describing transformations that form a symmetry.\n\nFour axioms:\n\n1. <b>Closed</b>: Composition of two elements is in the set\n2. <b>Associative</b>: (A \\( \\circ \\) B) \\( \\circ \\) C = A \\( \\circ \\) (B \\( \\circ \\) C)\n3. <b>Identity</b>: Element I such that A \\( \\circ \\) I = A\n4. <b>Inverse</b>: For each A, exists \\( A^{-1} \\) such that A \\( \\circ A^{-1} \\) = I",
+      "back": "A mathematical structure describing transformations that form a symmetry.<br>Four axioms:<br><ol><li><b>Closed</b>: Composition of two elements is in the set</li><li><b>Associative</b>: (A \\( \\circ \\) B) \\( \\circ \\) C = A \\( \\circ \\) (B \\( \\circ \\) C)</li><li><b>Identity</b>: Element I such that A \\( \\circ \\) I = A</li><li><b>Inverse</b>: For each A, exists \\( A^{-1} \\) such that A \\( \\circ A^{-1} \\) = I</li></ol>",
       "tags": [
         "ch09",
         "groups",
@@ -253,7 +253,7 @@
     {
       "uid": "09-025",
       "front": "What is geometric deep learning?",
-      "back": "A framework for designing neural networks that respect <b>geometric symmetries</b>.\n\nKey idea: Build invariances/equivariances into network architecture.\n\nExamples:\n\n- CNNs: Translation equivariance\n- Graph NNs: Permutation equivariance\n- Spherical CNNs: Rotation equivariance\n\nUnifying principle for many network architectures.",
+      "back": "A framework for designing neural networks that respect <b>geometric symmetries</b>.<br>Key idea: Build invariances/equivariances into network architecture.<br>Examples:<br><ul><li>CNNs: Translation equivariance</li><li>Graph NNs: Permutation equivariance</li><li>Spherical CNNs: Rotation equivariance</li></ul>Unifying principle for many network architectures.",
       "tags": [
         "ch09",
         "geometric-deep-learning",

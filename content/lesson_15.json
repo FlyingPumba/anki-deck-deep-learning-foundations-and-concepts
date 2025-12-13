@@ -13,7 +13,7 @@
     {
       "uid": "15-001",
       "front": "What is K-means clustering?",
-      "back": "An algorithm to partition N data points into K clusters.\n\nObjective: Minimize sum of squared distances to cluster centres:\n\n\\( J = \\sum_{n=1}^{N} \\sum_{k=1}^{K} r_{nk} ||\\mathbf{x}_n - \\boldsymbol{\\mu}_k||^2 \\)\n\nwhere \\( r_{nk} \\in \\{0,1\\} \\) indicates cluster assignment.",
+      "back": "An algorithm to partition N data points into K clusters.<br>Objective: Minimize sum of squared distances to cluster centres:<br>\\( J = \\sum_{n=1}^{N} \\sum_{k=1}^{K} r_{nk} ||\\mathbf{x}_n - \\boldsymbol{\\mu}_k||^2 \\)<br>where \\( r_{nk} \\in \\{0,1\\} \\) indicates cluster assignment.",
       "tags": [
         "ch15",
         "k-means",
@@ -23,7 +23,7 @@
     {
       "uid": "15-002",
       "front": "What are the two steps of the K-means algorithm?",
-      "back": "<b>E step</b>: Assign each point to nearest cluster centre\n\\( r_{nk} = 1 \\) if \\( k = \\arg\\min_j ||\\mathbf{x}_n - \\boldsymbol{\\mu}_j||^2 \\)\n\n<b>M step</b>: Update cluster centres to be mean of assigned points\n\\( \\boldsymbol{\\mu}_k = \\frac{\\sum_n r_{nk} \\mathbf{x}_n}{\\sum_n r_{nk}} \\)\n\nAlternate until convergence.",
+      "back": "<b>E step</b>: Assign each point to nearest cluster centre<br>\\( r_{nk} = 1 \\) if \\( k = \\arg\\min_j ||\\mathbf{x}_n - \\boldsymbol{\\mu}_j||^2 \\)<br><b>M step</b>: Update cluster centres to be mean of assigned points<br>\\( \\boldsymbol{\\mu}_k = \\frac{\\sum_n r_{nk} \\mathbf{x}_n}{\\sum_n r_{nk}} \\)<br>Alternate until convergence.",
       "tags": [
         "ch15",
         "k-means",
@@ -33,7 +33,7 @@
     {
       "uid": "15-003",
       "front": "Is K-means guaranteed to converge?",
-      "back": "Yes, K-means is <b>guaranteed to converge</b> in a finite number of steps.\n\nReason: Assignments are discrete, and each step cannot increase J.\n\nHowever, may converge to a <b>local minimum</b>, not global minimum.",
+      "back": "Yes, K-means is <b>guaranteed to converge</b> in a finite number of steps.<br>Reason: Assignments are discrete, and each step cannot increase J.<br>However, may converge to a <b>local minimum</b>, not global minimum.",
       "tags": [
         "ch15",
         "k-means",
@@ -43,7 +43,7 @@
     {
       "uid": "15-004",
       "front": "What is vector quantization?",
-      "back": "Application of K-means to <b>lossy data compression</b>.\n\nThe cluster centres \\( \\{\\boldsymbol{\\mu}_k\\} \\) are called <b>codebook vectors</b>.\n\nTo compress: Replace each data point with index of nearest codebook vector.\n\nTo decompress: Look up codebook vector from index.",
+      "back": "Application of K-means to <b>lossy data compression</b>.<br>The cluster centres \\( \\{\\boldsymbol{\\mu}_k\\} \\) are called <b>codebook vectors</b>.<br>To compress: Replace each data point with index of nearest codebook vector.<br>To decompress: Look up codebook vector from index.",
       "tags": [
         "ch15",
         "vector-quantization",
@@ -53,7 +53,7 @@
     {
       "uid": "15-005",
       "front": "What is a Gaussian mixture model?",
-      "back": "A probability distribution expressed as a weighted sum of Gaussians:\n\n\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)\n\nwhere:\n\n- \\( \\pi_k \\) are mixing coefficients (\\( \\sum_k \\pi_k = 1 \\))\n- \\( \\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k \\) are component parameters",
+      "back": "A probability distribution expressed as a weighted sum of Gaussians:<br>\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)<br>where:<br><ul><li>\\( \\pi_k \\) are mixing coefficients (\\( \\sum_k \\pi_k = 1 \\))</li><li>\\( \\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k \\) are component parameters</li></ul>",
       "tags": [
         "ch15",
         "gmm",
@@ -63,7 +63,7 @@
     {
       "uid": "15-006",
       "front": "What is the latent variable interpretation of Gaussian mixtures?",
-      "back": "Introduce discrete latent variable <b>z</b> with 1-of-K encoding.\n\n\\( p(z_k = 1) = \\pi_k \\) (prior)\n\n\\( p(\\mathbf{x}|z_k = 1) = \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)\n\nFor every observed \\( \\mathbf{x}_n \\) there is a corresponding latent \\( \\mathbf{z}_n \\) indicating which component generated it.",
+      "back": "Introduce discrete latent variable <b>z</b> with 1-of-K encoding.<br>\\( p(z_k = 1) = \\pi_k \\) (prior)<br>\\( p(\\mathbf{x}|z_k = 1) = \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)<br>For every observed \\( \\mathbf{x}_n \\) there is a corresponding latent \\( \\mathbf{z}_n \\) indicating which component generated it.",
       "tags": [
         "ch15",
         "gmm",
@@ -73,7 +73,7 @@
     {
       "uid": "15-007",
       "front": "What is the responsibility in Gaussian mixture models?",
-      "back": "The <b>posterior probability</b> that component k generated data point n:\n\n\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)\n\nInterpretation: How \"responsible\" component k is for generating \\( \\mathbf{x}_n \\).",
+      "back": "The <b>posterior probability</b> that component k generated data point n:<br>\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)<br>Interpretation: How \"responsible\" component k is for generating \\( \\mathbf{x}_n \\).",
       "tags": [
         "ch15",
         "gmm",
@@ -83,7 +83,7 @@
     {
       "uid": "15-008",
       "front": "What is the Expectation-Maximization (EM) algorithm?",
-      "back": "A general method for finding <b>maximum likelihood</b> solutions in models with latent variables.\n\nTwo alternating steps:\n\n1. <b>E step</b>: Compute posterior over latent variables using current parameters\n\n2. <b>M step</b>: Maximize expected complete-data log likelihood\n\nGuaranteed to increase likelihood at each step.",
+      "back": "A general method for finding <b>maximum likelihood</b> solutions in models with latent variables.<br>Two alternating steps:<br><ol><li><b>E step</b>: Compute posterior over latent variables using current parameters</li></ol><ol><li><b>M step</b>: Maximize expected complete-data log likelihood</li></ol>Guaranteed to increase likelihood at each step.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -93,7 +93,7 @@
     {
       "uid": "15-009",
       "front": "What is the E step in EM for Gaussian mixtures?",
-      "back": "Evaluate responsibilities using current parameters:\n\n\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)\n\nThese soft assignments replace the hard assignments \\( r_{nk} \\) in K-means.",
+      "back": "Evaluate responsibilities using current parameters:<br>\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)<br>These soft assignments replace the hard assignments \\( r_{nk} \\) in K-means.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -103,7 +103,7 @@
     {
       "uid": "15-010",
       "front": "What is the M step in EM for Gaussian mixtures?",
-      "back": "Re-estimate parameters using responsibilities:\n\n\\( \\boldsymbol{\\mu}_k = \\frac{1}{N_k} \\sum_n \\gamma(z_{nk}) \\mathbf{x}_n \\)\n\n\\( \\boldsymbol{\\Sigma}_k = \\frac{1}{N_k} \\sum_n \\gamma(z_{nk}) (\\mathbf{x}_n - \\boldsymbol{\\mu}_k)(\\mathbf{x}_n - \\boldsymbol{\\mu}_k)^T \\)\n\n\\( \\pi_k = \\frac{N_k}{N} \\)\n\nwhere \\( N_k = \\sum_n \\gamma(z_{nk}) \\) is effective number of points.",
+      "back": "Re-estimate parameters using responsibilities:<br>\\( \\boldsymbol{\\mu}_k = \\frac{1}{N_k} \\sum_n \\gamma(z_{nk}) \\mathbf{x}_n \\)<br>\\( \\boldsymbol{\\Sigma}_k = \\frac{1}{N_k} \\sum_n \\gamma(z_{nk}) (\\mathbf{x}_n - \\boldsymbol{\\mu}_k)(\\mathbf{x}_n - \\boldsymbol{\\mu}_k)^T \\)<br>\\( \\pi_k = \\frac{N_k}{N} \\)<br>where \\( N_k = \\sum_n \\gamma(z_{nk}) \\) is effective number of points.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -113,7 +113,7 @@
     {
       "uid": "15-011",
       "front": "What is \\( N_k \\) in the EM algorithm for GMM?",
-      "back": "The <b>effective number of points</b> assigned to cluster k:\n\n\\( N_k = \\sum_{n=1}^{N} \\gamma(z_{nk}) \\)\n\nSoft version of cluster size. Can be non-integer.\n\nUsed to normalize mean and covariance estimates.",
+      "back": "The <b>effective number of points</b> assigned to cluster k:<br>\\( N_k = \\sum_{n=1}^{N} \\gamma(z_{nk}) \\)<br>Soft version of cluster size. Can be non-integer.<br>Used to normalize mean and covariance estimates.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -123,7 +123,7 @@
     {
       "uid": "15-012",
       "front": "Why is EM not guaranteed to find the global maximum?",
-      "back": "EM only guarantees <b>monotonic increase</b> in log likelihood.\n\nMay converge to a <b>local maximum</b>.\n\nMitigation strategies:\n\n- Run multiple times with different initializations\n- Initialize with K-means\n- Use techniques like simulated annealing",
+      "back": "EM only guarantees <b>monotonic increase</b> in log likelihood.<br>May converge to a <b>local maximum</b>.<br>Mitigation strategies:<br><ul><li>Run multiple times with different initializations</li><li>Initialize with K-means</li><li>Use techniques like simulated annealing</li></ul>",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -133,7 +133,7 @@
     {
       "uid": "15-013",
       "front": "Why use K-means to initialize EM for Gaussian mixtures?",
-      "back": "<b>K-means is much faster</b> than EM:\n\n- Fewer iterations to converge\n- Simpler computations per iteration\n\nInitialization strategy:\n\n- Run K-means to get cluster centres\n- Initialize GMM means with K-means centres\n- Initialize covariances with cluster sample covariances\n- Initialize mixing coefficients with cluster proportions",
+      "back": "<b>K-means is much faster</b> than EM:<br><ul><li>Fewer iterations to converge</li><li>Simpler computations per iteration</li></ul>Initialization strategy:<br><ul><li>Run K-means to get cluster centres</li><li>Initialize GMM means with K-means centres</li><li>Initialize covariances with cluster sample covariances</li><li>Initialize mixing coefficients with cluster proportions</li></ul>",
       "tags": [
         "ch15",
         "initialization",
@@ -143,7 +143,7 @@
     {
       "uid": "15-014",
       "front": "What is the singularity problem in GMM maximum likelihood?",
-      "back": "If a Gaussian component <b>collapses</b> onto a single data point:\n\n- Variance \\( \\to 0 \\)\n- Likelihood \\( \\to \\infty \\)\n\nThis is a pathological solution.\n\nSolutions:\n\n- Detect collapse and reset parameters\n- Use regularization/priors\n- Constrain minimum variance",
+      "back": "If a Gaussian component <b>collapses</b> onto a single data point:<br><ul><li>Variance \\( \\to 0 \\)</li><li>Likelihood \\( \\to \\infty \\)</li></ul>This is a pathological solution.<br>Solutions:<br><ul><li>Detect collapse and reset parameters</li><li>Use regularization/priors</li><li>Constrain minimum variance</li></ul>",
       "tags": [
         "ch15",
         "gmm",
@@ -153,7 +153,7 @@
     {
       "uid": "15-015",
       "front": "What is the identifiability problem in mixture models?",
-      "back": "For K components, there are <b>K! equivalent solutions</b> corresponding to different labelings.\n\nSwapping component labels gives same distribution.\n\nImportant for parameter interpretation, irrelevant for density modeling.",
+      "back": "For K components, there are <b>K! equivalent solutions</b> corresponding to different labelings.<br>Swapping component labels gives same distribution.<br>Important for parameter interpretation, irrelevant for density modeling.",
       "tags": [
         "ch15",
         "gmm",
@@ -163,7 +163,7 @@
     {
       "uid": "15-016",
       "front": "What is the complete-data log likelihood?",
-      "back": "The log likelihood if we knew the latent variables Z:\n\n\\( \\ln p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)\n\nFor GMM:\n\\( \\sum_{n=1}^{N} \\sum_{k=1}^{K} z_{nk} [\\ln \\pi_k + \\ln \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)] \\)\n\nEasier to optimize than incomplete-data likelihood.",
+      "back": "The log likelihood if we knew the latent variables Z:<br>\\( \\ln p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)<br>For GMM:<br>\\( \\sum_{n=1}^{N} \\sum_{k=1}^{K} z_{nk} [\\ln \\pi_k + \\ln \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)] \\)<br>Easier to optimize than incomplete-data likelihood.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -173,7 +173,7 @@
     {
       "uid": "15-017",
       "front": "What is the Q function in the EM algorithm?",
-      "back": "Expected complete-data log likelihood under posterior of latent variables:\n\n\\( Q(\\theta, \\theta^{\\text{old}}) = \\sum_{\\mathbf{Z}} p(\\mathbf{Z}|\\mathbf{X}, \\theta^{\\text{old}}) \\ln p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)\n\nE step computes this expectation.\nM step maximizes Q over \\( \\theta \\).",
+      "back": "Expected complete-data log likelihood under posterior of latent variables:<br>\\( Q(\\theta, \\theta^{\\text{old}}) = \\sum_{\\mathbf{Z}} p(\\mathbf{Z}|\\mathbf{X}, \\theta^{\\text{old}}) \\ln p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)<br>E step computes this expectation.<br>M step maximizes Q over \\( \\theta \\).",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -183,7 +183,7 @@
     {
       "uid": "15-018",
       "front": "Why does the summation inside the logarithm make GMM optimization difficult?",
-      "back": "The marginal likelihood involves:\n\n\\( \\ln \\sum_{\\mathbf{Z}} p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)\n\nThe <b>sum inside the log</b> prevents simple decomposition.\n\nEven if joint distribution is in exponential family, the marginal typically is not.\n\nEM sidesteps this by working with expected complete-data likelihood.",
+      "back": "The marginal likelihood involves:<br>\\( \\ln \\sum_{\\mathbf{Z}} p(\\mathbf{X}, \\mathbf{Z}|\\theta) \\)<br>The <b>sum inside the log</b> prevents simple decomposition.<br>Even if joint distribution is in exponential family, the marginal typically is not.<br>EM sidesteps this by working with expected complete-data likelihood.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -193,7 +193,7 @@
     {
       "uid": "15-019",
       "front": "What is a hidden Markov model (HMM)?",
-      "back": "Extension of mixture models for <b>sequential data</b>.\n\nThe discrete latent variables are connected in a <b>Markov chain</b>:\n\n\\( p(z_1, \\ldots, z_T) = p(z_1) \\prod_{t=2}^{T} p(z_t | z_{t-1}) \\)\n\nUsed for speech recognition, genomics, time series.",
+      "back": "Extension of mixture models for <b>sequential data</b>.<br>The discrete latent variables are connected in a <b>Markov chain</b>:<br>\\( p(z_1, \\ldots, z_T) = p(z_1) \\prod_{t=2}^{T} p(z_t | z_{t-1}) \\)<br>Used for speech recognition, genomics, time series.",
       "tags": [
         "ch15",
         "hmm",
@@ -203,7 +203,7 @@
     {
       "uid": "15-020",
       "front": "How does K-means relate to GMM?",
-      "back": "K-means is a <b>special limit</b> of GMM where:\n\n- All covariances are \\( \\epsilon \\mathbf{I} \\) with \\( \\epsilon \\to 0 \\)\n- Responsibilities become hard assignments (0 or 1)\n- Each point assigned to exactly one cluster\n\nK-means is \"hard\" clustering, GMM is \"soft\" clustering.",
+      "back": "K-means is a <b>special limit</b> of GMM where:<br><ul><li>All covariances are \\( \\epsilon \\mathbf{I} \\) with \\( \\epsilon \\to 0 \\)</li><li>Responsibilities become hard assignments (0 or 1)</li><li>Each point assigned to exactly one cluster</li></ul>K-means is \"hard\" clustering, GMM is \"soft\" clustering.",
       "tags": [
         "ch15",
         "k-means",
@@ -213,7 +213,7 @@
     {
       "uid": "15-021",
       "front": "What is the difference between hard and soft clustering?",
-      "back": "<b>Hard clustering</b> (K-means):\n\n- Each point assigned to exactly one cluster\n- Binary assignments \\( r_{nk} \\in \\{0,1\\} \\)\n\n<b>Soft clustering</b> (GMM):\n\n- Points have probabilistic membership\n- Continuous responsibilities \\( \\gamma(z_{nk}) \\in [0,1] \\)\n- Accounts for uncertainty in assignments",
+      "back": "<b>Hard clustering</b> (K-means):<br><ul><li>Each point assigned to exactly one cluster</li><li>Binary assignments \\( r_{nk} \\in \\{0,1\\} \\)</li></ul><b>Soft clustering</b> (GMM):<br><ul><li>Points have probabilistic membership</li><li>Continuous responsibilities \\( \\gamma(z_{nk}) \\in [0,1] \\)</li><li>Accounts for uncertainty in assignments</li></ul>",
       "tags": [
         "ch15",
         "clustering",
@@ -223,7 +223,7 @@
     {
       "uid": "15-022",
       "front": "What is the evidence lower bound (ELBO)?",
-      "back": "A lower bound on the log marginal likelihood:\n\n\\( \\ln p(\\mathbf{X}|\\theta) \\geq \\mathcal{L}(q, \\theta) \\)\n\nwhere \\( \\mathcal{L} \\) is the ELBO.\n\nEM can be viewed as <b>coordinate ascent</b> on the ELBO:\n\n- E step: Optimize \\( q \\) (tightens bound)\n- M step: Optimize \\( \\theta \\)",
+      "back": "A lower bound on the log marginal likelihood:<br>\\( \\ln p(\\mathbf{X}|\\theta) \\geq \\mathcal{L}(q, \\theta) \\)<br>where \\( \\mathcal{L} \\) is the ELBO.<br>EM can be viewed as <b>coordinate ascent</b> on the ELBO:<br><ul><li>E step: Optimize \\( q \\) (tightens bound)</li><li>M step: Optimize \\( \\theta \\)</li></ul>",
       "tags": [
         "ch15",
         "elbo",
@@ -233,7 +233,7 @@
     {
       "uid": "15-023",
       "front": "How can EM be extended to find MAP solutions?",
-      "back": "Add a prior \\( p(\\theta) \\) over parameters.\n\nE step: Same as ML case\n\nM step: Maximize \\( Q(\\theta, \\theta^{\\text{old}}) + \\ln p(\\theta) \\)\n\nSuitable priors can <b>remove singularities</b> in GMM.",
+      "back": "Add a prior \\( p(\\theta) \\) over parameters.<br>E step: Same as ML case<br>M step: Maximize \\( Q(\\theta, \\theta^{\\text{old}}) + \\ln p(\\theta) \\)<br>Suitable priors can <b>remove singularities</b> in GMM.",
       "tags": [
         "ch15",
         "em-algorithm",
@@ -243,7 +243,7 @@
     {
       "uid": "15-024",
       "front": "What is the relationship between data standardization and K-means?",
-      "back": "K-means uses Euclidean distance, which is <b>scale-dependent</b>.\n\nBefore K-means, often apply <b>standardization</b>:\n\n- Subtract mean (zero mean)\n- Divide by standard deviation (unit variance)\n\nEnsures all features contribute equally to clustering.",
+      "back": "K-means uses Euclidean distance, which is <b>scale-dependent</b>.<br>Before K-means, often apply <b>standardization</b>:<br><ul><li>Subtract mean (zero mean)</li><li>Divide by standard deviation (unit variance)</li></ul>Ensures all features contribute equally to clustering.",
       "tags": [
         "ch15",
         "k-means",
@@ -253,7 +253,7 @@
     {
       "uid": "15-025",
       "front": "Why do mixture models require many components in high dimensions?",
-      "back": "In high-dimensional spaces, data often lies on <b>complex manifolds</b>.\n\nGaussian components are <b>locally linear</b> approximations.\n\nAccurate modeling of complex distributions requires <b>exponentially many</b> components.\n\nMotivates nonlinear latent variable models (VAEs, etc.).",
+      "back": "In high-dimensional spaces, data often lies on <b>complex manifolds</b>.<br>Gaussian components are <b>locally linear</b> approximations.<br>Accurate modeling of complex distributions requires <b>exponentially many</b> components.<br>Motivates nonlinear latent variable models (VAEs, etc.).",
       "tags": [
         "ch15",
         "gmm",

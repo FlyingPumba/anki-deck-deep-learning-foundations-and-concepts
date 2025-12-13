@@ -83,7 +83,7 @@
     {
       "uid": "01-008",
       "front": "What is self-supervised learning?",
-      "back": "<b>Self-supervised learning</b> is when a function from inputs to outputs is learned, but the labelled outputs are obtained automatically from the input training data without needing separate human-derived labels.\n\nExample: predicting the next word in a sequence, where the target is derived from the text itself.",
+      "back": "<b>Self-supervised learning</b> is when a function from inputs to outputs is learned, but the labelled outputs are obtained automatically from the input training data without needing separate human-derived labels.<br>Example: predicting the next word in a sequence, where the target is derived from the text itself.",
       "tags": [
         "ch01",
         "self-supervised-learning",
@@ -113,7 +113,7 @@
     {
       "uid": "01-011",
       "front": "What is a linear model in machine learning?",
-      "back": "A <b>linear model</b> is a function that is linear in its unknown parameters (weights), even if it is nonlinear in the input variables.\n\nExample: \\( y(x, w) = w_0 + w_1 x + w_2 x^2 + \\ldots + w_M x^M \\) is linear in \\( w \\) but nonlinear in \\( x \\).",
+      "back": "A <b>linear model</b> is a function that is linear in its unknown parameters (weights), even if it is nonlinear in the input variables.<br>Example: \\( y(x, w) = w_0 + w_1 x + w_2 x^2 + \\ldots + w_M x^M \\) is linear in \\( w \\) but nonlinear in \\( x \\).",
       "tags": [
         "ch01",
         "linear-models",
@@ -123,7 +123,7 @@
     {
       "uid": "01-012",
       "front": "What is the sum-of-squares error function?",
-      "back": "The sum-of-squares error function measures the misfit between predictions and training data:\n\n\\( E(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 \\)\n\nwhere \\( y(x_n, w) \\) is the prediction and \\( t_n \\) is the target value.",
+      "back": "The sum-of-squares error function measures the misfit between predictions and training data:<br>\\( E(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 \\)<br>where \\( y(x_n, w) \\) is the prediction and \\( t_n \\) is the target value.",
       "tags": [
         "ch01",
         "error-function",
@@ -153,7 +153,7 @@
     {
       "uid": "01-015",
       "front": "What is the root-mean-square (RMS) error and why is it useful?",
-      "back": "\\( E_{RMS} = \\sqrt{\\frac{1}{N} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2} \\)\n\nIt is useful because:\n\n- Division by \\( N \\) allows comparison across different dataset sizes\n- The square root ensures the error is measured in the same units as the target variable",
+      "back": "\\( E_{RMS} = \\sqrt{\\frac{1}{N} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2} \\)<br>It is useful because:<br><ul><li>Division by \\( N \\) allows comparison across different dataset sizes</li><li>The square root ensures the error is measured in the same units as the target variable</li></ul>",
       "tags": [
         "ch01",
         "error-function",
@@ -183,7 +183,7 @@
     {
       "uid": "01-018",
       "front": "What is the regularized error function with L2 penalty?",
-      "back": "\\( \\tilde{E}(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\)\n\nwhere \\( \\|w\\|^2 = w^T w = w_0^2 + w_1^2 + \\ldots + w_M^2 \\)\n\nThe coefficient \\( \\lambda \\) governs the relative importance of the regularization term.",
+      "back": "\\( \\tilde{E}(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\)<br>where \\( \\|w\\|^2 = w^T w = w_0^2 + w_1^2 + \\ldots + w_M^2 \\)<br>The coefficient \\( \\lambda \\) governs the relative importance of the regularization term.",
       "tags": [
         "ch01",
         "regularization",
@@ -193,7 +193,7 @@
     {
       "uid": "01-019",
       "front": "What are shrinkage methods? What is another name for this in neural networks?",
-      "back": "<b>Shrinkage methods</b> are techniques that reduce the value of the coefficients through regularization.\n\nIn the context of neural networks, this is called <b>weight decay</b> because the regularizer encourages the weights to decay towards zero.",
+      "back": "<b>Shrinkage methods</b> are techniques that reduce the value of the coefficients through regularization.<br>In the context of neural networks, this is called <b>weight decay</b> because the regularizer encourages the weights to decay towards zero.",
       "tags": [
         "ch01",
         "regularization",
@@ -203,7 +203,7 @@
     {
       "uid": "01-020",
       "front": "What is a hyperparameter?",
-      "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:\n\n- The regularization coefficient \\( \\lambda \\)\n- The order \\( M \\) of a polynomial\n- Learning rate",
+      "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:<br><ul><li>The regularization coefficient \\( \\lambda \\)</li><li>The order \\( M \\) of a polynomial</li><li>Learning rate</li></ul>",
       "tags": [
         "ch01",
         "hyperparameters",
@@ -213,7 +213,7 @@
     {
       "uid": "01-021",
       "front": "What is the difference between a training set and a validation set?",
-      "back": "- <b>Training set</b>: Used to determine the model parameters (weights)\n- <b>Validation set</b> (also called hold-out or development set): Used to select hyperparameters and model architecture\n\nA third <b>test set</b> may be kept aside for final evaluation.",
+      "back": "<ul><li><b>Training set</b>: Used to determine the model parameters (weights)</li><li><b>Validation set</b> (also called hold-out or development set): Used to select hyperparameters and model architecture</li></ul>A third <b>test set</b> may be kept aside for final evaluation.",
       "tags": [
         "ch01",
         "data-splits",
@@ -223,7 +223,7 @@
     {
       "uid": "01-022",
       "front": "What is S-fold cross-validation?",
-      "back": "<b>S-fold cross-validation</b> partitions data into S groups. For each run:\n\n- Train on S-1 groups\n- Evaluate on the remaining group\n\nRepeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
+      "back": "<b>S-fold cross-validation</b> partitions data into S groups. For each run:<br><ul><li>Train on S-1 groups</li><li>Evaluate on the remaining group</li></ul>Repeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
       "tags": [
         "ch01",
         "cross-validation",
@@ -233,7 +233,7 @@
     {
       "uid": "01-023",
       "front": "What is the perceptron and what is its historical significance?",
-      "back": "The <b>perceptron</b> (Rosenblatt, 1962) is a single-layer neural network with a step activation function:\n\n\\( f(a) = \\begin{cases} 0, & \\text{if } a \\leq 0 \\\\ 1, & \\text{if } a > 0 \\end{cases} \\)\n\nIt was one of the first trainable neural network models, but Minsky and Papert (1969) gave formal proofs of its limited capabilities.",
+      "back": "The <b>perceptron</b> (Rosenblatt, 1962) is a single-layer neural network with a step activation function:<br>\\( f(a) = \\begin{cases} 0, & \\text{if } a \\leq 0 \\\\ 1, & \\text{if } a > 0 \\end{cases} \\)<br>It was one of the first trainable neural network models, but Minsky and Papert (1969) gave formal proofs of its limited capabilities.",
       "tags": [
         "ch01",
         "perceptron",
@@ -253,7 +253,7 @@
     {
       "uid": "01-025",
       "front": "What two key changes enabled training of multilayer neural networks?",
-      "back": "1. Replace the step function with <b>continuous differentiable activation functions</b> having non-zero gradients\n\n2. Introduce <b>differentiable error functions</b> that define how well parameter values predict target variables",
+      "back": "<ol><li>Replace the step function with <b>continuous differentiable activation functions</b> having non-zero gradients</li></ol><ol><li>Introduce <b>differentiable error functions</b> that define how well parameter values predict target variables</li></ol>",
       "tags": [
         "ch01",
         "backpropagation",
@@ -303,7 +303,7 @@
     {
       "uid": "01-030",
       "front": "What are inductive biases (or prior knowledge) in machine learning?",
-      "back": "<b>Inductive biases</b> are background assumptions that influence learning from data. They can be:\n\n- <b>Explicit</b>: e.g., designing network structure so classification doesn't depend on object location in image\n- <b>Implicit</b>: arising from the model form or training procedure",
+      "back": "<b>Inductive biases</b> are background assumptions that influence learning from data. They can be:<br><ul><li><b>Explicit</b>: e.g., designing network structure so classification doesn't depend on object location in image</li><li><b>Implicit</b>: arising from the model form or training procedure</li></ul>",
       "tags": [
         "ch01",
         "inductive-bias",
@@ -343,7 +343,7 @@
     {
       "uid": "01-034",
       "front": "How did compute requirements for state-of-the-art neural networks change before and after 2012?",
-      "back": "- <b>Before 2012 (perceptron era)</b>: Compute doubled roughly every 2 years (following Moore's law)\n- <b>After 2012 (deep learning era)</b>: Doubling time reduced to 3.4 months (10x increase per year)",
+      "back": "<ul><li><b>Before 2012 (perceptron era)</b>: Compute doubled roughly every 2 years (following Moore's law)</li><li><b>After 2012 (deep learning era)</b>: Doubling time reduced to 3.4 months (10x increase per year)</li></ul>",
       "tags": [
         "ch01",
         "compute",
@@ -383,7 +383,7 @@
     {
       "uid": "01-038",
       "front": "What is automatic differentiation and why is it important?",
-      "back": "<b>Automatic differentiation</b> automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.\n\nThis allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
+      "back": "<b>Automatic differentiation</b> automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.<br>This allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
       "tags": [
         "ch01",
         "autodiff",
@@ -393,7 +393,7 @@
     {
       "uid": "01-039",
       "front": "How many neurons and synapses does a human brain contain?",
-      "back": "A human brain contains:\n\n- Around <b>90 billion neurons</b>\n- Each neuron has on average several thousand synapses\n- Total of around <b>100 trillion (10^14) synapses</b>",
+      "back": "A human brain contains:<br><ul><li>Around <b>90 billion neurons</b></li><li>Each neuron has on average several thousand synapses</li><li>Total of around <b>100 trillion (10^14) synapses</b></li></ul>",
       "tags": [
         "ch01",
         "neuroscience",
@@ -403,7 +403,7 @@
     {
       "uid": "01-040",
       "front": "What is the mathematical model of a single artificial neuron?",
-      "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)\n\nActivation: \\( y = f(a) \\)\n\nwhere:\n- \\( x_1, \\ldots, x_M \\) are inputs\n- \\( w_1, \\ldots, w_M \\) are weights (synapse strengths)\n- \\( f(\\cdot) \\) is the activation function",
+      "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)<br>Activation: \\( y = f(a) \\)<br>where:<ul><li>\\( x_1, \\ldots, x_M \\) are inputs</li><li>\\( w_1, \\ldots, w_M \\) are weights (synapse strengths)</li><li>\\( f(\\cdot) \\) is the activation function</li></ul>",
       "tags": [
         "ch01",
         "neural-networks",
@@ -423,7 +423,7 @@
     {
       "uid": "01-042",
       "front": "Why can't we determine hyperparameters by minimizing the training error jointly with model parameters?",
-      "back": "Minimizing training error jointly would lead to extreme values:\n\n- Regularization \\( \\lambda \\to 0 \\) (no regularization)\n- Polynomial order \\( M \\to \\) large values\n\nBoth result in overfitting with small/zero training error but poor generalization.",
+      "back": "Minimizing training error jointly would lead to extreme values:<br><ul><li>Regularization \\( \\lambda \\to 0 \\) (no regularization)</li><li>Polynomial order \\( M \\to \\) large values</li></ul>Both result in overfitting with small/zero training error but poor generalization.",
       "tags": [
         "ch01",
         "hyperparameters",

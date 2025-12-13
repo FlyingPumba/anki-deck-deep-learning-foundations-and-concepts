@@ -14,7 +14,7 @@
     {
       "uid": "02-001",
       "front": "What is epistemic uncertainty?",
-      "back": "<b>Epistemic uncertainty</b> (from Greek 'episteme' = knowledge), also called <b>systematic uncertainty</b>, arises because we only get to see data sets of finite size.\n\nIt can be reduced by observing more data.",
+      "back": "<b>Epistemic uncertainty</b> (from Greek 'episteme' = knowledge), also called <b>systematic uncertainty</b>, arises because we only get to see data sets of finite size.<br>It can be reduced by observing more data.",
       "tags": [
         "ch02",
         "uncertainty",
@@ -24,7 +24,7 @@
     {
       "uid": "02-002",
       "front": "What is aleatoric uncertainty?",
-      "back": "<b>Aleatoric uncertainty</b>, also called <b>intrinsic</b>, <b>stochastic</b> uncertainty, or simply <b>noise</b>, exists even with infinite data.\n\nIt arises because we can only observe partial information about the world. It can be reduced by gathering different kinds of data.",
+      "back": "<b>Aleatoric uncertainty</b>, also called <b>intrinsic</b>, <b>stochastic</b> uncertainty, or simply <b>noise</b>, exists even with infinite data.<br>It arises because we can only observe partial information about the world. It can be reduced by gathering different kinds of data.",
       "tags": [
         "ch02",
         "uncertainty",
@@ -34,7 +34,7 @@
     {
       "uid": "02-003",
       "front": "What are the two fundamental rules of probability theory?",
-      "back": "1. <b>Sum rule</b>: \\( p(X) = \\sum_Y p(X, Y) \\)\n\n2. <b>Product rule</b>: \\( p(X, Y) = p(Y|X)p(X) \\)\n\nThese two simple rules form the basis for all probabilistic reasoning.",
+      "back": "<ol><li><b>Sum rule</b>: \\( p(X) = \\sum_Y p(X, Y) \\)</li></ol><ol><li><b>Product rule</b>: \\( p(X, Y) = p(Y|X)p(X) \\)</li></ol>These two simple rules form the basis for all probabilistic reasoning.",
       "tags": [
         "ch02",
         "probability-rules",
@@ -44,7 +44,7 @@
     {
       "uid": "02-004",
       "front": "What is the frequentist view of probability?",
-      "back": "The <b>frequentist view</b> defines probability in terms of the frequency of repeatable events in the limit of infinite trials.\n\nExample: A coin lands heads 60% of the time means \\( p(\\text{heads}) = 0.6 \\) after infinitely many flips.",
+      "back": "The <b>frequentist view</b> defines probability in terms of the frequency of repeatable events in the limit of infinite trials.<br>Example: A coin lands heads 60% of the time means \\( p(\\text{heads}) = 0.6 \\) after infinitely many flips.",
       "tags": [
         "ch02",
         "frequentist",
@@ -54,7 +54,7 @@
     {
       "uid": "02-005",
       "front": "What is the Bayesian view of probability?",
-      "back": "The <b>Bayesian view</b> uses probability as a quantification of uncertainty, not just frequency of repeatable events.\n\nIt is more general and includes frequentist probability as a special case. It can express uncertainty about non-repeatable events (e.g., which side of a coin is heads).",
+      "back": "The <b>Bayesian view</b> uses probability as a quantification of uncertainty, not just frequency of repeatable events.<br>It is more general and includes frequentist probability as a special case. It can express uncertainty about non-repeatable events (e.g., which side of a coin is heads).",
       "tags": [
         "ch02",
         "bayesian",
@@ -64,7 +64,7 @@
     {
       "uid": "02-006",
       "front": "What is a false positive? What is a false negative?",
-      "back": "- <b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)\n\n- <b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)",
+      "back": "<ul><li><b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)</li></ul><ul><li><b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)</li></ul>",
       "tags": [
         "ch02",
         "testing",
@@ -74,7 +74,7 @@
     {
       "uid": "02-007",
       "front": "What are random variables (stochastic variables)?",
-      "back": "<b>Random variables</b> (or <b>stochastic variables</b>) are variables whose values can vary in a way that is generally unknown from one instance to another.\n\nExample: X could represent presence/absence of cancer, Y could represent test outcome.",
+      "back": "<b>Random variables</b> (or <b>stochastic variables</b>) are variables whose values can vary in a way that is generally unknown from one instance to another.<br>Example: X could represent presence/absence of cancer, Y could represent test outcome.",
       "tags": [
         "ch02",
         "random-variables",
@@ -84,7 +84,7 @@
     {
       "uid": "02-008",
       "front": "What is a joint probability?",
-      "back": "The <b>joint probability</b> \\( p(X = x_i, Y = y_j) \\) is the probability that X takes value \\( x_i \\) AND Y takes value \\( y_j \\) simultaneously.\n\nWritten compactly as \\( p(X, Y) \\).",
+      "back": "The <b>joint probability</b> \\( p(X = x_i, Y = y_j) \\) is the probability that X takes value \\( x_i \\) AND Y takes value \\( y_j \\) simultaneously.<br>Written compactly as \\( p(X, Y) \\).",
       "tags": [
         "ch02",
         "joint-probability",
@@ -94,7 +94,7 @@
     {
       "uid": "02-009",
       "front": "What is a marginal probability and how is it computed?",
-      "back": "<b>Marginal probability</b> \\( p(X) \\) is the probability of X irrespective of the value of Y.\n\nComputed by <b>marginalizing</b> (summing out) the other variable:\n\n\\( p(X) = \\sum_Y p(X, Y) \\)\n\nThis is the <b>sum rule</b>.",
+      "back": "<b>Marginal probability</b> \\( p(X) \\) is the probability of X irrespective of the value of Y.<br>Computed by <b>marginalizing</b> (summing out) the other variable:<br>\\( p(X) = \\sum_Y p(X, Y) \\)<br>This is the <b>sum rule</b>.",
       "tags": [
         "ch02",
         "marginal-probability",
@@ -104,7 +104,7 @@
     {
       "uid": "02-010",
       "front": "What is a conditional probability?",
-      "back": "<b>Conditional probability</b> \\( p(Y|X) \\) is the probability of Y given that X has occurred.\n\nFrom the product rule: \\( p(Y|X) = \\frac{p(X, Y)}{p(X)} \\)\n\nRead as \"the probability of Y given X\".",
+      "back": "<b>Conditional probability</b> \\( p(Y|X) \\) is the probability of Y given that X has occurred.<br>From the product rule: \\( p(Y|X) = \\frac{p(X, Y)}{p(X)} \\)<br>Read as \"the probability of Y given X\".",
       "tags": [
         "ch02",
         "conditional-probability",
@@ -114,7 +114,7 @@
     {
       "uid": "02-011",
       "front": "What is Bayes' theorem?",
-      "back": "\\( p(Y|X) = \\frac{p(X|Y)p(Y)}{p(X)} \\)\n\nIt relates the conditional distribution \\( p(Y|X) \\) to the 'reversed' conditional \\( p(X|Y) \\).\n\nThe denominator can be computed as: \\( p(X) = \\sum_Y p(X|Y)p(Y) \\)",
+      "back": "\\( p(Y|X) = \\frac{p(X|Y)p(Y)}{p(X)} \\)<br>It relates the conditional distribution \\( p(Y|X) \\) to the 'reversed' conditional \\( p(X|Y) \\).<br>The denominator can be computed as: \\( p(X) = \\sum_Y p(X|Y)p(Y) \\)",
       "tags": [
         "ch02",
         "bayes-theorem",
@@ -124,7 +124,7 @@
     {
       "uid": "02-012",
       "front": "What is a prior probability?",
-      "back": "<b>Prior probability</b> \\( p(C) \\) is the probability available before observing any evidence.\n\nExample: The probability someone has cancer before receiving a test result (e.g., 1% of population).",
+      "back": "<b>Prior probability</b> \\( p(C) \\) is the probability available before observing any evidence.<br>Example: The probability someone has cancer before receiving a test result (e.g., 1% of population).",
       "tags": [
         "ch02",
         "prior-probability",
@@ -134,7 +134,7 @@
     {
       "uid": "02-013",
       "front": "What is a posterior probability?",
-      "back": "<b>Posterior probability</b> \\( p(C|T) \\) is the probability obtained after observing evidence.\n\nExample: The probability someone has cancer after receiving a positive test result.\n\nComputed using Bayes' theorem.",
+      "back": "<b>Posterior probability</b> \\( p(C|T) \\) is the probability obtained after observing evidence.<br>Example: The probability someone has cancer after receiving a positive test result.<br>Computed using Bayes' theorem.",
       "tags": [
         "ch02",
         "posterior-probability",
@@ -144,7 +144,7 @@
     {
       "uid": "02-014",
       "front": "When are two random variables X and Y independent?",
-      "back": "X and Y are <b>independent</b> if their joint distribution factorizes:\n\n\\( p(X, Y) = p(X)p(Y) \\)\n\nEquivalently: \\( p(Y|X) = p(Y) \\)\n\nMeaning: knowing X tells us nothing about Y.",
+      "back": "X and Y are <b>independent</b> if their joint distribution factorizes:<br>\\( p(X, Y) = p(X)p(Y) \\)<br>Equivalently: \\( p(Y|X) = p(Y) \\)<br>Meaning: knowing X tells us nothing about Y.",
       "tags": [
         "ch02",
         "independence",
@@ -154,7 +154,7 @@
     {
       "uid": "02-015",
       "front": "What is a probability density function?",
-      "back": "A function that describes the likelihood of a <b>continuous random variable</b> falling within a specific range.\n\nRepresented by a curve where the <b>area under it equals the probability</b>:\n\n\\( P(x \\in (a,b)) = \\int_a^b f(x) dx \\)\n\nConstraints:\n\n- Non-negative: \\( f(x) \\geq 0 \\)\n- Total area equals 1: \\( \\int_{-\\infty}^{\\infty} f(x) dx = 1 \\)",
+      "back": "A function that describes the likelihood of a <b>continuous random variable</b> falling within a specific range.<br>Represented by a curve where the <b>area under it equals the probability</b>:<br>\\( P(x \\in (a,b)) = \\int_a^b f(x) dx \\)<br>Constraints:<br><ul><li>Non-negative: \\( f(x) \\geq 0 \\)</li><li>Total area equals 1: \\( \\int_{-\\infty}^{\\infty} f(x) dx = 1 \\)</li></ul>",
       "tags": [
         "ch02",
         "probability-density",
@@ -164,7 +164,7 @@
     {
       "uid": "02-016",
       "front": "What is a cumulative distribution function (CDF)?",
-      "back": "The <b>cumulative distribution function</b> gives the probability that x lies in \\( (-\\infty, z) \\):\n\n\\( P(z) = \\int_{-\\infty}^{z} p(x) dx \\)\n\nRelation to density: \\( P'(x) = p(x) \\)",
+      "back": "The <b>cumulative distribution function</b> gives the probability that x lies in \\( (-\\infty, z) \\):<br>\\( P(z) = \\int_{-\\infty}^{z} p(x) dx \\)<br>Relation to density: \\( P'(x) = p(x) \\)",
       "tags": [
         "ch02",
         "cdf",
@@ -174,7 +174,7 @@
     {
       "uid": "02-017",
       "front": "What is an improper distribution?",
-      "back": "An <b>improper distribution</b> is one that cannot be normalized (its integral is infinite).\n\nExample: A constant \\( p(x) = c \\) over all of \\( (-\\infty, \\infty) \\) is improper because \\( \\int_{-\\infty}^{\\infty} c \\, dx = \\infty \\).",
+      "back": "An <b>improper distribution</b> is one that cannot be normalized (its integral is infinite).<br>Example: A constant \\( p(x) = c \\) over all of \\( (-\\infty, \\infty) \\) is improper because \\( \\int_{-\\infty}^{\\infty} c \\, dx = \\infty \\).",
       "tags": [
         "ch02",
         "improper-distribution",
@@ -184,7 +184,7 @@
     {
       "uid": "02-018",
       "front": "What is the expectation of a function f(x)?",
-      "back": "The <b>expectation</b> \\( E[f] \\) is the weighted average of f(x) under distribution p(x):\n\nDiscrete: \\( E[f] = \\sum_x p(x)f(x) \\)\n\nContinuous: \\( E[f] = \\int p(x)f(x) dx \\)\n\nCan be approximated: \\( E[f] \\approx \\frac{1}{N}\\sum_{n=1}^{N} f(x_n) \\)",
+      "back": "The <b>expectation</b> \\( E[f] \\) is the weighted average of f(x) under distribution p(x):<br>Discrete: \\( E[f] = \\sum_x p(x)f(x) \\)<br>Continuous: \\( E[f] = \\int p(x)f(x) dx \\)<br>Can be approximated: \\( E[f] \\approx \\frac{1}{N}\\sum_{n=1}^{N} f(x_n) \\)",
       "tags": [
         "ch02",
         "expectation",
@@ -194,7 +194,7 @@
     {
       "uid": "02-019",
       "front": "What is the variance of a random variable?",
-      "back": "The <b>variance</b> measures how much f(x) varies around its mean:\n\n\\( \\text{var}[f] = E[(f(x) - E[f(x)])^2] \\)\n\nAlternatively: \\( \\text{var}[f] = E[f(x)^2] - E[f(x)]^2 \\)\n\nFor the variable itself: \\( \\text{var}[x] = E[x^2] - E[x]^2 \\)",
+      "back": "The <b>variance</b> measures how much f(x) varies around its mean:<br>\\( \\text{var}[f] = E[(f(x) - E[f(x)])^2] \\)<br>Alternatively: \\( \\text{var}[f] = E[f(x)^2] - E[f(x)]^2 \\)<br>For the variable itself: \\( \\text{var}[x] = E[x^2] - E[x]^2 \\)",
       "tags": [
         "ch02",
         "variance",
@@ -204,7 +204,7 @@
     {
       "uid": "02-020",
       "front": "What is the covariance between two random variables?",
-      "back": "<b>Covariance</b> measures how much two variables vary together:\n\n\\( \\text{cov}[x,y] = E_{x,y}[(x - E[x])(y - E[y])] \\)\n\\( = E_{x,y}[xy] - E[x]E[y] \\)\n\nIf x and y are independent, their covariance equals zero.",
+      "back": "<b>Covariance</b> measures how much two variables vary together:<br>\\( \\text{cov}[x,y] = E_{x,y}[(x - E[x])(y - E[y])] \\)<br>\\( = E_{x,y}[xy] - E[x]E[y] \\)<br>If x and y are independent, their covariance equals zero.",
       "tags": [
         "ch02",
         "covariance",
@@ -214,7 +214,7 @@
     {
       "uid": "02-021",
       "front": "What is the Gaussian (normal) distribution?",
-      "back": "\\( \\mathcal{N}(x|\\mu, \\sigma^2) = \\frac{1}{(2\\pi\\sigma^2)^{1/2}} \\exp\\left(-\\frac{1}{2\\sigma^2}(x-\\mu)^2\\right) \\)\n\nwhere:\n- \\( \\mu \\) is the mean\n- \\( \\sigma^2 \\) is the variance\n- \\( \\sigma \\) is the standard deviation\n- \\( \\beta = 1/\\sigma^2 \\) is the precision",
+      "back": "\\( \\mathcal{N}(x|\\mu, \\sigma^2) = \\frac{1}{(2\\pi\\sigma^2)^{1/2}} \\exp\\left(-\\frac{1}{2\\sigma^2}(x-\\mu)^2\\right) \\)<br>where:<ul><li>\\( \\mu \\) is the mean</li><li>\\( \\sigma^2 \\) is the variance</li><li>\\( \\sigma \\) is the standard deviation</li><li>\\( \\beta = 1/\\sigma^2 \\) is the precision</li></ul>",
       "tags": [
         "ch02",
         "gaussian",
@@ -224,7 +224,7 @@
     {
       "uid": "02-022",
       "front": "What are the first-order and second-order moments of the Gaussian distribution?",
-      "back": "<b>First-order moment</b> (expectation of x):\n\\( E[x] = \\mu \\)\n\n<b>Second-order moment</b> (expectation of \\( x^2 \\)):\n\\( E[x^2] = \\mu^2 + \\sigma^2 \\)\n\nThe variance follows: \\( \\text{var}[x] = E[x^2] - E[x]^2 = \\sigma^2 \\)",
+      "back": "<b>First-order moment</b> (expectation of x):<br>\\( E[x] = \\mu \\)<br><b>Second-order moment</b> (expectation of \\( x^2 \\)):<br>\\( E[x^2] = \\mu^2 + \\sigma^2 \\)<br>The variance follows: \\( \\text{var}[x] = E[x^2] - E[x]^2 = \\sigma^2 \\)",
       "tags": [
         "ch02",
         "gaussian",
@@ -234,7 +234,7 @@
     {
       "uid": "02-023",
       "front": "What is the mode of a distribution?",
-      "back": "The <b>mode</b> is the maximum (peak) of a distribution.\n\nFor a Gaussian, the mode coincides with the mean \\( \\mu \\).",
+      "back": "The <b>mode</b> is the maximum (peak) of a distribution.<br>For a Gaussian, the mode coincides with the mean \\( \\mu \\).",
       "tags": [
         "ch02",
         "mode",
@@ -244,7 +244,7 @@
     {
       "uid": "02-024",
       "front": "What is density estimation?",
-      "back": "<b>Density estimation</b> is the problem of estimating a probability distribution given a finite set of observations.\n\nIt is fundamentally ill-posed because infinitely many distributions could have generated the finite data. Constraining to a family (e.g., Gaussians) makes it well-defined.",
+      "back": "<b>Density estimation</b> is the problem of estimating a probability distribution given a finite set of observations.<br>It is fundamentally ill-posed because infinitely many distributions could have generated the finite data. Constraining to a family (e.g., Gaussians) makes it well-defined.",
       "tags": [
         "ch02",
         "density-estimation",
@@ -254,7 +254,7 @@
     {
       "uid": "02-025",
       "front": "What does 'independent and identically distributed' (i.i.d.) mean?",
-      "back": "Data points are <b>i.i.d.</b> (or IID) when:\n\n1. <b>Independent</b>: Each data point is drawn independently of the others\n2. <b>Identically distributed</b>: All points come from the same distribution\n\nFor i.i.d. data: \\( p(x_1, \\ldots, x_N) = \\prod_{n=1}^{N} p(x_n) \\)",
+      "back": "Data points are <b>i.i.d.</b> (or IID) when:<br><ol><li><b>Independent</b>: Each data point is drawn independently of the others</li><li><b>Identically distributed</b>: All points come from the same distribution</li></ol>For i.i.d. data: \\( p(x_1, \\ldots, x_N) = \\prod_{n=1}^{N} p(x_n) \\)",
       "tags": [
         "ch02",
         "iid",
@@ -264,7 +264,7 @@
     {
       "uid": "02-026",
       "front": "What is the likelihood function?",
-      "back": "The <b>likelihood function</b> is the probability of the observed data as a function of model parameters.\n\nFor i.i.d. Gaussian data:\n\\( p(\\mathbf{x}|\\mu, \\sigma^2) = \\prod_{n=1}^{N} \\mathcal{N}(x_n|\\mu, \\sigma^2) \\)\n\nNote: Same formula as joint probability, but viewed as function of parameters (not data).",
+      "back": "The <b>likelihood function</b> is the probability of the observed data as a function of model parameters.<br>For i.i.d. Gaussian data:<br>\\( p(\\mathbf{x}|\\mu, \\sigma^2) = \\prod_{n=1}^{N} \\mathcal{N}(x_n|\\mu, \\sigma^2) \\)<br>Note: Same formula as joint probability, but viewed as function of parameters (not data).",
       "tags": [
         "ch02",
         "likelihood",
@@ -274,7 +274,7 @@
     {
       "uid": "02-027",
       "front": "What is maximum likelihood estimation?",
-      "back": "<b>Maximum likelihood</b> finds parameter values that maximize the likelihood function (probability of observed data).\n\nIn practice, we maximize the <b>log likelihood</b> because:\n- Converts products to sums\n- Numerically more stable\n- Same maximum (log is monotonic)",
+      "back": "<b>Maximum likelihood</b> finds parameter values that maximize the likelihood function (probability of observed data).<br>In practice, we maximize the <b>log likelihood</b> because:<ul><li>Converts products to sums</li><li>Numerically more stable</li><li>Same maximum (log is monotonic)</li></ul>",
       "tags": [
         "ch02",
         "maximum-likelihood",
@@ -284,7 +284,7 @@
     {
       "uid": "02-028",
       "front": "What are the maximum likelihood estimates for the mean and variance of a Gaussian?",
-      "back": "<b>Sample mean</b>: \\( \\mu_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} x_n \\)\n\n<b>Sample variance</b>: \\( \\sigma^2_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (x_n - \\mu_{ML})^2 \\)",
+      "back": "<b>Sample mean</b>: \\( \\mu_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} x_n \\)<br><b>Sample variance</b>: \\( \\sigma^2_{ML} = \\frac{1}{N}\\sum_{n=1}^{N} (x_n - \\mu_{ML})^2 \\)",
       "tags": [
         "ch02",
         "maximum-likelihood",
@@ -294,7 +294,7 @@
     {
       "uid": "02-029",
       "front": "What is the bias of the maximum likelihood variance estimate for a Gaussian?",
-      "back": "The ML variance estimate is <b>biased</b>:\n\n\\( E[\\sigma^2_{ML}] = \\frac{N-1}{N}\\sigma^2 \\)\n\nIt systematically <b>underestimates</b> the true variance.\n\nUnbiased estimate: \\( \\tilde{\\sigma}^2 = \\frac{1}{N-1}\\sum_{n=1}^{N}(x_n - \\mu_{ML})^2 \\)",
+      "back": "The ML variance estimate is <b>biased</b>:<br>\\( E[\\sigma^2_{ML}] = \\frac{N-1}{N}\\sigma^2 \\)<br>It systematically <b>underestimates</b> the true variance.<br>Unbiased estimate: \\( \\tilde{\\sigma}^2 = \\frac{1}{N-1}\\sum_{n=1}^{N}(x_n - \\mu_{ML})^2 \\)",
       "tags": [
         "ch02",
         "bias",
@@ -304,7 +304,7 @@
     {
       "uid": "02-030",
       "front": "Why does maximum likelihood variance estimation have bias?",
-      "back": "Bias arises because the variance is measured relative to the <b>sample mean</b> \\( \\mu_{ML} \\), which is itself fitted to the data.\n\nThe sample mean tends to be closer to the data points than the true mean, causing underestimation of spread.\n\nThis is related to the problem of overfitting.",
+      "back": "Bias arises because the variance is measured relative to the <b>sample mean</b> \\( \\mu_{ML} \\), which is itself fitted to the data.<br>The sample mean tends to be closer to the data points than the true mean, causing underestimation of spread.<br>This is related to the problem of overfitting.",
       "tags": [
         "ch02",
         "bias",
@@ -314,7 +314,7 @@
     {
       "uid": "02-031",
       "front": "How does maximum likelihood relate to the sum-of-squares error function?",
-      "back": "Maximizing the likelihood is equivalent (for determining w) to minimizing the sum-of-squares error function:\n\n\\( E(w) = \\frac{1}{2}\\sum_{n=1}^{N}\\{y(x_n, w) - t_n\\}^2 \\)\n\nThis follows from assuming Gaussian noise on the target values.",
+      "back": "Maximizing the likelihood is equivalent (for determining w) to minimizing the sum-of-squares error function:<br>\\( E(w) = \\frac{1}{2}\\sum_{n=1}^{N}\\{y(x_n, w) - t_n\\}^2 \\)<br>This follows from assuming Gaussian noise on the target values.",
       "tags": [
         "ch02",
         "maximum-likelihood",
@@ -324,7 +324,7 @@
     {
       "uid": "02-032",
       "front": "How does a probability density transform under a change of variables?",
-      "back": "For \\( x = g(y) \\):\n\n\\( p_y(y) = p_x(x) \\left|\\frac{dx}{dy}\\right| = p_x(g(y)) \\left|\\frac{dg}{dy}\\right| \\)\n\nThe modulus ensures non-negative density. The derivative accounts for stretching/compressing of space.",
+      "back": "For \\( x = g(y) \\):<br>\\( p_y(y) = p_x(x) \\left|\\frac{dx}{dy}\\right| = p_x(g(y)) \\left|\\frac{dg}{dy}\\right| \\)<br>The modulus ensures non-negative density. The derivative accounts for stretching/compressing of space.",
       "tags": [
         "ch02",
         "change-of-variables",
@@ -334,7 +334,7 @@
     {
       "uid": "02-033",
       "front": "How do probability densities transform in multiple dimensions?",
-      "back": "For \\( \\mathbf{x} = g(\\mathbf{y}) \\) where both are D-dimensional:\n\n\\( p_y(\\mathbf{y}) = p_x(\\mathbf{x}) |\\det J| \\)\n\nwhere J is the <b>Jacobian matrix</b>: \\( J_{ij} = \\frac{\\partial g_i}{\\partial y_j} \\)\n\nThe determinant represents the ratio of volumes.",
+      "back": "For \\( \\mathbf{x} = g(\\mathbf{y}) \\) where both are D-dimensional:<br>\\( p_y(\\mathbf{y}) = p_x(\\mathbf{x}) |\\det J| \\)<br>where J is the <b>Jacobian matrix</b>: \\( J_{ij} = \\frac{\\partial g_i}{\\partial y_j} \\)<br>The determinant represents the ratio of volumes.",
       "tags": [
         "ch02",
         "jacobian",
@@ -344,7 +344,7 @@
     {
       "uid": "02-034",
       "front": "What is entropy in information theory?",
-      "back": "<b>Entropy</b> is the average information content (or 'degree of surprise'):\n\n\\( H[x] = -\\sum_x p(x) \\log p(x) \\)\n\nUsing log base 2: units are <b>bits</b>\nUsing natural log: units are <b>nats</b>\n\nHigher entropy = more uncertainty/disorder.",
+      "back": "<b>Entropy</b> is the average information content (or 'degree of surprise'):<br>\\( H[x] = -\\sum_x p(x) \\log p(x) \\)<br>Using log base 2: units are <b>bits</b><br>Using natural log: units are <b>nats</b><br>Higher entropy = more uncertainty/disorder.",
       "tags": [
         "ch02",
         "entropy",
@@ -354,7 +354,7 @@
     {
       "uid": "02-035",
       "front": "What is the information content of an event with probability p(x)?",
-      "back": "Information content: \\( h(x) = -\\log_2 p(x) \\)\n\nProperties:\n- Low probability events have high information\n- Certain events (p=1) have zero information\n- Information from independent events adds: \\( h(x,y) = h(x) + h(y) \\)",
+      "back": "Information content: \\( h(x) = -\\log_2 p(x) \\)<br>Properties:<ul><li>Low probability events have high information</li><li>Certain events (p=1) have zero information</li><li>Information from independent events adds: \\( h(x,y) = h(x) + h(y) \\)</li></ul>",
       "tags": [
         "ch02",
         "information",
@@ -364,7 +364,7 @@
     {
       "uid": "02-036",
       "front": "What does the noiseless coding theorem state?",
-      "back": "The <b>noiseless coding theorem</b> (Shannon, 1948) states that entropy is a lower bound on the average number of bits needed to transmit the state of a random variable.\n\nYou cannot compress data below its entropy on average.",
+      "back": "The <b>noiseless coding theorem</b> (Shannon, 1948) states that entropy is a lower bound on the average number of bits needed to transmit the state of a random variable.<br>You cannot compress data below its entropy on average.",
       "tags": [
         "ch02",
         "coding-theorem",
@@ -374,7 +374,7 @@
     {
       "uid": "02-037",
       "front": "What is differential entropy?",
-      "back": "<b>Differential entropy</b> is the entropy for continuous variables:\n\n\\( H[x] = -\\int p(x) \\ln p(x) dx \\)\n\nUnlike discrete entropy, it can be negative and is not invariant under change of variables.",
+      "back": "<b>Differential entropy</b> is the entropy for continuous variables:<br>\\( H[x] = -\\int p(x) \\ln p(x) dx \\)<br>Unlike discrete entropy, it can be negative and is not invariant under change of variables.",
       "tags": [
         "ch02",
         "differential-entropy",
@@ -384,7 +384,7 @@
     {
       "uid": "02-038",
       "front": "What is the Kullback-Leibler (KL) divergence?",
-      "back": "<b>KL divergence</b> (or <b>relative entropy</b>) measures how different distribution q is from p:\n\n\\( KL(p\\|q) = -\\int p(x) \\ln \\frac{q(x)}{p(x)} dx \\)\n\nProperties:\n- \\( KL(p\\|q) \\geq 0 \\)\n- \\( KL(p\\|q) = 0 \\) iff \\( p = q \\)\n- <b>Not symmetric</b>: \\( KL(p\\|q) \\neq KL(q\\|p) \\)",
+      "back": "<b>KL divergence</b> (or <b>relative entropy</b>) measures how different distribution q is from p:<br>\\( KL(p\\|q) = -\\int p(x) \\ln \\frac{q(x)}{p(x)} dx \\)<br>Properties:<ul><li>\\( KL(p\\|q) \\geq 0 \\)</li><li>\\( KL(p\\|q) = 0 \\) iff \\( p = q \\)</li><li><b>Not symmetric</b>: \\( KL(p\\|q) \\neq KL(q\\|p) \\)</li></ul>",
       "tags": [
         "ch02",
         "kl-divergence",
@@ -394,7 +394,7 @@
     {
       "uid": "02-039",
       "front": "Why is KL divergence not a true distance metric?",
-      "back": "KL divergence is <b>not symmetric</b>:\n\n\\( KL(p\\|q) \\neq KL(q\\|p) \\)\n\nThis means it doesn't satisfy the symmetry requirement of a distance metric. It measures how well q approximates p, which is different from how well p approximates q.",
+      "back": "KL divergence is <b>not symmetric</b>:<br>\\( KL(p\\|q) \\neq KL(q\\|p) \\)<br>This means it doesn't satisfy the symmetry requirement of a distance metric. It measures how well q approximates p, which is different from how well p approximates q.",
       "tags": [
         "ch02",
         "kl-divergence",
@@ -404,7 +404,7 @@
     {
       "uid": "02-040",
       "front": "In the cancer screening example, why is the posterior probability of cancer (23%) much lower than one might expect given the 'accurate' test?",
-      "back": "The low prior probability of cancer (1%) dominates.\n\nEven though the test provides strong evidence, Bayes' theorem requires combining this with the prior. Most positive tests come from the 99% healthy population (3% false positive rate = many false positives), not from the 1% with cancer.",
+      "back": "The low prior probability of cancer (1%) dominates.<br>Even though the test provides strong evidence, Bayes' theorem requires combining this with the prior. Most positive tests come from the 99% healthy population (3% false positive rate = many false positives), not from the 1% with cancer.",
       "tags": [
         "ch02",
         "bayes-theorem",
@@ -414,7 +414,7 @@
     {
       "uid": "02-041",
       "front": "What is decision theory and how does it relate to probability?",
-      "back": "<b>Decision theory</b> allows us to use probabilistic representations to make optimal predictions.\n\nWhen coupled with the sum and product rules, it enables making the best possible decisions given incomplete or ambiguous information.",
+      "back": "<b>Decision theory</b> allows us to use probabilistic representations to make optimal predictions.<br>When coupled with the sum and product rules, it enables making the best possible decisions given incomplete or ambiguous information.",
       "tags": [
         "ch02",
         "decision-theory",
@@ -424,7 +424,7 @@
     {
       "uid": "02-042",
       "front": "What is the Laplace distribution?",
-      "back": "The <b>Laplace distribution</b> is:\n\n\\( p(x|\\mu, \\gamma) = \\frac{1}{2\\gamma} \\exp\\left(-\\frac{|x-\\mu|}{\\gamma}\\right) \\)\n\nIt has a peak at \\( \\mu \\) and decays exponentially. Has heavier tails than a Gaussian.",
+      "back": "The <b>Laplace distribution</b> is:<br>\\( p(x|\\mu, \\gamma) = \\frac{1}{2\\gamma} \\exp\\left(-\\frac{|x-\\mu|}{\\gamma}\\right) \\)<br>It has a peak at \\( \\mu \\) and decays exponentially. Has heavier tails than a Gaussian.",
       "tags": [
         "ch02",
         "laplace-distribution",
@@ -434,7 +434,7 @@
     {
       "uid": "02-043",
       "front": "What is conditional entropy?",
-      "back": "The average additional information needed to specify y given x:\n\n\\( H[Y|X] = -\\sum_{x,y} p(x,y) \\ln p(y|x) \\)\n\nUsing the product rule:\n\\( H[X,Y] = H[Y|X] + H[X] \\)\n\nThe information needed to describe X and Y equals the information for X alone plus the additional information for Y given X.",
+      "back": "The average additional information needed to specify y given x:<br>\\( H[Y|X] = -\\sum_{x,y} p(x,y) \\ln p(y|x) \\)<br>Using the product rule:<br>\\( H[X,Y] = H[Y|X] + H[X] \\)<br>The information needed to describe X and Y equals the information for X alone plus the additional information for Y given X.",
       "tags": [
         "ch02",
         "conditional-entropy",
@@ -444,7 +444,7 @@
     {
       "uid": "02-044",
       "front": "What is mutual information?",
-      "back": "The reduction in uncertainty about X from knowing Y (or vice versa):\n\n\\( I[X,Y] = H[X] - H[X|Y] = H[Y] - H[Y|X] \\)\n\nEquivalently, the KL divergence between joint and product of marginals:\n\n\\( I[X,Y] = KL(p(x,y) || p(x)p(y)) \\)\n\nIf X and Y are independent, \\( I[X,Y] = 0 \\).",
+      "back": "The reduction in uncertainty about X from knowing Y (or vice versa):<br>\\( I[X,Y] = H[X] - H[X|Y] = H[Y] - H[Y|X] \\)<br>Equivalently, the KL divergence between joint and product of marginals:<br>\\( I[X,Y] = KL(p(x,y) || p(x)p(y)) \\)<br>If X and Y are independent, \\( I[X,Y] = 0 \\).",
       "tags": [
         "ch02",
         "mutual-information",
@@ -454,7 +454,7 @@
     {
       "uid": "02-045",
       "front": "What is the uniform distribution?",
-      "back": "A distribution where p(x) is constant over a finite interval:\n\n\\( U(x|a,b) = \\frac{1}{b-a} \\) for \\( x \\in [a,b] \\), zero elsewhere.\n\nThe simplest form of distribution. Integrates to 1 over the interval.",
+      "back": "A distribution where p(x) is constant over a finite interval:<br>\\( U(x|a,b) = \\frac{1}{b-a} \\) for \\( x \\in [a,b] \\), zero elsewhere.<br>The simplest form of distribution. Integrates to 1 over the interval.",
       "tags": [
         "ch02",
         "uniform-distribution",
@@ -464,7 +464,7 @@
     {
       "uid": "02-046",
       "front": "What is the exponential distribution?",
-      "back": "A distribution for non-negative values:\n\n\\( p(x|\\lambda) = \\lambda e^{-\\lambda x} \\) for \\( x \\geq 0 \\)\n\nMean: \\( 1/\\lambda \\)\nVariance: \\( 1/\\lambda^2 \\)\n\nOften used for modeling time between events.",
+      "back": "A distribution for non-negative values:<br>\\( p(x|\\lambda) = \\lambda e^{-\\lambda x} \\) for \\( x \\geq 0 \\)<br>Mean: \\( 1/\\lambda \\)<br>Variance: \\( 1/\\lambda^2 \\)<br>Often used for modeling time between events.",
       "tags": [
         "ch02",
         "exponential-distribution",

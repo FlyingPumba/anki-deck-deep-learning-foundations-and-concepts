@@ -17,15 +17,14 @@
 - Use HTML tags for formatting (not Markdown)
 - Bold: `<b>text</b>` (not `**text**`)
 - Italics: `<i>text</i>` (not `*text*`)
-
-### Lists
-- Add an extra newline before lists so they display correctly in Anki
-- Use `\n\n-` instead of `\n-` before list items
+- Line breaks: `<br>` (not `\n`)
+- Unordered lists: `<ul><li>item</li></ul>`
+- Ordered lists: `<ol><li>item</li></ol>`
 
 ### Example
 ```json
 {
-  "back": "The determinant tells you:\n\n- How much areas/volumes scale\n- Whether orientation flips (negative)\n\nFormula: \\( \\det(A) = ad - bc \\)"
+  "back": "The determinant tells you:<br><ul><li>How much areas/volumes scale</li><li>Whether orientation flips (negative)</li></ul>Formula: \\( \\det(A) = ad - bc \\)"
 }
 ```
 
