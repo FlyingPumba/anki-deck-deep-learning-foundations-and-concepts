@@ -176,9 +176,12 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
 
             # Check what needs to change
             content_changed = norm_current_front != norm_new_front or norm_current_back != norm_new_back
-            desired_tags = set(all_tags)
-            tags_to_add = desired_tags - current_tags
-            tags_to_remove = current_tags - desired_tags
+
+            # Compare tags case-insensitively (Anki treats tags as case-insensitive)
+            current_tags_lower = {t.lower() for t in current_tags}
+            desired_tags_lower = {t.lower() for t in all_tags}
+            tags_to_add = {t for t in all_tags if t.lower() not in current_tags_lower}
+            tags_to_remove = {t for t in current_tags if t.lower() not in desired_tags_lower}
 
             if not content_changed and not tags_to_add and not tags_to_remove:
                 return "unchanged", existing_id, ""
