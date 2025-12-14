@@ -304,7 +304,7 @@
     {
       "uid": "06-030",
       "front": "What is the convergence rate of gradient descent near a minimum?",
-      "back": "<b>Linear convergence</b>: error decreases by a constant factor per iteration.<br>\\( E^{(\\tau+1)} - E^<i> \\approx c(E^{(\\tau)} - E^</i>) \\)<br>where \\( 0 < c < 1 \\).<br>Slower than quadratic (Newton's method) but each iteration is cheaper.",
+      "back": "<b>Linear convergence</b>: error decreases by a constant factor per iteration.<br>\\( E^{(\\tau+1)} - E^{*} \\approx c(E^{(\\tau)} - E^{*}) \\)<br>where \\( 0 < c < 1 \\) and \\( E^{*} \\) is the minimum error.<br>Slower than quadratic (Newton's method) but each iteration is cheaper.",
       "tags": [
         "ch06",
         "convergence",
@@ -353,8 +353,8 @@
     },
     {
       "uid": "06-035",
-      "front": "What is RMSProp?",
-      "back": "<b>Root Mean Square Propagation</b>: An adaptive learning rate method.<br>Maintains moving average of squared gradients per parameter:<br>\\( v_i^{(\\tau+1)} = \\rho v_i^{(\\tau)} + (1-\\rho)(g_i^{(\\tau)})^2 \\)<br>Scales learning rate: \\( \\Delta w_i = -\\frac{\\eta}{\\sqrt{v_i + \\epsilon}} g_i \\)<br>Gives each parameter its own effective learning rate.",
+      "front": "What is Root Mean Square Propagation (RMSProp)?",
+      "back": "An adaptive learning rate method.<br>Maintains moving average of squared gradients per parameter:<br>\\( v_i^{(\\tau+1)} = \\rho v_i^{(\\tau)} + (1-\\rho)(g_i^{(\\tau)})^2 \\)<br>Scales learning rate: \\( \\Delta w_i = -\\frac{\\eta}{\\sqrt{v_i + \\epsilon}} g_i \\)<br>Gives each parameter its own effective learning rate.",
       "tags": [
         "ch06",
         "rmsprop",
@@ -374,7 +374,7 @@
     {
       "uid": "06-037",
       "front": "What are the three kinds of normalization in neural networks?",
-      "back": "Normalized across:<br><ol><li><b>Input normalization</b>: Across training examples per input feature</li><li><b>Batch normalization</b>: Across mini-batch per hidden unit</li><li><b>Layer normalization</b>: Across hidden units per example</li></ol>",
+      "back": "<b>Intuition</b>: Normalization keeps activations in a 'healthy' range, preventing them from exploding or vanishing as they flow through layers.<br><br><ol><li><b>Input normalization</b>: Rescale each input feature across the dataset to zero mean, unit variance. <i>When</i>: preprocessing step before training.</li><li><b>Batch normalization</b>: For each hidden unit, normalize across examples in the mini-batch. <i>When</i>: during training, uses batch statistics; at inference, uses running averages.</li><li><b>Layer normalization</b>: For each example, normalize across all hidden units in a layer. <i>When</i>: works identically at train and test time, preferred for transformers and small batches.</li></ol><b>Key difference</b>: Batch norm averages over examples (vertical slice), layer norm averages over features (horizontal slice).",
       "tags": [
         "ch06",
         "normalization",

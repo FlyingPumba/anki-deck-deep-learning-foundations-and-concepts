@@ -73,7 +73,7 @@
     {
       "uid": "09-009",
       "front": "Why should biases typically be excluded from weight decay?",
-      "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts of biases</b>.<br>Including biases would:<br><ul><li>Penalize constant offsets in data</li><li>Not be invariant to data preprocessing</li></ul>Consistent regularizer: \\( \\frac{\\lambda_1}{2} \\sum_{w \\in W_1} w^2 + \\frac{\\lambda_2}{2} \\sum_{w \\in W_2} w^2 \\)<br>where biases are excluded from both sums.",
+      "back": "<b>Intuition</b>: Biases are:<ul><li>Fewer parameters (one per unit vs many weights)</li><li>Mostly controlling baseline activation levels, not complex input-dependent behavior</li></ul>So regularizing them gives little benefit and can hurt - e.g., a ReLU unit may need a positive bias to be 'on' at all.<br><br><b>Technical reason</b>: Regularizers should be invariant to shifts in biases. Including biases would penalize constant offsets in data and not be invariant to data preprocessing.<br><br><b>Nuance</b>: It's not <i>wrong</i> to decay biases - just often unnecessary and makes training more sensitive to arbitrary shifts/centering of data.",
       "tags": [
         "ch09",
         "weight-decay",

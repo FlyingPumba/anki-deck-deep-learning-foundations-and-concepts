@@ -191,16 +191,6 @@
       ]
     },
     {
-      "uid": "07-019",
-      "front": "Why are biases typically excluded from weight decay regularization?",
-      "back": "Regularizers should be <b>invariant to re-scaling of weights and shifts in biases</b>.<br>Including biases in regularization would:<br><ul><li>Penalize constant offsets in the data</li><li>Not be invariant to data preprocessing</li></ul>Only weights connecting units are regularized.",
-      "tags": [
-        "ch07",
-        "bias",
-        "regularization"
-      ]
-    },
-    {
       "uid": "07-020",
       "front": "What is L1 regularization (lasso)?",
       "back": "Regularizer using absolute values:<br>\\( \\Omega(\\vec{w}) = \\sum_i |w_i| \\)<br>Key property: Produces <b>sparse solutions</b> where many weights are exactly zero.<br>As \\( \\lambda \\) increases, more parameters are driven to zero.<br>Useful for feature selection.",
@@ -213,7 +203,7 @@
     {
       "uid": "07-021",
       "front": "Why does L1 regularization produce sparse solutions while L2 does not?",
-      "back": "L1 penalty has a <b>discontinuous gradient</b> at zero (corners in the constraint region).<br>L2 penalty has a <b>smooth gradient</b> that approaches zero as weights approach zero.<br>The corners of the L1 constraint region tend to intersect the error contours at sparse points.",
+      "back": "<b>Intuition</b>: Think of minimizing error subject to a budget constraint on weights.<ul><li><b>L2 constraint</b>: A circle (2D) or sphere. The optimal point where error contours touch the circle is usually <i>not</i> on an axis - weights are small but non-zero.</li><li><b>L1 constraint</b>: A diamond shape with <i>corners on the axes</i>. Error contours are much more likely to first touch the diamond at a corner, where some weights are exactly zero.</li></ul><b>Gradient view</b>:<ul><li>L1 gradient is constant (\\( \\pm 1 \\)) regardless of weight magnitude - it pushes weights all the way to zero.</li><li>L2 gradient is proportional to weight (\\( 2w \\)) - it weakens as weights shrink, so they approach but rarely reach zero.</li></ul>",
       "tags": [
         "ch07",
         "sparsity",
@@ -293,7 +283,7 @@
     {
       "uid": "07-030",
       "front": "What is the double descent phenomenon?",
-      "back": "A non-monotonic relationship between model complexity and test error:<br><ol><li><b>Classic regime</b>: Test error decreases then increases (bias-variance tradeoff)</li><li><b>Interpolation threshold</b>: Error peaks when model can exactly fit training data</li><li><b>Modern regime</b>: Error decreases again with over-parameterization</li></ol>Challenges classical understanding of overfitting.",
+      "back": "A model's test error initially <b>decreases</b> with the number of parameters, then <b>peaks</b>, then <b>decreases again</b>.<br><br>The peak usually occurs near the <b>interpolation threshold</b>, where the number of parameters equals the number of training data points.<br><br><b>Why does error decrease again?</b> With many more parameters than needed, the model can choose among many perfect fits and picks a smoother one (via implicit regularization from optimization).<br><br>This is surprising because it contradicts classical assumptions about overfitting - traditionally we expected error to only increase once models become too complex.",
       "tags": [
         "ch07",
         "double-descent",
