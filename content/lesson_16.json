@@ -259,6 +259,76 @@
         "nonlinear",
         "deep-learning"
       ]
+    },
+    {
+      "uid": "16-026",
+      "front": "What is t-SNE?",
+      "back": "<b>t-Distributed Stochastic Neighbor Embedding</b>: A nonlinear dimensionality reduction method for visualization.<br><br><b>Key idea</b>: Preserve local neighborhood structure when projecting to 2D/3D.<br><br><b>How it works</b>:<ol><li>Compute pairwise similarities in high-D using Gaussian kernel</li><li>Compute pairwise similarities in low-D using Student-t distribution</li><li>Minimize KL divergence between the two distributions</li></ol><b>Why Student-t?</b> Heavy tails allow moderate distances in high-D to become larger in low-D, preventing crowding.<br><br><b>Limitation</b>: Non-parametric (no projection function), slow for large datasets, sensitive to hyperparameters.",
+      "tags": [
+        "ch16",
+        "tsne",
+        "visualization"
+      ]
+    },
+    {
+      "uid": "16-027",
+      "front": "What is the crowding problem in dimensionality reduction?",
+      "back": "In high dimensions, most points are roughly equidistant from each other.<br><br>When projecting to 2D:<ul><li>Not enough room to preserve all distances</li><li>Moderately distant points get crushed together</li><li>Local structure is destroyed</li></ul><b>t-SNE's solution</b>: Use heavy-tailed Student-t distribution in low-D space. This allows moderately similar points to be placed further apart without high cost.<br><br><b>Intuition</b>: The t-distribution has more probability mass in the tails, so distant points in low-D are less penalized.",
+      "tags": [
+        "ch16",
+        "tsne",
+        "crowding"
+      ]
+    },
+    {
+      "uid": "16-028",
+      "front": "What is the perplexity hyperparameter in t-SNE?",
+      "back": "<b>Perplexity</b> controls the effective number of neighbors each point considers.<br><br><b>Interpretation</b>: Roughly the number of close neighbors used for similarity computation.<br><br><b>Typical values</b>: 5-50 (default often 30)<br><br><b>Effect</b>:<ul><li>Low perplexity: Focus on very local structure, may fragment clusters</li><li>High perplexity: Consider more global structure, clusters more coherent</li></ul><b>Best practice</b>: Try multiple values; results can vary significantly.",
+      "tags": [
+        "ch16",
+        "tsne",
+        "hyperparameters"
+      ]
+    },
+    {
+      "uid": "16-029",
+      "front": "What are common pitfalls when interpreting t-SNE plots?",
+      "back": "<b>1. Cluster sizes don't reflect real sizes</b>: t-SNE expands dense clusters and contracts sparse ones.<br><br><b>2. Distances between clusters are meaningless</b>: Only local distances are preserved; global distances are not.<br><br><b>3. Random initialization matters</b>: Different runs give different layouts. Run multiple times.<br><br><b>4. Perplexity changes everything</b>: The same data can look very different with different perplexity.<br><br><b>5. Not suitable for new points</b>: No projection function; must rerun on entire dataset.<br><br><b>Rule</b>: Use for exploration, not for making quantitative claims about cluster relationships.",
+      "tags": [
+        "ch16",
+        "tsne",
+        "interpretation"
+      ]
+    },
+    {
+      "uid": "16-030",
+      "front": "What is UMAP?",
+      "back": "<b>Uniform Manifold Approximation and Projection</b>: A faster alternative to t-SNE for visualization and dimensionality reduction.<br><br><b>Key advantages over t-SNE</b>:<ul><li>Much faster (scales better to large datasets)</li><li>Better preserves global structure</li><li>Can be used for general dimensionality reduction (not just 2D)</li><li>Has a learned projection (can embed new points)</li></ul><b>How it works</b>: Constructs a topological representation using fuzzy simplicial sets, then optimizes a low-dimensional representation to match.<br><br><b>Hyperparameters</b>: n_neighbors (like perplexity), min_dist (controls clustering tightness).",
+      "tags": [
+        "ch16",
+        "umap",
+        "visualization"
+      ]
+    },
+    {
+      "uid": "16-031",
+      "front": "How do t-SNE and UMAP compare?",
+      "back": "<b>Speed</b>: UMAP is significantly faster, especially for large N.<br><br><b>Global structure</b>: UMAP tends to preserve more global structure; t-SNE focuses on local.<br><br><b>Reproducibility</b>: UMAP is more deterministic (less sensitive to initialization).<br><br><b>Out-of-sample</b>: UMAP can embed new points; t-SNE cannot.<br><br><b>Dimensionality</b>: UMAP works well for any target dimension; t-SNE is mainly for 2D/3D.<br><br><b>When to use which</b>:<ul><li>t-SNE: Smaller datasets, publication-quality 2D visualizations</li><li>UMAP: Larger datasets, need for speed, or dimensionality reduction for downstream tasks</li></ul>",
+      "tags": [
+        "ch16",
+        "tsne",
+        "umap"
+      ]
+    },
+    {
+      "uid": "16-032",
+      "front": "When should you use PCA vs t-SNE/UMAP?",
+      "back": "<b>Use PCA when</b>:<ul><li>You need a linear projection</li><li>Interpretability of components matters</li><li>Fast computation on very large data</li><li>Preprocessing before other algorithms</li><li>Need to project new points easily</li></ul><b>Use t-SNE/UMAP when</b>:<ul><li>Data lies on nonlinear manifolds</li><li>Goal is visualization in 2D/3D</li><li>Preserving local cluster structure is important</li><li>Exploring data interactively</li></ul><b>Common workflow</b>: PCA to reduce to ~50 dimensions, then t-SNE/UMAP to 2D for visualization.",
+      "tags": [
+        "ch16",
+        "pca",
+        "comparison"
+      ]
     }
   ]
 }

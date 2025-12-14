@@ -560,6 +560,46 @@
         "bfloat16",
         "precision"
       ]
+    },
+    {
+      "uid": "06-058",
+      "front": "What is catastrophic forgetting?",
+      "back": "<b>Catastrophic forgetting</b>: When training on new data causes a neural network to forget what it learned from previous data.<br><br><b>Why it happens</b>: Updating weights to minimize loss on new task can increase loss on old tasks. No explicit mechanism to preserve old knowledge.<br><br><b>Example</b>: Train on Task A, then Task B. Performance on A drops significantly.<br><br><b>Contrast with humans</b>: We can learn new skills without forgetting old ones (mostly).<br><br><b>Relevance</b>: Critical for continual/lifelong learning, multi-task learning, and fine-tuning pre-trained models.",
+      "tags": [
+        "ch06",
+        "catastrophic-forgetting",
+        "continual-learning"
+      ]
+    },
+    {
+      "uid": "06-059",
+      "front": "What are approaches to prevent catastrophic forgetting?",
+      "back": "<b>1. Regularization-based</b>:<ul><li><b>EWC</b> (Elastic Weight Consolidation): Penalize changes to important weights</li><li>Measure importance via Fisher information</li></ul><b>2. Replay-based</b>:<ul><li>Store subset of old data, mix with new data during training</li><li><b>Generative replay</b>: Train generative model to produce old examples</li></ul><b>3. Architecture-based</b>:<ul><li>Allocate different parameters for different tasks</li><li>Progressive neural networks: Add new modules, freeze old</li></ul><b>4. Practical approach</b>:<ul><li>Multi-task training from scratch when possible</li><li>Fine-tune with low learning rate</li><li>Use LoRA/adapters (freeze base model)</li></ul>",
+      "tags": [
+        "ch06",
+        "catastrophic-forgetting",
+        "solutions"
+      ]
+    },
+    {
+      "uid": "06-060",
+      "front": "What is transfer learning?",
+      "back": "<b>Transfer learning</b>: Leveraging knowledge from one task/domain to improve performance on another.<br><br><b>Common pattern</b>:<ol><li>Pre-train on large dataset (e.g., ImageNet, web text)</li><li>Fine-tune on target task with smaller dataset</li></ol><b>Why it works</b>:<ul><li>Early layers learn general features (edges, textures)</li><li>These transfer across tasks</li><li>Only need to learn task-specific features</li></ul><b>Approaches</b>:<ul><li><b>Feature extraction</b>: Freeze pre-trained layers, train new head</li><li><b>Fine-tuning</b>: Unfreeze some/all layers, train with low LR</li></ul><b>Examples</b>: BERT for NLP tasks, ResNet for vision tasks.",
+      "tags": [
+        "ch06",
+        "transfer-learning",
+        "pre-training"
+      ]
+    },
+    {
+      "uid": "06-061",
+      "front": "What is the difference between fine-tuning and feature extraction?",
+      "back": "<b>Feature extraction</b>:<ul><li>Freeze all pre-trained layers</li><li>Only train a new classification head</li><li>Fast training, less risk of overfitting</li><li>Good when target task is similar to pre-training task</li></ul><b>Fine-tuning</b>:<ul><li>Unfreeze some or all pre-trained layers</li><li>Train with low learning rate</li><li>Can adapt features to new domain</li><li>Risk of catastrophic forgetting if LR too high</li></ul><b>Gradual unfreezing</b>: Start with only head, progressively unfreeze earlier layers.<br><br><b>Rule of thumb</b>: More data = more layers to fine-tune. Little data = feature extraction only.",
+      "tags": [
+        "ch06",
+        "fine-tuning",
+        "transfer-learning"
+      ]
     }
   ]
 }

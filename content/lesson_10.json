@@ -249,6 +249,66 @@
         "data-augmentation",
         "training"
       ]
+    },
+    {
+      "uid": "10-025",
+      "front": "What is Grad-CAM?",
+      "back": "<b>Gradient-weighted Class Activation Mapping</b>: A technique to visualize which parts of an image are important for a CNN's prediction.<br><br><b>How it works</b>:<ol><li>Compute gradients of the target class score w.r.t. feature maps of a conv layer</li><li>Global average pool the gradients to get importance weights</li><li>Weighted sum of feature maps gives the heatmap</li><li>Apply ReLU (only positive contributions)</li></ol><b>Formula</b>: \\( L^c = \\text{ReLU}\\left(\\sum_k \\alpha_k^c A^k\\right) \\)<br>where \\( \\alpha_k^c = \\frac{1}{Z}\\sum_i \\sum_j \\frac{\\partial y^c}{\\partial A^k_{ij}} \\)<br><br><b>Use cases</b>: Debugging, model interpretability, sanity checking.",
+      "tags": [
+        "ch10",
+        "grad-cam",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "10-026",
+      "front": "What is saliency mapping for neural networks?",
+      "back": "<b>Saliency maps</b> show which input pixels have the most influence on the output.<br><br><b>Basic method</b> (Vanilla Gradient):<ol><li>Compute gradient of output class score w.r.t. input image</li><li>Take absolute value (or squared)</li><li>Visualize as heatmap</li></ol><b>Intuition</b>: Pixels where small changes cause large output changes are salient.<br><br><b>Variants</b>:<ul><li><b>SmoothGrad</b>: Average gradients over noisy inputs</li><li><b>Integrated Gradients</b>: Accumulate gradients along path from baseline</li><li><b>Guided Backprop</b>: Only backprop positive gradients through ReLU</li></ul>",
+      "tags": [
+        "ch10",
+        "saliency",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "10-027",
+      "front": "What is SHAP for model interpretability?",
+      "back": "<b>SHapley Additive exPlanations</b>: A unified framework for feature attribution based on game theory.<br><br><b>Key idea</b>: Assign each feature an importance value based on Shapley values from cooperative game theory.<br><br><b>Properties</b> (uniquely satisfied):<ul><li><b>Local accuracy</b>: Attributions sum to model output</li><li><b>Missingness</b>: Missing features get zero attribution</li><li><b>Consistency</b>: If a feature's contribution increases, its attribution doesn't decrease</li></ul><b>Variants</b>:<ul><li><b>KernelSHAP</b>: Model-agnostic, uses weighted linear regression</li><li><b>DeepSHAP</b>: Efficient for deep networks</li><li><b>TreeSHAP</b>: Exact and fast for tree-based models</li></ul>",
+      "tags": [
+        "ch10",
+        "shap",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "10-028",
+      "front": "What is LIME for model interpretability?",
+      "back": "<b>Local Interpretable Model-agnostic Explanations</b>: Explains individual predictions by fitting a simple model locally.<br><br><b>How it works</b>:<ol><li>Generate perturbed samples around the input</li><li>Get model predictions for perturbations</li><li>Fit an interpretable model (e.g., linear) to approximate locally</li><li>Interpret the simple model's coefficients</li></ol><b>For images</b>: Perturbations mask/reveal superpixels.<br><br><b>Advantages</b>:<ul><li>Model-agnostic (works for any classifier)</li><li>Produces human-understandable explanations</li></ul><b>Limitation</b>: Explanations can be unstable (sensitive to perturbation strategy).",
+      "tags": [
+        "ch10",
+        "lime",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "10-029",
+      "front": "What is the difference between global and local interpretability?",
+      "back": "<b>Global interpretability</b>: Understanding the model's overall behavior.<ul><li>What features matter in general?</li><li>What patterns has the model learned?</li><li>Methods: Feature importance, partial dependence plots</li></ul><b>Local interpretability</b>: Understanding a specific prediction.<ul><li>Why did the model predict this for this input?</li><li>Which features drove this particular decision?</li><li>Methods: LIME, SHAP, Grad-CAM, saliency maps</li></ul><b>Trade-off</b>: Simpler models (linear, trees) are globally interpretable but less accurate. Complex models need post-hoc explanation methods.",
+      "tags": [
+        "ch10",
+        "interpretability",
+        "concepts"
+      ]
+    },
+    {
+      "uid": "10-030",
+      "front": "How do you visualize what CNN filters have learned?",
+      "back": "<b>1. Filter visualization</b>: Directly view the learned filter weights (useful for first layer).<br><br><b>2. Activation maximization</b>: Optimize an input image to maximally activate a neuron:<br>\\( x^* = \\arg\\max_x a_k(x) - \\lambda R(x) \\)<br>where R(x) is a regularizer for natural-looking images.<br><br><b>3. Feature visualization</b>: Similar but with more sophisticated regularizers (DeepDream, Lucid).<br><br><b>4. Maximum activation patches</b>: Find real image patches that most activate each filter.<br><br><b>Insights</b>: Early layers learn edges/textures; later layers learn object parts and semantic concepts.",
+      "tags": [
+        "ch10",
+        "visualization",
+        "interpretability"
+      ]
     }
   ]
 }

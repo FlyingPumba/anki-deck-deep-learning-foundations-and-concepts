@@ -650,6 +650,66 @@
         "chain-of-thought",
         "prompting"
       ]
+    },
+    {
+      "uid": "12-065",
+      "front": "What is a Graph Neural Network (GNN)?",
+      "back": "A neural network designed to operate on <b>graph-structured data</b>.<br><br><b>Input</b>: Graph G = (V, E) with node features \\( \\mathbf{h}_v \\) and optionally edge features.<br><br><b>Key operation</b>: Message passing - nodes aggregate information from neighbors:<br>\\( \\mathbf{h}_v^{(l+1)} = \\text{UPDATE}\\left(\\mathbf{h}_v^{(l)}, \\text{AGGREGATE}(\\{\\mathbf{h}_u^{(l)} : u \\in \\mathcal{N}(v)\\})\\right) \\)<br><br><b>Applications</b>:<ul><li>Molecular property prediction</li><li>Social network analysis</li><li>Recommendation systems</li><li>Knowledge graphs</li><li>Combinatorial optimization</li></ul>",
+      "tags": [
+        "ch12",
+        "gnn",
+        "graph-learning"
+      ]
+    },
+    {
+      "uid": "12-066",
+      "front": "What is message passing in GNNs?",
+      "back": "<b>Message passing</b> is the core operation where nodes exchange information with neighbors.<br><br><b>Three steps per layer</b>:<ol><li><b>Message</b>: Compute messages from neighbors<br>\\( \\mathbf{m}_{u \\to v} = \\text{MSG}(\\mathbf{h}_u, \\mathbf{h}_v, \\mathbf{e}_{uv}) \\)</li><li><b>Aggregate</b>: Combine all incoming messages<br>\\( \\mathbf{m}_v = \\text{AGG}(\\{\\mathbf{m}_{u \\to v} : u \\in \\mathcal{N}(v)\\}) \\)</li><li><b>Update</b>: Update node representation<br>\\( \\mathbf{h}_v' = \\text{UPDATE}(\\mathbf{h}_v, \\mathbf{m}_v) \\)</li></ol><b>Aggregation must be permutation-invariant</b>: sum, mean, max are common choices.",
+      "tags": [
+        "ch12",
+        "gnn",
+        "message-passing"
+      ]
+    },
+    {
+      "uid": "12-067",
+      "front": "What is the relationship between GNNs and transformers?",
+      "back": "<b>Transformers are GNNs on fully-connected graphs</b>.<br><br><b>Self-attention</b>: Every token attends to every other token = complete graph.<br><br><b>Difference</b>:<ul><li>Transformers: Dense attention (all pairs)</li><li>GNNs: Sparse attention (only neighbors)</li></ul><b>Graph Transformers</b>: Combine both - use attention but incorporate graph structure via:<ul><li>Edge features in attention</li><li>Positional encodings from graph (Laplacian eigenvectors)</li><li>Sparse attention following graph edges</li></ul><b>Complexity</b>: Transformers O(N^2), sparse GNNs O(E) where E = edges.",
+      "tags": [
+        "ch12",
+        "gnn",
+        "transformers"
+      ]
+    },
+    {
+      "uid": "12-068",
+      "front": "What are common GNN architectures?",
+      "back": "<b>GCN</b> (Graph Convolutional Network):<br>\\( \\mathbf{h}_v' = \\sigma\\left(\\sum_{u \\in \\mathcal{N}(v) \\cup \\{v\\}} \\frac{1}{\\sqrt{d_u d_v}} \\mathbf{W} \\mathbf{h}_u\\right) \\)<br>Mean aggregation with degree normalization.<br><br><b>GraphSAGE</b>: Sample neighbors, concatenate own embedding with aggregated neighbors.<br><br><b>GAT</b> (Graph Attention Network): Use attention to weight neighbor contributions:<br>\\( \\alpha_{vu} = \\text{softmax}_u(\\text{LeakyReLU}(\\mathbf{a}^T[\\mathbf{W}\\mathbf{h}_v || \\mathbf{W}\\mathbf{h}_u])) \\)<br><br><b>GIN</b> (Graph Isomorphism Network): Provably as powerful as the Weisfeiler-Lehman test.",
+      "tags": [
+        "ch12",
+        "gnn",
+        "architectures"
+      ]
+    },
+    {
+      "uid": "12-069",
+      "front": "What is over-smoothing in GNNs?",
+      "back": "<b>Over-smoothing</b>: After many message-passing layers, all node representations become similar.<br><br><b>Why it happens</b>: Repeated averaging with neighbors causes features to converge to a uniform value.<br><br><b>Analogy</b>: Like heat diffusion - eventually everything reaches the same temperature.<br><br><b>Consequence</b>: Deep GNNs (>3-4 layers) often perform worse than shallow ones.<br><br><b>Solutions</b>:<ul><li>Residual connections</li><li>Jumping knowledge (concatenate outputs from all layers)</li><li>DropEdge (randomly remove edges during training)</li><li>PairNorm (normalize to prevent collapse)</li></ul>",
+      "tags": [
+        "ch12",
+        "gnn",
+        "over-smoothing"
+      ]
+    },
+    {
+      "uid": "12-070",
+      "front": "What graph-level tasks can GNNs solve?",
+      "back": "<b>Node-level</b>: Predict properties of individual nodes.<ul><li>Node classification</li><li>Example: Predict user interests in social network</li></ul><b>Edge-level</b>: Predict properties of edges.<ul><li>Link prediction (will edge form?)</li><li>Example: Recommend friends, predict interactions</li></ul><b>Graph-level</b>: Predict properties of entire graphs.<ul><li>Graph classification/regression</li><li>Requires graph pooling (sum/mean node embeddings, or hierarchical pooling)</li><li>Example: Predict molecule toxicity</li></ul>",
+      "tags": [
+        "ch12",
+        "gnn",
+        "tasks"
+      ]
     }
   ]
 }

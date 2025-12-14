@@ -470,6 +470,46 @@
         "dying-relu",
         "activation-functions"
       ]
+    },
+    {
+      "uid": "05-050",
+      "front": "What is class imbalance and why is it a problem?",
+      "back": "<b>Class imbalance</b>: When classes have very different numbers of samples (e.g., 99% negative, 1% positive).<br><br><b>Problems</b>:<ul><li>Model can achieve high accuracy by predicting majority class</li><li>Minority class is poorly learned</li><li>Standard metrics (accuracy) are misleading</li></ul><b>Examples</b>: Fraud detection, disease diagnosis, rare event prediction.<br><br><b>Metrics for imbalanced data</b>:<ul><li>Precision, recall, F1-score</li><li>AUROC (area under ROC curve)</li><li>AUPRC (area under precision-recall curve)</li><li>Matthews correlation coefficient</li></ul>",
+      "tags": [
+        "ch05",
+        "class-imbalance",
+        "classification"
+      ]
+    },
+    {
+      "uid": "05-051",
+      "front": "How do you handle class imbalance in training?",
+      "back": "<b>Data-level methods</b>:<ul><li><b>Oversampling minority</b>: Duplicate minority samples (risk: overfitting)</li><li><b>Undersampling majority</b>: Remove majority samples (risk: lose information)</li><li><b>SMOTE</b>: Generate synthetic minority samples by interpolating</li></ul><b>Algorithm-level methods</b>:<ul><li><b>Class weights</b>: Weight loss inversely proportional to class frequency</li><li><b>Focal loss</b>: Down-weight easy examples, focus on hard ones</li><li><b>Threshold tuning</b>: Adjust decision threshold post-training</li></ul><b>Best practices</b>:<ul><li>Use appropriate metrics (F1, AUPRC)</li><li>Start with class weights, then try data-level methods</li><li>Cross-validate on stratified splits</li></ul>",
+      "tags": [
+        "ch05",
+        "class-imbalance",
+        "techniques"
+      ]
+    },
+    {
+      "uid": "05-052",
+      "front": "What is focal loss?",
+      "back": "<b>Focal loss</b> addresses class imbalance by down-weighting easy examples:<br><br>\\( FL(p_t) = -(1 - p_t)^\\gamma \\log(p_t) \\)<br><br>where \\( p_t \\) is the predicted probability for the true class and \\( \\gamma \\geq 0 \\) is the focusing parameter.<br><br><b>How it works</b>:<ul><li>When \\( p_t \\) is high (easy example): \\( (1-p_t)^\\gamma \\) is small, loss is down-weighted</li><li>When \\( p_t \\) is low (hard example): \\( (1-p_t)^\\gamma \\approx 1 \\), full loss</li></ul><b>Typical \\( \\gamma \\)</b>: 2 works well in practice.<br><br><b>Origin</b>: RetinaNet for object detection with extreme foreground-background imbalance.",
+      "tags": [
+        "ch05",
+        "focal-loss",
+        "class-imbalance"
+      ]
+    },
+    {
+      "uid": "05-053",
+      "front": "When should you use AUPRC vs AUROC for imbalanced data?",
+      "back": "<b>AUROC</b> (Area Under ROC Curve):<ul><li>ROC plots TPR vs FPR</li><li>Insensitive to class imbalance in some sense</li><li>Can be overly optimistic when negatives vastly outnumber positives</li></ul><b>AUPRC</b> (Area Under Precision-Recall Curve):<ul><li>PR curve plots Precision vs Recall</li><li>Focuses on positive class performance</li><li>More informative when positives are rare</li></ul><b>Rule of thumb</b>:<ul><li>Balanced classes: AUROC is fine</li><li>Imbalanced (rare positive): AUPRC is more informative</li><li>When false positives are costly: focus on precision</li><li>When false negatives are costly: focus on recall</li></ul>",
+      "tags": [
+        "ch05",
+        "auprc",
+        "auroc"
+      ]
     }
   ]
 }
