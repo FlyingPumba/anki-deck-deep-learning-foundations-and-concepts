@@ -243,7 +243,7 @@
     },
     {
       "uid": "05-025",
-      "front": "What is a bottleneck network of linear units equivalent to?",
+      "front": "What is a bottleneck network of hidden units equivalent to?",
       "back": "<b>Principal Component Analysis (PCA)</b>.<br>If the number of hidden units is smaller than both input and output dimensions, a linear network learns a low-rank approximation.<br>This corresponds to projecting onto the principal components.",
       "tags": [
         "ch05",
