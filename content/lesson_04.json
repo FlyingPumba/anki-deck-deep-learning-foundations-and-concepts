@@ -550,6 +550,16 @@
         "triplet-loss",
         "metric-learning"
       ]
+    },
+    {
+      "uid": "04-059",
+      "front": "What is Huber loss (smooth L1 loss)?",
+      "back": "<b>Huber loss</b> combines MSE and MAE to be robust to outliers:<br><br>\\( L_\\delta(y, f(x)) = \\begin{cases} \\frac{1}{2}(y - f(x))^2 & \\text{if } |y - f(x)| \\leq \\delta \\\\ \\delta |y - f(x)| - \\frac{1}{2}\\delta^2 & \\text{otherwise} \\end{cases} \\)<br><br><b>Intuition</b>: Acts like MSE for small errors (smooth gradients), but like MAE for large errors (less sensitive to outliers).<br><br><b>Properties</b>:<ul><li>Differentiable everywhere (unlike MAE)</li><li>Linear growth for large errors (unlike MSE's quadratic)</li><li>\\( \\delta \\) controls transition point</li></ul><b>Use cases</b>: Regression with outliers, object detection (bounding box regression), reinforcement learning.",
+      "tags": [
+        "ch04",
+        "huber-loss",
+        "robust-regression"
+      ]
     }
   ]
 }

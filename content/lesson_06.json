@@ -520,6 +520,46 @@
         "normalization",
         "practical"
       ]
+    },
+    {
+      "uid": "06-054",
+      "front": "What is gradient accumulation?",
+      "back": "<b>Gradient accumulation</b> simulates larger batch sizes when GPU memory is limited.<br><br><b>How it works</b>:<ol><li>Process small mini-batches that fit in memory</li><li>Accumulate gradients over N steps without updating weights</li><li>Update weights after N accumulation steps</li></ol><b>Effective batch size</b> = mini-batch size \\( \\times \\) accumulation steps<br><br><b>Example</b>: Mini-batch of 8, accumulate for 4 steps = effective batch of 32.<br><br><b>Key points</b>:<ul><li>Mathematically equivalent to large batch (for sum/mean reductions)</li><li>Slower (sequential instead of parallel)</li><li>Enables training large models on limited hardware</li></ul>",
+      "tags": [
+        "ch06",
+        "gradient-accumulation",
+        "training"
+      ]
+    },
+    {
+      "uid": "06-055",
+      "front": "What is mixed precision training?",
+      "back": "<b>Mixed precision</b> uses both FP16 (16-bit) and FP32 (32-bit) floating point during training.<br><br><b>How it works</b>:<ul><li><b>Forward pass</b>: FP16 (faster, less memory)</li><li><b>Backward pass</b>: FP16</li><li><b>Master weights</b>: FP32 (for accurate accumulation)</li><li><b>Loss scaling</b>: Scale loss up before backward to prevent gradient underflow</li></ul><b>Benefits</b>:<ul><li>~2x memory reduction</li><li>~2x faster on modern GPUs (Tensor Cores)</li><li>Nearly identical accuracy to FP32</li></ul><b>Key technique</b>: <b>Loss scaling</b> - multiply loss by a large constant before backward pass, then unscale gradients before optimizer step.",
+      "tags": [
+        "ch06",
+        "mixed-precision",
+        "training"
+      ]
+    },
+    {
+      "uid": "06-056",
+      "front": "What is loss scaling in mixed precision training?",
+      "back": "<b>Loss scaling</b> prevents gradient underflow in FP16 training.<br><br><b>Problem</b>: Small gradients (< 2^-24) become zero in FP16, causing training to stall.<br><br><b>Solution</b>:<ol><li>Multiply loss by a large scale factor S before backward pass</li><li>Gradients are scaled by S (larger, avoids underflow)</li><li>Unscale gradients by dividing by S before optimizer step</li></ol><b>Dynamic loss scaling</b>:<ul><li>Start with large S (e.g., 2^16)</li><li>If gradients overflow (NaN/Inf), skip update and halve S</li><li>If no overflow for N steps, double S</li></ul>Used in PyTorch AMP, TensorFlow mixed precision.",
+      "tags": [
+        "ch06",
+        "loss-scaling",
+        "mixed-precision"
+      ]
+    },
+    {
+      "uid": "06-057",
+      "front": "What is bfloat16 (BF16) and how does it differ from FP16?",
+      "back": "<b>BF16</b> (Brain Floating Point 16) uses 16 bits with different allocation than FP16:<br><br><b>Format comparison</b>:<ul><li><b>FP32</b>: 1 sign, 8 exponent, 23 mantissa</li><li><b>FP16</b>: 1 sign, 5 exponent, 10 mantissa</li><li><b>BF16</b>: 1 sign, 8 exponent, 7 mantissa</li></ul><b>Key difference</b>: BF16 has same range as FP32 (8-bit exponent) but less precision (7-bit mantissa).<br><br><b>Advantages of BF16</b>:<ul><li>No loss scaling needed (same dynamic range as FP32)</li><li>Simpler training code</li><li>Better for gradients that vary widely in magnitude</li></ul><b>Support</b>: Google TPUs, NVIDIA A100+, Intel.",
+      "tags": [
+        "ch06",
+        "bfloat16",
+        "precision"
+      ]
     }
   ]
 }

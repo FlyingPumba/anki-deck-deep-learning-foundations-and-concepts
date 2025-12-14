@@ -540,6 +540,116 @@
         "flash-attention",
         "efficiency"
       ]
+    },
+    {
+      "uid": "12-054",
+      "front": "What is Multi-Query Attention (MQA)?",
+      "back": "<b>Multi-Query Attention</b> shares key and value heads across all query heads.<br><br><b>Standard multi-head</b>: H separate Q, K, V projections<br><b>MQA</b>: H query heads, but only 1 shared K and 1 shared V<br><br><b>Benefits</b>:<ul><li><b>KV cache size</b>: Reduced by factor of H</li><li><b>Memory bandwidth</b>: Much lower during inference</li><li><b>Faster decoding</b>: Especially for long sequences</li></ul><b>Trade-off</b>: Slight quality degradation vs standard multi-head.<br><br><b>Used in</b>: PaLM, Falcon, StarCoder.",
+      "tags": [
+        "ch12",
+        "mqa",
+        "efficient-attention"
+      ]
+    },
+    {
+      "uid": "12-055",
+      "front": "What is Grouped Query Attention (GQA)?",
+      "back": "<b>Grouped Query Attention</b> is a middle ground between multi-head and multi-query attention.<br><br><b>Setup</b>: Group query heads together; each group shares one K and V head.<br><br><b>Examples</b>:<ul><li>32 query heads, 8 KV heads = groups of 4</li><li>MQA = GQA with 1 group</li><li>MHA = GQA where groups = heads</li></ul><b>Benefits</b>:<ul><li>Better quality than MQA</li><li>Smaller KV cache than standard MHA</li><li>Tunable trade-off</li></ul><b>Used in</b>: LLaMA 2 (70B), Mistral, Gemma.",
+      "tags": [
+        "ch12",
+        "gqa",
+        "efficient-attention"
+      ]
+    },
+    {
+      "uid": "12-056",
+      "front": "What are neural scaling laws?",
+      "back": "<b>Scaling laws</b> describe how model performance improves predictably with scale.<br><br><b>Kaplan et al. (2020)</b>: Loss scales as power law with:<ul><li>Model parameters N: \\( L \\propto N^{-0.076} \\)</li><li>Dataset size D: \\( L \\propto D^{-0.095} \\)</li><li>Compute C: \\( L \\propto C^{-0.050} \\)</li></ul><b>Chinchilla (2022)</b>: Optimal allocation - parameters and data should scale equally. Many models were undertrained.<br><br><b>Implications</b>:<ul><li>Performance is predictable before training</li><li>Can extrapolate to larger scales</li><li>Guides resource allocation</li></ul>",
+      "tags": [
+        "ch12",
+        "scaling-laws",
+        "llm"
+      ]
+    },
+    {
+      "uid": "12-057",
+      "front": "What is the Chinchilla scaling law?",
+      "back": "<b>Chinchilla</b> (Hoffmann et al., 2022) revised compute-optimal scaling.<br><br><b>Key finding</b>: For a fixed compute budget, model size and training tokens should scale <b>equally</b>.<br><br><b>Optimal ratio</b>: ~20 tokens per parameter<br>(e.g., 70B model needs ~1.4T tokens)<br><br><b>Implication</b>: Many large models (GPT-3, Gopher) were undertrained - they used too many parameters for their training data.<br><br><b>Impact</b>: Shifted focus toward more training data, smaller but better-trained models (LLaMA trained on 1-2T tokens).",
+      "tags": [
+        "ch12",
+        "chinchilla",
+        "scaling-laws"
+      ]
+    },
+    {
+      "uid": "12-058",
+      "front": "What is in-context learning (ICL)?",
+      "back": "<b>In-context learning</b>: A model performs a task by conditioning on examples in the prompt, without updating weights.<br><br><b>Example</b>:<br><code>Translate to French:<br>cat -> chat<br>dog -> chien<br>house -> </code><br>Model outputs 'maison' by pattern matching, not fine-tuning.<br><br><b>Key properties</b>:<ul><li>No gradient updates</li><li>Task specified at inference time</li><li>Emerges in large language models</li><li>Performance improves with more examples (few-shot)</li></ul><b>Why it works</b>: Still debated. May be implicit Bayesian inference, or task location in pretraining distribution.",
+      "tags": [
+        "ch12",
+        "in-context-learning",
+        "llm"
+      ]
+    },
+    {
+      "uid": "12-059",
+      "front": "What is RLHF (Reinforcement Learning from Human Feedback)?",
+      "back": "<b>RLHF</b> aligns language models with human preferences using RL.<br><br><b>Three stages</b>:<ol><li><b>Supervised fine-tuning (SFT)</b>: Train on human-written examples</li><li><b>Reward model training</b>: Train a model to predict human preferences from comparisons</li><li><b>RL fine-tuning</b>: Optimize policy (LLM) to maximize reward using PPO</li></ol><b>Why needed</b>: Next-token prediction doesn't optimize for helpfulness, safety, or instruction-following.<br><br><b>Used in</b>: ChatGPT, Claude, Gemini.<br><br><b>Alternatives</b>: DPO (Direct Preference Optimization) - no separate reward model needed.",
+      "tags": [
+        "ch12",
+        "rlhf",
+        "alignment"
+      ]
+    },
+    {
+      "uid": "12-060",
+      "front": "What is DPO (Direct Preference Optimization)?",
+      "back": "<b>DPO</b> is a simpler alternative to RLHF that directly optimizes for preferences without RL.<br><br><b>Key insight</b>: The optimal policy under the RLHF objective can be expressed in closed form. This allows directly optimizing the policy without training a separate reward model.<br><br><b>Loss</b>: \\( L = -\\log \\sigma\\left(\\beta \\log \\frac{\\pi(y_w|x)}{\\pi_{ref}(y_w|x)} - \\beta \\log \\frac{\\pi(y_l|x)}{\\pi_{ref}(y_l|x)}\\right) \\)<br><br>where \\( y_w \\) is preferred, \\( y_l \\) is dispreferred.<br><br><b>Advantages over RLHF</b>:<ul><li>No reward model to train</li><li>No RL optimization (PPO)</li><li>Simpler and more stable</li></ul>",
+      "tags": [
+        "ch12",
+        "dpo",
+        "alignment"
+      ]
+    },
+    {
+      "uid": "12-061",
+      "front": "What is LoRA (Low-Rank Adaptation)?",
+      "back": "<b>LoRA</b> is a parameter-efficient fine-tuning method that adds low-rank updates to frozen weights.<br><br><b>Key idea</b>: Instead of updating \\( W \\), learn \\( W + BA \\) where:<ul><li>\\( B \\in \\mathbb{R}^{d \\times r} \\), \\( A \\in \\mathbb{R}^{r \\times k} \\)</li><li>\\( r \\ll \\min(d, k) \\) (rank is small, e.g., 8-64)</li></ul><b>Benefits</b>:<ul><li>Train ~0.1% of parameters</li><li>No inference latency (merge BA into W)</li><li>Multiple LoRAs for different tasks</li><li>Much lower memory than full fine-tuning</li></ul><b>Applied to</b>: Attention projections (Q, K, V, O) typically.<br><br><b>Used in</b>: Virtually all LLM fine-tuning today.",
+      "tags": [
+        "ch12",
+        "lora",
+        "peft"
+      ]
+    },
+    {
+      "uid": "12-062",
+      "front": "What is parameter-efficient fine-tuning (PEFT)?",
+      "back": "<b>PEFT</b> methods adapt large pre-trained models by training only a small number of parameters.<br><br><b>Methods</b>:<ul><li><b>LoRA</b>: Low-rank weight updates</li><li><b>Adapters</b>: Small trainable modules inserted between layers</li><li><b>Prefix tuning</b>: Learnable prefix tokens prepended to input</li><li><b>Prompt tuning</b>: Learnable soft prompts</li><li><b>IA3</b>: Learned rescaling of activations</li></ul><b>Benefits</b>:<ul><li>Train <1% of parameters</li><li>Lower memory and compute</li><li>Store many task-specific adaptations cheaply</li><li>Often matches full fine-tuning quality</li></ul>",
+      "tags": [
+        "ch12",
+        "peft",
+        "fine-tuning"
+      ]
+    },
+    {
+      "uid": "12-063",
+      "front": "What are emergent abilities in large language models?",
+      "back": "<b>Emergent abilities</b>: Capabilities that appear suddenly at scale, absent in smaller models.<br><br><b>Examples</b>:<ul><li>Multi-step arithmetic</li><li>Chain-of-thought reasoning</li><li>Word unscrambling</li><li>Following complex instructions</li></ul><b>Characteristics</b>:<ul><li>Near-random performance below threshold</li><li>Sharp improvement above threshold</li><li>Not predictable from smaller scales</li></ul><b>Debate</b>: Some argue emergence is an artifact of evaluation metrics (discrete accuracy). With continuous metrics, improvements may be gradual.<br><br><b>Implication</b>: Scaling may unlock qualitatively new capabilities.",
+      "tags": [
+        "ch12",
+        "emergent-abilities",
+        "llm"
+      ]
+    },
+    {
+      "uid": "12-064",
+      "front": "What is chain-of-thought (CoT) prompting?",
+      "back": "<b>Chain-of-thought</b> prompting improves reasoning by having the model show its work.<br><br><b>Standard prompting</b>:<br>Q: Roger has 5 balls. He buys 2 more. How many?<br>A: 7<br><br><b>CoT prompting</b>:<br>Q: Roger has 5 balls. He buys 2 more. How many?<br>A: Roger started with 5 balls. He bought 2 more. 5 + 2 = 7. The answer is 7.<br><br><b>Why it helps</b>:<ul><li>Breaks problem into steps</li><li>Intermediate results stay in context</li><li>Reduces compounding errors</li></ul><b>Variants</b>:<ul><li>Zero-shot CoT: Add 'Let's think step by step'</li><li>Self-consistency: Sample multiple chains, majority vote</li></ul>",
+      "tags": [
+        "ch12",
+        "chain-of-thought",
+        "prompting"
+      ]
     }
   ]
 }

@@ -198,6 +198,46 @@
         "knowledge-distillation",
         "applications"
       ]
+    },
+    {
+      "uid": "08-020",
+      "front": "What is model quantization?",
+      "back": "<b>Quantization</b> reduces model size by using lower-precision numbers.<br><br><b>Common approaches</b>:<ul><li><b>FP32 to FP16</b>: 2x smaller, minimal accuracy loss</li><li><b>FP32 to INT8</b>: 4x smaller, faster inference</li><li><b>FP32 to INT4</b>: 8x smaller, used for LLM inference</li></ul><b>Types</b>:<ul><li><b>Post-training quantization (PTQ)</b>: Quantize after training</li><li><b>Quantization-aware training (QAT)</b>: Simulate quantization during training</li></ul><b>Trade-off</b>: Lower precision = smaller/faster but potential accuracy loss.<br><br><b>Use cases</b>: Mobile deployment, edge devices, LLM inference (GPTQ, AWQ, GGUF).",
+      "tags": [
+        "ch08",
+        "quantization",
+        "compression"
+      ]
+    },
+    {
+      "uid": "08-021",
+      "front": "What is the difference between PTQ and QAT?",
+      "back": "<b>Post-Training Quantization (PTQ)</b>:<ul><li>Quantize a trained model without retraining</li><li>Fast and easy to apply</li><li>May have accuracy loss, especially for aggressive quantization</li><li>Uses calibration data to determine quantization ranges</li></ul><b>Quantization-Aware Training (QAT)</b>:<ul><li>Simulate quantization during training</li><li>Model learns to be robust to quantization noise</li><li>Better accuracy than PTQ</li><li>More expensive (requires training)</li></ul><b>Rule of thumb</b>: Use PTQ first; if accuracy drops too much, try QAT.",
+      "tags": [
+        "ch08",
+        "quantization",
+        "training"
+      ]
+    },
+    {
+      "uid": "08-022",
+      "front": "What is neural network pruning?",
+      "back": "<b>Pruning</b> removes unnecessary weights or neurons to create smaller, faster models.<br><br><b>Types</b>:<ul><li><b>Unstructured pruning</b>: Remove individual weights (creates sparse matrices)</li><li><b>Structured pruning</b>: Remove entire neurons, channels, or layers (maintains dense operations)</li></ul><b>Process</b>:<ol><li>Train the full model</li><li>Identify unimportant weights (e.g., small magnitude)</li><li>Remove/zero them out</li><li>Fine-tune to recover accuracy</li></ol><b>Lottery Ticket Hypothesis</b>: Dense networks contain sparse subnetworks that can train to same accuracy from scratch.",
+      "tags": [
+        "ch08",
+        "pruning",
+        "compression"
+      ]
+    },
+    {
+      "uid": "08-023",
+      "front": "What is the Lottery Ticket Hypothesis?",
+      "back": "<b>Lottery Ticket Hypothesis</b> (Frankle & Carlin, 2019): Dense neural networks contain sparse subnetworks (<b>winning tickets</b>) that, when trained in isolation from their original initialization, can match the full network's accuracy.<br><br><b>Key insight</b>: It's not just about the sparse architecture, but also the <b>initial weights</b>. Random reinitialization doesn't work.<br><br><b>Implications</b>:<ul><li>Overparameterization may help find good subnetworks</li><li>Pruning + rewinding can find efficient models</li><li>Not all initializations are equal</li></ul><b>Limitation</b>: Finding winning tickets requires training the full network first.",
+      "tags": [
+        "ch08",
+        "lottery-ticket",
+        "pruning"
+      ]
     }
   ]
 }

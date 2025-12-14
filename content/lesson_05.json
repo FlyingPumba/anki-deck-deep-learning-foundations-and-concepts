@@ -460,6 +460,16 @@
         "swish",
         "activation-functions"
       ]
+    },
+    {
+      "uid": "05-049",
+      "front": "What is the dying ReLU problem?",
+      "back": "<b>Dying ReLU</b>: When a ReLU neuron gets stuck outputting 0 for all inputs and stops learning.<br><br><b>How it happens</b>:<ol><li>If inputs are always negative, ReLU outputs 0</li><li>Gradient of ReLU is 0 for negative inputs</li><li>No gradient = no weight updates = neuron never recovers</li></ol><b>Causes</b>:<ul><li>Large learning rate causing weights to become very negative</li><li>Poor weight initialization</li><li>Large negative bias</li></ul><b>Solutions</b>:<ul><li><b>Leaky ReLU</b>: Small slope for negative inputs</li><li><b>PReLU</b>: Learnable slope for negative inputs</li><li><b>ELU</b>: Smooth negative region</li><li>Careful initialization (He initialization)</li><li>Lower learning rate</li></ul>",
+      "tags": [
+        "ch05",
+        "dying-relu",
+        "activation-functions"
+      ]
     }
   ]
 }
