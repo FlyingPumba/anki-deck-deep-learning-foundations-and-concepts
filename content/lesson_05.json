@@ -232,16 +232,6 @@
       ]
     },
     {
-      "uid": "05-023",
-      "front": "What is the no free lunch theorem?",
-      "back": "Averaged over all possible problems, no learning algorithm is better than any other (including random guessing).<br><b>Implications</b>:<br><ul><li>Every successful algorithm must have <b>inductive biases</b> suited to the problems it solves</li><li>If an algorithm is better than average on some problems, it must be <b>worse than average on others</b></li></ul>No universal algorithm works best on everything.",
-      "tags": [
-        "ch05",
-        "no-free-lunch",
-        "inductive-bias"
-      ]
-    },
-    {
       "uid": "05-024",
       "front": "Why are nonlinear activation functions necessary in deep networks?",
       "back": "Because <b>composition of linear transformations is itself linear</b>.<br>Without nonlinearities, a deep network would collapse to a single linear transformation:<br>\\( W_L \\cdots W_2 W_1 \\vec{x} = W_{\\text{effective}} \\vec{x} \\)<br>Nonlinearities enable learning complex functions.",

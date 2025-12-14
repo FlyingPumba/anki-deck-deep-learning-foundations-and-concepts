@@ -242,16 +242,6 @@
       ]
     },
     {
-      "uid": "02-024",
-      "front": "What is density estimation?",
-      "back": "<b>Density estimation</b> is the problem of estimating a probability distribution given a finite set of observations.<br>It is fundamentally ill-posed because infinitely many distributions could have generated the finite data. Constraining to a family (e.g., Gaussians) makes it well-defined.",
-      "tags": [
-        "ch02",
-        "density-estimation",
-        "definition"
-      ]
-    },
-    {
       "uid": "02-025",
       "front": "What does 'independent and identically distributed' (i.i.d.) mean?",
       "back": "Data points are <b>i.i.d.</b> (or IID) when:<br><ol><li><b>Independent</b>: Each data point is drawn independently of the others</li><li><b>Identically distributed</b>: All points come from the same distribution</li></ol>For i.i.d. data: \\( p(x_1, \\ldots, x_N) = \\prod_{n=1}^{N} p(x_n) \\)",

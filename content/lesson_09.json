@@ -81,26 +81,6 @@
       ]
     },
     {
-      "uid": "09-010",
-      "front": "What is L1 regularization (Lasso)?",
-      "back": "Regularizer using sum of absolute values:<br>\\( \\Omega(\\mathbf{w}) = \\sum_i |w_i| \\)<br>Key property: Produces <b>sparse solutions</b> where many weights are exactly zero.<br>As \\( \\lambda \\) increases, more parameters driven to zero.<br>Useful for feature selection.",
-      "tags": [
-        "ch09",
-        "l1",
-        "sparsity"
-      ]
-    },
-    {
-      "uid": "09-011",
-      "front": "Why does L1 produce sparse solutions while L2 does not?",
-      "back": "<b>L1</b>: Constraint region has <b>corners</b> (diamond shape). Error contours tend to intersect at corners where some parameters are exactly zero.<br><b>L2</b>: Constraint region is <b>smooth</b> (circular). Gradient approaches zero as weights approach zero.<br>L1's discontinuous gradient at zero drives parameters exactly to zero.",
-      "tags": [
-        "ch09",
-        "l1-vs-l2",
-        "sparsity"
-      ]
-    },
-    {
       "uid": "09-014",
       "front": "How does early stopping relate to L2 regularization?",
       "back": "Early stopping is approximately <b>equivalent to L2 regularization</b>.<br>The effective number of parameters <b>grows during training</b> as weights move from initialization.<br>Stopping early limits how far weights can move, similar to constraining their magnitude with L2.",
@@ -111,43 +91,13 @@
       ]
     },
     {
-      "uid": "09-016",
-      "front": "What is parameter sharing (weight tying)?",
-      "back": "Using the <b>same weight value</b> for multiple connections in a network.<br>Benefits:<br><ul><li>Reduces number of parameters</li><li>Encodes prior knowledge about structure</li><li>Key mechanism in CNNs (same filter everywhere)</li></ul>The shared value is learned from data.",
-      "tags": [
-        "ch09",
-        "weight-sharing",
-        "architecture"
-      ]
-    },
-    {
-      "uid": "09-017",
-      "front": "What are residual connections (skip connections)?",
-      "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\mathbf{y} = F(\\mathbf{x}) + \\mathbf{x} \\)<br>Benefits:<br><ul><li>Allow gradients to flow directly through network</li><li>Enable training of very deep networks (100+ layers)</li><li>Each block learns the 'residual' - what needs to be added</li></ul>Foundation of ResNets.",
-      "tags": [
-        "ch09",
-        "residual",
-        "architecture"
-      ]
-    },
-    {
       "uid": "09-020",
       "front": "How does dropout prevent co-adaptation of features?",
-      "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.<br>Nodes must learn robust features useful independently.<br>Prevents complex co-adaptations that might overfit.<br>Forces redundancy and distributed representations.",
+      "back": "<b>Co-adaptation</b>: When neurons learn to depend on specific other neurons, creating fragile feature detectors that only work together.<br><br><b>How dropout helps</b>: Since any neuron might be randomly dropped, each neuron must learn features that are useful <i>on their own</i>, not just in combination with specific partners.<br><br>This forces the network to learn redundant, distributed representations rather than brittle specialized ones.",
       "tags": [
         "ch09",
         "dropout",
         "co-adaptation"
-      ]
-    },
-    {
-      "uid": "09-023",
-      "front": "What is the relationship between model size and generalization in modern deep learning?",
-      "back": "In the over-parameterized regime:<br><ul><li>Many solutions can interpolate training data</li><li>Optimization and regularization select <b>simpler</b> solutions</li><li>Larger models can find smoother interpolations</li></ul>Best results: Large network + strong regularization<br>Not: Small network with just enough capacity.",
-      "tags": [
-        "ch09",
-        "over-parameterization",
-        "generalization"
       ]
     },
     {

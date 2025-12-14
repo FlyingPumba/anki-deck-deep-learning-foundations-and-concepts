@@ -221,16 +221,6 @@
       ]
     },
     {
-      "uid": "07-023",
-      "front": "How does early stopping relate to weight decay?",
-      "back": "Early stopping is approximately equivalent to L2 regularization.<br>The <b>effective number of parameters grows</b> during training as weights move from initialization.<br>Stopping early limits how far weights can move, similar to constraining their magnitude.",
-      "tags": [
-        "ch07",
-        "early-stopping",
-        "weight-decay"
-      ]
-    },
-    {
       "uid": "07-024",
       "front": "What are learning curves?",
       "back": "Plots of performance measures (training/validation error) vs. training progress.<br>Used to diagnose:<br><ul><li>Overfitting (training error << validation error)</li><li>Underfitting (both errors high)</li><li>When to apply early stopping</li></ul>Can also plot vs. dataset size or model complexity.",
@@ -241,26 +231,6 @@
       ]
     },
     {
-      "uid": "07-025",
-      "front": "What is inductive bias in machine learning?",
-      "back": "The preference for one hypothesis over others, beyond what the data supports.<br>Also called <b>learning bias</b>.<br>Examples:<br><ul><li>Preference for simpler models (Occam's razor)</li><li>Assumption of smoothness</li><li>Translation equivariance in CNNs</li></ul>Necessary for generalization beyond training data.",
-      "tags": [
-        "ch07",
-        "inductive-bias",
-        "learning"
-      ]
-    },
-    {
-      "uid": "07-027",
-      "front": "What is translation invariance vs. translation equivariance?",
-      "back": "<b>Invariance</b>: Output unchanged when input is translated.<br>\\( f(T(x)) = f(x) \\)<br><b>Equivariance</b>: Output transforms in the same way as input.<br>\\( f(T(x)) = T(f(x)) \\)<br>Invariance is a special case where the output transformation is identity.",
-      "tags": [
-        "ch07",
-        "invariance",
-        "equivariance"
-      ]
-    },
-    {
       "uid": "07-028",
       "front": "What is geometric deep learning?",
       "back": "A framework for designing neural networks that respect <b>symmetries</b> in data.<br>Key idea: Build invariances/equivariances into network architecture.<br>Examples:<br><ul><li>CNNs: Translation equivariance</li><li>Graph NNs: Permutation equivariance</li><li>Spherical CNNs: Rotation equivariance</li></ul>",
@@ -268,16 +238,6 @@
         "ch07",
         "geometric-deep-learning",
         "symmetry"
-      ]
-    },
-    {
-      "uid": "07-029",
-      "front": "What are four ways to incorporate symmetries into neural networks?",
-      "back": "<ol><li><b>Pre-processing</b>: Transform inputs to be invariant</li></ol><ol><li><b>Regularized error function</b>: Penalize changes under transformations</li></ol><ol><li><b>Data augmentation</b>: Expand training set with transformed examples</li></ol><ol><li><b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)</li></ol>",
-      "tags": [
-        "ch07",
-        "symmetry",
-        "approaches"
       ]
     },
     {

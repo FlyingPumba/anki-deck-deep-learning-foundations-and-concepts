@@ -261,16 +261,6 @@
       ]
     },
     {
-      "uid": "01-027",
-      "front": "What is a feed-forward neural network?",
-      "back": "A <b>feed-forward neural network</b> is one where information flows forward through the network from inputs to outputs, with no cycles or feedback connections.",
-      "tags": [
-        "ch01",
-        "neural-networks",
-        "architecture"
-      ]
-    },
-    {
       "uid": "01-028",
       "front": "What is error backpropagation?",
       "back": "<b>Error backpropagation</b> (or just backprop) is an efficient algorithm for computing the derivatives of the error function with respect to all network parameters. Information flows backwards through the network from outputs towards inputs.",
@@ -288,16 +278,6 @@
         "ch01",
         "sgd",
         "optimization"
-      ]
-    },
-    {
-      "uid": "01-030",
-      "front": "What are inductive biases (or prior knowledge) in machine learning?",
-      "back": "<b>Inductive biases</b> are background assumptions that influence learning from data. They can be:<br><ul><li><b>Explicit</b>: e.g., designing network structure so classification doesn't depend on object location in image</li><li><b>Implicit</b>: arising from the model form or training procedure</li></ul>",
-      "tags": [
-        "ch01",
-        "inductive-bias",
-        "definition"
       ]
     },
     {

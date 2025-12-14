@@ -32,16 +32,6 @@
       ]
     },
     {
-      "uid": "04-003",
-      "front": "What was feature extraction in pre-deep learning machine learning?",
-      "back": "A form of fixed pre-processing of input variables \\( \\vec{x} \\) expressed as a set of <b>basis functions</b> \\( \\{\\phi_j(\\vec{x})\\} \\).<br>The goal was to choose sufficiently powerful basis functions that the learning task could be solved with a simple network model.<br>Deep learning avoids this by learning nonlinear transformations from data itself.",
-      "tags": [
-        "ch04",
-        "feature-extraction",
-        "basis-functions"
-      ]
-    },
-    {
       "uid": "04-004",
       "front": "How can a polynomial regression model be expressed using basis functions?",
       "back": "For a single input variable \\( x \\), use basis functions:<br>\\( \\phi_j(x) = x^j \\)<br>So:<br>\\( y(x, \\vec{w}) = w_0 + w_1 x + w_2 x^2 + \\ldots = \\sum_{j=0}^{M-1} w_j x^j \\)",

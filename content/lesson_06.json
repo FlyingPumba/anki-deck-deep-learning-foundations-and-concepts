@@ -22,16 +22,6 @@
       ]
     },
     {
-      "uid": "06-002",
-      "front": "What is data augmentation?",
-      "back": "Artificially expanding training data by applying transformations that preserve labels:<br><ul><li>Image: rotations, flips, crops, color jitter</li><li>Text: synonym replacement, back-translation</li><li>Audio: pitch shifting, time stretching</li></ul>Reduces overfitting and improves generalization.",
-      "tags": [
-        "ch06",
-        "data-augmentation",
-        "regularization"
-      ]
-    },
-    {
       "uid": "06-003",
       "front": "What is a feed-forward architecture in neural networks?",
       "back": "A network where information flows in <b>one direction only</b>: from input to output, with no cycles or loops.<br>Connections go from layer \\( l \\) to layer \\( l+1 \\), never backwards.<br>Contrast with recurrent networks that have feedback connections.",

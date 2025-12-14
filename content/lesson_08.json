@@ -168,16 +168,6 @@
         "mc-dropout",
         "uncertainty"
       ]
-    },
-    {
-      "uid": "08-017",
-      "front": "How does dropout prevent co-adaptation of features?",
-      "back": "With dropout, each node <b>cannot rely on specific other nodes</b> being present.<br>Nodes must learn robust features useful independently.<br>Prevents complex co-adaptations that might overfit.<br>Forces redundancy and distributed representations.",
-      "tags": [
-        "ch08",
-        "dropout",
-        "co-adaptation"
-      ]
     }
   ]
 }
