@@ -103,7 +103,7 @@
     {
       "uid": "07-010",
       "front": "What are the drawbacks of symbolic differentiation?",
-      "back": "<ol><li><b>Expression swell</b>: Resulting expressions can be exponentially larger than original</li></ol><ol><li><b>Requires closed-form expressions</b>: Cannot handle control flow (loops, conditionals)</li></ol><ol><li><b>Redundant computation</b>: May recompute shared subexpressions</li></ol>",
+      "back": "<ol><li><b>Expression swell</b>: Resulting expressions can be exponentially larger than original</li><li><b>Requires closed-form expressions</b>: Cannot handle control flow (loops, conditionals)</li><li><b>Redundant computation</b>: May recompute shared subexpressions</li></ol>",
       "tags": [
         "ch07",
         "symbolic-differentiation",
@@ -278,6 +278,36 @@
         "ch07",
         "model-based",
         "inductive-bias"
+      ]
+    },
+    {
+      "uid": "07-034",
+      "front": "What is the difference between maximum likelihood (MLE) and maximum a posteriori (MAP) estimation?",
+      "back": "<b>MLE</b>: Choose parameters to maximize likelihood:<br>\\( \\theta_{MLE} = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta) \\).<br><br><b>MAP</b>: Choose parameters to maximize posterior (likelihood times prior):<br>\\( \\theta_{MAP} = \\arg\\max_\\theta \\; p(\\theta|\\mathcal{D}) = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta)p(\\theta) \\).<br><br><b>Key link to regularization</b>: Taking negative logs turns MAP into minimizing a loss plus a penalty term from \\( -\\ln p(\\theta) \\).",
+      "tags": [
+        "ch07",
+        "map",
+        "regularization"
+      ]
+    },
+    {
+      "uid": "07-035",
+      "front": "How do L2 and L1 regularization correspond to priors in a MAP view?",
+      "back": "<b>L2 regularization</b> corresponds to a <b>Gaussian prior</b> on weights:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\frac{\\lambda}{2}\\|\\vec{w}\\|^2\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\frac{\\lambda}{2}\\|\\vec{w}\\|^2 \\).<br><br><b>L1 regularization</b> corresponds to a <b>Laplace prior</b>:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\lambda \\|\\vec{w}\\|_1\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\lambda \\|\\vec{w}\\|_1 \\).<br><br><b>Intuition</b>: The Laplace prior has a sharp peak at 0, which encourages sparsity.",
+      "tags": [
+        "ch07",
+        "l1-vs-l2",
+        "bayesian"
+      ]
+    },
+    {
+      "uid": "07-036",
+      "front": "What is Elastic Net regularization?",
+      "back": "<b>Elastic Net</b> combines L1 and L2 regularization:<br><br>\\( \\Omega(\\vec{w}) = \\lambda_1 \\|\\vec{w}\\|_1 + \\lambda_2 \\|\\vec{w}\\|_2^2 \\)<br><br>Or with mixing parameter \\( \\alpha \\in [0,1] \\):<br>\\( \\Omega(\\vec{w}) = \\alpha \\|\\vec{w}\\|_1 + (1-\\alpha) \\|\\vec{w}\\|_2^2 \\)<br><br><b>Why combine them?</b><ul><li><b>L1 alone</b>: Sparse but unstable when features are correlated (picks one arbitrarily)</li><li><b>L2 alone</b>: Stable but not sparse</li><li><b>Elastic Net</b>: Sparse AND groups correlated features together</li></ul><b>When to use</b>: Many features, some correlated, want sparse selection.",
+      "tags": [
+        "ch07",
+        "elastic-net",
+        "regularization"
       ]
     }
   ]

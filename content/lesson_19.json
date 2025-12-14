@@ -93,7 +93,7 @@
     {
       "uid": "19-009",
       "front": "What are the three key ideas behind VAEs?",
-      "back": "<ol><li><b>ELBO</b>: Approximate intractable likelihood with lower bound</li></ol><ol><li><b>Amortized inference</b>: Neural network approximates posterior for all x (not just one)</li></ol><ol><li><b>Reparameterization trick</b>: Enable backpropagation through stochastic sampling</li></ol>",
+      "back": "<ol><li><b>ELBO</b>: Approximate intractable likelihood with lower bound</li><li><b>Amortized inference</b>: Neural network approximates posterior for all x (not just one)</li><li><b>Reparameterization trick</b>: Enable backpropagation through stochastic sampling</li></ol>",
       "tags": [
         "ch19",
         "vae",
@@ -153,7 +153,7 @@
     {
       "uid": "19-015",
       "front": "How do you sample from a trained VAE?",
-      "back": "<ol><li>Sample latent: \\( z \\sim p(z) = \\mathcal{N}(0, I) \\)</li></ol><ol><li>Decode: Pass z through decoder network</li></ol><ol><li>Output: Either use decoder mean directly, or sample from p(x|z)</li></ol>No need for encoder at generation time.",
+      "back": "<ol><li>Sample latent: \\( z \\sim p(z) = \\mathcal{N}(0, I) \\)</li><li>Decode: Pass z through decoder network</li><li>Output: Either use decoder mean directly, or sample from p(x|z)</li></ol>No need for encoder at generation time.",
       "tags": [
         "ch19",
         "vae",

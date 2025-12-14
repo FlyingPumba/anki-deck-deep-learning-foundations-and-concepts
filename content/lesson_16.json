@@ -33,7 +33,7 @@
     {
       "uid": "16-003",
       "front": "What are the two equivalent definitions of PCA?",
-      "back": "<ol><li><b>Maximum variance</b>: Linear projection that maximizes variance of projected data</li></ol><ol><li><b>Minimum error</b>: Linear projection that minimizes mean squared distance between points and their projections</li></ol>Both lead to same solution: eigenvectors of covariance matrix.",
+      "back": "<ol><li><b>Maximum variance</b>: Linear projection that maximizes variance of projected data</li><li><b>Minimum error</b>: Linear projection that minimizes mean squared distance between points and their projections</li></ol>Both lead to same solution: eigenvectors of covariance matrix.",
       "tags": [
         "ch16",
         "pca",
@@ -123,7 +123,7 @@
     {
       "uid": "16-012",
       "front": "What are the advantages of probabilistic PCA over standard PCA?",
-      "back": "<ol><li><b>EM algorithm</b> for efficient computation</li></ol><ol><li>Handle <b>missing values</b> in data</li></ol><ol><li>Build <b>mixtures</b> of PCA models</li></ol><ol><li><b>Compare</b> with other density models via likelihood</li></ol><ol><li><b>Bayesian</b> treatment to find dimensionality automatically</li></ol><ol><li><b>Generate samples</b> from the distribution</li></ol>",
+      "back": "<ol><li><b>EM algorithm</b> for efficient computation</li><li>Handle <b>missing values</b> in data</li><li>Build <b>mixtures</b> of PCA models</li><li><b>Compare</b> with other density models via likelihood</li><li><b>Bayesian</b> treatment to find dimensionality automatically</li><li><b>Generate samples</b> from the distribution</li></ol>",
       "tags": [
         "ch16",
         "probabilistic-pca",
@@ -223,7 +223,7 @@
     {
       "uid": "16-022",
       "front": "What determines how many principal components to keep?",
-      "back": "Methods to choose M:<br><ol><li><b>Variance explained</b>: Keep components explaining X% of variance</li></ol><ol><li><b>Elbow method</b>: Look for \"elbow\" in eigenvalue spectrum</li></ol><ol><li><b>Cross-validation</b>: Choose M minimizing held-out reconstruction error</li></ol><ol><li><b>Bayesian PCA</b>: Automatically determines M from data</li></ol><ol><li><b>Application-specific</b>: Based on downstream task performance</li></ol>",
+      "back": "Methods to choose M:<br><ol><li><b>Variance explained</b>: Keep components explaining X% of variance</li><li><b>Elbow method</b>: Look for \"elbow\" in eigenvalue spectrum</li><li><b>Cross-validation</b>: Choose M minimizing held-out reconstruction error</li><li><b>Bayesian PCA</b>: Automatically determines M from data</li><li><b>Application-specific</b>: Based on downstream task performance</li></ol>",
       "tags": [
         "ch16",
         "pca",
@@ -243,7 +243,7 @@
     {
       "uid": "16-024",
       "front": "What is the generative view of latent variable models?",
-      "back": "To generate a data point:<br><ol><li>Sample latent variable z from prior p(z)</li></ol><ol><li>Sample observation x from conditional p(x|z)</li></ol>The departures from the manifold are interpreted as <b>noise</b>.<br>This view enables sampling new data points from the learned distribution.",
+      "back": "To generate a data point:<br><ol><li>Sample latent variable z from prior p(z)</li><li>Sample observation x from conditional p(x|z)</li></ol>The departures from the manifold are interpreted as <b>noise</b>.<br>This view enables sampling new data points from the learned distribution.",
       "tags": [
         "ch16",
         "generative",

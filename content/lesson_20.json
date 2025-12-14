@@ -1,0 +1,194 @@
+{
+  "id": "20",
+  "title": "Lesson 20: Diffusion Models",
+  "lesson_title": "Diffusion Models",
+  "objectives": [
+    "Understand the forward and reverse diffusion processes",
+    "Learn the denoising score matching objective",
+    "Master the connection to score functions and SDEs",
+    "Understand classifier-free guidance",
+    "Learn about key architectures: DDPM, LDM, Stable Diffusion"
+  ],
+  "cards": [
+    {
+      "uid": "20-001",
+      "front": "What is a diffusion model?",
+      "back": "A generative model that learns to reverse a gradual noising process.<br><br><b>Forward process</b>: Gradually add noise to data until it becomes pure noise<br>\\( x_0 \\to x_1 \\to ... \\to x_T \\approx \\mathcal{N}(0, I) \\)<br><br><b>Reverse process</b>: Learn to denoise step by step<br>\\( x_T \\to x_{T-1} \\to ... \\to x_0 \\)<br><br><b>Key insight</b>: Each denoising step is easier than generating from scratch. A neural network learns to predict the noise at each step.",
+      "tags": [
+        "ch20",
+        "diffusion",
+        "definition"
+      ]
+    },
+    {
+      "uid": "20-002",
+      "front": "What is the forward diffusion process?",
+      "back": "A Markov chain that gradually adds Gaussian noise:<br><br>\\( q(x_t | x_{t-1}) = \\mathcal{N}(x_t; \\sqrt{1-\\beta_t} x_{t-1}, \\beta_t I) \\)<br><br>where \\( \\beta_t \\) is the noise schedule.<br><br><b>Key property</b>: Can sample \\( x_t \\) directly from \\( x_0 \\):<br>\\( q(x_t | x_0) = \\mathcal{N}(x_t; \\sqrt{\\bar{\\alpha}_t} x_0, (1-\\bar{\\alpha}_t) I) \\)<br><br>where \\( \\bar{\\alpha}_t = \\prod_{s=1}^t (1 - \\beta_s) \\).<br><br>As \\( t \\to T \\), \\( x_t \\to \\mathcal{N}(0, I) \\).",
+      "tags": [
+        "ch20",
+        "forward-process",
+        "diffusion"
+      ]
+    },
+    {
+      "uid": "20-003",
+      "front": "What is the reverse diffusion process?",
+      "back": "Learning to undo the forward noising:<br><br>\\( p_\\theta(x_{t-1} | x_t) = \\mathcal{N}(x_{t-1}; \\mu_\\theta(x_t, t), \\sigma_t^2 I) \\)<br><br><b>Training</b>: A neural network learns to predict either:<ul><li>The noise \\( \\epsilon \\) added at step t (most common)</li><li>The clean data \\( x_0 \\)</li><li>The score \\( \\nabla_{x_t} \\log p(x_t) \\)</li></ul><b>Sampling</b>: Start from \\( x_T \\sim \\mathcal{N}(0, I) \\), repeatedly apply the learned denoising.",
+      "tags": [
+        "ch20",
+        "reverse-process",
+        "diffusion"
+      ]
+    },
+    {
+      "uid": "20-004",
+      "front": "What is the training objective for diffusion models (DDPM)?",
+      "back": "<b>Simplified objective</b> (denoising score matching):<br><br>\\( L = \\mathbb{E}_{t, x_0, \\epsilon}\\left[ \\|\\epsilon - \\epsilon_\\theta(x_t, t)\\|^2 \\right] \\)<br><br>where:<ul><li>\\( t \\sim \\text{Uniform}(1, T) \\)</li><li>\\( x_0 \\sim p_{data} \\)</li><li>\\( \\epsilon \\sim \\mathcal{N}(0, I) \\)</li><li>\\( x_t = \\sqrt{\\bar{\\alpha}_t} x_0 + \\sqrt{1-\\bar{\\alpha}_t} \\epsilon \\)</li></ul><b>Intuition</b>: Train network to predict the noise that was added. The network sees the noisy image and timestep.",
+      "tags": [
+        "ch20",
+        "training",
+        "ddpm"
+      ]
+    },
+    {
+      "uid": "20-005",
+      "front": "What is DDPM (Denoising Diffusion Probabilistic Model)?",
+      "back": "<b>DDPM</b> (2020) established modern diffusion model training.<br><br><b>Key contributions</b>:<ul><li>Simplified training objective (predict noise)</li><li>Fixed variance schedule</li><li>High-quality image generation</li></ul><b>Architecture</b>: U-Net with time embedding<br><br><b>Limitation</b>: Slow sampling (1000 steps typical)<br><br><b>Impact</b>: Showed diffusion models can match or exceed GANs.",
+      "tags": [
+        "ch20",
+        "ddpm",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "20-006",
+      "front": "What is the noise schedule in diffusion models?",
+      "back": "The sequence \\( \\beta_1, ..., \\beta_T \\) controlling how much noise is added per step.<br><br><b>Common schedules</b>:<ul><li><b>Linear</b>: \\( \\beta_t \\) increases linearly from \\( \\beta_1 \\) to \\( \\beta_T \\)</li><li><b>Cosine</b>: Designed so \\( \\bar{\\alpha}_t \\) follows a cosine curve (preserves more signal)</li></ul><b>Trade-offs</b>:<ul><li>Too fast: Information destroyed too quickly</li><li>Too slow: Need more steps, slower sampling</li></ul><b>Typical</b>: T = 1000 steps, \\( \\beta_1 = 10^{-4} \\), \\( \\beta_T = 0.02 \\)",
+      "tags": [
+        "ch20",
+        "noise-schedule",
+        "hyperparameters"
+      ]
+    },
+    {
+      "uid": "20-007",
+      "front": "What is the score function in score-based models?",
+      "back": "The <b>score</b> is the gradient of log probability:<br><br>\\( s(x) = \\nabla_x \\log p(x) \\)<br><br><b>Intuition</b>: Points toward regions of higher probability.<br><br><b>Connection to diffusion</b>:<br>\\( \\nabla_{x_t} \\log p(x_t) = -\\frac{\\epsilon}{\\sqrt{1-\\bar{\\alpha}_t}} \\)<br><br>Predicting noise \\( \\epsilon \\) is equivalent to estimating the score.<br><br><b>Sampling</b>: Follow the score (Langevin dynamics) to generate samples.",
+      "tags": [
+        "ch20",
+        "score-function",
+        "theory"
+      ]
+    },
+    {
+      "uid": "20-008",
+      "front": "What is classifier guidance in diffusion models?",
+      "back": "<b>Classifier guidance</b> steers generation toward a class using a trained classifier.<br><br>\\( \\tilde{\\epsilon}_\\theta(x_t, t, y) = \\epsilon_\\theta(x_t, t) - w \\sqrt{1-\\bar{\\alpha}_t} \\nabla_{x_t} \\log p_\\phi(y | x_t) \\)<br><br><b>How it works</b>:<ul><li>Train a classifier \\( p_\\phi(y|x_t) \\) on noisy images</li><li>Gradient of classifier guides denoising toward class y</li><li>w controls guidance strength</li></ul><b>Limitation</b>: Requires training a separate classifier.",
+      "tags": [
+        "ch20",
+        "classifier-guidance",
+        "conditioning"
+      ]
+    },
+    {
+      "uid": "20-009",
+      "front": "What is classifier-free guidance (CFG)?",
+      "back": "<b>Classifier-free guidance</b> enables conditional generation without a separate classifier.<br><br>\\( \\tilde{\\epsilon}_\\theta = \\epsilon_\\theta(x_t, t, \\emptyset) + w (\\epsilon_\\theta(x_t, t, y) - \\epsilon_\\theta(x_t, t, \\emptyset)) \\)<br><br><b>Training</b>: Randomly drop conditioning (replace y with \\( \\emptyset \\)) during training. Model learns both conditional and unconditional generation.<br><br><b>Inference</b>: Interpolate between unconditional and conditional predictions.<br><br><b>Guidance scale w</b>:<ul><li>w = 1: Standard conditional</li><li>w > 1: Stronger conditioning (more adherence to prompt)</li><li>Typical: w = 7.5 for text-to-image</li></ul>",
+      "tags": [
+        "ch20",
+        "cfg",
+        "conditioning"
+      ]
+    },
+    {
+      "uid": "20-010",
+      "front": "What is a Latent Diffusion Model (LDM)?",
+      "back": "<b>Latent Diffusion</b> runs diffusion in a compressed latent space.<br><br><b>Architecture</b>:<ol><li><b>Encoder</b>: Compress image to latent \\( z = E(x) \\)</li><li><b>Diffusion</b>: Run forward/reverse process on z</li><li><b>Decoder</b>: Reconstruct image \\( \\hat{x} = D(z) \\)</li></ol><b>Advantages</b>:<ul><li>Much faster (work in lower dimensions)</li><li>Less memory</li><li>Perceptually focused (VAE removes imperceptible details)</li></ul><b>Stable Diffusion</b> is an LDM with CLIP text conditioning.",
+      "tags": [
+        "ch20",
+        "latent-diffusion",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "20-011",
+      "front": "What is Stable Diffusion?",
+      "back": "<b>Stable Diffusion</b> is a latent diffusion model for text-to-image generation.<br><br><b>Components</b>:<ul><li><b>VAE</b>: Encode/decode between image and latent space (8x compression)</li><li><b>U-Net</b>: Denoise in latent space, conditioned on text</li><li><b>CLIP text encoder</b>: Convert text prompts to embeddings</li></ul><b>Training</b>: LAION-5B dataset (5 billion image-text pairs)<br><br><b>Key features</b>:<ul><li>Open source (weights publicly available)</li><li>Runs on consumer GPUs</li><li>Classifier-free guidance</li></ul>",
+      "tags": [
+        "ch20",
+        "stable-diffusion",
+        "text-to-image"
+      ]
+    },
+    {
+      "uid": "20-012",
+      "front": "What is DDIM (Denoising Diffusion Implicit Models)?",
+      "back": "<b>DDIM</b> enables faster sampling with fewer steps.<br><br><b>Key insight</b>: The DDPM sampling process is stochastic (adds noise at each step). DDIM makes it deterministic.<br><br><b>Benefits</b>:<ul><li>10-50x fewer steps (50 instead of 1000)</li><li>Deterministic: Same noise gives same output</li><li>Enables interpolation in latent space</li></ul><b>Trade-off</b>: Slightly lower quality with very few steps.<br><br><b>Formula</b>: Predict \\( x_0 \\) from \\( x_t \\), then compute \\( x_{t-1} \\) deterministically.",
+      "tags": [
+        "ch20",
+        "ddim",
+        "sampling"
+      ]
+    },
+    {
+      "uid": "20-013",
+      "front": "How do diffusion models compare to GANs?",
+      "back": "<b>Diffusion models</b>:<ul><li>More stable training (no adversarial dynamics)</li><li>Better mode coverage (less mode collapse)</li><li>Higher quality on many benchmarks</li><li>Slower sampling (many denoising steps)</li><li>Explicit likelihood (can compute ELBO)</li></ul><b>GANs</b>:<ul><li>Faster sampling (single forward pass)</li><li>Training can be unstable</li><li>Mode collapse risk</li><li>No explicit likelihood</li></ul><b>Current state</b>: Diffusion models dominate image generation; GANs still useful for real-time applications.",
+      "tags": [
+        "ch20",
+        "diffusion-vs-gan",
+        "comparison"
+      ]
+    },
+    {
+      "uid": "20-014",
+      "front": "What is the U-Net architecture in diffusion models?",
+      "back": "<b>U-Net</b> is the standard backbone for diffusion denoising networks.<br><br><b>Structure</b>:<ul><li><b>Encoder</b>: Downsample with conv + attention blocks</li><li><b>Bottleneck</b>: Lowest resolution processing</li><li><b>Decoder</b>: Upsample with conv + attention blocks</li><li><b>Skip connections</b>: Connect encoder to decoder at each resolution</li></ul><b>Modifications for diffusion</b>:<ul><li>Time embedding injected at each block</li><li>Self-attention at multiple resolutions</li><li>Cross-attention for conditioning (text, class)</li></ul>",
+      "tags": [
+        "ch20",
+        "unet",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "20-015",
+      "front": "How is the timestep embedded in diffusion models?",
+      "back": "<b>Time embedding</b> tells the network what noise level to expect.<br><br><b>Common approach</b> (sinusoidal + MLP):<ol><li>Sinusoidal encoding of timestep t (like transformer positional encoding)</li><li>Pass through MLP to get embedding</li><li>Add or scale features at each layer</li></ol><b>Why needed</b>: The same network handles all timesteps. It must know whether to make small refinements (low t) or major changes (high t).<br><br><b>Implementation</b>: Often added via FiLM (Feature-wise Linear Modulation) - scale and shift activations.",
+      "tags": [
+        "ch20",
+        "time-embedding",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "20-016",
+      "front": "What is the ELBO for diffusion models?",
+      "back": "Diffusion models optimize a variational lower bound:<br><br>\\( \\log p(x_0) \\geq \\mathbb{E}_q\\left[-\\log \\frac{q(x_{1:T}|x_0)}{p_\\theta(x_{0:T})}\\right] \\)<br><br><b>Decomposes into</b>:<ul><li><b>Reconstruction</b>: \\( -\\log p_\\theta(x_0|x_1) \\)</li><li><b>Prior matching</b>: \\( D_{KL}(q(x_T|x_0) \\| p(x_T)) \\)</li><li><b>Denoising matching</b>: \\( \\sum_t D_{KL}(q(x_{t-1}|x_t, x_0) \\| p_\\theta(x_{t-1}|x_t)) \\)</li></ul><b>Simplified loss</b>: In practice, just use the noise prediction MSE (weighted sum of KL terms).",
+      "tags": [
+        "ch20",
+        "elbo",
+        "theory"
+      ]
+    },
+    {
+      "uid": "20-017",
+      "front": "What is inpainting with diffusion models?",
+      "back": "<b>Inpainting</b>: Fill in masked regions of an image.<br><br><b>Approach</b>:<ol><li>During reverse diffusion, replace known (unmasked) regions with forward-noised original</li><li>Only denoise the masked region</li><li>Blend at boundaries</li></ol><b>Advantage over GANs</b>: No need for special training - works with any pretrained diffusion model.<br><br><b>Extensions</b>: Outpainting (extend beyond boundaries), image editing.",
+      "tags": [
+        "ch20",
+        "inpainting",
+        "applications"
+      ]
+    },
+    {
+      "uid": "20-018",
+      "front": "What is image-to-image with diffusion models?",
+      "back": "<b>Image-to-image (img2img)</b>: Transform an input image guided by a prompt.<br><br><b>How it works</b>:<ol><li>Add noise to input image (partial forward diffusion)</li><li>Denoise with text conditioning</li></ol><b>Strength parameter</b> controls how much the input is preserved:<ul><li>Low strength: Minor edits, preserves structure</li><li>High strength: Major changes, input is a rough guide</li></ul><b>Applications</b>: Style transfer, sketch-to-image, upscaling, variations.",
+      "tags": [
+        "ch20",
+        "img2img",
+        "applications"
+      ]
+    }
+  ]
+}

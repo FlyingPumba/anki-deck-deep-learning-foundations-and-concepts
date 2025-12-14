@@ -134,7 +134,7 @@
     {
       "uid": "04-015",
       "front": "What are the two stages in solving a regression problem using probabilistic methods?",
-      "back": "<ol><li><b>Inference stage</b>: Learn a model for the predictive distribution \\( p(t|\\vec{x}) \\) from training data</li></ol><ol><li><b>Decision stage</b>: Use the predictive distribution to make predictions, minimizing a loss function</li></ol>This separation is a key principle of decision theory.",
+      "back": "<ol><li><b>Inference stage</b>: Learn a model for the predictive distribution \\( p(t|\\vec{x}) \\) from training data</li><li><b>Decision stage</b>: Use the predictive distribution to make predictions, minimizing a loss function</li></ol>This separation is a key principle of decision theory.",
       "tags": [
         "ch04",
         "decision-theory",
@@ -464,7 +464,7 @@
     {
       "uid": "04-050",
       "front": "What are four reasons to compute posterior probabilities even if you just need class predictions?",
-      "back": "<ol><li><b>Minimizing risk</b>: Incorporate different misclassification costs</li></ol><ol><li><b>Reject option</b>: Refuse uncertain predictions</li></ol><ol><li><b>Compensating for class priors</b>: Adjust for different train/test class distributions</li></ol><ol><li><b>Combining models</b>: Properly combine predictions from multiple models</li></ol>",
+      "back": "<ol><li><b>Minimizing risk</b>: Incorporate different misclassification costs</li><li><b>Reject option</b>: Refuse uncertain predictions</li><li><b>Compensating for class priors</b>: Adjust for different train/test class distributions</li><li><b>Combining models</b>: Properly combine predictions from multiple models</li></ol>",
       "tags": [
         "ch04",
         "posterior",
@@ -479,6 +479,76 @@
         "ch04",
         "outlier-detection",
         "novelty-detection"
+      ]
+    },
+    {
+      "uid": "04-052",
+      "front": "What is a precision-recall (PR) curve?",
+      "back": "A <b>precision-recall curve</b> plots <b>precision</b> vs <b>recall</b> as the classification threshold varies.<br><br>Each threshold gives a different confusion matrix, hence different precision/recall.<br><br>PR curves are especially informative when the <b>positive class is rare</b>.",
+      "tags": [
+        "ch04",
+        "precision-recall",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "04-053",
+      "front": "What is PR-AUC (area under the precision-recall curve)?",
+      "back": "<b>PR-AUC</b> summarizes a PR curve as a single number (area under the curve).<br><br><b>Baseline</b>: A random classifier has precision equal to the positive class prevalence \\( p(y=1) \\), so the baseline PR curve is a horizontal line at that value.<br><br>Higher PR-AUC indicates better performance on the positive class.",
+      "tags": [
+        "ch04",
+        "pr-auc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "04-054",
+      "front": "When is PR-AUC more informative than ROC-AUC?",
+      "back": "When the <b>positive class is rare</b> (strong class imbalance).<br><br><b>Intuition</b>: With many negatives, a classifier can achieve a low false positive rate (and thus a high ROC-AUC) even while producing many false positives in absolute terms.<br><br>PR-AUC focuses directly on the trade-off you care about in rare-event detection: <b>How many of my positive predictions are correct (precision)</b> vs <b>How many true positives I recover (recall)</b>.",
+      "tags": [
+        "ch04",
+        "roc",
+        "precision-recall"
+      ]
+    },
+    {
+      "uid": "04-055",
+      "front": "What does it mean for a classifier to be well-calibrated?",
+      "back": "A classifier is <b>calibrated</b> if its predicted probabilities match empirical frequencies.<br><br><b>Example</b>: Among examples where the model predicts 0.8, about 80% should truly be positive.<br><br><b>Why useful</b>: Calibration matters when probabilities drive decisions (thresholding, ranking with costs, risk estimates), not just class labels.<br><br><b>How to check</b>: reliability diagram (calibration curve).<br><b>How to fix</b>: post-hoc calibration such as <b>temperature scaling</b> (common for neural nets).",
+      "tags": [
+        "ch04",
+        "calibration",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "04-056",
+      "front": "What is focal loss and when is it used?",
+      "back": "<b>Focal loss</b> down-weights easy examples to focus training on hard ones:<br><br>\\( FL(p_t) = -\\alpha_t (1 - p_t)^\\gamma \\log(p_t) \\)<br><br>where \\( p_t \\) is the predicted probability for the true class.<br><br><b>Key idea</b>: The \\( (1 - p_t)^\\gamma \\) factor reduces the loss for well-classified examples (high \\( p_t \\)).<br><br><b>Parameters</b>:<ul><li>\\( \\gamma \\): Focusing parameter (typically 2). Higher = more focus on hard examples.</li><li>\\( \\alpha_t \\): Class weight for imbalance</li></ul><b>When to use</b>: Object detection (many easy negatives, few hard positives), extreme class imbalance.<br><br><b>Origin</b>: RetinaNet (2017).",
+      "tags": [
+        "ch04",
+        "focal-loss",
+        "imbalanced-classes"
+      ]
+    },
+    {
+      "uid": "04-057",
+      "front": "What is triplet loss?",
+      "back": "<b>Triplet loss</b> learns embeddings where similar items are close and dissimilar items are far:<br><br>\\( L = \\max(0, d(a, p) - d(a, n) + m) \\)<br><br>where:<ul><li>\\( a \\) = anchor example</li><li>\\( p \\) = positive (same class as anchor)</li><li>\\( n \\) = negative (different class)</li><li>\\( d \\) = distance (e.g., Euclidean)</li><li>\\( m \\) = margin</li></ul><b>Goal</b>: Make \\( d(a, p) + m < d(a, n) \\) - positive closer than negative by at least margin \\( m \\).<br><br><b>Use cases</b>: Face recognition (FaceNet), image retrieval, one-shot learning.<br><br><b>Challenge</b>: Triplet mining - choosing informative triplets is crucial for training.",
+      "tags": [
+        "ch04",
+        "triplet-loss",
+        "metric-learning"
+      ]
+    },
+    {
+      "uid": "04-058",
+      "front": "What is the difference between hard and semi-hard triplet mining?",
+      "back": "<b>Triplet mining</b> selects which (anchor, positive, negative) triplets to train on.<br><br><b>Hard negatives</b>: \\( d(a, n) < d(a, p) \\)<br>Negative is closer than positive - violates the desired ordering.<br><br><b>Semi-hard negatives</b>: \\( d(a, p) < d(a, n) < d(a, p) + m \\)<br>Negative is farther than positive but within the margin.<br><br><b>In practice</b>:<ul><li>Hard negatives can cause training collapse (always choosing impossible triplets)</li><li>Semi-hard negatives provide useful gradients without being too difficult</li><li>Online mining: Select from current batch</li><li>Offline mining: Pre-compute across dataset</li></ul>",
+      "tags": [
+        "ch04",
+        "triplet-loss",
+        "metric-learning"
       ]
     }
   ]

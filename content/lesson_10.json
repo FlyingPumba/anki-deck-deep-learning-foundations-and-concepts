@@ -1,0 +1,254 @@
+{
+  "id": "10",
+  "title": "Lesson 10: Convolutional Neural Networks",
+  "lesson_title": "Convolutional Neural Networks",
+  "objectives": [
+    "Understand the convolution operation and its properties",
+    "Learn about padding, stride, and output size calculations",
+    "Master pooling operations and their purposes",
+    "Understand receptive fields and hierarchical feature learning",
+    "Learn about common CNN architectures and design patterns"
+  ],
+  "cards": [
+    {
+      "uid": "10-001",
+      "front": "What is a convolution in the context of neural networks?",
+      "back": "<b>Intuition</b>: Imagine sliding a small magnifying glass (the kernel) across an image. At each position, you compute how well the pattern in the kernel matches that patch of the image.<br><br><b>Operation</b>: Element-wise multiply the kernel with a local region of the input, then sum the results to get one output value.<br><br><b>Formula</b> (2D): \\( (f * g)(i, j) = \\sum_m \\sum_n f(m, n) \\cdot g(i-m, j-n) \\)<br><br><b>Key property</b>: The same kernel is applied everywhere (weight sharing), so the network learns to detect a feature regardless of where it appears.",
+      "tags": [
+        "ch10",
+        "convolution",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-002",
+      "front": "What is a kernel (filter) in a CNN?",
+      "back": "A <b>kernel</b> (or filter) is a small matrix of learnable weights that slides across the input.<br><br><b>Typical sizes</b>: 3x3, 5x5, 7x7 (almost always odd to have a center pixel)<br><br><b>What it learns</b>: Early layers learn simple patterns (edges, textures); deeper layers learn complex patterns (eyes, wheels, faces).<br><br><b>Example</b>: A 3x3 edge detector might have weights like:<br>\\( \\begin{bmatrix} -1 & 0 & 1 \\\\ -2 & 0 & 2 \\\\ -1 & 0 & 1 \\end{bmatrix} \\)",
+      "tags": [
+        "ch10",
+        "kernel",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-003",
+      "front": "What is a feature map (activation map)?",
+      "back": "The <b>output</b> of applying one filter across the entire input.<br><br><b>Intuition</b>: If a filter detects vertical edges, the feature map will be bright wherever vertical edges exist in the input and dark elsewhere.<br><br><b>Multiple feature maps</b>: A conv layer with K filters produces K feature maps, each detecting a different pattern.<br><br><b>Shape</b>: If input is \\( H \\times W \\times C_{in} \\), applying K filters gives output \\( H' \\times W' \\times K \\).",
+      "tags": [
+        "ch10",
+        "feature-map",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-004",
+      "front": "What is padding in CNNs and why is it used?",
+      "back": "<b>Padding</b> adds extra pixels (usually zeros) around the input border.<br><br><b>Why needed</b>:<ol><li>Without padding, output shrinks at each layer (edge pixels are used less)</li><li>Preserves spatial dimensions through the network</li><li>Allows edge pixels to be centered under the kernel</li></ol><b>Types</b>:<ul><li><b>Valid (no padding)</b>: Output smaller than input</li><li><b>Same</b>: Output same size as input (pad with \\( \\lfloor k/2 \\rfloor \\) for kernel size k)</li></ul>",
+      "tags": [
+        "ch10",
+        "padding",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-005",
+      "front": "What is stride in a convolution?",
+      "back": "<b>Stride</b> is how many pixels the kernel moves between applications.<br><br><b>Stride = 1</b>: Kernel moves one pixel at a time (most common)<br><b>Stride = 2</b>: Kernel jumps 2 pixels, halving output dimensions<br><br><b>Why use stride > 1</b>:<ul><li>Downsamples the spatial dimensions</li><li>Reduces computation</li><li>Alternative to pooling for reducing resolution</li></ul><b>Trade-off</b>: Larger stride = faster but may miss fine details.",
+      "tags": [
+        "ch10",
+        "stride",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-006",
+      "front": "How do you calculate the output size of a convolutional layer?",
+      "back": "\\( \\text{Output size} = \\left\\lfloor \\frac{W - K + 2P}{S} \\right\\rfloor + 1 \\)<br><br>where:<ul><li>\\( W \\) = input width (or height)</li><li>\\( K \\) = kernel size</li><li>\\( P \\) = padding</li><li>\\( S \\) = stride</li></ul><b>Example</b>: Input 32x32, kernel 3x3, padding 1, stride 1:<br>\\( \\lfloor (32 - 3 + 2)/1 \\rfloor + 1 = 32 \\) (same size)<br><br><b>Example</b>: Input 32x32, kernel 3x3, padding 0, stride 2:<br>\\( \\lfloor (32 - 3 + 0)/2 \\rfloor + 1 = 15 \\)",
+      "tags": [
+        "ch10",
+        "output-size",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-007",
+      "front": "How many parameters does a convolutional layer have?",
+      "back": "\\( \\text{Parameters} = K \\times K \\times C_{in} \\times C_{out} + C_{out} \\)<br><br>where:<ul><li>\\( K \\times K \\) = kernel spatial size</li><li>\\( C_{in} \\) = input channels</li><li>\\( C_{out} \\) = output channels (number of filters)</li><li>\\( + C_{out} \\) = bias terms (one per filter)</li></ul><b>Example</b>: 3x3 kernel, 64 input channels, 128 output channels:<br>\\( 3 \\times 3 \\times 64 \\times 128 + 128 = 73,856 \\) parameters<br><br><b>Key insight</b>: Parameters are independent of input spatial size (unlike fully connected).",
+      "tags": [
+        "ch10",
+        "parameters",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-008",
+      "front": "What is pooling and why is it used?",
+      "back": "<b>Pooling</b> reduces spatial dimensions by summarizing local regions.<br><br><b>Types</b>:<ul><li><b>Max pooling</b>: Takes maximum value in each region (most common)</li><li><b>Average pooling</b>: Takes mean value in each region</li></ul><b>Typical setup</b>: 2x2 window with stride 2 (halves dimensions)<br><br><b>Why use pooling</b>:<ol><li>Reduces computation and memory</li><li>Provides slight translation invariance</li><li>Increases receptive field</li></ol><b>Modern trend</b>: Strided convolutions often replace pooling.",
+      "tags": [
+        "ch10",
+        "pooling",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-009",
+      "front": "What is the receptive field in a CNN?",
+      "back": "The <b>receptive field</b> of a unit is the region of the original input that can influence that unit's value.<br><br><b>Intuition</b>: How much of the image can this neuron 'see'?<br><br><b>Growth</b>: Receptive field grows with depth:<ul><li>Layer 1 (3x3 kernel): 3x3 receptive field</li><li>Layer 2 (3x3 kernel): 5x5 receptive field</li><li>Layer 3 (3x3 kernel): 7x7 receptive field</li></ul><b>Formula</b> (stride 1): Each layer adds \\( (K-1) \\) to receptive field.<br><br><b>Why it matters</b>: To recognize large objects, you need units with large receptive fields.",
+      "tags": [
+        "ch10",
+        "receptive-field",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-010",
+      "front": "Why use CNNs instead of fully connected networks for images?",
+      "back": "<b>1. Parameter efficiency</b>:<ul><li>FC on 224x224x3 image with 1000 hidden units: 150 million parameters</li><li>Conv layer (64 filters, 3x3): ~1,700 parameters</li></ul><b>2. Translation equivariance</b>: A cat is detected the same way regardless of position.<br><br><b>3. Local connectivity</b>: Pixels far apart rarely interact directly; local patterns matter most.<br><br><b>4. Hierarchical features</b>: Build complex features from simple ones (edges to textures to parts to objects).",
+      "tags": [
+        "ch10",
+        "cnn-vs-fc",
+        "motivation"
+      ]
+    },
+    {
+      "uid": "10-011",
+      "front": "What is translation equivariance in CNNs?",
+      "back": "<b>Translation equivariance</b>: If the input shifts, the output shifts by the same amount.<br><br><b>Intuition</b>: If you move a cat in the image, the feature map showing 'cat detected here' moves correspondingly.<br><br><b>Why CNNs have it</b>: Weight sharing - the same filter is applied everywhere, so it responds the same way to a pattern regardless of location.<br><br><b>Note</b>: This is <i>equivariance</i>, not <i>invariance</i>. Full invariance (output unchanged by translation) comes from pooling or global aggregation.",
+      "tags": [
+        "ch10",
+        "equivariance",
+        "cnn"
+      ]
+    },
+    {
+      "uid": "10-012",
+      "front": "What is a 1x1 convolution and why is it useful?",
+      "back": "A <b>1x1 convolution</b> applies a 1x1 kernel - it only mixes channels, not spatial information.<br><br><b>Uses</b>:<ol><li><b>Dimensionality reduction</b>: Reduce channels cheaply (e.g., 256 to 64 channels)</li><li><b>Add nonlinearity</b>: 1x1 conv + ReLU adds complexity without changing spatial size</li><li><b>Cross-channel interaction</b>: Learn combinations of features across channels</li></ol><b>Parameters</b>: \\( C_{in} \\times C_{out} + C_{out} \\) (much cheaper than 3x3)<br><br><b>Used in</b>: Inception, ResNet bottlenecks, channel attention.",
+      "tags": [
+        "ch10",
+        "1x1-convolution",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "10-013",
+      "front": "What is global average pooling?",
+      "back": "<b>Global average pooling</b> takes the spatial average of each feature map, reducing \\( H \\times W \\times C \\) to \\( 1 \\times 1 \\times C \\).<br><br><b>Intuition</b>: 'How much of feature X is present in the entire image?'<br><br><b>Advantages over fully connected</b>:<ul><li>No parameters (vs millions for FC)</li><li>More robust to input size variations</li><li>Acts as structural regularizer</li></ul><b>Common pattern</b>: Conv layers -> Global average pool -> Small FC -> Softmax",
+      "tags": [
+        "ch10",
+        "global-pooling",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "10-014",
+      "front": "What are depthwise separable convolutions?",
+      "back": "A factorization of standard convolution into two steps:<br><br><b>1. Depthwise conv</b>: Apply one filter per input channel (no cross-channel mixing)<br><b>2. Pointwise conv</b>: 1x1 conv to mix channels<br><br><b>Parameter savings</b>:<ul><li>Standard: \\( K^2 \\cdot C_{in} \\cdot C_{out} \\)</li><li>Separable: \\( K^2 \\cdot C_{in} + C_{in} \\cdot C_{out} \\)</li></ul><b>Reduction factor</b>: Roughly \\( 1/C_{out} + 1/K^2 \\) of original (often 8-9x fewer parameters)<br><br><b>Used in</b>: MobileNet, EfficientNet, Xception.",
+      "tags": [
+        "ch10",
+        "depthwise-separable",
+        "efficiency"
+      ]
+    },
+    {
+      "uid": "10-015",
+      "front": "What is a transposed convolution (deconvolution)?",
+      "back": "<b>Transposed convolution</b> upsamples by going 'backwards' through a convolution.<br><br><b>Intuition</b>: Instead of many-to-one (conv), it's one-to-many - each input value influences a region of the output.<br><br><b>Use cases</b>:<ul><li>Decoder in autoencoders</li><li>Upsampling in segmentation (U-Net)</li><li>Generator in GANs</li></ul><b>Alternative names</b>: Deconvolution (technically incorrect), fractionally strided convolution.<br><br><b>Checkerboard artifacts</b>: Can produce artifacts; bilinear upsampling + conv is often preferred.",
+      "tags": [
+        "ch10",
+        "transposed-conv",
+        "upsampling"
+      ]
+    },
+    {
+      "uid": "10-016",
+      "front": "What is dilated (atrous) convolution?",
+      "back": "<b>Dilated convolution</b> inserts gaps between kernel elements, expanding the receptive field without adding parameters.<br><br><b>Dilation rate r</b>: Spacing between kernel elements. Rate 1 = standard conv.<br><br><b>Effective kernel size</b>: \\( K + (K-1)(r-1) \\)<br>Example: 3x3 kernel with dilation 2 has 5x5 receptive field.<br><br><b>Use cases</b>:<ul><li>Semantic segmentation (DeepLab)</li><li>Audio generation (WaveNet)</li><li>When you need large receptive field without downsampling</li></ul>",
+      "tags": [
+        "ch10",
+        "dilated-conv",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "10-017",
+      "front": "What is the typical structure of a CNN for image classification?",
+      "back": "<b>Common pattern</b>:<br><ol><li><b>Feature extraction</b>: Alternating conv + ReLU + pooling blocks</li><li><b>Channels increase</b>: 64 -> 128 -> 256 -> 512 (double when spatial dims halve)</li><li><b>Spatial dims decrease</b>: 224 -> 112 -> 56 -> 28 -> 14 -> 7</li><li><b>Global pooling</b>: Reduce to 1x1 spatial</li><li><b>Classifier</b>: FC layer(s) + softmax</li></ol><b>Modern additions</b>: Batch norm after conv, residual connections, dropout before FC.",
+      "tags": [
+        "ch10",
+        "architecture",
+        "classification"
+      ]
+    },
+    {
+      "uid": "10-018",
+      "front": "What is the key idea behind VGGNet?",
+      "back": "<b>Key insight</b>: Use many small (3x3) filters instead of fewer large filters.<br><br><b>Why 3x3?</b><ul><li>Two 3x3 layers have same receptive field as one 5x5</li><li>But fewer parameters: \\( 2 \\times 3^2 = 18 \\) vs \\( 5^2 = 25 \\)</li><li>More nonlinearities (more ReLUs)</li></ul><b>Architecture</b>: Uniform 3x3 convs, 2x2 max pooling, doubling channels at each stage.<br><br><b>Legacy</b>: Established that depth matters; often used as feature extractor.",
+      "tags": [
+        "ch10",
+        "vgg",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "10-019",
+      "front": "What is the key idea behind Inception/GoogLeNet?",
+      "back": "<b>Key insight</b>: Let the network choose which filter size to use at each location.<br><br><b>Inception module</b>: Apply multiple filter sizes (1x1, 3x3, 5x5) in parallel, concatenate outputs.<br><br><b>Problem</b>: Computational explosion with many channels.<br><b>Solution</b>: Use 1x1 convs to reduce channels before expensive 3x3/5x5 convs ('bottleneck').<br><br><b>Benefits</b>:<ul><li>Multi-scale feature extraction</li><li>Efficient parameter use</li><li>22 layers deep with only 5M parameters</li></ul>",
+      "tags": [
+        "ch10",
+        "inception",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "10-020",
+      "front": "How do convolutions handle multi-channel inputs (e.g., RGB)?",
+      "back": "A filter spans <b>all input channels</b>.<br><br><b>Example</b>: For RGB input (3 channels) with 3x3 filter:<ul><li>Filter shape: 3 x 3 x 3 (height x width x channels)</li><li>One filter produces one feature map</li><li>Sum over all channels after element-wise multiply</li></ul><b>Multiple filters</b>: 64 filters on RGB input = 64 output feature maps.<br><br><b>Key point</b>: Each filter sees all channels and produces one channel of output.",
+      "tags": [
+        "ch10",
+        "multi-channel",
+        "convolution"
+      ]
+    },
+    {
+      "uid": "10-021",
+      "front": "What is the difference between max pooling and average pooling?",
+      "back": "<b>Max pooling</b>: Takes the maximum value in each region.<ul><li>Preserves strongest activations</li><li>Good for detecting presence of features</li><li>Most common choice</li></ul><b>Average pooling</b>: Takes the mean value.<ul><li>Smooths activations</li><li>Better for tasks where overall response matters</li><li>Used in global average pooling</li></ul><b>Modern view</b>: The difference is often small; strided convs let the network learn its own downsampling.",
+      "tags": [
+        "ch10",
+        "pooling",
+        "comparison"
+      ]
+    },
+    {
+      "uid": "10-022",
+      "front": "Why do deeper CNN layers detect more complex features?",
+      "back": "<b>Hierarchical composition</b>: Each layer builds on the previous.<br><br><b>Progression</b>:<ul><li><b>Layer 1</b>: Edges, color gradients</li><li><b>Layer 2</b>: Textures, corners</li><li><b>Layer 3</b>: Parts (eyes, wheels)</li><li><b>Layer 4+</b>: Objects, scenes</li></ul><b>Why?</b> Growing receptive field + nonlinear combinations allow detecting increasingly abstract patterns.<br><br><b>Evidence</b>: Visualizing filters shows this hierarchy (Zeiler & Fergus, 2014).",
+      "tags": [
+        "ch10",
+        "feature-hierarchy",
+        "depth"
+      ]
+    },
+    {
+      "uid": "10-023",
+      "front": "What is the bottleneck design in ResNet?",
+      "back": "A three-layer block that reduces then restores channel dimensions:<br><br><b>Structure</b>:<ol><li>1x1 conv: Reduce channels (e.g., 256 -> 64)</li><li>3x3 conv: Process at reduced dimensions</li><li>1x1 conv: Restore channels (64 -> 256)</li></ol><b>Why?</b> The expensive 3x3 conv operates on fewer channels.<br><br><b>Savings</b>: Roughly 9x fewer parameters than two 3x3 convs at full width.<br><br><b>Used in</b>: ResNet-50 and deeper, Inception.",
+      "tags": [
+        "ch10",
+        "bottleneck",
+        "resnet"
+      ]
+    },
+    {
+      "uid": "10-024",
+      "front": "What are some common data augmentation techniques for CNNs?",
+      "back": "<b>Geometric</b>:<ul><li>Random crop and resize</li><li>Horizontal flip</li><li>Rotation (small angles)</li><li>Scale jittering</li></ul><b>Photometric</b>:<ul><li>Color jitter (brightness, contrast, saturation)</li><li>Random grayscale</li><li>Gaussian blur</li></ul><b>Advanced</b>:<ul><li>Cutout/Random erasing</li><li>Mixup (blend two images)</li><li>CutMix (paste patch from one image onto another)</li><li>AutoAugment (learned augmentation policies)</li></ul>",
+      "tags": [
+        "ch10",
+        "data-augmentation",
+        "training"
+      ]
+    }
+  ]
+}

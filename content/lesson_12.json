@@ -334,7 +334,7 @@
     {
       "uid": "12-033",
       "front": "What are the three categories of large language models?",
-      "back": "<ol><li><b>Encoder-only</b> (e.g., BERT): Bidirectional, good for understanding</li></ol><ol><li><b>Decoder-only</b> (e.g., GPT): Autoregressive, good for generation</li></ol><ol><li><b>Encoder-decoder</b> (e.g., T5): Sequence-to-sequence tasks</li></ol>",
+      "back": "<ol><li><b>Encoder-only</b> (e.g., BERT): Bidirectional, good for understanding</li><li><b>Decoder-only</b> (e.g., GPT): Autoregressive, good for generation</li><li><b>Encoder-decoder</b> (e.g., T5): Sequence-to-sequence tasks</li></ol>",
       "tags": [
         "ch12",
         "llm",
@@ -479,6 +479,66 @@
         "ch12",
         "vit",
         "vision"
+      ]
+    },
+    {
+      "uid": "12-048",
+      "front": "What is perplexity in language modeling?",
+      "back": "<b>Perplexity</b> measures how 'surprised' a language model is by test data.<br><br><b>Formula</b>:<br>\\( \\text{PPL} = \\exp\\left(-\\frac{1}{N}\\sum_{i=1}^{N} \\ln p(w_i | w_{<i})\\right) \\)<br><br><b>Intuition</b>: The average number of equally likely next words the model considers. Lower = better.<ul><li>PPL = 1: Perfect prediction (only one choice)</li><li>PPL = 100: Model is as uncertain as choosing uniformly from 100 words</li></ul><b>Connection to cross-entropy</b>: \\( \\text{PPL} = \\exp(H) \\) where H is the cross-entropy loss.",
+      "tags": [
+        "ch12",
+        "perplexity",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "12-049",
+      "front": "How do you compare language models using perplexity?",
+      "back": "<b>Lower perplexity = better model</b> (less surprised by data).<br><br><b>Caveats</b>:<ul><li><b>Same vocabulary</b>: Can only compare models with the same tokenizer/vocabulary</li><li><b>Same test set</b>: Must evaluate on identical data</li><li><b>Domain matters</b>: A model trained on news will have high perplexity on code</li></ul><b>Typical values</b>:<ul><li>Good models on standard benchmarks: PPL ~20-50</li><li>State-of-the-art LLMs: PPL < 10 on some benchmarks</li></ul><b>Limitation</b>: Low perplexity doesn't guarantee good generations or task performance.",
+      "tags": [
+        "ch12",
+        "perplexity",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "12-050",
+      "front": "What is Rotary Position Embedding (RoPE)?",
+      "back": "<b>RoPE</b> encodes position by rotating the query and key vectors:<br><br>\\( \\text{RoPE}(\\vec{x}, m) = \\vec{x} \\cdot R_m \\)<br><br>where \\( R_m \\) is a rotation matrix that depends on position \\( m \\).<br><br><b>Key insight</b>: The dot product \\( q_m^T k_n \\) depends only on relative position \\( m - n \\), not absolute positions.<br><br><b>Advantages over sinusoidal</b>:<ul><li>Naturally encodes relative position in attention</li><li>Better extrapolation to longer sequences</li><li>No need for separate positional embedding</li></ul><b>Used in</b>: LLaMA, GPT-NeoX, PaLM, and most modern LLMs.",
+      "tags": [
+        "ch12",
+        "rope",
+        "positional-encoding"
+      ]
+    },
+    {
+      "uid": "12-051",
+      "front": "What is the key difference between absolute and relative positional encodings?",
+      "back": "<b>Absolute positional encoding</b>:<ul><li>Each position gets a fixed embedding</li><li>Added to input: \\( x' = x + PE_{pos} \\)</li><li>Examples: Sinusoidal (original Transformer), learned embeddings</li></ul><b>Relative positional encoding</b>:<ul><li>Encodes the <i>distance</i> between positions</li><li>Modifies attention directly, not input</li><li>Examples: RoPE, ALiBi, T5 bias</li></ul><b>Why relative is often better</b>:<ul><li>Translation invariant: Same relationship regardless of absolute position</li><li>Better length generalization</li><li>More natural for many tasks (relative order matters more than absolute)</li></ul>",
+      "tags": [
+        "ch12",
+        "positional-encoding",
+        "comparison"
+      ]
+    },
+    {
+      "uid": "12-052",
+      "front": "What is ALiBi (Attention with Linear Biases)?",
+      "back": "<b>ALiBi</b> adds a linear penalty to attention scores based on distance:<br><br>\\( \\text{attention}(q, k) = \\text{softmax}\\left(\\frac{qk^T}{\\sqrt{d}} - m \\cdot |i - j|\\right) \\)<br><br>where \\( m \\) is a head-specific slope.<br><br><b>Key idea</b>: No positional embeddings at all - just bias attention to prefer nearby tokens.<br><br><b>Advantages</b>:<ul><li>Excellent length extrapolation</li><li>Simpler than RoPE</li><li>No additional parameters</li></ul><b>Trade-off</b>: May perform slightly worse than RoPE on some tasks but generalizes better to longer sequences.",
+      "tags": [
+        "ch12",
+        "alibi",
+        "positional-encoding"
+      ]
+    },
+    {
+      "uid": "12-053",
+      "front": "What is FlashAttention and why is it important?",
+      "back": "<b>FlashAttention</b> is an IO-aware exact attention algorithm that avoids materializing the full \\( N \\times N \\) attention matrix.<br><br><b>Key insight</b>: Standard attention is memory-bound, not compute-bound. Moving data between GPU memory levels is the bottleneck.<br><br><b>How it works</b>:<ul><li>Compute attention in tiles/blocks</li><li>Use online softmax (compute softmax incrementally)</li><li>Fuse operations to minimize memory reads/writes</li></ul><b>Benefits</b>:<ul><li>2-4x faster than standard attention</li><li>Memory: O(N) instead of O(N^2)</li><li>Enables much longer context lengths</li><li>Exact (not approximate)</li></ul><b>Used in</b>: Most modern LLM training and inference.",
+      "tags": [
+        "ch12",
+        "flash-attention",
+        "efficiency"
       ]
     }
   ]

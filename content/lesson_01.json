@@ -253,7 +253,7 @@
     {
       "uid": "01-025",
       "front": "What two key changes enabled training of multilayer neural networks?",
-      "back": "<ol><li>Replace the step function with <b>continuous differentiable activation functions</b> having non-zero gradients</li></ol><ol><li>Introduce <b>differentiable error functions</b> that define how well parameter values predict target variables</li></ol>",
+      "back": "<ol><li>Replace the step function with <b>continuous differentiable activation functions</b> having non-zero gradients</li><li>Introduce <b>differentiable error functions</b> that define how well parameter values predict target variables</li></ol>",
       "tags": [
         "ch01",
         "backpropagation",
@@ -398,6 +398,86 @@
         "ch01",
         "hyperparameters",
         "overfitting"
+      ]
+    },
+    {
+      "uid": "01-043",
+      "front": "What is data leakage in machine learning?",
+      "back": "<b>Data leakage</b> is when information that would not be available at prediction time (often from the validation/test set, or from the future) influences training.<br><br><b>Why it matters</b>: It makes evaluation metrics look much better than real-world performance.<br><br><b>Common leak patterns</b>:<ul><li><b>Preprocessing leakage</b>: Fitting normalization/feature selection on all data (train+val+test) instead of training data only</li><li><b>Target leakage</b>: A feature directly/indirectly encodes the label (e.g., using \"refund issued\" when predicting fraud)</li><li><b>Temporal leakage</b>: Using future information when predicting the past</li></ul><b>Fix</b>: Fit every transform strictly on the training split, then apply to validation/test.",
+      "tags": [
+        "ch01",
+        "data-leakage",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "01-044",
+      "front": "What is dataset shift (distribution shift) and what are the main types?",
+      "back": "<b>Dataset shift</b> means the data distribution changes between training and deployment, so training performance no longer predicts real-world performance.<br><br><b>Common types</b>:<ul><li><b>Covariate shift</b>: \\( p(\\vec{x}) \\) changes but \\( p(y|\\vec{x}) \\) stays the same (inputs look different)</li><li><b>Label shift</b>: \\( p(y) \\) changes but \\( p(\\vec{x}|y) \\) stays the same (class proportions change)</li><li><b>Concept drift</b>: \\( p(y|\\vec{x}) \\) changes (the underlying relationship changes)</li></ul>",
+      "tags": [
+        "ch01",
+        "dataset-shift",
+        "generalization"
+      ]
+    },
+    {
+      "uid": "01-045",
+      "front": "When is a random train/validation/test split a bad idea?",
+      "back": "Random splitting is risky when it breaks the assumptions of independence between splits.<br><br><b>Common cases</b>:<ul><li><b>Time series</b>: Random split causes temporal leakage; prefer chronological splits</li><li><b>Grouped data</b> (e.g., multiple samples per user/patient): Random split leaks identity; use group-based splits</li><li><b>Near-duplicates</b> (e.g., similar frames/images): Duplicates across splits inflate metrics; deduplicate or split by source</li></ul>",
+      "tags": [
+        "ch01",
+        "data-splits",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "01-046",
+      "front": "What is the correct role of the test set in model development?",
+      "back": "The <b>test set</b> should be used <b>only once</b>, at the end, to estimate generalization after all modeling decisions are fixed.<br><br><b>Rule</b>: If you look at test performance and then change anything (features, preprocessing, architecture, hyperparameters), the test set has become part of model selection and your evaluation is biased.<br><br>Use <b>validation</b> (or cross-validation) for all choices; reserve the test set for the final report.",
+      "tags": [
+        "ch01",
+        "test-set",
+        "model-selection"
+      ]
+    },
+    {
+      "uid": "01-047",
+      "front": "What is a stratified split and when should you use it?",
+      "back": "A <b>stratified split</b> preserves the class proportions across train/validation/test splits.<br><br><b>When to use</b>: In classification, especially with <b>imbalanced classes</b>, stratification reduces the chance that one split has too few positives (which makes metrics noisy and misleading).",
+      "tags": [
+        "ch01",
+        "data-splits",
+        "imbalanced-classes"
+      ]
+    },
+    {
+      "uid": "01-048",
+      "front": "What is contrastive learning?",
+      "back": "<b>Contrastive learning</b> trains models by comparing similar and dissimilar examples.<br><br><b>Core idea</b>: Pull 'positive pairs' (similar examples) close together in embedding space, push 'negative pairs' (dissimilar examples) apart.<br><br><b>Self-supervised setup</b>: Create positive pairs by augmenting the same image twice (e.g., different crops). Other images in the batch are negatives.<br><br><b>Why useful</b>: Learns meaningful representations without labels. The model must capture semantic content to recognize that two augmented views are the same image.",
+      "tags": [
+        "ch01",
+        "contrastive-learning",
+        "self-supervised"
+      ]
+    },
+    {
+      "uid": "01-049",
+      "front": "What is the InfoNCE loss (contrastive loss)?",
+      "back": "<b>InfoNCE</b> is the standard loss for contrastive learning:<br><br>\\( L = -\\log \\frac{\\exp(\\text{sim}(z_i, z_j)/\\tau)}{\\sum_{k \\neq i} \\exp(\\text{sim}(z_i, z_k)/\\tau)} \\)<br><br>where:<ul><li>\\( z_i, z_j \\) = embeddings of a positive pair</li><li>\\( \\text{sim} \\) = similarity (usually cosine)</li><li>\\( \\tau \\) = temperature (controls sharpness)</li><li>Sum over k includes all negatives</li></ul><b>Intuition</b>: Softmax over similarities. Maximize probability of the positive pair being most similar.",
+      "tags": [
+        "ch01",
+        "contrastive-learning",
+        "loss-function"
+      ]
+    },
+    {
+      "uid": "01-050",
+      "front": "What are examples of contrastive learning methods?",
+      "back": "<b>Vision</b>:<ul><li><b>SimCLR</b>: Simple framework using large batches for negatives</li><li><b>MoCo</b>: Uses a momentum encoder and queue of negatives</li><li><b>BYOL/SimSiam</b>: No explicit negatives (avoids collapse via architectural tricks)</li></ul><b>Language</b>:<ul><li>Sentence embeddings (e.g., SimCSE)</li></ul><b>Multimodal</b>:<ul><li><b>CLIP</b>: Aligns image and text embeddings contrastively</li></ul><b>Key insight</b>: Quality and diversity of augmentations matter more than specific architecture.",
+      "tags": [
+        "ch01",
+        "contrastive-learning",
+        "methods"
       ]
     }
   ]

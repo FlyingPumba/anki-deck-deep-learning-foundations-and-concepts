@@ -34,7 +34,7 @@
     {
       "uid": "02-003",
       "front": "What are the two fundamental rules of probability theory?",
-      "back": "<ol><li><b>Sum rule</b>: \\( p(X) = \\sum_Y p(X, Y) \\)</li></ol><ol><li><b>Product rule</b>: \\( p(X, Y) = p(Y|X)p(X) \\)</li></ol>These two simple rules form the basis for all probabilistic reasoning.",
+      "back": "<ol><li><b>Sum rule</b>: \\( p(X) = \\sum_Y p(X, Y) \\)</li><li><b>Product rule</b>: \\( p(X, Y) = p(Y|X)p(X) \\)</li></ol>These two simple rules form the basis for all probabilistic reasoning.",
       "tags": [
         "ch02",
         "probability-rules",
@@ -64,7 +64,7 @@
     {
       "uid": "02-006",
       "front": "What is a false positive? What is a false negative?",
-      "back": "<ul><li><b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)</li></ul><ul><li><b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)</li></ul>",
+      "back": "<ul><li><b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)</li><li><b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)</li></ul>",
       "tags": [
         "ch02",
         "testing",

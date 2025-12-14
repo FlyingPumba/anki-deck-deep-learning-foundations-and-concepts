@@ -450,6 +450,76 @@
         "batch-normalization",
         "placement"
       ]
+    },
+    {
+      "uid": "06-047",
+      "front": "What is Xavier (Glorot) initialization and when is it used?",
+      "back": "<b>Xavier/Glorot initialization</b> sets weight scales to keep the variance of activations (and gradients) roughly constant across layers.<br><br>Common form (for tanh/sigmoid-like activations):<br>\\( w \\sim \\mathcal{N}\\left(0, \\frac{2}{\\text{fan\\_in}+\\text{fan\\_out}}\\right) \\)<br>or uniform with matching variance.<br><br><b>Rule of thumb</b>: Use Xavier for tanh/sigmoid, and He initialization for ReLU-family activations.",
+      "tags": [
+        "ch06",
+        "xavier-initialization",
+        "initialization"
+      ]
+    },
+    {
+      "uid": "06-048",
+      "front": "What is gradient clipping and why is it used?",
+      "back": "<b>Gradient clipping</b> limits the size of the gradient update to improve training stability, especially when gradients can <b>explode</b> (common in recurrent networks and very deep nets).<br><br><b>Global norm clipping</b>: If \\( \\|\\vec{g}\\| > c \\), rescale:<br>\\( \\vec{g} \\leftarrow \\vec{g} \\cdot \\frac{c}{\\|\\vec{g}\\|} \\)<br><br>This prevents a single huge update from destabilizing training.",
+      "tags": [
+        "ch06",
+        "gradient-clipping",
+        "optimization"
+      ]
+    },
+    {
+      "uid": "06-049",
+      "front": "Why use learning-rate schedules (and warmup) when training deep networks?",
+      "back": "Because the <b>best step size changes over training</b>.<br><br><b>Typical pattern</b>:<ul><li><b>Warmup</b>: start with a small learning rate and increase it for a short period to stabilize early training (common for transformers)</li><li><b>Decay</b>: gradually reduce the learning rate to refine the solution near a good minimum</li></ul>Schedules (step decay, cosine decay, etc.) often improve both convergence and final generalization.",
+      "tags": [
+        "ch06",
+        "learning-rate",
+        "scheduling"
+      ]
+    },
+    {
+      "uid": "06-050",
+      "front": "What is group normalization?",
+      "back": "<b>Group normalization</b> divides channels into groups and normalizes within each group.<br><br>For each example separately:<br>\\( \\hat{x} = \\frac{x - \\mu_g}{\\sqrt{\\sigma_g^2 + \\epsilon}} \\)<br>where \\( \\mu_g, \\sigma_g^2 \\) are computed over spatial dimensions and channels within each group.<br><br><b>Key properties</b>:<ul><li>Independent of batch size (like layer norm)</li><li>Works well for small batches</li><li>Common in object detection (Mask R-CNN)</li></ul><b>Special cases</b>:<ul><li>G = C (channels): Instance normalization</li><li>G = 1: Layer normalization</li></ul>",
+      "tags": [
+        "ch06",
+        "group-normalization",
+        "normalization"
+      ]
+    },
+    {
+      "uid": "06-051",
+      "front": "What is instance normalization?",
+      "back": "<b>Instance normalization</b> normalizes each channel of each example independently.<br><br>Compute mean and variance over spatial dimensions (H, W) only:<br>\\( \\hat{x}_{nchw} = \\frac{x_{nchw} - \\mu_{nc}}{\\sqrt{\\sigma_{nc}^2 + \\epsilon}} \\)<br><br><b>Key properties</b>:<ul><li>Each channel normalized separately</li><li>No dependence on batch or other channels</li><li>Removes instance-specific contrast</li></ul><b>Use cases</b>: Style transfer, image generation (normalizes away style information).<br><br><b>Comparison</b>: Batch norm averages over batch; instance norm does not.",
+      "tags": [
+        "ch06",
+        "instance-normalization",
+        "normalization"
+      ]
+    },
+    {
+      "uid": "06-052",
+      "front": "What is RMSNorm and why is it used in modern transformers?",
+      "back": "<b>RMSNorm</b> (Root Mean Square Normalization) simplifies layer norm by removing the mean centering:<br><br>\\( \\hat{x}_i = \\frac{x_i}{\\text{RMS}(x)} \\cdot \\gamma_i \\)<br>where \\( \\text{RMS}(x) = \\sqrt{\\frac{1}{n}\\sum_i x_i^2} \\)<br><br><b>Comparison to LayerNorm</b>:<ul><li>LayerNorm: Subtract mean, divide by std</li><li>RMSNorm: Just divide by RMS (no mean subtraction)</li></ul><b>Advantages</b>:<ul><li>~10-15% faster (fewer operations)</li><li>Empirically similar or better performance</li></ul><b>Used in</b>: LLaMA, Gemma, and many modern LLMs.",
+      "tags": [
+        "ch06",
+        "rmsnorm",
+        "normalization"
+      ]
+    },
+    {
+      "uid": "06-053",
+      "front": "How do you choose which normalization technique to use?",
+      "back": "<b>Rules of thumb</b>:<br><br><b>Batch normalization</b>:<ul><li>CNNs with large batches (>=32)</li><li>Image classification</li></ul><b>Layer normalization</b>:<ul><li>Transformers, RNNs</li><li>Small batch sizes</li><li>Sequence models</li></ul><b>Group normalization</b>:<ul><li>Object detection, segmentation</li><li>When batch size varies</li></ul><b>Instance normalization</b>:<ul><li>Style transfer</li><li>Image generation</li></ul><b>RMSNorm</b>:<ul><li>Modern LLMs (faster than LayerNorm)</li></ul>",
+      "tags": [
+        "ch06",
+        "normalization",
+        "practical"
+      ]
     }
   ]
 }

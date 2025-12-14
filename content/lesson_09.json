@@ -43,7 +43,7 @@
     {
       "uid": "09-004",
       "front": "What are the four approaches to incorporate symmetries into neural networks?",
-      "back": "<ol><li><b>Pre-processing</b>: Compute invariant features</li></ol><ol><li><b>Regularized error function</b>: Penalize changes under transformations</li></ol><ol><li><b>Data augmentation</b>: Expand training set with transformed examples</li></ol><ol><li><b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)</li></ol>",
+      "back": "<ol><li><b>Pre-processing</b>: Compute invariant features</li><li><b>Regularized error function</b>: Penalize changes under transformations</li><li><b>Data augmentation</b>: Expand training set with transformed examples</li><li><b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)</li></ol>",
       "tags": [
         "ch09",
         "symmetry",

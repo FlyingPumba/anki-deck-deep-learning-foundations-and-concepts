@@ -83,7 +83,7 @@
     {
       "uid": "15-008",
       "front": "What is the Expectation-Maximization (EM) algorithm?",
-      "back": "A general method for finding <b>maximum likelihood</b> solutions in models with latent variables.<br>Two alternating steps:<br><ol><li><b>E step</b>: Compute posterior over latent variables using current parameters</li></ol><ol><li><b>M step</b>: Maximize expected complete-data log likelihood</li></ol>Guaranteed to increase likelihood at each step.",
+      "back": "A general method for finding <b>maximum likelihood</b> solutions in models with latent variables.<br>Two alternating steps:<br><ol><li><b>E step</b>: Compute posterior over latent variables using current parameters</li><li><b>M step</b>: Maximize expected complete-data log likelihood</li></ol>Guaranteed to increase likelihood at each step.",
       "tags": [
         "ch15",
         "em-algorithm",

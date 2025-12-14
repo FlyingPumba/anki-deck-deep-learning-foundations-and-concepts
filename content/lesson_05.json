@@ -420,6 +420,46 @@
         "hierarchical",
         "representation"
       ]
+    },
+    {
+      "uid": "05-045",
+      "front": "Why do we subtract the maximum logit before applying softmax?",
+      "back": "For <b>numerical stability</b>.<br><br>Softmax is invariant to adding the same constant to every logit:<br>\\( \\text{softmax}(\\vec{a}) = \\text{softmax}(\\vec{a} - c\\mathbf{1}) \\).<br><br>So we compute:<br>\\( y_k = \\frac{\\exp(a_k - \\max_j a_j)}{\\sum_i \\exp(a_i - \\max_j a_j)} \\)<br>which prevents overflow when some logits are large.",
+      "tags": [
+        "ch05",
+        "softmax",
+        "numerical-stability"
+      ]
+    },
+    {
+      "uid": "05-046",
+      "front": "What is label smoothing and why can it help in classification?",
+      "back": "<b>Label smoothing</b> replaces a one-hot target distribution with a slightly \"soft\" target distribution.<br><br>For K classes and smoothing \\( \\epsilon \\):<br>\\( \\tilde{t}_k = (1-\\epsilon) t_k + \\epsilon/K \\).<br><br><b>Why it helps</b>: It acts as a regularizer that discourages overconfident predictions, often improving generalization and probability calibration.",
+      "tags": [
+        "ch05",
+        "label-smoothing",
+        "regularization"
+      ]
+    },
+    {
+      "uid": "05-047",
+      "front": "What is the GELU activation function?",
+      "back": "<b>Gaussian Error Linear Unit (GELU)</b> smoothly gates inputs based on their value:<br><br>\\( \\text{GELU}(x) = x \\cdot \\Phi(x) \\)<br><br>where \\( \\Phi(x) \\) is the standard Gaussian CDF.<br><br><b>Approximation</b>: \\( \\text{GELU}(x) \\approx 0.5x(1 + \\tanh[\\sqrt{2/\\pi}(x + 0.044715x^3)]) \\)<br><br><b>Intuition</b>: Unlike ReLU's hard cutoff at 0, GELU smoothly scales inputs - large positive values pass through, large negative values are zeroed, and values near zero are scaled by something in between.<br><br><b>Why popular</b>: Default in BERT, GPT, and most modern transformers. Often slightly outperforms ReLU in NLP.",
+      "tags": [
+        "ch05",
+        "gelu",
+        "activation-functions"
+      ]
+    },
+    {
+      "uid": "05-048",
+      "front": "What is the Swish (SiLU) activation function?",
+      "back": "<b>Swish</b> (also called <b>SiLU</b> - Sigmoid Linear Unit):<br><br>\\( \\text{Swish}(x) = x \\cdot \\sigma(x) = \\frac{x}{1 + e^{-x}} \\)<br><br><b>Properties</b>:<ul><li>Smooth and non-monotonic (dips slightly below 0)</li><li>Self-gated: input multiplied by sigmoid of itself</li><li>Bounded below (~-0.28), unbounded above</li></ul><b>Comparison</b>:<ul><li>More similar to GELU than ReLU</li><li>Slightly faster than GELU (simpler formula)</li><li>Used in EfficientNet, many modern vision models</li></ul><b>Variant</b>: \\( \\text{Swish}_\\beta(x) = x \\cdot \\sigma(\\beta x) \\) where \\( \\beta \\) is learnable.",
+      "tags": [
+        "ch05",
+        "swish",
+        "activation-functions"
+      ]
     }
   ]
 }

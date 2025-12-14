@@ -168,6 +168,36 @@
         "mc-dropout",
         "uncertainty"
       ]
+    },
+    {
+      "uid": "08-017",
+      "front": "What is knowledge distillation?",
+      "back": "<b>Knowledge distillation</b> transfers knowledge from a large 'teacher' model to a smaller 'student' model.<br><br><b>Key idea</b>: Train the student to mimic the teacher's <b>soft outputs</b> (probability distributions), not just the hard labels.<br><br><b>Why soft labels help</b>: They encode 'dark knowledge' - relationships between classes. If teacher says 'probably cat (0.7), maybe dog (0.2), unlikely car (0.001)', that's more informative than just 'cat'.<br><br><b>Loss</b>: \\( L = \\alpha L_{hard} + (1-\\alpha) L_{soft} \\)<br>where \\( L_{soft} \\) matches student and teacher distributions.",
+      "tags": [
+        "ch08",
+        "knowledge-distillation",
+        "compression"
+      ]
+    },
+    {
+      "uid": "08-018",
+      "front": "What is temperature in knowledge distillation?",
+      "back": "<b>Temperature</b> controls how soft the probability distributions are:<br>\\( p_i = \\frac{\\exp(z_i / T)}{\\sum_j \\exp(z_j / T)} \\)<br><br><b>Effect</b>:<ul><li><b>T = 1</b>: Standard softmax</li><li><b>T > 1</b>: Softer distribution (more uniform)</li><li><b>T -> infinity</b>: Completely uniform</li></ul><b>Why use high T?</b> With T=1, teacher might output 0.99 for correct class, hiding information about other classes. Higher T reveals more structure.<br><br><b>Important</b>: Use same temperature for both teacher and student during distillation; reset to T=1 at inference.",
+      "tags": [
+        "ch08",
+        "knowledge-distillation",
+        "temperature"
+      ]
+    },
+    {
+      "uid": "08-019",
+      "front": "What are the benefits of knowledge distillation?",
+      "back": "<b>1. Model compression</b>: Deploy smaller, faster models with similar accuracy.<br><br><b>2. Ensemble to single model</b>: Distill an ensemble's knowledge into one model.<br><br><b>3. Label smoothing effect</b>: Soft targets act as implicit regularization.<br><br><b>4. Cross-architecture transfer</b>: Teacher and student can have different architectures.<br><br><b>Use cases</b>:<ul><li>Mobile deployment</li><li>Edge devices</li><li>Reducing latency</li><li>Training with noisy labels (teacher can denoise)</li></ul>",
+      "tags": [
+        "ch08",
+        "knowledge-distillation",
+        "applications"
+      ]
     }
   ]
 }

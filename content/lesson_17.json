@@ -1,0 +1,194 @@
+{
+  "id": "17",
+  "title": "Lesson 17: Generative Adversarial Networks",
+  "lesson_title": "Generative Adversarial Networks",
+  "objectives": [
+    "Understand the GAN framework and adversarial training",
+    "Learn about the generator and discriminator networks",
+    "Master common GAN failure modes and solutions",
+    "Understand GAN variants: DCGAN, WGAN, StyleGAN",
+    "Learn about GAN evaluation metrics"
+  ],
+  "cards": [
+    {
+      "uid": "17-001",
+      "front": "What is a Generative Adversarial Network (GAN)?",
+      "back": "A framework with two competing neural networks:<br><br><b>Generator (G)</b>: Creates fake samples from random noise<br>\\( G: \\vec{z} \\to \\vec{x}_{fake} \\)<br><br><b>Discriminator (D)</b>: Classifies samples as real or fake<br>\\( D: \\vec{x} \\to [0, 1] \\)<br><br><b>Training objective</b>: Minimax game<br>\\( \\min_G \\max_D \\; \\mathbb{E}_{x}[\\log D(x)] + \\mathbb{E}_{z}[\\log(1 - D(G(z)))] \\)<br><br><b>Intuition</b>: G tries to fool D; D tries not to be fooled. At equilibrium, G produces realistic samples.",
+      "tags": [
+        "ch17",
+        "gan",
+        "definition"
+      ]
+    },
+    {
+      "uid": "17-002",
+      "front": "What is the generator in a GAN?",
+      "back": "A neural network that <b>transforms random noise into data samples</b>.<br><br><b>Input</b>: Latent vector \\( z \\sim p(z) \\), typically Gaussian or uniform<br><b>Output</b>: Fake sample \\( G(z) \\) in data space<br><br><b>Architecture</b> (images):<ul><li>Takes low-dimensional noise (e.g., 100D)</li><li>Upsamples through transposed convolutions</li><li>Outputs image-sized tensor</li></ul><b>Goal</b>: Learn mapping from simple distribution to complex data distribution.",
+      "tags": [
+        "ch17",
+        "generator",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "17-003",
+      "front": "What is the discriminator in a GAN?",
+      "back": "A neural network that <b>distinguishes real samples from generated fakes</b>.<br><br><b>Input</b>: Data sample (real or generated)<br><b>Output</b>: Probability that sample is real, \\( D(x) \\in [0, 1] \\)<br><br><b>Architecture</b> (images):<ul><li>Standard CNN classifier</li><li>Downsamples through strided convolutions</li><li>Outputs single scalar</li></ul><b>Role</b>: Provides learning signal to generator through gradients.",
+      "tags": [
+        "ch17",
+        "discriminator",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "17-004",
+      "front": "How are GANs trained?",
+      "back": "<b>Alternating optimization</b>:<br><br><b>Step 1 - Train D</b>:<ul><li>Sample real data \\( x \\) from dataset</li><li>Sample noise \\( z \\) and generate \\( G(z) \\)</li><li>Update D to maximize: \\( \\log D(x) + \\log(1 - D(G(z))) \\)</li></ul><b>Step 2 - Train G</b>:<ul><li>Sample noise \\( z \\)</li><li>Update G to maximize: \\( \\log D(G(z)) \\)<br>(equivalently, minimize \\( \\log(1 - D(G(z))) \\))</li></ul><b>Repeat</b> alternating steps until convergence.<br><br><b>Note</b>: In practice, often take multiple D steps per G step.",
+      "tags": [
+        "ch17",
+        "training",
+        "optimization"
+      ]
+    },
+    {
+      "uid": "17-005",
+      "front": "What is mode collapse in GANs?",
+      "back": "<b>Mode collapse</b>: Generator produces only a few types of outputs, ignoring the diversity in the data.<br><br><b>Symptoms</b>:<ul><li>Generated samples look very similar</li><li>G finds a few outputs that fool D and sticks to them</li><li>Missing modes (categories) in generated data</li></ul><b>Causes</b>:<ul><li>G finds local optima that satisfy D</li><li>D cannot detect lack of diversity</li></ul><b>Solutions</b>:<ul><li>Minibatch discrimination</li><li>Unrolled GANs</li><li>Wasserstein loss (WGAN)</li><li>Feature matching</li></ul>",
+      "tags": [
+        "ch17",
+        "mode-collapse",
+        "failure-modes"
+      ]
+    },
+    {
+      "uid": "17-006",
+      "front": "What is training instability in GANs?",
+      "back": "<b>GANs are notoriously hard to train</b> due to:<br><br><b>Problems</b>:<ul><li><b>Vanishing gradients</b>: If D is too good, G gets no useful gradient</li><li><b>Oscillation</b>: G and D chase each other without converging</li><li><b>Non-convergence</b>: Minimax games don't always have stable equilibria</li></ul><b>Symptoms</b>:<ul><li>Loss doesn't indicate quality</li><li>Sudden quality degradation</li><li>Training divergence</li></ul><b>Mitigations</b>:<ul><li>Careful hyperparameter tuning</li><li>Spectral normalization</li><li>Two-timescale update rule (TTUR)</li><li>Progressive growing</li></ul>",
+      "tags": [
+        "ch17",
+        "training",
+        "instability"
+      ]
+    },
+    {
+      "uid": "17-007",
+      "front": "Why can the original GAN loss cause vanishing gradients?",
+      "back": "When D becomes strong, for fake samples:<br><br>\\( D(G(z)) \\approx 0 \\)<br><br>The generator loss \\( \\log(1 - D(G(z))) \\approx \\log(1) = 0 \\)<br><br><b>Problem</b>: Gradient of \\( \\log(1-x) \\) near \\( x=0 \\) is small, so G receives weak signal.<br><br><b>Solution</b>: Instead of minimizing \\( \\log(1 - D(G(z))) \\), maximize \\( \\log D(G(z)) \\).<br><br>This is the <b>non-saturating loss</b>:<ul><li>Same optimum</li><li>Stronger gradients early in training</li><li>Standard practice</li></ul>",
+      "tags": [
+        "ch17",
+        "vanishing-gradients",
+        "loss"
+      ]
+    },
+    {
+      "uid": "17-008",
+      "front": "What is DCGAN?",
+      "back": "<b>Deep Convolutional GAN</b>: Architecture guidelines that stabilized GAN training (2015).<br><br><b>Key principles</b>:<ul><li>Replace pooling with strided convolutions (D) and transposed convolutions (G)</li><li>Use batch normalization in both G and D</li><li>Remove fully connected layers (except input/output)</li><li>ReLU in G (except output: tanh)</li><li>LeakyReLU in D</li></ul><b>Impact</b>: First GANs to reliably generate realistic images. Architecture became standard baseline.",
+      "tags": [
+        "ch17",
+        "dcgan",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "17-009",
+      "front": "What is the Wasserstein GAN (WGAN)?",
+      "back": "<b>WGAN</b> replaces the original GAN loss with Wasserstein (Earth Mover's) distance.<br><br><b>Key changes</b>:<ul><li><b>Critic</b> instead of discriminator: Outputs unbounded score, not probability</li><li><b>Wasserstein loss</b>: \\( \\max_D \\mathbb{E}_x[D(x)] - \\mathbb{E}_z[D(G(z))] \\)</li><li><b>Lipschitz constraint</b>: D must be 1-Lipschitz</li></ul><b>Advantages</b>:<ul><li>More stable training</li><li>Loss correlates with sample quality</li><li>Reduces mode collapse</li></ul><b>Original enforcement</b>: Weight clipping (problematic).<br><b>Better</b>: Gradient penalty (WGAN-GP).",
+      "tags": [
+        "ch17",
+        "wgan",
+        "loss"
+      ]
+    },
+    {
+      "uid": "17-010",
+      "front": "What is the gradient penalty in WGAN-GP?",
+      "back": "<b>Gradient penalty</b> enforces the Lipschitz constraint by penalizing gradients:<br><br>\\( \\lambda \\mathbb{E}_{\\hat{x}}[(\\|\\nabla_{\\hat{x}} D(\\hat{x})\\|_2 - 1)^2] \\)<br><br>where \\( \\hat{x} \\) is sampled along lines between real and generated samples.<br><br><b>Why better than weight clipping</b>:<ul><li>More stable training</li><li>No capacity reduction in D</li><li>Critic can use batch norm</li></ul><b>Typical \\( \\lambda \\)</b>: 10",
+      "tags": [
+        "ch17",
+        "wgan-gp",
+        "regularization"
+      ]
+    },
+    {
+      "uid": "17-011",
+      "front": "What is spectral normalization?",
+      "back": "<b>Spectral normalization</b> constrains the Lipschitz constant of each layer by normalizing weights by their spectral norm.<br><br>\\( W_{SN} = \\frac{W}{\\sigma(W)} \\)<br><br>where \\( \\sigma(W) \\) is the largest singular value of W.<br><br><b>Properties</b>:<ul><li>Ensures each layer is 1-Lipschitz</li><li>Cheap to compute (power iteration)</li><li>Works with any architecture</li></ul><b>Benefits</b>:<ul><li>Stabilizes training</li><li>No hyperparameter to tune (unlike gradient penalty)</li><li>Faster than WGAN-GP</li></ul>",
+      "tags": [
+        "ch17",
+        "spectral-normalization",
+        "regularization"
+      ]
+    },
+    {
+      "uid": "17-012",
+      "front": "What is conditional GAN (cGAN)?",
+      "back": "<b>Conditional GAN</b> generates samples conditioned on additional information.<br><br><b>Setup</b>:<ul><li>Generator: \\( G(z, y) \\) where y is condition (e.g., class label)</li><li>Discriminator: \\( D(x, y) \\) judges if x is real AND matches condition y</li></ul><b>Objective</b>:<br>\\( \\min_G \\max_D \\; \\mathbb{E}_{x,y}[\\log D(x,y)] + \\mathbb{E}_{z,y}[\\log(1 - D(G(z,y),y))] \\)<br><br><b>Applications</b>:<ul><li>Class-conditional image generation</li><li>Image-to-image translation (pix2pix)</li><li>Text-to-image synthesis</li></ul>",
+      "tags": [
+        "ch17",
+        "conditional-gan",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "17-013",
+      "front": "What is the key idea behind StyleGAN?",
+      "back": "<b>StyleGAN</b> separates high-level attributes (style) from stochastic variation.<br><br><b>Key innovations</b>:<ul><li><b>Mapping network</b>: Transform z to intermediate latent w</li><li><b>Style injection</b>: w controls AdaIN (adaptive instance norm) at each layer</li><li><b>Noise injection</b>: Per-layer noise for stochastic details</li><li><b>Progressive growing</b>: Train from low to high resolution</li></ul><b>Result</b>:<ul><li>Disentangled latent space</li><li>Control over different levels of detail</li><li>State-of-the-art face generation</li></ul>",
+      "tags": [
+        "ch17",
+        "stylegan",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "17-014",
+      "front": "What is the Frechet Inception Distance (FID)?",
+      "back": "<b>FID</b> measures distance between real and generated image distributions using Inception features.<br><br><b>Calculation</b>:<br>\\( FID = \\|\\mu_r - \\mu_g\\|^2 + \\text{Tr}(\\Sigma_r + \\Sigma_g - 2(\\Sigma_r \\Sigma_g)^{1/2}) \\)<br><br>where \\( (\\mu_r, \\Sigma_r) \\) and \\( (\\mu_g, \\Sigma_g) \\) are mean and covariance of Inception features for real and generated images.<br><br><b>Properties</b>:<ul><li><b>Lower is better</b></li><li>Captures both quality and diversity</li><li>Standard metric for image generation</li></ul><b>Limitation</b>: Depends on Inception network; may miss some visual artifacts.",
+      "tags": [
+        "ch17",
+        "fid",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "17-015",
+      "front": "What is Inception Score (IS)?",
+      "back": "<b>Inception Score</b> evaluates generated images using a pretrained Inception classifier.<br><br>\\( IS = \\exp(\\mathbb{E}_x[D_{KL}(p(y|x) \\| p(y))]) \\)<br><br><b>Intuition</b>:<ul><li>\\( p(y|x) \\) should be peaked (high quality, recognizable object)</li><li>\\( p(y) \\) should be uniform (high diversity across classes)</li></ul><b>Higher is better</b>.<br><br><b>Limitations</b>:<ul><li>Doesn't compare to real data</li><li>Biased toward ImageNet classes</li><li>Ignores intra-class diversity</li></ul><b>FID is generally preferred</b> over IS.",
+      "tags": [
+        "ch17",
+        "inception-score",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "17-016",
+      "front": "How do GANs compare to VAEs for image generation?",
+      "back": "<b>GANs</b>:<ul><li>Sharper, more realistic images</li><li>No explicit density model</li><li>Harder to train (unstable)</li><li>Mode collapse risk</li><li>Cannot easily compute likelihood</li></ul><b>VAEs</b>:<ul><li>Blurrier outputs (MSE loss)</li><li>Explicit probabilistic model</li><li>Stable training</li><li>Full coverage of modes</li><li>Can compute (lower bound on) likelihood</li></ul><b>Modern view</b>: Diffusion models have largely superseded both for image generation quality.",
+      "tags": [
+        "ch17",
+        "gan-vs-vae",
+        "comparison"
+      ]
+    },
+    {
+      "uid": "17-017",
+      "front": "What is pix2pix?",
+      "back": "<b>pix2pix</b> is a conditional GAN for paired image-to-image translation.<br><br><b>Setup</b>:<ul><li>Input: Source image (e.g., sketch)</li><li>Output: Target image (e.g., photo)</li><li>Training: Paired examples (source, target)</li></ul><b>Loss</b>: cGAN loss + L1 reconstruction loss<br><br><b>Architecture</b>:<ul><li>Generator: U-Net with skip connections</li><li>Discriminator: PatchGAN (classifies patches, not whole image)</li></ul><b>Applications</b>: Edges-to-photo, day-to-night, semantic labels-to-scene.",
+      "tags": [
+        "ch17",
+        "pix2pix",
+        "image-translation"
+      ]
+    },
+    {
+      "uid": "17-018",
+      "front": "What is CycleGAN?",
+      "back": "<b>CycleGAN</b> learns image-to-image translation <b>without paired examples</b>.<br><br><b>Key idea</b>: Cycle consistency - translating A to B and back should give A:<br>\\( G_{BA}(G_{AB}(x)) \\approx x \\)<br><br><b>Loss</b>:<ul><li>GAN loss for both directions</li><li>Cycle consistency loss (L1)</li><li>Optional: Identity loss</li></ul><b>Applications</b>: Horse-to-zebra, summer-to-winter, photo-to-painting.<br><br><b>Limitation</b>: Can only change texture/style, not geometry.",
+      "tags": [
+        "ch17",
+        "cyclegan",
+        "unpaired-translation"
+      ]
+    }
+  ]
+}
