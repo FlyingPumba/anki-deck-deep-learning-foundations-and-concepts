@@ -197,6 +197,29 @@ def configure_subdeck_new_cards(deck_name: str, parent_deck: str, new_per_day: i
     return True
 
 
+def delete_empty_subdecks(parent_deck: str, dry_run: bool = False) -> list[str]:
+    """
+    Delete subdecks that have no cards.
+
+    Returns list of deleted deck names.
+    """
+    deleted = []
+    all_decks = invoke("deckNames")
+
+    # Find subdecks of the parent deck
+    subdecks = [d for d in all_decks if d.startswith(f"{parent_deck}::")]
+
+    for deck in subdecks:
+        # Count cards in this specific deck (not including child decks)
+        card_ids = invoke("findCards", {"query": f'deck:"{deck}"'})
+        if not card_ids:
+            if not dry_run:
+                invoke("deleteDecks", {"decks": [deck], "cardsToo": True})
+            deleted.append(deck)
+
+    return deleted
+
+
 def _normalize_for_comparison(text: str) -> str:
     """Normalize text for comparison, handling Anki's HTML formatting."""
     # Convert <br> tags to newlines
@@ -439,6 +462,11 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
             preview = canon_front[:50] + "..." if len(canon_front) > 50 else canon_front
             print(f"  deleted (no uid): {preview}")
             deleted += 1
+
+    # Delete empty subdecks
+    deleted_decks = delete_empty_subdecks(parent_deck, dry_run=dry_run)
+    for deck_name in deleted_decks:
+        print(f"  deleted deck: {deck_name}")
 
     # Summary
     print("=" * 40)
