@@ -181,36 +181,6 @@
       ]
     },
     {
-      "uid": "03-019",
-      "front": "What is a Gaussian mixture model (GMM)?",
-      "back": "A <b>Gaussian mixture model</b> uses multiple Gaussians to model complex distributions.<br><b>Intuition</b>: One bell curve can't capture multiple clusters. Solution: use K bell curves, each centered on a different cluster. The GMM learns where to place each bell curve and how big to make it.<br><b>Power</b>: With enough Gaussians, you can approximate almost any distribution - like building any shape from overlapping hills.<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)",
-      "tags": [
-        "ch03",
-        "gmm",
-        "mixture-models"
-      ]
-    },
-    {
-      "uid": "03-020",
-      "front": "What are the mixing coefficients in a mixture model?",
-      "back": "<b>Mixing coefficients</b> \\( \\pi_k \\) represent how \"popular\" each cluster is.<br><b>Intuition</b>: Before seeing a data point, \\( \\pi_k \\) is the probability it came from cluster k. If cluster 1 contains 70% of your data, then \\( \\pi_1 = 0.7 \\).<br><b>Constraints</b>: Must be valid probabilities - all non-negative and sum to 1.",
-      "tags": [
-        "ch03",
-        "mixing-coefficients",
-        "mixture-models"
-      ]
-    },
-    {
-      "uid": "03-021",
-      "front": "What are responsibilities in a Gaussian mixture model?",
-      "back": "<b>Responsibilities</b> answer: \"which cluster generated this point?\"<br><b>Intuition</b>: After seeing point \\( \\mathbf{x} \\), we update our belief about which cluster it belongs to. A point near cluster 2's center will have high \\( \\gamma_2 \\) and low values for other clusters.<br><b>Soft assignment</b>: Unlike hard clustering, responsibilities can be fractional (e.g., 60% cluster 1, 40% cluster 2).<br><b>Formula</b>: \\( \\gamma_k(\\mathbf{x}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_l \\pi_l \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_l, \\boldsymbol{\\Sigma}_l)} \\)",
-      "tags": [
-        "ch03",
-        "responsibilities",
-        "gmm"
-      ]
-    },
-    {
       "uid": "03-022",
       "front": "Why is maximum likelihood for Gaussian mixtures more complex than for a single Gaussian?",
       "back": "<b>Intuition</b>: For a single Gaussian, we can solve for the best parameters directly (closed-form). For mixtures, the components are \"entangled\" - we don't know which points belong to which cluster.<br><b>The problem</b>: Log of a sum \\( \\ln(\\sum_k ...) \\) doesn't simplify nicely, unlike sum of logs.<br><b>Solution</b>: Use iterative methods like <b>EM algorithm</b> - alternate between guessing cluster assignments and updating parameters.",

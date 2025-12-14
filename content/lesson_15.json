@@ -53,7 +53,7 @@
     {
       "uid": "15-005",
       "front": "What is a Gaussian mixture model?",
-      "back": "A probability distribution expressed as a weighted sum of Gaussians:<br>\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)<br>where:<br><ul><li>\\( \\pi_k \\) are mixing coefficients (\\( \\sum_k \\pi_k = 1 \\))</li><li>\\( \\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k \\) are component parameters</li></ul>",
+      "back": "<b>Intuition</b>: One bell curve can't capture multiple clusters. Solution: use K bell curves, each centered on a different cluster. With enough Gaussians, you can approximate almost any distribution.<br><br><b>Formula</b>:<br>\\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k) \\)<br>where:<br><ul><li>\\( \\pi_k \\) are mixing coefficients representing how \"popular\" each cluster is (must sum to 1)</li><li>\\( \\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k \\) are component parameters</li></ul>",
       "tags": [
         "ch15",
         "gmm",
@@ -73,7 +73,7 @@
     {
       "uid": "15-007",
       "front": "What is the responsibility in Gaussian mixture models?",
-      "back": "The <b>posterior probability</b> that component k generated data point n:<br>\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)<br>Interpretation: How \"responsible\" component k is for generating \\( \\mathbf{x}_n \\).",
+      "back": "<b>Intuition</b>: Answers \"which cluster generated this point?\" A point near cluster 2's center will have high responsibility for cluster 2 and low for others.<br><br><b>Soft assignment</b>: Unlike hard clustering, responsibilities can be fractional (e.g., 60% cluster 1, 40% cluster 2).<br><br><b>Formula</b>:<br>\\( \\gamma(z_{nk}) = \\frac{\\pi_k \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_k, \\boldsymbol{\\Sigma}_k)}{\\sum_j \\pi_j \\mathcal{N}(\\mathbf{x}_n|\\boldsymbol{\\mu}_j, \\boldsymbol{\\Sigma}_j)} \\)",
       "tags": [
         "ch15",
         "gmm",

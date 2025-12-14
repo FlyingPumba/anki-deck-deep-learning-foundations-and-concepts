@@ -74,7 +74,7 @@
     {
       "uid": "12-007",
       "front": "What are attention weights?",
-      "back": "Coefficients \\( a_{mn} \\) that determine how much output m 'attends to' input n.<br>Properties:<br><ul><li>Non-negative: \\( a_{mn} \\geq 0 \\)</li><li>Sum to one: \\( \\sum_n a_{mn} = 1 \\) (partition of unity)</li><li>Data-dependent: Computed from input</li></ul>Higher weight = more attention.",
+      "back": "Scalars that determine how much each output token attends to each input token.<br><br><b>How they're computed</b>:<br>\\( a_{mn} = \\text{softmax}\\left(\\frac{\\vec{q}_m \\cdot \\vec{k}_n}{\\sqrt{D_k}}\\right) \\)<br>The dot product measures similarity between query m and key n.<br><br><b>Properties</b>:<br><ul><li>Non-negative and sum to 1 (due to softmax)</li><li>Data-dependent: computed from the input itself</li><li>Higher weight = token m pays more attention to token n</li></ul>",
       "tags": [
         "ch12",
         "attention-weights",
@@ -144,7 +144,7 @@
     {
       "uid": "12-014",
       "front": "Why is scaled dot-product attention needed?",
-      "back": "Without scaling, dot products can be very large, causing softmax to have <b>exponentially small gradients</b>.<br>If Q and K elements are independent random variables with variance 1, the dot product has variance D.<br>Scale by \\( 1/\\sqrt{D_k} \\) to normalize:<br>\\( \\text{Attention}(Q,K,V) = \\text{softmax}(\\frac{QK^T}{\\sqrt{D_k}})V \\)",
+      "back": "Without scaling, dot products can be very large, causing softmax to have <b>exponentially small gradients</b>.<br><br><b>Why?</b> If Q and K elements are independent random variables with variance 1, the dot product has variance \\( D_k \\) (the key dimension).<br><br><b>Solution</b>: Scale by \\( 1/\\sqrt{D_k} \\) to normalize variance back to 1:<br>\\( \\text{Attention}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{D_k}}\\right)V \\)<br><br><b>Computing the scalar</b>: \\( D_k \\) is the dimension of the key vectors. For multi-head attention with model dimension \\( D \\) and \\( H \\) heads: \\( D_k = D/H \\).",
       "tags": [
         "ch12",
         "scaled-attention",
@@ -184,7 +184,7 @@
     {
       "uid": "12-018",
       "front": "Why add a feed-forward network after attention?",
-      "back": "Attention outputs are <b>linear functions</b> of input values.<br>Non-linearity only enters through attention weights.<br>The feed-forward network (MLP) adds <b>position-wise non-linearity</b> to enhance flexibility.<br>Typically: Linear -> ReLU/GELU -> Linear",
+      "back": "Attention computes a <b>weighted sum</b> of value vectors - linear in V, but the weights come from softmax (nonlinear in Q and K).<br><br>This limits expressiveness: each output is a convex combination of values.<br><br>The feed-forward network (MLP) adds <b>position-wise non-linearity</b> to enhance flexibility.<br>Typically: Linear -> ReLU/GELU -> Linear",
       "tags": [
         "ch12",
         "ffn",
