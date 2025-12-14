@@ -64,7 +64,7 @@
     {
       "uid": "12-006",
       "front": "What is the basic operation of a transformer layer?",
-      "back": "Transform input tokens into output tokens where each output is a <b>linear combination of inputs</b>:<br>\\( \\vec{y}_m = \\sum_n a_{mn} \\vec{v}_n \\)<br>Where \\( a_{mn} \\) are <b>attention weights</b> (data-dependent).<br>Multiple layers can be applied successively.",
+      "back": "A transformer layer has two main sub-layers:<br><br><b>1. Self-attention</b>: Each output token is a weighted combination of all input tokens:<br>\\( \\vec{y}_m = \\sum_n a_{mn} \\vec{v}_n \\)<br>where \\( a_{mn} \\) are data-dependent <b>attention weights</b>.<br><br><b>2. Feed-forward network (FFN)</b>: Applied independently to each token position.<br><br><b>Additional components</b>:<br><ul><li><b>Residual connections</b>: Add input to output of each sub-layer</li><li><b>Layer normalization</b>: Applied after each sub-layer</li></ul>",
       "tags": [
         "ch12",
         "transformer-layer",

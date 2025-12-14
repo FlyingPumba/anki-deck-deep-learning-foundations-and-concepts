@@ -99,16 +99,6 @@
         "dropout",
         "co-adaptation"
       ]
-    },
-    {
-      "uid": "09-024",
-      "front": "What is a group in the context of symmetries?",
-      "back": "A mathematical structure describing transformations that form a symmetry.<br>Four axioms:<br><ol><li><b>Closed</b>: Composition of two elements is in the set</li><li><b>Associative</b>: (A \\( \\circ \\) B) \\( \\circ \\) C = A \\( \\circ \\) (B \\( \\circ \\) C)</li><li><b>Identity</b>: Element I such that A \\( \\circ \\) I = A</li><li><b>Inverse</b>: For each A, exists \\( A^{-1} \\) such that A \\( \\circ A^{-1} \\) = I</li></ol>",
-      "tags": [
-        "ch09",
-        "groups",
-        "symmetry"
-      ]
     }
   ]
 }
