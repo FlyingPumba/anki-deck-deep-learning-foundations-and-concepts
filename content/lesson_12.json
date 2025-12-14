@@ -484,7 +484,7 @@
     {
       "uid": "12-048",
       "front": "What is perplexity in language modeling?",
-      "back": "<b>Perplexity</b> measures how 'surprised' a language model is by test data.<br><br><b>Formula</b>:<br>\\( \\text{PPL} = \\exp\\left(-\\frac{1}{N}\\sum_{i=1}^{N} \\ln p(w_i | w_{<i})\\right) \\)<br><br><b>Intuition</b>: The average number of equally likely next words the model considers. Lower = better.<ul><li>PPL = 1: Perfect prediction (only one choice)</li><li>PPL = 100: Model is as uncertain as choosing uniformly from 100 words</li></ul><b>Connection to cross-entropy</b>: \\( \\text{PPL} = \\exp(H) \\) where H is the cross-entropy loss.",
+      "back": "<b>Perplexity</b> measures how 'surprised' a language model is by test data.<br><br><b>Formula</b>:<br>\\( \\text{PPL} = \\exp\\left(-\\frac{1}{N}\\sum_{i=1}^{N} \\ln p(w_i | w_{1:i-1})\\right) \\)<br><br><b>Intuition</b>: The average number of equally likely next words the model considers. Lower = better.<ul><li>PPL = 1: Perfect prediction (only one choice)</li><li>PPL = 100: Model is as uncertain as choosing uniformly from 100 words</li></ul><b>Connection to cross-entropy</b>: \\( \\text{PPL} = \\exp(H) \\) where H is the cross-entropy loss.",
       "tags": [
         "ch12",
         "perplexity",

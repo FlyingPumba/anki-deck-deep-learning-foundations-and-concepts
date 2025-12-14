@@ -484,7 +484,7 @@
     {
       "uid": "04-052",
       "front": "What is a precision-recall (PR) curve?",
-      "back": "A <b>precision-recall curve</b> plots <b>precision</b> vs <b>recall</b> as the classification threshold varies.<br><br>Each threshold gives a different confusion matrix, hence different precision/recall.<br><br>PR curves are especially informative when the <b>positive class is rare</b>.",
+      "back": "A <b>precision-recall curve</b> plots <b>precision</b> vs <b>recall</b> as the classification threshold varies.<br><br>Each threshold gives a different confusion matrix, hence different precision/recall.<br><br>PR curves are especially informative when the <b>positive class is rare</b>.<br><br><b>Intuition</b>: With rare positives (e.g., 1% fraud), a bad classifier predicting 'always negative' gets 99% accuracy and low FPR (few false positives relative to many true negatives). ROC curves, which use FPR, can look deceptively good. But precision asks: 'Of predicted positives, how many are correct?' This exposes the failure - if you never predict positive, precision is undefined; if you predict a few, precision will be low because true positives are so rare. PR curves focus entirely on the positive class, ignoring the overwhelming true negatives that mask poor performance.",
       "tags": [
         "ch04",
         "precision-recall",

@@ -309,6 +309,66 @@
         "visualization",
         "interpretability"
       ]
+    },
+    {
+      "uid": "10-031",
+      "front": "What are channels in a CNN?",
+      "back": "<b>Channels</b> are the depth dimension of a tensor in a CNN.<br><br><b>Input channels</b>:<ul><li>RGB image: 3 channels (red, green, blue)</li><li>Grayscale: 1 channel</li><li>Medical imaging: May have many channels (CT slices, MRI sequences)</li></ul><b>Feature map channels</b>: After a conv layer, each filter produces one channel. 64 filters = 64 output channels.<br><br><b>Intuition</b>: Each channel represents a different 'view' or 'feature type' of the spatial data. Early channels might be 'edge detector output' or 'red intensity'; later channels encode abstract concepts.<br><br><b>Notation</b>: Tensor shape is typically \\( (N, C, H, W) \\) or \\( (N, H, W, C) \\) where C = channels.",
+      "tags": [
+        "ch10",
+        "channels",
+        "basics"
+      ]
+    },
+    {
+      "uid": "10-032",
+      "front": "What is weight sharing in CNNs and why does it matter?",
+      "back": "<b>Weight sharing</b>: The same filter weights are used at every spatial location.<br><br><b>Intuition</b>: A vertical edge detector should work the same way whether it's looking at the top-left or bottom-right of the image.<br><br><b>Why it matters</b>:<ul><li><b>Massive parameter reduction</b>: Instead of learning separate detectors for each location, learn one and reuse it</li><li><b>Translation equivariance</b>: Pattern detected the same way regardless of position</li><li><b>Better generalization</b>: Fewer parameters = less overfitting</li></ul><b>Example</b>: A 3x3 filter on a 224x224 image is applied ~50,000 times, but only has 9 weights (plus bias).<br><br><b>Contrast with FC</b>: A fully connected layer learns different weights for each input position - no sharing.",
+      "tags": [
+        "ch10",
+        "weight-sharing",
+        "basics"
+      ]
+    },
+    {
+      "uid": "10-033",
+      "front": "What is local connectivity in CNNs?",
+      "back": "<b>Local connectivity</b>: Each neuron connects only to a small local region of the input, not all pixels.<br><br><b>Intuition</b>: Nearby pixels are more related than distant ones. An eye pixel tells you more about neighboring eye pixels than about a foot pixel across the image.<br><br><b>Implementation</b>: Defined by the kernel size. A 3x3 kernel means each output neuron sees only a 3x3 patch of the input.<br><br><b>Benefits</b>:<ul><li><b>Fewer parameters</b>: Don't need weights for every input-output pair</li><li><b>Captures local structure</b>: Edges, textures are local patterns</li><li><b>Compositionality</b>: Local features combine into global ones through depth</li></ul><b>Global context</b>: Achieved through stacking layers (growing receptive field) or attention mechanisms.",
+      "tags": [
+        "ch10",
+        "local-connectivity",
+        "basics"
+      ]
+    },
+    {
+      "uid": "10-034",
+      "front": "What is batch normalization and why is it used in CNNs?",
+      "back": "<b>Batch normalization</b> normalizes activations across a mini-batch to have zero mean and unit variance, then applies learnable scale and shift.<br><br><b>Formula</b>: \\( \\hat{x} = \\gamma \\frac{x - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}} + \\beta \\)<br>where \\( \\mu_B, \\sigma_B^2 \\) are batch statistics, \\( \\gamma, \\beta \\) are learned.<br><br><b>In CNNs</b>: Normalize per channel (same \\( \\gamma, \\beta \\) for all spatial positions in a channel).<br><br><b>Benefits</b>:<ul><li>Enables higher learning rates</li><li>Reduces sensitivity to initialization</li><li>Acts as regularization</li><li>Stabilizes training of deep networks</li></ul><b>Placement</b>: Typically after conv, before activation (conv -> BN -> ReLU).<br><br><b>At inference</b>: Use running averages of mean/variance computed during training.",
+      "tags": [
+        "ch10",
+        "batch-normalization",
+        "training"
+      ]
+    },
+    {
+      "uid": "10-035",
+      "front": "What is the difference between a convolutional layer and a fully connected layer?",
+      "back": "<b>Fully Connected (FC)</b>:<ul><li>Every input connects to every output</li><li>Parameters: \\( \\text{input size} \\times \\text{output size} \\)</li><li>No spatial structure assumed</li><li>Position-specific: Weight from pixel (0,0) differs from (10,10)</li></ul><b>Convolutional</b>:<ul><li>Local connectivity: Each output connects to small input region</li><li>Weight sharing: Same filter everywhere</li><li>Parameters: \\( K^2 \\times C_{in} \\times C_{out} \\) (independent of spatial size)</li><li>Translation equivariant</li></ul><b>When to use which</b>:<ul><li>Conv: Spatial data (images, audio, sequences)</li><li>FC: Final classification layers, non-spatial features</li></ul><b>Equivalence</b>: A conv layer is a sparse, weight-tied FC layer. FC on spatial data = conv with kernel size = input size.",
+      "tags": [
+        "ch10",
+        "conv-vs-fc",
+        "basics"
+      ]
+    },
+    {
+      "uid": "10-036",
+      "front": "What happens at the border/edge of an image during convolution?",
+      "back": "<b>The border problem</b>: When the kernel is at the edge, part of it falls outside the image.<br><br><b>Solutions</b>:<ul><li><b>Valid/No padding</b>: Only apply kernel where it fully fits. Output is smaller than input.</li><li><b>Zero padding</b>: Pad with zeros. Most common. Can introduce artifacts at borders.</li><li><b>Reflect padding</b>: Mirror the image at boundaries. More natural for images.</li><li><b>Replicate padding</b>: Repeat edge pixels.</li><li><b>Circular padding</b>: Wrap around (useful for periodic signals).</li></ul><b>Effect on output size</b>:<ul><li>No padding: Output = Input - Kernel + 1</li><li>Same padding: Output = Input (pad by \\( \\lfloor K/2 \\rfloor \\))</li></ul><b>In practice</b>: Zero padding with 'same' is the default in most frameworks.",
+      "tags": [
+        "ch10",
+        "padding",
+        "borders"
+      ]
     }
   ]
 }
