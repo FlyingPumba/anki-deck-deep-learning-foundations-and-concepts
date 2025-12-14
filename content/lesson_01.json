@@ -449,6 +449,58 @@
         "contrastive-learning",
         "methods"
       ]
+    },
+    {
+      "uid": "01-051",
+      "front": "What is the Vapnik-Chervonenkis (VC) dimension?",
+      "back": "<b>VC dimension</b> measures the <b>capacity</b> (expressiveness) of a hypothesis class.<br><br><b>Definition</b>: The largest number of points that can be <b>shattered</b> (classified in all possible ways) by the hypothesis class.<br><br><b>Examples</b>:<ul><li>Linear classifiers in 2D: VC dim = 3 (can shatter 3 points, not 4)</li><li>Linear classifiers in d dimensions: VC dim = d + 1</li><li>Neural networks: Roughly proportional to number of parameters</li></ul><b>Why it matters</b>:<ul><li>Bounds generalization error: higher VC dim needs more data</li><li>Helps understand model complexity beyond parameter count</li><li>Fundamental concept in statistical learning theory</li></ul>",
+      "tags": [
+        "ch01",
+        "vc-dimension",
+        "learning-theory"
+      ]
+    },
+    {
+      "uid": "01-052",
+      "front": "What is the PAC (Probably Approximately Correct) learning framework?",
+      "back": "<b>PAC learning</b> formalizes what it means for a hypothesis class to be learnable.<br><br><b>Definition</b>: A class is PAC-learnable if there exists an algorithm that, for any target function in the class and any distribution over inputs, can find a hypothesis with:<ul><li>Error at most \\( \\epsilon \\) (approximately correct)</li><li>Probability at least \\( 1 - \\delta \\) (probably)</li><li>Using polynomial samples in \\( 1/\\epsilon \\), \\( 1/\\delta \\), and problem size</li></ul><b>Key results</b>:<ul><li>Finite hypothesis classes are PAC-learnable</li><li>Sample complexity depends on VC dimension</li><li>Fundamental theorem: A class is PAC-learnable iff it has finite VC dimension</li></ul><b>Intuition</b>: PAC gives guarantees on <i>how much data</i> you need for <i>how good</i> a solution.",
+      "tags": [
+        "ch01",
+        "pac-learning",
+        "learning-theory"
+      ]
+    },
+    {
+      "uid": "01-053",
+      "front": "Compare maximum likelihood, contrastive estimation, and noise contrastive estimation (NCE).",
+      "back": "<b>Maximum Likelihood Estimation (MLE)</b>:<ul><li>Maximize \\( \\sum_n \\log p_\\theta(x_n) \\)</li><li>Requires computing \\( Z(\\theta) = \\sum_x \\exp(f_\\theta(x)) \\) (partition function)</li><li>Intractable when output space is large</li></ul><b>Contrastive Estimation</b>:<ul><li>Learn by comparing positive and negative examples</li><li>Avoid computing full partition function</li><li>InfoNCE: \\( -\\log \\frac{\\exp(f(x, x^+))}{\\sum_k \\exp(f(x, x_k^-))} \\)</li></ul><b>Noise Contrastive Estimation (NCE)</b>:<ul><li>Turn density estimation into binary classification</li><li>Classify real data vs samples from noise distribution</li><li>Learn \\( \\log p(x) \\) directly, treating \\( \\log Z \\) as a parameter</li><li>As noise samples increase, approaches MLE</li></ul><b>When to use</b>:<ul><li>MLE: Small discrete outputs, tractable partition function</li><li>Contrastive: Representation learning, similarity tasks</li><li>NCE: Large vocabularies (word embeddings), energy models</li></ul>",
+      "tags": [
+        "ch01",
+        "mle",
+        "nce",
+        "contrastive-learning"
+      ]
+    },
+    {
+      "uid": "01-054",
+      "front": "Compare self-supervised learning objectives: contrastive vs masked prediction.",
+      "back": "<b>Contrastive learning</b> (e.g., SimCLR, CLIP):<ul><li><b>Objective</b>: Pull similar pairs close, push dissimilar pairs apart</li><li><b>Inductive bias</b>: Augmentation-invariant representations. What you augment away is deemed irrelevant.</li><li><b>Requires</b>: Careful augmentation design, large batches or memory banks for negatives</li><li><b>Risk</b>: Can collapse to trivial solution without proper design</li></ul><b>Masked prediction</b> (e.g., BERT, MAE):<ul><li><b>Objective</b>: Predict masked/corrupted parts from visible parts</li><li><b>Inductive bias</b>: Learn dependencies between parts. Context should predict content.</li><li><b>Requires</b>: High redundancy in data (language, images)</li><li><b>Risk</b>: May learn low-level statistics instead of semantics</li></ul><b>Key differences</b>:<ul><li>Contrastive: Instance-level discrimination</li><li>Masked: Token/patch-level prediction</li><li>Contrastive works better with smaller data; masked scales better</li></ul>",
+      "tags": [
+        "ch01",
+        "self-supervised",
+        "contrastive-learning",
+        "masked-prediction"
+      ]
+    },
+    {
+      "uid": "01-055",
+      "front": "What is the difference between causal and predictive modeling?",
+      "back": "<b>Predictive modeling</b>: Find \\( P(Y|X) \\) to predict Y from X.<ul><li>Correlation is sufficient</li><li>Spurious correlations can help prediction</li><li>Fails under distribution shift</li></ul><b>Causal modeling</b>: Understand how interventions on X affect Y.<ul><li>Requires \\( P(Y|do(X)) \\), not just \\( P(Y|X) \\)</li><li>Robust to certain distribution shifts</li><li>Enables answering counterfactual questions</li></ul><b>Key distinction</b>: Prediction asks 'what will Y be if I observe X?'. Causation asks 'what will Y be if I <i>set</i> X?'<br><br><b>Testing causality from observational data</b>:<ul><li>Randomized experiments (gold standard)</li><li>Instrumental variables</li><li>Regression discontinuity</li><li>Difference-in-differences</li><li>Causal discovery algorithms (PC, FCI)</li></ul><b>Challenges</b>: Confounders, selection bias, unobserved variables. Observational data alone rarely proves causation without strong assumptions.",
+      "tags": [
+        "ch01",
+        "causality",
+        "prediction"
+      ]
     }
   ]
 }

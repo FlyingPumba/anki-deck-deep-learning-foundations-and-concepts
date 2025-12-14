@@ -460,6 +460,46 @@
         "auprc",
         "auroc"
       ]
+    },
+    {
+      "uid": "05-054",
+      "front": "How do you derive the gradient of the logistic regression loss?",
+      "back": "<b>Setup</b>: For binary logistic regression with \\( y = \\sigma(\\vec{w}^T \\vec{x}) \\) and cross-entropy loss \\( E = -[t \\ln y + (1-t) \\ln(1-y)] \\).<br><br><b>Key derivative</b>: \\( \\frac{d\\sigma(a)}{da} = \\sigma(a)(1-\\sigma(a)) = y(1-y) \\)<br><br><b>Derivation</b>:<br>\\( \\frac{\\partial E}{\\partial w_j} = -\\left[\\frac{t}{y} - \\frac{1-t}{1-y}\\right] \\cdot y(1-y) \\cdot x_j \\)<br>\\( = -[t(1-y) - (1-t)y] \\cdot x_j \\)<br>\\( = (y - t) \\cdot x_j \\)<br><br><b>Result</b>: \\( \\nabla_w E = (y - t) \\vec{x} \\)<br><br><b>Implicit assumptions</b>:<ul><li>Data is IID (independent, identically distributed)</li><li>Linear decision boundary in feature space</li><li>Well-specified model (true relationship is logistic)</li></ul>",
+      "tags": [
+        "ch05",
+        "logistic-regression",
+        "gradient"
+      ]
+    },
+    {
+      "uid": "05-055",
+      "front": "What is the difference between calibration and accuracy in classifiers?",
+      "back": "<b>Accuracy</b>: How often the predicted class is correct.<br>\\( \\text{Accuracy} = \\frac{\\text{Correct predictions}}{\\text{Total predictions}} \\)<br><br><b>Calibration</b>: How well predicted probabilities match actual frequencies.<br><b>Intuition</b>: If model says \"80% chance of rain\" for 100 days, it should rain on ~80 of them.<br><br><b>Key insight</b>: A model can be <b>accurate but miscalibrated</b> (overconfident predictions), or <b>calibrated but less accurate</b>.<br><br><b>Measuring calibration</b>:<ul><li><b>Reliability diagram</b>: Plot predicted probability vs actual frequency</li><li><b>Expected Calibration Error (ECE)</b>: Weighted average of calibration gaps across bins</li><li><b>Brier score</b>: MSE of probability predictions</li></ul><b>Improving calibration</b>:<ul><li>Temperature scaling (divide logits by T)</li><li>Platt scaling (fit sigmoid to logits)</li><li>Isotonic regression</li></ul>",
+      "tags": [
+        "ch05",
+        "calibration",
+        "classification"
+      ]
+    },
+    {
+      "uid": "05-056",
+      "front": "What are proper scoring rules and why do they matter?",
+      "back": "<b>Proper scoring rule</b>: A loss function that is minimized when the predicted probabilities match the true probabilities.<br><br><b>Why it matters</b>: Improper scoring rules can incentivize wrong probability predictions. A proper rule ensures honest probability reporting is optimal.<br><br><b>Examples of proper scoring rules</b>:<ul><li><b>Log loss (cross-entropy)</b>: \\( -\\sum_k p_k \\log q_k \\)</li><li><b>Brier score</b>: \\( \\frac{1}{K}\\sum_k (p_k - q_k)^2 \\)</li><li><b>Spherical score</b>: \\( \\frac{q_k}{\\|\\vec{q}\\|} \\)</li></ul><b>Strictly proper</b>: Unique minimum at true distribution.<br><br><b>Improper example</b>: 0-1 accuracy (only cares about argmax, not probability values).<br><br><b>Practical implications</b>:<ul><li>Use cross-entropy for training classifiers</li><li>Use Brier score for evaluating probability quality</li><li>Avoid metrics that ignore probability magnitudes</li></ul>",
+      "tags": [
+        "ch05",
+        "proper-scoring-rules",
+        "loss-functions"
+      ]
+    },
+    {
+      "uid": "05-057",
+      "front": "What is the information bottleneck principle in representation learning?",
+      "back": "<b>Information bottleneck</b>: A framework for learning representations that compress input while preserving task-relevant information.<br><br><b>Objective</b>: Find representation Z that:<ul><li>Minimizes \\( I(X; Z) \\) (compression - forget irrelevant details)</li><li>Maximizes \\( I(Z; Y) \\) (relevance - keep what predicts target)</li></ul><b>Trade-off</b>: \\( \\max_Z [I(Z; Y) - \\beta I(X; Z)] \\)<br><br><b>Intuition</b>: Like summarizing a book - keep the plot (relevant), discard prose style (irrelevant).<br><br><b>Practical pitfalls</b>:<ul><li>Mutual information is hard to estimate in high dimensions</li><li>Deterministic networks have infinite \\( I(X; Z) \\)</li><li>Need stochastic layers or other approximations</li><li>\\( \\beta \\) is hard to tune</li></ul><b>Applications</b>: Deep learning theory, representation learning, variational inference.",
+      "tags": [
+        "ch05",
+        "information-bottleneck",
+        "representation-learning"
+      ]
     }
   ]
 }

@@ -189,6 +189,36 @@
         "latent-space",
         "structure"
       ]
+    },
+    {
+      "uid": "19-019",
+      "front": "Compare variational inference (VI) and MCMC for Bayesian posterior approximation.",
+      "back": "<b>Variational Inference</b>:<ul><li>Approximates posterior with tractable distribution q(z)</li><li>Optimizes ELBO (lower bound on log evidence)</li><li>Fast, scalable to large datasets</li><li>Biased: q may not match true posterior shape</li></ul><b>MCMC</b> (Markov Chain Monte Carlo):<ul><li>Samples from true posterior via Markov chain</li><li>Asymptotically exact (unbiased with infinite samples)</li><li>Slow, hard to diagnose convergence</li><li>Doesn't scale well to large data</li></ul><b>Failure modes</b>:<ul><li><b>VI</b>: Mode-seeking (may miss modes), underestimates variance, can give overconfident posteriors</li><li><b>MCMC</b>: Poor mixing (chain stuck in one mode), slow convergence, hard to tune step sizes</li></ul><b>When to use</b>:<ul><li>VI: Large datasets, need speed, okay with approximation</li><li>MCMC: Small data, need accurate uncertainty, can afford computation</li></ul>",
+      "tags": [
+        "ch19",
+        "variational-inference",
+        "mcmc"
+      ]
+    },
+    {
+      "uid": "19-020",
+      "front": "Derive the Evidence Lower Bound (ELBO) for a latent variable model.",
+      "back": "<b>Goal</b>: Maximize log evidence \\( \\log p(x) \\) but it's intractable.<br><br><b>Derivation</b>: For any distribution q(z):<br>\\( \\log p(x) = \\log \\int p(x,z) dz \\)<br>\\( = \\log \\int q(z) \\frac{p(x,z)}{q(z)} dz \\)<br>\\( \\geq \\int q(z) \\log \\frac{p(x,z)}{q(z)} dz \\) (Jensen's inequality)<br>\\( = \\mathbb{E}_q[\\log p(x,z)] - \\mathbb{E}_q[\\log q(z)] \\)<br>\\( = \\mathbb{E}_q[\\log p(x|z)] - D_{KL}(q(z) \\| p(z)) \\)<br><br><b>The ELBO</b>: \\( \\mathcal{L} = \\mathbb{E}_q[\\log p(x|z)] - D_{KL}(q(z) \\| p(z)) \\)<br><br><b>What optimizing ELBO does</b>:<ul><li>Reconstruction term: Make q(z) encode information about x</li><li>KL term: Keep q(z) close to prior p(z)</li><li>Tightness: ELBO = log p(x) when q(z) = p(z|x)</li></ul>",
+      "tags": [
+        "ch19",
+        "elbo",
+        "derivation"
+      ]
+    },
+    {
+      "uid": "19-021",
+      "front": "What are normalizing flows and how do they work?",
+      "back": "<b>Normalizing flows</b>: Generative models that transform a simple distribution into a complex one via a sequence of invertible mappings.<br><br><b>Key idea</b>: Start with \\( z_0 \\sim p_0(z) \\) (e.g., Gaussian), apply transformations:<br>\\( z_K = f_K \\circ f_{K-1} \\circ \\cdots \\circ f_1(z_0) \\)<br><br><b>Change of variables</b>:<br>\\( \\log p(x) = \\log p_0(f^{-1}(x)) + \\sum_{k=1}^K \\log |\\det \\frac{\\partial f_k^{-1}}{\\partial z_k}| \\)<br><br><b>Requirements</b>: Each \\( f_k \\) must be invertible with tractable Jacobian determinant.<br><br><b>Examples</b>: RealNVP, Glow, Neural Spline Flows.<br><br><b>Advantages</b>:<ul><li>Exact likelihood computation</li><li>Exact sampling</li><li>Invertible (can go from x to z)</li></ul><b>Limitations</b>:<ul><li>Architectural constraints for tractable Jacobian</li><li>Can be slow (many sequential transformations)</li><li>Mode coverage can be poor</li></ul>",
+      "tags": [
+        "ch19",
+        "normalizing-flows",
+        "generative-models"
+      ]
     }
   ]
 }

@@ -309,6 +309,16 @@
         "elastic-net",
         "regularization"
       ]
+    },
+    {
+      "uid": "07-037",
+      "front": "Why does early stopping act like regularization? When does this analogy break?",
+      "back": "<b>Rigorous explanation</b>:<br>For linear regression with gradient descent starting from \\( w=0 \\):<br>\\( w_t = (I - (I - \\eta H)^t) H^{-1} X^T y \\)<br><br>As \\( t \\to \\infty \\): \\( w_t \\to w_{OLS} \\) (ordinary least squares)<br><br><b>Key insight</b>: The eigenvalues of \\( (I - \\eta H)^t \\) decay at different rates. Directions with small eigenvalues (high curvature) are learned slowly. Stopping early limits how much the model can move in these directions.<br><br><b>Equivalence to L2</b>: For small \\( \\eta \\) and appropriate stopping time, early stopping approximates L2 regularization with \\( \\lambda \\propto 1/(\\eta t) \\).<br><br><b>When the analogy breaks</b>:<ul><li><b>Nonlinear models</b>: Trajectory depends on initialization, not just distance from origin</li><li><b>Adaptive optimizers</b>: Adam, RMSprop break the simple correspondence</li><li><b>Large learning rates</b>: Trajectory can be chaotic, not monotonic</li><li><b>Multiple passes through data</b>: SGD noise complicates the picture</li></ul><b>In practice</b>: Early stopping still regularizes deep networks, but the mechanism is more complex than L2 equivalence.",
+      "tags": [
+        "ch07",
+        "early-stopping",
+        "regularization"
+      ]
     }
   ]
 }

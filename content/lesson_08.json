@@ -238,6 +238,16 @@
         "lottery-ticket",
         "pruning"
       ]
+    },
+    {
+      "uid": "08-024",
+      "front": "What are the different notions of robustness in machine learning?",
+      "back": "<b>Adversarial robustness</b>: Resistance to small, intentionally crafted perturbations.<ul><li>Perturbations are often imperceptible to humans</li><li>Evaluated via PGD attacks, AutoAttack</li><li>Defense: Adversarial training, certified defenses</li></ul><b>Distributional robustness</b>: Performance on data from shifted distributions.<ul><li>Domain shift, covariate shift, dataset bias</li><li>Evaluated on OOD benchmarks (ImageNet-C, -R, -A)</li><li>Defense: Data augmentation, domain adaptation</li></ul><b>Label noise robustness</b>: Learning despite mislabeled training examples.<ul><li>Common in web-scraped or crowdsourced data</li><li>Defense: Noise-robust losses, co-teaching, confident learning</li></ul><b>Key differences</b>:<ul><li>Adversarial: Worst-case perturbations, small \\( \\ell_p \\) balls</li><li>Distributional: Natural shifts, may be large but structured</li><li>Label noise: Corruption in training labels, not inputs</li></ul><b>Trade-offs</b>: Adversarial training often hurts clean accuracy; models robust to one shift may fail on others.",
+      "tags": [
+        "ch08",
+        "robustness",
+        "adversarial"
+      ]
     }
   ]
 }

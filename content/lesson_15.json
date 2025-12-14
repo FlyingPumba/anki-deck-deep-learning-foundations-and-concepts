@@ -259,6 +259,16 @@
         "gmm",
         "limitations"
       ]
+    },
+    {
+      "uid": "15-026",
+      "front": "What conditions guarantee identifiability in latent variable models?",
+      "back": "<b>Identifiability</b>: Can we uniquely recover the true parameters from data?<br><br><b>Types of non-identifiability</b>:<ul><li><b>Label switching</b>: In mixtures, component labels are arbitrary (K! equivalent solutions)</li><li><b>Rotational</b>: In factor analysis with Gaussian factors, rotations of loadings are equivalent</li><li><b>Scale</b>: Can scale latent variables and inversely scale loadings</li></ul><b>Conditions for identifiability</b>:<ul><li><b>Non-Gaussian sources</b>: ICA requires non-Gaussian (breaks rotational symmetry)</li><li><b>Constraints on loadings</b>: Sparse, orthogonal, or structured loadings</li><li><b>Temporal structure</b>: Time-contrastive learning uses temporal dependencies</li><li><b>Auxiliary information</b>: Class labels, domains can help identify</li></ul><b>When identifiability fails</b>:<ul><li>Parameters are not uniquely determined</li><li>Interpretation of latent variables is ambiguous</li><li>But density estimation still works fine</li></ul><b>Modern view</b>: Nonlinear ICA (iVAE) shows identifiability is possible with auxiliary variables even for neural networks.",
+      "tags": [
+        "ch15",
+        "identifiability",
+        "latent-variables"
+      ]
     }
   ]
 }

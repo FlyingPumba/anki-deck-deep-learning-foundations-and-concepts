@@ -600,6 +600,46 @@
         "fine-tuning",
         "transfer-learning"
       ]
+    },
+    {
+      "uid": "06-062",
+      "front": "Why is convexity of a loss function important in optimization?",
+      "back": "<b>Convex function</b>: A function where any line segment between two points lies above the graph. Formally: \\( f(\\lambda x + (1-\\lambda)y) \\leq \\lambda f(x) + (1-\\lambda) f(y) \\) for \\( \\lambda \\in [0,1] \\).<br><br><b>Why convexity matters</b>:<ul><li><b>Single global minimum</b>: Any local minimum is also the global minimum</li><li><b>Gradient descent converges</b>: Guaranteed to find optimal solution</li><li><b>No saddle points or bad local minima</b></li></ul><b>Convex problems in ML</b>: Linear regression, logistic regression, SVMs (with convex kernels), L2-regularized problems.<br><br><b>Non-convex problems</b>: Neural networks have non-convex loss landscapes with many local minima, saddle points, and plateaus. Yet they train well in practice due to:<ul><li>Over-parameterization creating many good solutions</li><li>SGD noise helping escape bad regions</li><li>Many local minima being nearly as good as global</li></ul>",
+      "tags": [
+        "ch06",
+        "convexity",
+        "optimization"
+      ]
+    },
+    {
+      "uid": "06-063",
+      "front": "What is the implicit bias (inductive bias) of SGD in deep learning?",
+      "back": "<b>Implicit bias</b>: The tendency of an optimization algorithm to prefer certain solutions over others, even without explicit regularization.<br><br><b>What SGD prefers</b>:<ul><li><b>Flat minima</b>: Solutions with low curvature (wide valleys) generalize better. SGD noise helps find these.</li><li><b>Low-rank solutions</b>: In matrix factorization, gradient descent finds minimum nuclear norm solutions.</li><li><b>Max-margin classifiers</b>: For separable data, gradient descent on logistic loss converges to max-margin (SVM-like) solution.</li><li><b>Simpler functions</b>: Neural networks trained with SGD tend toward lower-complexity functions.</li></ul><b>Why it happens</b>:<ul><li>Gradient flow dynamics have inherent geometry</li><li>Mini-batch noise acts as implicit regularization</li><li>Learning rate affects sharpness of found minima</li></ul><b>Practical implications</b>: SGD often finds solutions that generalize well even without explicit regularization.",
+      "tags": [
+        "ch06",
+        "implicit-bias",
+        "sgd"
+      ]
+    },
+    {
+      "uid": "06-064",
+      "front": "What do we know about optimization landscapes in deep networks?",
+      "back": "<b>Key observations</b>:<br><br><b>Symmetries</b>: Many equivalent minima exist due to weight permutation symmetry (\\( M! \\cdot 2^M \\) equivalent parameterizations).<br><br><b>Flat vs sharp minima</b>:<ul><li>Flat minima: Wide valleys, often generalize better</li><li>Sharp minima: Narrow valleys, may overfit</li><li>Large learning rate/batch noise biases toward flat minima</li></ul><b>Local minima vs saddle points</b>:<ul><li>In high dimensions, most critical points are saddle points, not local minima</li><li>Local minima that exist tend to have similar loss values</li><li>Saddle points slow training more than local minima</li></ul><b>Loss barriers</b>: Good minima may be connected by paths of low loss (mode connectivity).<br><br><b>Evidence against intuitions</b>:<ul><li>Sharp minima can generalize well with proper normalization</li><li>Flat minima are not always better (scale-dependent)</li><li>Lottery ticket hypothesis: Sparse subnetworks can perform well</li></ul>",
+      "tags": [
+        "ch06",
+        "loss-landscape",
+        "optimization"
+      ]
+    },
+    {
+      "uid": "06-065",
+      "front": "How do you choose among active, semi-supervised, transfer, and meta-learning for limited labels?",
+      "back": "<b>Choose based on your situation</b>:<br><br><b>Active learning</b>: You can query labels for specific examples.<ul><li>Best when: Labeling is expensive but possible on demand</li><li>Strategy: Query most uncertain or informative points</li></ul><b>Semi-supervised learning</b>: You have lots of unlabeled data, few labels.<ul><li>Best when: Unlabeled data is plentiful and from same distribution</li><li>Methods: Pseudo-labeling, consistency regularization, contrastive learning</li></ul><b>Transfer learning</b>: Related task with abundant labeled data exists.<ul><li>Best when: Pre-trained model available for similar domain</li><li>Methods: Fine-tuning, feature extraction</li></ul><b>Few-shot/meta-learning</b>: You need to learn many tasks with few examples each.<ul><li>Best when: Task distribution is known, need rapid adaptation</li><li>Methods: MAML, Prototypical Networks, in-context learning (LLMs)</li></ul><b>Signals guiding choice</b>:<ul><li>Can you get more labels? → Active learning</li><li>Have unlabeled data? → Semi-supervised</li><li>Related pretrained model? → Transfer learning</li><li>Many similar tasks? → Meta-learning</li></ul>",
+      "tags": [
+        "ch06",
+        "limited-labels",
+        "learning-paradigms"
+      ]
     }
   ]
 }

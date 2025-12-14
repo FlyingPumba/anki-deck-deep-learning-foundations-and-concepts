@@ -189,6 +189,16 @@
         "cyclegan",
         "unpaired-translation"
       ]
+    },
+    {
+      "uid": "17-019",
+      "front": "Why can likelihood be a misleading metric for generative models?",
+      "back": "<b>High likelihood ≠ good samples</b>:<ul><li>A model memorizing training data has perfect likelihood but doesn't generalize</li><li>Mixture of training data + noise can have high likelihood but poor samples</li></ul><b>Low likelihood ≠ bad model</b>:<ul><li>GANs produce sharp samples but have intractable likelihood</li><li>Diffusion models have lower likelihood than autoregressive but better FID</li></ul><b>Specific mismatches</b>:<ul><li><b>Bits-per-dimension</b>: Can be dominated by modeling imperceptible details</li><li><b>Mode coverage</b>: High likelihood can be achieved while missing modes</li><li><b>Perceptual quality</b>: Blurry reconstructions can have higher likelihood than sharp ones (MSE prefers averages)</li></ul><b>Example</b>: Flow models can achieve state-of-the-art likelihood while producing worse samples than GANs or diffusion.<br><br><b>Better approach</b>: Use multiple metrics (FID, IS, precision/recall, human evaluation) alongside likelihood.",
+      "tags": [
+        "ch17",
+        "likelihood",
+        "evaluation"
+      ]
     }
   ]
 }
