@@ -236,12 +236,22 @@ def _normalize_for_comparison(text: str) -> str:
     return text
 
 
-def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str, dry_run: bool = False) -> tuple[str, int | None, str]:
+def upsert_note(
+    deck: str,
+    front: str,
+    back: str,
+    tags: list[str],
+    uid_tag: str,
+    json_mod_time: float | None = None,
+    dry_run: bool = False
+) -> tuple[str, int | None, str, dict | None]:
     """
     Add or update a note.
 
     Uses a unique tag (uid:xxx) to identify existing notes.
-    Returns (status, note_id, reason) where status is 'added', 'updated', or 'unchanged'.
+    Returns (status, note_id, reason, back_sync_data) where:
+      - status is 'added', 'updated', 'unchanged', or 'back_sync'
+      - back_sync_data is a dict with 'front' and 'back' from Anki if back-sync is needed
     If dry_run is True, no changes are made to Anki.
     """
     existing_id = find_note_by_uid(uid_tag)
@@ -260,6 +270,8 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             current_front = current.get("fields", {}).get("Front", {}).get("value", "")
             current_back = current.get("fields", {}).get("Back", {}).get("value", "")
             current_tags = set(current.get("tags", []))
+            # Anki mod time is in seconds since epoch
+            anki_mod_time = current.get("mod", 0)
 
             # Normalize for comparison
             norm_current_front = _normalize_for_comparison(current_front)
@@ -277,8 +289,28 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             tags_to_remove = {t for t in current_tags if t.lower() not in desired_tags_lower}
 
             if not content_changed and not tags_to_add and not tags_to_remove:
-                return "unchanged", existing_id, ""
+                return "unchanged", existing_id, "", None
 
+            # Check if we should back-sync (Anki is newer than JSON)
+            if content_changed and json_mod_time is not None and anki_mod_time > json_mod_time:
+                # Anki card was modified more recently than the JSON file
+                # Back-sync: update JSON from Anki
+                details = []
+                if norm_current_front != norm_new_front:
+                    details.append(f"front (json): {front}")
+                    details.append(f"front (anki): {current_front}")
+                if norm_current_back != norm_new_back:
+                    details.append(f"back (json): {back}")
+                    details.append(f"back (anki): {current_back}")
+                reason = "\n      ".join(details)
+
+                back_sync_data = {
+                    "front": current_front,
+                    "back": current_back
+                }
+                return "back_sync", existing_id, reason, back_sync_data
+
+            # Forward sync: update Anki from JSON
             # Determine what changed for logging with details
             details = []
             if norm_current_front != norm_new_front:
@@ -315,11 +347,11 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
             if tags_to_remove:
                 for tag in tags_to_remove:
                     invoke("removeTags", {"notes": [existing_id], "tags": tag})
-        return "updated", existing_id, reason
+        return "updated", existing_id, reason, None
 
     # Add new note
     if dry_run:
-        return "added", None, "new card"
+        return "added", None, "new card", None
 
     note = {
         "deckName": deck,
@@ -337,11 +369,14 @@ def upsert_note(deck: str, front: str, back: str, tags: list[str], uid_tag: str,
         }
     }
     note_id = invoke("addNote", {"note": note})
-    return "added", note_id, "new card"
+    return "added", note_id, "new card", None
 
 
-def load_lessons(content_dir: Path) -> tuple[dict, list[dict]]:
-    """Load config and all lesson files from content directory."""
+def load_lessons(content_dir: Path) -> tuple[dict, list[tuple[dict, Path, float]]]:
+    """Load config and all lesson files from content directory.
+
+    Returns (config, lessons) where lessons is a list of (lesson_data, file_path, mod_time) tuples.
+    """
     config_path = content_dir / "config.json"
     if not config_path.exists():
         raise FileNotFoundError(f"Config file not found: {config_path}")
@@ -357,9 +392,32 @@ def load_lessons(content_dir: Path) -> tuple[dict, list[dict]]:
     lessons = []
     for lesson_file in lesson_files:
         with open(lesson_file, "r", encoding="utf-8") as f:
-            lessons.append(json.load(f))
+            lesson_data = json.load(f)
+        # Get file modification time as Unix timestamp
+        mod_time = lesson_file.stat().st_mtime
+        lessons.append((lesson_data, lesson_file, mod_time))
 
     return config, lessons
+
+
+def update_card_in_json(file_path: Path, uid: str, new_front: str, new_back: str, dry_run: bool = False) -> bool:
+    """Update a card in a JSON file by its UID.
+
+    Returns True if the card was found and updated.
+    """
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for card in data.get("cards", []):
+        if card.get("uid") == uid:
+            card["front"] = new_front
+            card["back"] = new_back
+            if not dry_run:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                    f.write("\n")
+            return True
+    return False
 
 
 def sync(content_dir: Path, dry_run: bool = False) -> None:
@@ -390,10 +448,11 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
     added = 0
     updated = 0
     unchanged = 0
+    back_synced = 0
 
-    for lesson in lessons:
-        lesson_id = lesson.get("id", "?")
-        lesson_title = lesson.get("title", "Untitled")
+    for lesson_data, lesson_file, json_mod_time in lessons:
+        lesson_id = lesson_data.get("id", "?")
+        lesson_title = lesson_data.get("title", "Untitled")
 
         # Create subdeck for each lesson: "Parent::Lesson Title"
         lesson_deck = f"{parent_deck}::{lesson_title}"
@@ -405,18 +464,19 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
 
         print(f"Lesson {lesson_id}: {lesson_title}")
 
-        for card in lesson.get("cards", []):
+        for card in lesson_data.get("cards", []):
             uid = card["uid"]
             uid_tag = f"uid:{uid}"
             current_uids.add(uid_tag)
             current_fronts.add(card["front"].strip())
 
-            status, note_id, reason = upsert_note(
+            status, note_id, reason, back_sync_data = upsert_note(
                 deck=lesson_deck,
                 front=card["front"],
                 back=card["back"],
                 tags=card.get("tags", []),
                 uid_tag=uid_tag,
+                json_mod_time=json_mod_time,
                 dry_run=dry_run
             )
 
@@ -427,6 +487,18 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
                 print(f"  updated: {uid}")
                 print(f"      {reason}")
                 updated += 1
+            elif status == "back_sync":
+                print(f"  back-sync: {uid} (Anki is newer)")
+                print(f"      {reason}")
+                if back_sync_data:
+                    update_card_in_json(
+                        lesson_file,
+                        uid,
+                        back_sync_data["front"],
+                        back_sync_data["back"],
+                        dry_run=dry_run
+                    )
+                back_synced += 1
             else:
                 unchanged += 1
 
@@ -470,10 +542,11 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
 
     # Summary
     print("=" * 40)
-    print(f"Added:     {added}")
-    print(f"Updated:   {updated}")
-    print(f"Unchanged: {unchanged}")
-    print(f"Deleted:   {deleted}")
+    print(f"Added:       {added}")
+    print(f"Updated:     {updated}")
+    print(f"Back-synced: {back_synced}")
+    print(f"Unchanged:   {unchanged}")
+    print(f"Deleted:     {deleted}")
     print("=" * 40)
 
 
