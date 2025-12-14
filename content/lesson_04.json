@@ -502,16 +502,6 @@
       ]
     },
     {
-      "uid": "04-054",
-      "front": "When is PR-AUC more informative than ROC-AUC?",
-      "back": "When the <b>positive class is rare</b> (strong class imbalance).<br><br><b>Intuition</b>: With many negatives, a classifier can achieve a low false positive rate (and thus a high ROC-AUC) even while producing many false positives in absolute terms.<br><br>PR-AUC focuses directly on the trade-off you care about in rare-event detection: <b>How many of my positive predictions are correct (precision)</b> vs <b>How many true positives I recover (recall)</b>.",
-      "tags": [
-        "ch04",
-        "roc",
-        "precision-recall"
-      ]
-    },
-    {
       "uid": "04-055",
       "front": "What does it mean for a classifier to be well-calibrated?",
       "back": "A classifier is <b>calibrated</b> if its predicted probabilities match empirical frequencies.<br><br><b>Example</b>: Among examples where the model predicts 0.8, about 80% should truly be positive.<br><br><b>Why useful</b>: Calibration matters when probabilities drive decisions (thresholding, ranking with costs, risk estimates), not just class labels.<br><br><b>How to check</b>: reliability diagram (calibration curve).<br><b>How to fix</b>: post-hoc calibration such as <b>temperature scaling</b> (common for neural nets).",

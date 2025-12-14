@@ -352,36 +352,6 @@
       ]
     },
     {
-      "uid": "05-037",
-      "front": "What is an autoencoder?",
-      "back": "A neural network trained to reconstruct its input:<br>Input \\( \\to \\) Encoder \\( \\to \\) Bottleneck \\( \\to \\) Decoder \\( \\to \\) Output \\( \\approx \\) Input<br>The bottleneck forces learning a compressed representation.<br>Useful for unsupervised feature learning.",
-      "tags": [
-        "ch05",
-        "autoencoder",
-        "unsupervised"
-      ]
-    },
-    {
-      "uid": "05-039",
-      "front": "What is pre-training in neural networks?",
-      "back": "Learning parameters on one task (with abundant data) that are then applied to another task.<br>Typically followed by <b>fine-tuning</b>: adapting the whole network to the target task with a small learning rate for limited iterations.<br>Prevents over-fitting to small target datasets.",
-      "tags": [
-        "ch05",
-        "pretraining",
-        "transfer-learning"
-      ]
-    },
-    {
-      "uid": "05-040",
-      "front": "What is fine-tuning in transfer learning?",
-      "back": "Adapting a pre-trained network to a new task by:<br><ol><li>Starting from pre-trained weights</li><li>Training on new task data with a <b>very small learning rate</b></li><li>Running for <b>limited iterations</b></li></ol>This ensures the network doesn't over-fit to the (often smaller) target dataset.",
-      "tags": [
-        "ch05",
-        "fine-tuning",
-        "transfer-learning"
-      ]
-    },
-    {
       "uid": "05-041",
       "front": "What is meta-learning (learning to learn)?",
       "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
@@ -399,16 +369,6 @@
         "ch05",
         "notation",
         "deep-learning"
-      ]
-    },
-    {
-      "uid": "05-043",
-      "front": "What is a support vector machine (SVM)?",
-      "back": "A classification model that:<br><ul><li>Finds the maximum-margin hyperplane separating classes</li><li>Uses the <b>kernel trick</b> to work in high-dimensional feature spaces</li><li>Only depends on a subset of training points (support vectors)</li></ul>Was popular before deep learning for working with learned features.",
-      "tags": [
-        "ch05",
-        "svm",
-        "classification"
       ]
     },
     {
@@ -489,16 +449,6 @@
         "ch05",
         "class-imbalance",
         "techniques"
-      ]
-    },
-    {
-      "uid": "05-052",
-      "front": "What is focal loss?",
-      "back": "<b>Focal loss</b> addresses class imbalance by down-weighting easy examples:<br><br>\\( FL(p_t) = -(1 - p_t)^\\gamma \\log(p_t) \\)<br><br>where \\( p_t \\) is the predicted probability for the true class and \\( \\gamma \\geq 0 \\) is the focusing parameter.<br><br><b>How it works</b>:<ul><li>When \\( p_t \\) is high (easy example): \\( (1-p_t)^\\gamma \\) is small, loss is down-weighted</li><li>When \\( p_t \\) is low (hard example): \\( (1-p_t)^\\gamma \\approx 1 \\), full loss</li></ul><b>Typical \\( \\gamma \\)</b>: 2 works well in practice.<br><br><b>Origin</b>: RetinaNet for object detection with extreme foreground-background imbalance.",
-      "tags": [
-        "ch05",
-        "focal-loss",
-        "class-imbalance"
       ]
     },
     {

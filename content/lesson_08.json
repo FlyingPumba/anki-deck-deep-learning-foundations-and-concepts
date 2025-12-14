@@ -32,7 +32,7 @@
     {
       "uid": "08-003",
       "front": "What are residual connections (skip connections)?",
-      "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)<br>A particular form of skip-layer connections.<br>Allow gradients to flow directly through the network, mitigating vanishing gradients.",
+      "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)<br>A particular form of skip-layer connections.<br>Allow gradients to flow directly through the network, mitigating vanishing gradients.<br><b>Impact</b>: Introduced by He et al. (2015), enabling training of networks with hundreds of layers.",
       "tags": [
         "ch08",
         "residual-connections",

@@ -331,26 +331,6 @@
       ]
     },
     {
-      "uid": "01-036",
-      "front": "What are foundation models?",
-      "back": "<b>Foundation models</b> are large neural networks that can be adapted or fine-tuned to a range of downstream tasks. They take advantage of large, heterogeneous data sets to create models with broad applicability.",
-      "tags": [
-        "ch01",
-        "foundation-models",
-        "transfer-learning"
-      ]
-    },
-    {
-      "uid": "01-037",
-      "front": "What problem do residual connections address in deep networks?",
-      "back": "In deep networks, training signals become weaker as they are backpropagated through successive layers. <b>Residual connections</b> (He et al., 2015) address this by providing shortcut paths, facilitating training of networks with hundreds of layers.",
-      "tags": [
-        "ch01",
-        "residual-connections",
-        "architecture"
-      ]
-    },
-    {
       "uid": "01-038",
       "front": "What is automatic differentiation and why is it important?",
       "back": "<b>Automatic differentiation</b> automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.<br>This allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
@@ -378,16 +358,6 @@
         "ch01",
         "neural-networks",
         "mathematics"
-      ]
-    },
-    {
-      "uid": "01-041",
-      "front": "What is transfer learning?",
-      "back": "<b>Transfer learning</b> is when a network trained on one task (e.g., classifying everyday objects) is adapted or fine-tuned for a related task (e.g., skin lesion classification). The network learns general features from the first task that are useful for the second.",
-      "tags": [
-        "ch01",
-        "transfer-learning",
-        "definition"
       ]
     },
     {
