@@ -49,6 +49,22 @@
 - Always include chapter tag: `chXX`
 - Add 1-2 topic tags: `neural-networks`, `backpropagation`, `cnn`, etc.
 
+### Images
+- Store images in `content/images/`
+- Naming convention: `{full_card_uid}_{sequence}.{ext}`
+  - Example: `deep-learning-foundations-and-concepts-12-071_01.png`
+  - Multiple images for same card: `..._01.png`, `..._02.png`, etc.
+- Supported formats: png, jpg, jpeg, gif, webp, svg
+- Reference in card JSON using HTML img tags:
+  ```json
+  {
+    "back": "See diagram:<br><img src=\"deep-learning-foundations-and-concepts-12-071_01.png\">"
+  }
+  ```
+- Images are automatically:
+  - Uploaded to Anki when syncing
+  - Deleted from Anki when the corresponding card is removed or when the image file is deleted from `content/images/`
+
 ## Content Source
 - Based on "Deep Learning: Foundations and Concepts" by Christopher Bishop and Hugh Bishop
 - Book text available in `book.txt`

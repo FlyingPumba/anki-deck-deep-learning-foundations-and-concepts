@@ -17,6 +17,7 @@ Config file (content/config.json) must contain:
 - uid_prefix: Unique prefix for card UIDs (e.g., "linear-algebra", "deep-learning")
 """
 
+import base64
 import json
 from pathlib import Path
 import re
@@ -46,6 +47,95 @@ def invoke(action: str, params: dict | None = None) -> any:
     if data.get("error"):
         raise RuntimeError(f"AnkiConnect error: {data['error']}")
     return data.get("result")
+
+
+# =============================================================================
+# Media file handling
+# =============================================================================
+
+def store_media_file(filename: str, file_path: Path) -> None:
+    """Upload a media file to Anki's media collection."""
+    with open(file_path, "rb") as f:
+        data = base64.b64encode(f.read()).decode("utf-8")
+    invoke("storeMediaFile", {"filename": filename, "data": data})
+
+
+def delete_media_file(filename: str) -> None:
+    """Delete a media file from Anki's media collection."""
+    invoke("deleteMediaFile", {"filename": filename})
+
+
+def get_media_files_for_prefix(prefix: str) -> list[str]:
+    """Get all media files in Anki that start with the given prefix."""
+    # AnkiConnect's getMediaFilesNames returns files matching a pattern
+    # We use wildcard matching
+    result = invoke("getMediaFilesNames", {"pattern": f"{prefix}*"})
+    return result if result else []
+
+
+def find_images_for_card(images_dir: Path, card_uid: str) -> list[Path]:
+    """Find all image files for a given card UID.
+
+    Images should be named: {card_uid}_01.png, {card_uid}_02.png, etc.
+    Supports png, jpg, jpeg, gif, webp, svg formats.
+    """
+    if not images_dir.exists():
+        return []
+
+    images = []
+    extensions = [".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]
+
+    for ext in extensions:
+        # Match pattern: {uid}_01.png, {uid}_02.png, etc.
+        pattern = f"{card_uid}_*{ext}"
+        images.extend(images_dir.glob(pattern))
+
+    return sorted(images)
+
+
+def sync_media_files(
+    images_dir: Path,
+    card_uids: set[str],
+    uid_prefix: str,
+    dry_run: bool = False
+) -> tuple[int, int, int]:
+    """Sync media files for all cards.
+
+    Returns (added, unchanged, deleted) counts.
+    """
+    added = 0
+    unchanged = 0
+    deleted = 0
+
+    # Get existing media files in Anki for this deck's prefix
+    existing_media = set(get_media_files_for_prefix(uid_prefix))
+    current_media: set[str] = set()
+
+    # Upload images for current cards
+    for card_uid in card_uids:
+        images = find_images_for_card(images_dir, card_uid)
+        for image_path in images:
+            # Use the full filename as stored in Anki
+            anki_filename = image_path.name
+            current_media.add(anki_filename)
+
+            if anki_filename in existing_media:
+                unchanged += 1
+            else:
+                if not dry_run:
+                    store_media_file(anki_filename, image_path)
+                added += 1
+                print(f"  uploaded: {anki_filename}")
+
+    # Delete orphaned media files
+    orphaned = existing_media - current_media
+    for filename in orphaned:
+        if not dry_run:
+            delete_media_file(filename)
+        deleted += 1
+        print(f"  deleted media: {filename}")
+
+    return added, unchanged, deleted
 
 
 def ensure_deck(deck_name: str) -> None:
@@ -459,7 +549,8 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
         ensure_deck(parent_deck)
 
     # Track all UIDs and front texts we process
-    current_uids: set[str] = set()
+    current_uids: set[str] = set()       # uid:xxx format for note tracking
+    current_card_uids: set[str] = set()  # raw UIDs for media tracking
     current_fronts: set[str] = set()
 
     # Counters
@@ -486,6 +577,7 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
             uid = card["uid"]
             uid_tag = f"uid:{uid}"
             current_uids.add(uid_tag)
+            current_card_uids.add(uid)
             current_fronts.add(card["front"].strip())
 
             status, note_id, reason, back_sync_data = upsert_note(
@@ -561,13 +653,22 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
     for deck_name in deleted_decks:
         print(f"  deleted deck: {deck_name}")
 
+    # Sync media files
+    images_dir = content_dir / "images"
+    media_added, media_unchanged, media_deleted = sync_media_files(
+        images_dir, current_card_uids, uid_prefix, dry_run=dry_run
+    )
+
     # Summary
     print("=" * 40)
-    print(f"Added:       {added}")
-    print(f"Updated:     {updated}")
-    print(f"Back-synced: {back_synced}")
-    print(f"Unchanged:   {unchanged}")
-    print(f"Deleted:     {deleted}")
+    print(f"Cards added:     {added}")
+    print(f"Cards updated:   {updated}")
+    print(f"Cards back-sync: {back_synced}")
+    print(f"Cards unchanged: {unchanged}")
+    print(f"Cards deleted:   {deleted}")
+    print(f"Media added:     {media_added}")
+    print(f"Media unchanged: {media_unchanged}")
+    print(f"Media deleted:   {media_deleted}")
     print("=" * 40)
 
 
