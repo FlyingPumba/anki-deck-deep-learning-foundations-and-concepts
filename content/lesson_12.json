@@ -710,6 +710,16 @@
         "gnn",
         "tasks"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-071",
+      "front": "Why don't LLMs use batch normalization?",
+      "back": "<b>Batch normalization</b> computes mean and variance <b>across all samples in a batch</b> for each feature. This breaks down for LLMs:<br><br><b>1. The 'nosy neighbor' problem</b>:<br>Imagine grading your essay, but your score depends on who else submitted that day. BatchNorm makes each token's representation depend on <i>unrelated</i> sequences in the batch. The word 'bank' in a finance article would be normalized differently if the batch happened to contain poetry vs. legal text.<br><br><b>2. Variable sequence lengths</b>:<br>Sequences get padded to match lengths. BatchNorm would mix statistics from real tokens with padding tokens, like averaging test scores that include students who didn't show up.<br><br><b>3. Autoregressive generation breaks</b>:<br>At inference, you generate one token at a time with batch size = 1. BatchNorm needs a batch to compute statistics. You'd have to use running statistics from training, which may not match well.<br><br><b>4. Position mixing is meaningless</b>:<br>In images, normalizing across spatial positions makes sense (edges look similar everywhere). In text, position 1 ('The') and position 50 (could be anything) have no inherent relationship worth normalizing together.<br><br><b>Solution</b>: <b>Layer normalization</b> normalizes across features <i>within each token independently</i>. Each token's representation is self-contained, with no dependence on batch neighbors or other positions.",
+      "tags": [
+        "ch12",
+        "normalization",
+        "llm"
+      ]
     }
   ]
 }
