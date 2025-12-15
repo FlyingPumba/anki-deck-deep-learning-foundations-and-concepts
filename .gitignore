@@ -5,3 +5,4 @@ venv/
 .env
 content/annotations.json
 book.txt
+.DS_Store
