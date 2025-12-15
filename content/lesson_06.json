@@ -640,6 +640,46 @@
         "limited-labels",
         "learning-paradigms"
       ]
+    },
+    {
+      "uid": "06-066",
+      "front": "What is catastrophic cancellation in floating point arithmetic?",
+      "back": "<b>Catastrophic cancellation</b> occurs when subtracting two nearly equal floating point numbers, causing massive loss of significant digits.<br><br><b>Example</b>: If \\( a = 1.234567890 \\) and \\( b = 1.234567889 \\), and we only have 7 digits of precision:<ul><li>Stored: \\( a = 1.234568 \\), \\( b = 1.234568 \\)</li><li>Result: \\( a - b = 0 \\) (should be \\( 10^{-9} \\))</li></ul><b>The problem</b>: The significant digits cancel, leaving only the noise from rounding errors.<br><br><b>When it happens</b>: When subtracting values that are close together relative to their magnitude (large values, small difference).<br><br><b>In ML</b>: Common in computing variances, softmax, log-sum-exp, and anywhere you subtract similar quantities.",
+      "tags": [
+        "ch06",
+        "numerical-stability",
+        "floating-point"
+      ]
+    },
+    {
+      "uid": "06-067",
+      "front": "What numerical problems can arise when computing sqrt(f(x)² - g(x)²) where f ≥ g ≥ 0?",
+      "back": "<b>The problem</b>: Even though mathematically \\( f^2 - g^2 \\geq 0 \\), floating point errors can make it negative, and sqrt of a negative number is undefined (NaN).<br><br><b>When it happens</b>: When f and g are very close together relative to their magnitude. The squared values \\( f^2 \\) and \\( g^2 \\) become very large, but their difference is very small, causing catastrophic cancellation.<br><br><b>Example</b>: \\( f = 1000000.001 \\), \\( g = 1000000.000 \\)<br>True: \\( f^2 - g^2 \\approx 2000 \\)<br>With limited precision: \\( f^2 \\) and \\( g^2 \\) lose precision in lower digits, result may be wrong or negative.<br><br><b>Root cause</b>: Squaring amplifies the magnitude, wasting precision on large values when we only care about their small difference.",
+      "tags": [
+        "ch06",
+        "numerical-stability",
+        "floating-point"
+      ]
+    },
+    {
+      "uid": "06-068",
+      "front": "How do you fix numerical instability in sqrt(f² - g²)?",
+      "back": "<b>Quick fixes</b> (prevent NaN but lose accuracy):<ul><li><code>sqrt(abs(f² - g²))</code></li><li><code>sqrt(max(f² - g², 0))</code></li><li><code>sqrt(f² - g² + epsilon)</code></li></ul><b>Better solution</b> - avoid squaring:<br>\\( \\sqrt{f^2 - g^2} = \\sqrt{(f+g)(f-g)} \\)<br><br><b>Why this helps</b>: We compute \\( (f-g) \\) directly on the original (smaller) values, before they get squared. The cancellation still happens, but with less magnitude inflation.<br><br><b>Can still add safety</b>: <code>sqrt(max((f+g)*(f-g), 0))</code><br><br><b>General principle</b>: Rearrange formulas to avoid subtracting large similar quantities. Compute differences before magnitudes grow.",
+      "tags": [
+        "ch06",
+        "numerical-stability",
+        "floating-point"
+      ]
+    },
+    {
+      "uid": "06-069",
+      "front": "What are common numerically unstable operations in ML and their stable alternatives?",
+      "back": "<b>1. Softmax</b>:<ul><li>Unstable: \\( \\frac{e^{x_i}}{\\sum_j e^{x_j}} \\) (overflow if x large)</li><li>Stable: Subtract max first: \\( \\frac{e^{x_i - \\max(x)}}{\\sum_j e^{x_j - \\max(x)}} \\)</li></ul><b>2. Log-sum-exp</b>:<ul><li>Unstable: \\( \\log(\\sum_i e^{x_i}) \\)</li><li>Stable: \\( \\max(x) + \\log(\\sum_i e^{x_i - \\max(x)}) \\)</li></ul><b>3. Cross-entropy loss</b>:<ul><li>Unstable: Separate softmax then log</li><li>Stable: <code>log_softmax</code> or <code>cross_entropy_with_logits</code></li></ul><b>4. Variance</b>:<ul><li>Unstable: \\( E[x^2] - E[x]^2 \\) (catastrophic cancellation)</li><li>Stable: Welford's online algorithm, or two-pass</li></ul><b>5. Small probabilities</b>:<ul><li>Unstable: Multiply many small probs (underflow to 0)</li><li>Stable: Work in log space, add log-probs</li></ul>",
+      "tags": [
+        "ch06",
+        "numerical-stability",
+        "best-practices"
+      ]
     }
   ]
 }

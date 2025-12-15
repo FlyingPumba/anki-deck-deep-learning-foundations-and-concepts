@@ -1,0 +1,264 @@
+{
+  "id": "13",
+  "title": "Lesson 13: Reinforcement Learning",
+  "lesson_title": "Reinforcement Learning",
+  "objectives": [
+    "Understand the reinforcement learning framework and key concepts",
+    "Learn Markov Decision Processes (MDPs) and their components",
+    "Master the Bellman equations for value functions",
+    "Understand policy evaluation and policy improvement",
+    "Learn Q-learning and policy gradient methods"
+  ],
+  "cards": [
+    {
+      "uid": "13-001",
+      "front": "What is reinforcement learning (RL)?",
+      "back": "<b>Reinforcement learning</b> is learning through interaction with an environment to maximize cumulative reward.<br><br><b>Key elements</b>:<ul><li><b>Agent</b>: The learner/decision-maker</li><li><b>Environment</b>: What the agent interacts with</li><li><b>State</b>: Current situation</li><li><b>Action</b>: What the agent can do</li><li><b>Reward</b>: Feedback signal (scalar)</li></ul><b>Goal</b>: Learn a policy that maximizes expected cumulative reward.<br><br><b>Difference from supervised learning</b>: No explicit labels - only delayed reward signals. Agent must explore to discover good actions.",
+      "tags": [
+        "ch13",
+        "reinforcement-learning",
+        "basics"
+      ]
+    },
+    {
+      "uid": "13-002",
+      "front": "What is a Markov Decision Process (MDP)?",
+      "back": "An <b>MDP</b> is the mathematical framework for sequential decision-making under uncertainty.<br><br><b>Components</b>:<ul><li><b>S</b>: Set of states</li><li><b>A</b>: Set of actions</li><li><b>T(s' | s, a)</b>: Transition probability - probability of reaching state s' from state s taking action a</li><li><b>r(s, a, s')</b>: Reward function - immediate reward for transition</li><li><b>\\( \\gamma \\)</b>: Discount factor \\( \\in [0, 1] \\) - how much to value future rewards</li></ul><b>Markov property</b>: The future depends only on the current state, not the history. \\( P(s_{t+1} | s_t, a_t, s_{t-1}, ...) = P(s_{t+1} | s_t, a_t) \\)<br><br><b>Goal</b>: Find a policy \\( \\pi \\) that maximizes expected cumulative discounted reward.",
+      "tags": [
+        "ch13",
+        "mdp",
+        "basics"
+      ]
+    },
+    {
+      "uid": "13-003",
+      "front": "What is a policy in reinforcement learning?",
+      "back": "A <b>policy</b> \\( \\pi \\) defines how the agent selects actions.<br><br><b>Deterministic policy</b>: \\( \\pi(s) = a \\) - maps state to a specific action.<br><br><b>Stochastic policy</b>: \\( \\pi(a | s) \\) - probability distribution over actions given state.<br><br><b>Why stochastic?</b><ul><li>Exploration during learning</li><li>Optimal in partially observable or multi-agent settings</li><li>Enables policy gradient methods</li></ul><b>Goal of RL</b>: Find the optimal policy \\( \\pi^* \\) that maximizes expected cumulative reward from any starting state.",
+      "tags": [
+        "ch13",
+        "policy",
+        "basics"
+      ]
+    },
+    {
+      "uid": "13-004",
+      "front": "What is the return in reinforcement learning?",
+      "back": "The <b>return</b> \\( G_t \\) is the cumulative discounted reward from time t onward:<br><br>\\( G_t = r_{t+1} + \\gamma r_{t+2} + \\gamma^2 r_{t+3} + ... = \\sum_{k=0}^{\\infty} \\gamma^k r_{t+k+1} \\)<br><br><b>Discount factor \\( \\gamma \\)</b>:<ul><li>\\( \\gamma = 0 \\): Only care about immediate reward (myopic)</li><li>\\( \\gamma = 1 \\): All future rewards weighted equally (far-sighted)</li><li>\\( \\gamma \\in (0,1) \\): Balance immediate and future rewards</li></ul><b>Why discount?</b><ul><li>Mathematical convenience (ensures finite sum)</li><li>Uncertainty about the future</li><li>Preference for sooner rewards</li></ul>",
+      "tags": [
+        "ch13",
+        "return",
+        "discount"
+      ]
+    },
+    {
+      "uid": "13-005",
+      "front": "What is a value function V(s)?",
+      "back": "The <b>state-value function</b> \\( V^\\pi(s) \\) is the expected return starting from state s and following policy \\( \\pi \\):<br><br>\\( V^\\pi(s) = \\mathbb{E}_\\pi[G_t | s_t = s] = \\mathbb{E}_\\pi\\left[\\sum_{k=0}^{\\infty} \\gamma^k r_{t+k+1} | s_t = s\\right] \\)<br><br><b>Intuition</b>: 'How good is it to be in state s?'<br><br><b>Optimal value function</b>: \\( V^*(s) = \\max_\\pi V^\\pi(s) \\) - the best possible expected return from state s.<br><br><b>Use</b>: Once we know \\( V^* \\), we can derive the optimal policy by choosing actions that lead to highest-value next states.",
+      "tags": [
+        "ch13",
+        "value-function",
+        "basics"
+      ]
+    },
+    {
+      "uid": "13-006",
+      "front": "What is an action-value function Q(s, a)?",
+      "back": "The <b>action-value function</b> \\( Q^\\pi(s, a) \\) is the expected return starting from state s, taking action a, then following policy \\( \\pi \\):<br><br>\\( Q^\\pi(s, a) = \\mathbb{E}_\\pi[G_t | s_t = s, a_t = a] \\)<br><br><b>Intuition</b>: 'How good is it to take action a in state s?'<br><br><b>Relation to V</b>: \\( V^\\pi(s) = \\sum_a \\pi(a|s) Q^\\pi(s, a) \\)<br><br><b>Optimal Q-function</b>: \\( Q^*(s, a) = \\max_\\pi Q^\\pi(s, a) \\)<br><br><b>Why Q is useful</b>: The optimal policy can be extracted directly: \\( \\pi^*(s) = \\arg\\max_a Q^*(s, a) \\) - no need to know transition dynamics.",
+      "tags": [
+        "ch13",
+        "q-function",
+        "basics"
+      ]
+    },
+    {
+      "uid": "13-007",
+      "front": "What is the Bellman equation for a value function?",
+      "back": "The <b>Bellman equation</b> recursively defines the value function in terms of immediate reward and future value:<br><br>\\( V^\\pi(s) = \\mathbb{E}_{a \\sim \\pi, s' \\sim T}[r(s, a, s') + \\gamma V^\\pi(s')] \\)<br><br><b>Expanded form</b>:<br>\\( V^\\pi(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) [r(s,a,s') + \\gamma V^\\pi(s')] \\)<br><br><b>Intuition</b>: The value of a state equals the expected immediate reward plus the discounted value of the next state.<br><br><b>Key insight</b>: This recursive relationship is the foundation of most RL algorithms - it lets us bootstrap value estimates from other value estimates.",
+      "tags": [
+        "ch13",
+        "bellman-equation",
+        "value-function"
+      ]
+    },
+    {
+      "uid": "13-008",
+      "front": "What is the Bellman equation for Q-values?",
+      "back": "The <b>Bellman equation for Q</b>:<br><br>\\( Q^\\pi(s, a) = \\mathbb{E}_{s' \\sim T}[r(s, a, s') + \\gamma \\sum_{a'} \\pi(a'|s') Q^\\pi(s', a')] \\)<br><br><b>For the optimal Q-function</b> (Bellman optimality equation):<br><br>\\( Q^*(s, a) = \\mathbb{E}_{s'}[r(s, a, s') + \\gamma \\max_{a'} Q^*(s', a')] \\)<br><br><b>Key insight</b>: The optimal Q-value equals immediate reward plus discounted value of the best action in the next state.<br><br><b>This is the basis of Q-learning</b>: We can learn \\( Q^* \\) without knowing the transition dynamics, just by observing transitions and updating toward the Bellman target.",
+      "tags": [
+        "ch13",
+        "bellman-equation",
+        "q-function"
+      ]
+    },
+    {
+      "uid": "13-009",
+      "front": "How can we use the Bellman equation to evaluate a policy \\( \\pi \\) given known dynamics?",
+      "back": "Given transition matrix T and reward function r, we can compute \\( V^\\pi \\) using <b>policy evaluation</b>.<br><br><b>Bellman equation</b>:<br>\\( V^\\pi(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) [r(s,a,s') + \\gamma V^\\pi(s')] \\)<br><br><b>Two approaches</b>:<br><br><b>1. Iterative (fixed-point iteration)</b>:<ul><li>Initialize \\( V^\\pi(s) = 0 \\) for all s</li><li>Repeat: \\( V^\\pi(s) \\leftarrow \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) [r + \\gamma V^\\pi(s')] \\)</li><li>Until convergence (values stop changing)</li></ul><b>2. Direct solve (linear system)</b>:<br>Rewrite as: \\( V^\\pi = R^\\pi + \\gamma T^\\pi V^\\pi \\)<br>Solve: \\( V^\\pi = (I - \\gamma T^\\pi)^{-1} R^\\pi \\)<br><br>where \\( T^\\pi \\) and \\( R^\\pi \\) fold in the policy probabilities.",
+      "tags": [
+        "ch13",
+        "policy-evaluation",
+        "bellman-equation"
+      ]
+    },
+    {
+      "uid": "13-010",
+      "front": "Describe the algorithm for policy evaluation via fixed-point iteration.",
+      "back": "<b>Policy Evaluation Algorithm</b>:<br><br><b>Input</b>: Policy \\( \\pi \\), transition T, reward r, discount \\( \\gamma \\)<br><br><b>Steps</b>:<ol><li>Initialize \\( V(s) = 0 \\) for all states s</li><li>Repeat until convergence:<ul><li>For each state s:</li><li>Compute expected reward: \\( R(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot r(s,a,s') \\)</li><li>Compute expected next value: \\( V'(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot V(s') \\)</li><li>Update: \\( V(s) \\leftarrow R(s) + \\gamma \\cdot V'(s) \\)</li></ul></li><li>Convergence: when \\( \\max_s |V_{new}(s) - V_{old}(s)| < \\epsilon \\)</li></ol><b>Guaranteed to converge</b> for \\( \\gamma < 1 \\) because the Bellman operator is a contraction.",
+      "tags": [
+        "ch13",
+        "policy-evaluation",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-011",
+      "front": "What is policy iteration?",
+      "back": "<b>Policy iteration</b> alternates between evaluating and improving a policy until optimal.<br><br><b>Algorithm</b>:<ol><li><b>Initialize</b>: Start with arbitrary policy \\( \\pi_0 \\)</li><li><b>Policy evaluation</b>: Compute \\( V^{\\pi_k} \\) for current policy</li><li><b>Policy improvement</b>: Create greedy policy:<br>\\( \\pi_{k+1}(s) = \\arg\\max_a \\sum_{s'} T(s'|s,a)[r + \\gamma V^{\\pi_k}(s')] \\)</li><li><b>Repeat</b> until policy stops changing</li></ol><b>Guaranteed to converge</b> to optimal policy \\( \\pi^* \\) in finite MDPs.<br><br><b>Intuition</b>: Evaluate how good current policy is, then greedily improve it. Each improvement is guaranteed to be at least as good.",
+      "tags": [
+        "ch13",
+        "policy-iteration",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-012",
+      "front": "What is value iteration?",
+      "back": "<b>Value iteration</b> directly computes optimal value function using Bellman optimality equation.<br><br><b>Algorithm</b>:<ol><li>Initialize \\( V(s) = 0 \\) for all states</li><li>Repeat until convergence:<br>\\( V(s) \\leftarrow \\max_a \\sum_{s'} T(s'|s,a)[r(s,a,s') + \\gamma V(s')] \\)</li><li>Extract policy: \\( \\pi^*(s) = \\arg\\max_a \\sum_{s'} T(s'|s,a)[r + \\gamma V^*(s')] \\)</li></ol><b>Key difference from policy iteration</b>: No explicit policy evaluation step - just one backup per state per iteration.<br><br><b>Converges to \\( V^* \\)</b> because the Bellman optimality operator is a contraction.",
+      "tags": [
+        "ch13",
+        "value-iteration",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-013",
+      "front": "What is the difference between model-based and model-free RL?",
+      "back": "<b>Model-based RL</b>: Learn or use a model of the environment (T and r).<ul><li>Can plan ahead using the model</li><li>More sample efficient</li><li>Model errors can compound</li><li>Examples: Dyna, AlphaGo (for planning)</li></ul><b>Model-free RL</b>: Learn policy or value function directly from experience.<ul><li>No model of environment needed</li><li>Simpler, often more robust</li><li>Less sample efficient</li><li>Examples: Q-learning, SARSA, policy gradient</li></ul><b>Trade-off</b>: Model-based is more sample efficient but requires accurate model. Model-free is simpler but needs more experience.",
+      "tags": [
+        "ch13",
+        "model-based",
+        "model-free"
+      ]
+    },
+    {
+      "uid": "13-014",
+      "front": "What is Q-learning?",
+      "back": "<b>Q-learning</b> is a model-free algorithm that learns the optimal Q-function directly from experience.<br><br><b>Update rule</b>:<br>\\( Q(s, a) \\leftarrow Q(s, a) + \\alpha [r + \\gamma \\max_{a'} Q(s', a') - Q(s, a)] \\)<br><br><b>Key properties</b>:<ul><li><b>Off-policy</b>: Learns about optimal policy while following exploratory policy</li><li><b>Model-free</b>: Doesn't need to know T or r</li><li><b>Bootstrap</b>: Updates toward estimated future value</li></ul><b>The target</b>: \\( r + \\gamma \\max_{a'} Q(s', a') \\) is the Bellman optimality target.<br><br><b>Converges to \\( Q^* \\)</b> with sufficient exploration and decaying learning rate.",
+      "tags": [
+        "ch13",
+        "q-learning",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-015",
+      "front": "What is the difference between on-policy and off-policy learning?",
+      "back": "<b>On-policy</b>: Learn about the policy currently being used to collect data.<ul><li>Evaluate and improve the same policy</li><li>Examples: SARSA, policy gradient, A2C</li><li>More stable, but can't reuse old data</li></ul><b>Off-policy</b>: Learn about a different policy than the one collecting data.<ul><li>Behavior policy (exploration) vs target policy (optimal)</li><li>Examples: Q-learning, DQN, SAC</li><li>Can reuse old data (replay buffer), more sample efficient</li><li>Can be less stable</li></ul><b>SARSA vs Q-learning</b>:<ul><li>SARSA (on-policy): \\( Q(s,a) \\leftarrow Q(s,a) + \\alpha[r + \\gamma Q(s', a') - Q(s,a)] \\)</li><li>Q-learning (off-policy): \\( Q(s,a) \\leftarrow Q(s,a) + \\alpha[r + \\gamma \\max_{a'} Q(s', a') - Q(s,a)] \\)</li></ul>",
+      "tags": [
+        "ch13",
+        "on-policy",
+        "off-policy"
+      ]
+    },
+    {
+      "uid": "13-016",
+      "front": "What is the exploration vs exploitation trade-off?",
+      "back": "<b>Exploitation</b>: Choose the best action according to current knowledge (greedy).<br><b>Exploration</b>: Try new actions to discover potentially better options.<br><br><b>The dilemma</b>: Too much exploitation = miss better options. Too much exploration = waste time on bad actions.<br><br><b>Common strategies</b>:<ul><li><b>\\( \\epsilon \\)-greedy</b>: With probability \\( \\epsilon \\), take random action; otherwise take best. Decay \\( \\epsilon \\) over time.</li><li><b>Boltzmann/Softmax</b>: \\( \\pi(a|s) \\propto \\exp(Q(s,a)/\\tau) \\). Temperature \\( \\tau \\) controls randomness.</li><li><b>UCB</b> (Upper Confidence Bound): Add exploration bonus for uncertainty.</li><li><b>Thompson Sampling</b>: Sample from posterior over values.</li></ul>",
+      "tags": [
+        "ch13",
+        "exploration",
+        "exploitation"
+      ]
+    },
+    {
+      "uid": "13-017",
+      "front": "What is Deep Q-Network (DQN)?",
+      "back": "<b>DQN</b> combines Q-learning with deep neural networks to handle large/continuous state spaces.<br><br><b>Key innovations</b>:<ul><li><b>Experience replay</b>: Store transitions in buffer, sample random minibatches. Breaks correlation, improves sample efficiency.</li><li><b>Target network</b>: Separate network for computing targets, updated slowly. Stabilizes training.</li></ul><b>Loss function</b>:<br>\\( L = \\mathbb{E}[(r + \\gamma \\max_{a'} Q_{target}(s', a') - Q(s, a))^2] \\)<br><br><b>Limitations</b>:<ul><li>Only works for discrete actions</li><li>Can overestimate Q-values</li><li>Sensitive to hyperparameters</li></ul><b>Extensions</b>: Double DQN, Dueling DQN, Rainbow.",
+      "tags": [
+        "ch13",
+        "dqn",
+        "deep-rl"
+      ]
+    },
+    {
+      "uid": "13-018",
+      "front": "What are policy gradient methods?",
+      "back": "<b>Policy gradient</b> methods directly optimize the policy parameters \\( \\theta \\) to maximize expected return.<br><br><b>Objective</b>: \\( J(\\theta) = \\mathbb{E}_{\\tau \\sim \\pi_\\theta}[R(\\tau)] \\)<br><br><b>Policy gradient theorem</b>:<br>\\( \\nabla_\\theta J(\\theta) = \\mathbb{E}_{\\tau}\\left[\\sum_t \\nabla_\\theta \\log \\pi_\\theta(a_t|s_t) \\cdot G_t\\right] \\)<br><br><b>Intuition</b>: Increase probability of actions that led to high returns.<br><br><b>REINFORCE algorithm</b>:<ol><li>Sample trajectory using \\( \\pi_\\theta \\)</li><li>Compute returns \\( G_t \\) for each step</li><li>Update: \\( \\theta \\leftarrow \\theta + \\alpha \\sum_t \\nabla_\\theta \\log \\pi_\\theta(a_t|s_t) G_t \\)</li></ol><b>Advantages</b>: Works with continuous actions, can learn stochastic policies.",
+      "tags": [
+        "ch13",
+        "policy-gradient",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-019",
+      "front": "What is the advantage function and why use it?",
+      "back": "The <b>advantage function</b> measures how much better an action is compared to the average:<br><br>\\( A^\\pi(s, a) = Q^\\pi(s, a) - V^\\pi(s) \\)<br><br><b>Intuition</b>: Positive advantage = action is better than average. Negative = worse than average.<br><br><b>Why use advantage?</b><ul><li>Reduces variance in policy gradient</li><li>Centers the reward signal around a baseline</li><li>Tells us whether an action is good <i>relative to</i> what we expected, not just absolutely good</li></ul><b>In practice</b>: Estimate advantage using TD error:<br>\\( A(s, a) \\approx r + \\gamma V(s') - V(s) \\)<br><br><b>Used in</b>: A2C, A3C, PPO, GAE.",
+      "tags": [
+        "ch13",
+        "advantage",
+        "variance-reduction"
+      ]
+    },
+    {
+      "uid": "13-020",
+      "front": "What is Actor-Critic?",
+      "back": "<b>Actor-Critic</b> combines policy gradient (actor) with value function (critic).<br><br><b>Components</b>:<ul><li><b>Actor</b>: Policy network \\( \\pi_\\theta(a|s) \\) - decides what action to take</li><li><b>Critic</b>: Value network \\( V_\\phi(s) \\) or \\( Q_\\phi(s,a) \\) - evaluates actions</li></ul><b>How it works</b>:<ol><li>Actor selects action</li><li>Critic evaluates action (computes advantage or TD error)</li><li>Actor updates using critic's evaluation</li><li>Critic updates toward observed returns</li></ol><b>Advantage over REINFORCE</b>: Lower variance because critic provides a learned baseline instead of using full Monte Carlo returns.<br><br><b>Examples</b>: A2C, A3C, PPO, SAC, TD3.",
+      "tags": [
+        "ch13",
+        "actor-critic",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-021",
+      "front": "What is PPO (Proximal Policy Optimization)?",
+      "back": "<b>PPO</b> is a policy gradient method that prevents too-large policy updates for stable training.<br><br><b>Key idea</b>: Clip the policy ratio to stay close to the old policy.<br><br><b>Objective</b>:<br>\\( L^{CLIP}(\\theta) = \\mathbb{E}[\\min(r_t(\\theta) A_t, \\text{clip}(r_t(\\theta), 1-\\epsilon, 1+\\epsilon) A_t)] \\)<br><br>where \\( r_t(\\theta) = \\frac{\\pi_\\theta(a_t|s_t)}{\\pi_{\\theta_{old}}(a_t|s_t)} \\)<br><br><b>Why clipping?</b> Large policy updates can be catastrophic. Clipping ensures we don't move too far from the old policy.<br><br><b>Advantages</b>:<ul><li>Simpler than TRPO (no second-order optimization)</li><li>Good sample efficiency via multiple epochs on same data</li><li>Stable and reliable</li></ul><b>Widely used</b>: Default choice for many RL applications including ChatGPT's RLHF.",
+      "tags": [
+        "ch13",
+        "ppo",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-022",
+      "front": "What is temporal difference (TD) learning?",
+      "back": "<b>TD learning</b> updates value estimates using the difference between consecutive estimates (bootstrapping).<br><br><b>TD(0) update</b>:<br>\\( V(s) \\leftarrow V(s) + \\alpha [r + \\gamma V(s') - V(s)] \\)<br><br><b>TD error</b>: \\( \\delta = r + \\gamma V(s') - V(s) \\)<br><br><b>Why TD?</b><ul><li><b>vs Monte Carlo</b>: Don't need to wait for episode end; can learn online</li><li><b>vs Dynamic Programming</b>: Don't need model of environment</li><li>Lower variance than MC (bootstraps from estimates)</li><li>Some bias (estimates depend on other estimates)</li></ul><b>TD(\\( \\lambda \\))</b>: Interpolates between TD(0) and Monte Carlo using eligibility traces.",
+      "tags": [
+        "ch13",
+        "temporal-difference",
+        "algorithm"
+      ]
+    },
+    {
+      "uid": "13-023",
+      "front": "What is the credit assignment problem in RL?",
+      "back": "The <b>credit assignment problem</b>: Which actions were responsible for a delayed reward?<br><br><b>Example</b>: In chess, you win after 50 moves. Which moves were good decisions?<br><br><b>Challenges</b>:<ul><li>Rewards may come long after the relevant action</li><li>Many actions between cause and effect</li><li>Some actions may have no effect on final outcome</li></ul><b>Solutions</b>:<ul><li><b>Discounting</b>: Nearby actions get more credit</li><li><b>Value functions</b>: Propagate credit backward via Bellman equation</li><li><b>Eligibility traces</b>: Keep track of recently visited states</li><li><b>Reward shaping</b>: Add intermediate rewards (careful: can change optimal policy)</li></ul>",
+      "tags": [
+        "ch13",
+        "credit-assignment",
+        "challenges"
+      ]
+    },
+    {
+      "uid": "13-024",
+      "front": "What is reward shaping and what are its risks?",
+      "back": "<b>Reward shaping</b>: Adding extra rewards to guide learning, beyond the true task reward.<br><br><b>Why use it?</b> Sparse rewards make learning hard. Intermediate rewards can speed up learning.<br><br><b>Example</b>: Robot navigation - add small reward for getting closer to goal.<br><br><b>Risks</b>:<ul><li><b>Reward hacking</b>: Agent exploits shaped reward in unintended ways</li><li><b>Changed optimal policy</b>: Shaped rewards can make suboptimal behavior optimal</li><li><b>Specification gaming</b>: Agent finds loopholes in reward design</li></ul><b>Potential-based shaping</b>: \\( F(s, s') = \\gamma \\Phi(s') - \\Phi(s) \\) preserves the optimal policy (provably safe).<br><br><b>Lesson</b>: Reward design is hard and crucial. Misaligned rewards lead to misaligned behavior.",
+      "tags": [
+        "ch13",
+        "reward-shaping",
+        "challenges"
+      ]
+    },
+    {
+      "uid": "13-025",
+      "front": "What is the difference between value-based and policy-based methods?",
+      "back": "<b>Value-based</b> (e.g., Q-learning, DQN):<ul><li>Learn value function Q(s,a) or V(s)</li><li>Derive policy from values (argmax)</li><li>Typically deterministic policies</li><li>Works well with discrete actions</li><li>Can use experience replay (off-policy)</li></ul><b>Policy-based</b> (e.g., REINFORCE, PPO):<ul><li>Directly optimize policy parameters</li><li>Can learn stochastic policies</li><li>Works with continuous actions</li><li>Often on-policy (harder to reuse data)</li><li>Can have high variance</li></ul><b>Actor-Critic</b>: Combines both - policy network (actor) + value network (critic).<br><br><b>Trade-offs</b>: Value-based is more sample efficient; policy-based is more flexible and can handle continuous actions.",
+      "tags": [
+        "ch13",
+        "value-based",
+        "policy-based"
+      ]
+    }
+  ]
+}

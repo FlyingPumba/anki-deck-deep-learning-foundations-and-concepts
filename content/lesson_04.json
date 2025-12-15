@@ -442,6 +442,26 @@
       ]
     },
     {
+      "uid": "04-047a",
+      "front": "What is plotted on the x-axis and y-axis of a ROC curve?",
+      "back": "<b>X-axis</b>: False Positive Rate (FPR) = FP / (FP + TN)<br><b>Y-axis</b>: True Positive Rate (TPR) = TP / (TP + FN)<br><br><b>Intuition</b>:<ul><li>X-axis: Of all actual negatives, what fraction did we incorrectly call positive?</li><li>Y-axis: Of all actual positives, what fraction did we correctly identify?</li></ul><b>Ideal point</b>: Top-left corner (0, 1) - zero false positives, all true positives detected.",
+      "tags": [
+        "ch04",
+        "roc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "04-047b",
+      "front": "How do you 'read' the ROC curve and what information does it tell you?",
+      "back": "The ROC curve plots <b>false positive rate</b> (x-axis) vs <b>true positive rate</b> (y-axis) for a range of thresholds.<br><br><b>Why thresholds matter</b>: Classifiers usually output a continuous score rather than a binary decision. You must choose a threshold to binarize this score before computing classification metrics.<br><br><b>The trade-off</b>: Raising or lowering the threshold directly trades off between TPR and FPR:<ul><li>Lower threshold: More positives predicted → higher TPR but also higher FPR</li><li>Higher threshold: Fewer positives predicted → lower FPR but also lower TPR</li></ul><b>Reading the curve</b>: The ROC curve shows this entire trade-off. The <b>area under the curve (AUC)</b> measures how 'nice' this trade-off is - a larger area means the classifier can achieve high TPR without incurring high FPR.",
+      "tags": [
+        "ch04",
+        "roc",
+        "evaluation"
+      ]
+    },
+    {
       "uid": "04-048",
       "front": "What is the F-score?",
       "back": "The harmonic mean of precision and recall:<br>\\( F_1 = 2 \\cdot \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}} \\)<br>Balances precision and recall. The general \\( F_\\beta \\) score weights recall \\( \\beta \\) times as much as precision.",
