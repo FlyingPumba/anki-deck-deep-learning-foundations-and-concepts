@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sync Deep Learning curriculum from JSON to Anki via AnkiConnect.
+Sync flashcard curriculum from JSON to Anki via AnkiConnect.
 
 Requirements:
 - Anki must be running with AnkiConnect add-on installed (code: 2055492159)
@@ -10,6 +10,11 @@ Usage:
     python sync_anki.py
 
 Reads config.json and all lesson_*.json files from the content/ directory.
+
+Config file (content/config.json) must contain:
+- course: Display name for the course
+- deck: Anki deck name
+- uid_prefix: Unique prefix for card UIDs (e.g., "linear-algebra", "deep-learning")
 """
 
 import json
@@ -51,9 +56,9 @@ def ensure_deck(deck_name: str) -> None:
         print(f"Created deck: {deck_name}")
 
 
-def find_note_by_uid(uid_tag: str) -> int | None:
-    """Find a note by its UID tag."""
-    query = f'tag:"{uid_tag}"'
+def find_note_by_uid(uid_tag: str, parent_deck: str) -> int | None:
+    """Find a note by its UID tag, scoped to the deck tree."""
+    query = f'deck:"{parent_deck}*" tag:"{uid_tag}"'
     note_ids = invoke("findNotes", {"query": query})
     return note_ids[0] if note_ids else None
 
@@ -81,7 +86,7 @@ def find_note_in_deck_by_front(deck: str, front: str) -> int | None:
     IMPORTANT: Only returns notes that do NOT already have a uid:* tag.
     This prevents merging different cards that happen to have the same question.
     """
-    # Search across the whole parent deck tree (e.g., "Deep Learning::*"),
+    # Search across the whole parent deck tree,
     # since earlier experiments may have created notes in a slightly different subdeck.
     parent = deck.split("::", 1)[0]
     note_ids = invoke("findNotes", {"query": f'deck:"{parent}*"'})
@@ -116,13 +121,17 @@ def get_all_notes_in_deck_tree(parent_deck: str) -> list[dict]:
     return invoke("notesInfo", {"notes": note_ids})
 
 
-def get_all_uid_tags_in_deck_tree(parent_deck: str) -> set[str]:
-    """Get all uid:* tags from notes in the deck and all subdecks."""
+def get_all_uid_tags_in_deck_tree(parent_deck: str, uid_prefix: str) -> set[str]:
+    """Get all uid:* tags from notes in the deck and all subdecks.
+
+    Only returns tags that match the uid_prefix to avoid conflicts with other decks.
+    """
     notes_info = get_all_notes_in_deck_tree(parent_deck)
     uid_tags = set()
+    tag_prefix = f"uid:{uid_prefix}-"
     for note in notes_info:
         for tag in note.get("tags", []):
-            if tag.startswith("uid:"):
+            if tag.startswith(tag_prefix):
                 uid_tags.add(tag)
     return uid_tags
 
@@ -242,6 +251,7 @@ def upsert_note(
     back: str,
     tags: list[str],
     uid_tag: str,
+    parent_deck: str,
     json_mod_time: float | None = None,
     dry_run: bool = False
 ) -> tuple[str, int | None, str, dict | None]:
@@ -254,7 +264,7 @@ def upsert_note(
       - back_sync_data is a dict with 'front' and 'back' from Anki if back-sync is needed
     If dry_run is True, no changes are made to Anki.
     """
-    existing_id = find_note_by_uid(uid_tag)
+    existing_id = find_note_by_uid(uid_tag, parent_deck)
     if existing_id is None:
         # Handle pre-existing notes that do not yet have a uid:* tag but
         # already contain (up to HTML formatting) the same Front content
@@ -424,8 +434,15 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
     """Sync all lessons to Anki."""
     config, lessons = load_lessons(content_dir)
 
-    parent_deck = config.get("deck", "Deep Learning: Foundations and Concepts")
-    course = config.get("course", "Unknown Course")
+    # Validate required config fields
+    if "deck" not in config:
+        raise ValueError("Config must contain 'deck' field")
+    if "uid_prefix" not in config:
+        raise ValueError("Config must contain 'uid_prefix' field")
+
+    parent_deck = config["deck"]
+    course = config.get("course", parent_deck)
+    uid_prefix = config["uid_prefix"]
 
     if dry_run:
         print("=== DRY RUN MODE (no changes will be made) ===")
@@ -433,6 +450,7 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
 
     print(f"Syncing: {course}")
     print(f"Parent deck: {parent_deck}")
+    print(f"UID prefix: {uid_prefix}")
     print(f"Lessons: {len(lessons)}")
     print()
 
@@ -476,6 +494,7 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
                 back=card["back"],
                 tags=card.get("tags", []),
                 uid_tag=uid_tag,
+                parent_deck=parent_deck,
                 json_mod_time=json_mod_time,
                 dry_run=dry_run
             )
@@ -505,12 +524,12 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
     print()
 
     # Delete orphaned notes (cards removed from curriculum) across all subdecks
-    existing_uids = get_all_uid_tags_in_deck_tree(parent_deck)
+    existing_uids = get_all_uid_tags_in_deck_tree(parent_deck, uid_prefix)
     orphaned_uids = existing_uids - current_uids
 
     deleted = 0
     for uid_tag in orphaned_uids:
-        note_id = find_note_by_uid(uid_tag)
+        note_id = find_note_by_uid(uid_tag, parent_deck)
         if note_id:
             if not dry_run:
                 invoke("deleteNotes", {"notes": [note_id]})
@@ -518,10 +537,12 @@ def sync(content_dir: Path, dry_run: bool = False) -> None:
             deleted += 1
 
     # Also delete notes without uid tags that don't match any current card's front
+    # Only consider notes that don't have a uid tag with our prefix
     all_notes = get_all_notes_in_deck_tree(parent_deck)
+    tag_prefix = f"uid:{uid_prefix}-"
     for note in all_notes:
-        has_uid = any(tag.startswith("uid:") for tag in note.get("tags", []))
-        if has_uid:
+        has_our_uid = any(tag.startswith(tag_prefix) for tag in note.get("tags", []))
+        if has_our_uid:
             continue
         note_id = note.get("noteId")
         if not note_id:
@@ -564,10 +585,7 @@ def main():
 
     try:
         sync(content_dir, dry_run=args.dry_run)
-    except RuntimeError as e:
-        print(f"Error: {e}", file=sys.stderr)
-        sys.exit(1)
-    except FileNotFoundError as e:
+    except (RuntimeError, ValueError, FileNotFoundError) as e:
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
 

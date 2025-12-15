@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "09-001",
+      "uid": "deep-learning-foundations-and-concepts-09-001",
       "front": "What is inductive bias in machine learning?",
       "back": "The <b>preference for one hypothesis over others</b> beyond what the data supports.<br>Also called prior knowledge or learning bias.<br>Examples:<br><ul><li>Preference for smoother functions</li><li>Translation invariance in images</li><li>Assumption of linearity</li></ul>Necessary because inverse problems are ill-posed with infinitely many solutions.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "09-002",
+      "uid": "deep-learning-foundations-and-concepts-09-002",
       "front": "Why are machine learning tasks considered inverse problems?",
       "back": "We need to infer an <b>entire distribution</b> from only a finite number of samples.<br>This is intrinsically ill-posed: infinitely many distributions could have generated the observed data.<br>Any distribution with non-zero density at observed points is a candidate.<br>Inductive bias is needed to choose among them.",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "09-003",
+      "uid": "deep-learning-foundations-and-concepts-09-003",
       "front": "What is the no free lunch theorem?",
       "back": "States that <b>every learning algorithm is as good as any other when averaged over all possible problems</b>.<br>If an algorithm is better than average on some problems, it must be worse on others.<br>Highlights that learning cannot happen purely from data without bias.",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "09-004",
+      "uid": "deep-learning-foundations-and-concepts-09-004",
       "front": "What are the four approaches to incorporate symmetries into neural networks?",
       "back": "<ol><li><b>Pre-processing</b>: Compute invariant features</li><li><b>Regularized error function</b>: Penalize changes under transformations</li><li><b>Data augmentation</b>: Expand training set with transformed examples</li><li><b>Network architecture</b>: Build equivariance into structure (e.g., CNNs)</li></ol>",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "09-005",
+      "uid": "deep-learning-foundations-and-concepts-09-005",
       "front": "What is translation invariance vs translation equivariance?",
       "back": "<b>Invariance</b>: Output unchanged when input is translated<br>\\( f(T(\\mathbf{x})) = f(\\mathbf{x}) \\)<br>Example: Object classification - cat remains a cat regardless of position<br><b>Equivariance</b>: Output transforms in the same way as input<br>\\( f(T(\\mathbf{x})) = T(f(\\mathbf{x})) \\)<br>Example: Image segmentation - translated input gives translated segmentation",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "09-006",
+      "uid": "deep-learning-foundations-and-concepts-09-006",
       "front": "What is data augmentation?",
       "back": "Expanding the training set with <b>transformed versions</b> of training examples.<br>Common transformations for images:<br><ul><li>Translation, rotation, scaling</li><li>Horizontal flip</li><li>Brightness/contrast changes</li><li>Additive noise</li><li>Colour shifts</li></ul>Each transformed example keeps the same target label.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "09-009",
+      "uid": "deep-learning-foundations-and-concepts-09-009",
       "front": "Why should biases typically be excluded from weight decay?",
       "back": "<b>Intuition</b>: Biases are:<ul><li>Fewer parameters (one per unit vs many weights)</li><li>Mostly controlling baseline activation levels, not complex input-dependent behavior</li></ul>So regularizing them gives little benefit and can hurt - e.g., a ReLU unit may need a positive bias to be 'on' at all.<br><br><b>Technical reason</b>: Regularizers should be invariant to shifts in biases. Including biases would penalize constant offsets in data and not be invariant to data preprocessing.<br><br><b>Nuance</b>: It's not <i>wrong</i> to decay biases - just often unnecessary and makes training more sensitive to arbitrary shifts/centering of data.",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "09-014",
+      "uid": "deep-learning-foundations-and-concepts-09-014",
       "front": "How does early stopping relate to L2 regularization?",
       "back": "Early stopping is approximately <b>equivalent to L2 regularization</b>.<br>The effective number of parameters <b>grows during training</b> as weights move from initialization.<br>Stopping early limits how far weights can move, similar to constraining their magnitude with L2.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "09-020",
+      "uid": "deep-learning-foundations-and-concepts-09-020",
       "front": "How does dropout prevent co-adaptation of features?",
       "back": "<b>Co-adaptation</b>: When neurons learn to depend on specific other neurons, creating fragile feature detectors that only work together.<br><br><b>How dropout helps</b>: Since any neuron might be randomly dropped, each neuron must learn features that are useful <i>on their own</i>, not just in combination with specific partners.<br><br>This forces the network to learn redundant, distributed representations rather than brittle specialized ones.",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "09-021",
+      "uid": "deep-learning-foundations-and-concepts-09-021",
       "front": "What are the trade-offs between invariance and equivariance in representation learning?",
       "back": "<b>Invariance</b>: \\( f(T(x)) = f(x) \\) - output unchanged under transformation T.<br><b>Equivariance</b>: \\( f(T(x)) = T'(f(x)) \\) - output transforms predictably.<br><br><b>When invariance helps</b>:<ul><li>Classification: Category shouldn't change with pose/position</li><li>Retrieval: Same object should match regardless of view</li></ul><b>When invariance hurts</b>:<ul><li><b>Loses information</b>: Can't distinguish 'upside-down cat' from 'right-side-up cat' if rotation-invariant</li><li><b>Downstream tasks may need the information</b>: Pose estimation requires knowing orientation</li><li><b>Collapse risk</b>: Overly invariant representations can collapse (everything maps to same vector)</li></ul><b>Equivariance advantages</b>:<ul><li>Preserves structure while sharing computation</li><li>Intermediate representations carry transformation info</li><li>Better for dense prediction (segmentation, detection)</li></ul><b>Modern view</b>: Build equivariant early layers, pool for invariance only at the end when needed for the task.",
       "tags": [

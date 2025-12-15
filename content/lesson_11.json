@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "11-001",
+      "uid": "deep-learning-foundations-and-concepts-11-001",
       "front": "What is a decision tree?",
       "back": "A tree-structured model that makes predictions by recursively splitting data based on feature thresholds.<br><br><b>Structure</b>:<ul><li><b>Internal nodes</b>: Test a feature (e.g., age > 30?)</li><li><b>Branches</b>: Outcomes of the test</li><li><b>Leaf nodes</b>: Predictions (class label or value)</li></ul><b>Prediction</b>: Traverse from root to leaf based on input features.<br><br><b>Advantages</b>: Interpretable, handles mixed data types, no feature scaling needed.<br><br><b>Disadvantages</b>: Prone to overfitting, high variance, axis-aligned splits only.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "11-002",
+      "uid": "deep-learning-foundations-and-concepts-11-002",
       "front": "How are decision tree splits chosen?",
       "back": "<b>Goal</b>: Find the split that best separates the classes (or reduces variance for regression).<br><br><b>Classification criteria</b>:<ul><li><b>Gini impurity</b>: \\( G = 1 - \\sum_k p_k^2 \\)<br>Probability of misclassifying a random sample.</li><li><b>Entropy</b>: \\( H = -\\sum_k p_k \\log_2 p_k \\)<br>Information content of the distribution.</li><li><b>Information gain</b>: Reduction in entropy after split.</li></ul><b>Regression</b>: Minimize variance or MSE in resulting nodes.<br><br><b>Process</b>: Greedy search over all features and thresholds.",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "11-003",
+      "uid": "deep-learning-foundations-and-concepts-11-003",
       "front": "What is Gini impurity vs entropy for decision trees?",
       "back": "<b>Gini impurity</b>: \\( G = 1 - \\sum_k p_k^2 \\)<ul><li>Faster to compute (no logarithm)</li><li>Ranges from 0 (pure) to 0.5 (binary, equal split)</li><li>Default in scikit-learn</li></ul><b>Entropy</b>: \\( H = -\\sum_k p_k \\log_2 p_k \\)<ul><li>Information-theoretic interpretation</li><li>Ranges from 0 (pure) to 1 (binary, equal split)</li><li>Slightly more computationally expensive</li></ul><b>In practice</b>: Very similar results. Gini slightly favors larger partitions, entropy slightly favors balanced splits.",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "11-004",
+      "uid": "deep-learning-foundations-and-concepts-11-004",
       "front": "How do you prevent overfitting in decision trees?",
       "back": "<b>Pre-pruning</b> (early stopping):<ul><li><b>max_depth</b>: Limit tree depth</li><li><b>min_samples_split</b>: Minimum samples to split a node</li><li><b>min_samples_leaf</b>: Minimum samples in leaf nodes</li><li><b>max_features</b>: Limit features considered per split</li></ul><b>Post-pruning</b>:<ul><li>Grow full tree, then remove branches</li><li>Cost-complexity pruning (minimize error + \\( \\alpha \\cdot |T| \\))</li><li>Reduced error pruning: Remove if validation error doesn't increase</li></ul><b>Rule of thumb</b>: Start with max_depth=5-10, tune via cross-validation.",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "11-005",
+      "uid": "deep-learning-foundations-and-concepts-11-005",
       "front": "What is a Random Forest?",
       "back": "An ensemble of decision trees trained on <b>bootstrap samples</b> with <b>random feature subsets</b>.<br><br><b>Key ideas</b>:<ol><li><b>Bagging</b>: Each tree trained on random sample with replacement</li><li><b>Feature randomness</b>: Each split considers only \\( \\sqrt{p} \\) random features</li><li><b>Aggregation</b>: Average (regression) or vote (classification)</li></ol><b>Why it works</b>: Decorrelates trees, reducing variance without increasing bias.<br><br><b>Hyperparameters</b>: n_estimators (100-500 typical), max_depth, max_features.",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "11-006",
+      "uid": "deep-learning-foundations-and-concepts-11-006",
       "front": "Why does Random Forest use random feature subsets?",
       "back": "<b>Problem with bagging alone</b>: If one feature is very strong, all trees will split on it first, making trees correlated.<br><br><b>Solution</b>: At each split, only consider a random subset of features.<br><br><b>Typical values</b>:<ul><li>Classification: \\( \\sqrt{p} \\) features</li><li>Regression: \\( p/3 \\) features</li></ul><b>Effect</b>: Trees become less correlated, ensemble averaging is more effective.<br><br><b>Trade-off</b>: Individual trees may be weaker, but the ensemble is stronger.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "11-007",
+      "uid": "deep-learning-foundations-and-concepts-11-007",
       "front": "What is out-of-bag (OOB) error in Random Forest?",
       "back": "<b>OOB error</b>: A built-in cross-validation estimate using samples not in each tree's bootstrap.<br><br><b>How it works</b>:<ol><li>Each tree is trained on ~63% of data (bootstrap sample)</li><li>Remaining ~37% (out-of-bag) can validate that tree</li><li>For each sample, aggregate predictions from trees where it was OOB</li><li>Compare to true labels</li></ol><b>Advantages</b>:<ul><li>No need for separate validation set</li><li>Computed during training for free</li><li>Good estimate of generalization error</li></ul>",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "11-008",
+      "uid": "deep-learning-foundations-and-concepts-11-008",
       "front": "What is Gradient Boosting?",
       "back": "An ensemble method that builds trees <b>sequentially</b>, each correcting the errors of the previous.<br><br><b>Key idea</b>: Fit new tree to the <b>residuals</b> (gradient of loss) of current ensemble.<br><br><b>Algorithm</b>:<ol><li>Initialize with constant prediction</li><li>For m = 1 to M:<br>  - Compute residuals (negative gradient)</br>  - Fit tree to residuals<br>  - Add tree to ensemble (with learning rate)</li></ol><b>Loss functions</b>: MSE (regression), log loss (classification), custom.<br><br><b>Implementations</b>: XGBoost, LightGBM, CatBoost.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "11-009",
+      "uid": "deep-learning-foundations-and-concepts-11-009",
       "front": "What is the difference between bagging and boosting?",
       "back": "<b>Bagging</b> (Random Forest):<ul><li>Trees trained <b>independently in parallel</b></li><li>Each tree on bootstrap sample</li><li>Reduces <b>variance</b></li><li>Less prone to overfitting</li></ul><b>Boosting</b> (XGBoost, AdaBoost):<ul><li>Trees trained <b>sequentially</b></li><li>Each tree corrects previous errors</li><li>Reduces <b>bias</b></li><li>Can overfit if not regularized</li></ul><b>When to use</b>:<ul><li>Bagging: When model has high variance</li><li>Boosting: When model has high bias, or for maximum accuracy</li></ul>",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "11-010",
+      "uid": "deep-learning-foundations-and-concepts-11-010",
       "front": "What are the key hyperparameters in XGBoost/LightGBM?",
       "back": "<b>Tree structure</b>:<ul><li><b>max_depth</b>: Tree depth (3-10 typical, lower = less overfit)</li><li><b>num_leaves</b> (LightGBM): Max leaves per tree</li><li><b>min_child_weight</b>: Minimum sum of instance weights in child</li></ul><b>Regularization</b>:<ul><li><b>learning_rate</b>: Shrinkage (0.01-0.3, lower = more trees needed)</li><li><b>n_estimators</b>: Number of trees (use early stopping)</li><li><b>subsample</b>: Fraction of samples per tree</li><li><b>colsample_bytree</b>: Fraction of features per tree</li><li><b>reg_lambda</b> (L2), <b>reg_alpha</b> (L1): Weight regularization</li></ul>",
       "tags": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "11-011",
+      "uid": "deep-learning-foundations-and-concepts-11-011",
       "front": "What is the bias-variance tradeoff in ensemble methods?",
       "back": "<b>Single decision tree</b>: Low bias, high variance (overfits easily).<br><br><b>Bagging (Random Forest)</b>:<ul><li>Averaging reduces variance</li><li>Bias stays roughly the same</li><li>Works well when individual trees overfit</li></ul><b>Boosting</b>:<ul><li>Sequential correction reduces bias</li><li>Each tree is simple (low variance individually)</li><li>Ensemble can have lower variance than deep tree</li></ul><b>Key insight</b>: Bagging reduces variance of high-variance models. Boosting reduces bias by combining weak learners.",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "11-012",
+      "uid": "deep-learning-foundations-and-concepts-11-012",
       "front": "What is a Support Vector Machine (SVM)?",
       "back": "A classifier that finds the <b>maximum-margin hyperplane</b> separating classes.<br><br><b>Key idea</b>: Among all separating hyperplanes, choose the one with the largest distance to the nearest points (support vectors).<br><br><b>Objective</b>:<br>\\( \\min_{w,b} \\frac{1}{2}||w||^2 \\)<br>subject to \\( y_i(w^T x_i + b) \\geq 1 \\)<br><br><b>Support vectors</b>: Points on the margin boundary. Only these affect the decision boundary.<br><br><b>Soft margin</b>: Allow some misclassification with slack variables \\( \\xi_i \\) and penalty C.",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "11-013",
+      "uid": "deep-learning-foundations-and-concepts-11-013",
       "front": "What is the kernel trick in SVMs?",
       "back": "<b>Problem</b>: Data may not be linearly separable in original space.<br><br><b>Solution</b>: Map to higher-dimensional space where it is separable.<br><br><b>Kernel trick</b>: Compute dot products in high-D space without explicitly computing the mapping:<br>\\( K(x_i, x_j) = \\phi(x_i)^T \\phi(x_j) \\)<br><br><b>Common kernels</b>:<ul><li><b>Linear</b>: \\( K(x,y) = x^T y \\)</li><li><b>RBF/Gaussian</b>: \\( K(x,y) = \\exp(-\\gamma ||x-y||^2) \\)</li><li><b>Polynomial</b>: \\( K(x,y) = (x^T y + c)^d \\)</li></ul><b>RBF</b> is most common: implicitly maps to infinite-dimensional space.",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "11-014",
+      "uid": "deep-learning-foundations-and-concepts-11-014",
       "front": "What are the key hyperparameters for SVM?",
       "back": "<b>C (regularization)</b>:<ul><li>Small C: Wide margin, more misclassification allowed (underfitting)</li><li>Large C: Narrow margin, fewer misclassifications (overfitting)</li></ul><b>gamma (RBF kernel)</b>:<ul><li>Small gamma: Large radius of influence (smoother boundary)</li><li>Large gamma: Small radius (more complex boundary, overfitting)</li></ul><b>Relationship</b>: C and gamma often need to be tuned together.<br><br><b>Best practice</b>: Grid search over log-scale (e.g., C = [0.001, 0.01, 0.1, 1, 10, 100]).",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "11-015",
+      "uid": "deep-learning-foundations-and-concepts-11-015",
       "front": "When should you use classical ML vs deep learning?",
       "back": "<b>Prefer classical ML (trees, SVMs, linear models)</b>:<ul><li>Small to medium datasets (<100K samples)</li><li>Tabular/structured data</li><li>Interpretability is important</li><li>Limited compute resources</li><li>Need fast training/inference</li></ul><b>Prefer deep learning</b>:<ul><li>Large datasets</li><li>Unstructured data (images, text, audio)</li><li>Spatial/sequential structure matters</li><li>Can leverage pre-trained models</li><li>Have GPU resources</li></ul><b>Rule of thumb</b>: For tabular data, start with gradient boosting (XGBoost/LightGBM). For images/text, start with neural networks.",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "11-016",
+      "uid": "deep-learning-foundations-and-concepts-11-016",
       "front": "What is feature importance in tree-based models?",
       "back": "<b>Methods to measure feature importance</b>:<br><br><b>1. Impurity-based</b>: Sum of impurity decrease across all splits using that feature.<ul><li>Fast, built into training</li><li>Biased toward high-cardinality features</li></ul><b>2. Permutation importance</b>: Shuffle feature values, measure drop in accuracy.<ul><li>Model-agnostic</li><li>More reliable, but slower</li></ul><b>3. SHAP values</b>: Game-theoretic attribution.<ul><li>Most principled</li><li>Provides both global and local importance</li></ul><b>Caution</b>: Importance doesn't imply causation. Correlated features share importance.",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "11-017",
+      "uid": "deep-learning-foundations-and-concepts-11-017",
       "front": "What is early stopping in gradient boosting?",
       "back": "<b>Early stopping</b>: Stop adding trees when validation performance stops improving.<br><br><b>How it works</b>:<ol><li>Monitor metric on validation set each round</li><li>Stop if no improvement for N rounds (patience)</li><li>Return model with best validation score</li></ol><b>Benefits</b>:<ul><li>Prevents overfitting</li><li>Saves training time</li><li>Automatically determines n_estimators</li></ul><b>Usage</b>:<pre>model.fit(X_train, y_train,<br>  eval_set=[(X_val, y_val)],<br>  early_stopping_rounds=50)</pre>",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "11-018",
+      "uid": "deep-learning-foundations-and-concepts-11-018",
       "front": "What is the difference between XGBoost, LightGBM, and CatBoost?",
       "back": "<b>XGBoost</b>:<ul><li>Level-wise tree growth (balanced trees)</li><li>Supports GPU training</li><li>Most mature, widely used</li></ul><b>LightGBM</b>:<ul><li>Leaf-wise tree growth (can be deeper)</li><li>Faster training, lower memory</li><li>Better for large datasets</li><li>Histogram-based splitting</li></ul><b>CatBoost</b>:<ul><li>Native handling of categorical features</li><li>Ordered boosting (reduces prediction shift)</li><li>Often best out-of-the-box performance</li></ul><b>In practice</b>: All three achieve similar accuracy with tuning. LightGBM fastest, CatBoost easiest for categoricals.",
       "tags": [

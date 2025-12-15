@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "10-001",
+      "uid": "deep-learning-foundations-and-concepts-10-001",
       "front": "What is a convolution in the context of neural networks?",
       "back": "<b>Intuition</b>: Imagine sliding a small magnifying glass (the kernel) across an image. At each position, you compute how well the pattern in the kernel matches that patch of the image.<br><br><b>Operation</b>: Element-wise multiply the kernel with a local region of the input, then sum the results to get one output value.<br><br><b>Formula</b> (2D): \\( (f * g)(i, j) = \\sum_m \\sum_n f(m, n) \\cdot g(i-m, j-n) \\)<br><br><b>Key property</b>: The same kernel is applied everywhere (weight sharing), so the network learns to detect a feature regardless of where it appears.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "10-002",
+      "uid": "deep-learning-foundations-and-concepts-10-002",
       "front": "What is a kernel (filter) in a CNN?",
       "back": "A <b>kernel</b> (or filter) is a small matrix of learnable weights that slides across the input.<br><br><b>Typical sizes</b>: 3x3, 5x5, 7x7 (almost always odd to have a center pixel)<br><br><b>What it learns</b>: Early layers learn simple patterns (edges, textures); deeper layers learn complex patterns (eyes, wheels, faces).<br><br><b>Example</b>: A 3x3 edge detector might have weights like:<br>\\( \\begin{bmatrix} -1 & 0 & 1 \\\\ -2 & 0 & 2 \\\\ -1 & 0 & 1 \\end{bmatrix} \\)",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "10-003",
+      "uid": "deep-learning-foundations-and-concepts-10-003",
       "front": "What is a feature map (activation map)?",
       "back": "The <b>output</b> of applying one filter across the entire input.<br><br><b>Intuition</b>: If a filter detects vertical edges, the feature map will be bright wherever vertical edges exist in the input and dark elsewhere.<br><br><b>Multiple feature maps</b>: A conv layer with K filters produces K feature maps, each detecting a different pattern.<br><br><b>Shape</b>: If input is \\( H \\times W \\times C_{in} \\), applying K filters gives output \\( H' \\times W' \\times K \\).",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "10-004",
+      "uid": "deep-learning-foundations-and-concepts-10-004",
       "front": "What is padding in CNNs and why is it used?",
       "back": "<b>Padding</b> adds extra pixels (usually zeros) around the input border.<br><br><b>Why needed</b>:<ol><li>Without padding, output shrinks at each layer (edge pixels are used less)</li><li>Preserves spatial dimensions through the network</li><li>Allows edge pixels to be centered under the kernel</li></ol><b>Types</b>:<ul><li><b>Valid (no padding)</b>: Output smaller than input</li><li><b>Same</b>: Output same size as input (pad with \\( \\lfloor k/2 \\rfloor \\) for kernel size k)</li></ul>",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "10-005",
+      "uid": "deep-learning-foundations-and-concepts-10-005",
       "front": "What is stride in a convolution?",
       "back": "<b>Stride</b> is how many pixels the kernel moves between applications.<br><br><b>Stride = 1</b>: Kernel moves one pixel at a time (most common)<br><b>Stride = 2</b>: Kernel jumps 2 pixels, halving output dimensions<br><br><b>Why use stride > 1</b>:<ul><li>Downsamples the spatial dimensions</li><li>Reduces computation</li><li>Alternative to pooling for reducing resolution</li></ul><b>Trade-off</b>: Larger stride = faster but may miss fine details.",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "10-006",
+      "uid": "deep-learning-foundations-and-concepts-10-006",
       "front": "How do you calculate the output size of a convolutional layer?",
       "back": "\\( \\text{Output size} = \\left\\lfloor \\frac{W - K + 2P}{S} \\right\\rfloor + 1 \\)<br><br>where:<ul><li>\\( W \\) = input width (or height)</li><li>\\( K \\) = kernel size</li><li>\\( P \\) = padding</li><li>\\( S \\) = stride</li></ul><b>Example</b>: Input 32x32, kernel 3x3, padding 1, stride 1:<br>\\( \\lfloor (32 - 3 + 2)/1 \\rfloor + 1 = 32 \\) (same size)<br><br><b>Example</b>: Input 32x32, kernel 3x3, padding 0, stride 2:<br>\\( \\lfloor (32 - 3 + 0)/2 \\rfloor + 1 = 15 \\)",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "10-007",
+      "uid": "deep-learning-foundations-and-concepts-10-007",
       "front": "How many parameters does a convolutional layer have?",
       "back": "\\( \\text{Parameters} = K \\times K \\times C_{in} \\times C_{out} + C_{out} \\)<br><br>where:<ul><li>\\( K \\times K \\) = kernel spatial size</li><li>\\( C_{in} \\) = input channels</li><li>\\( C_{out} \\) = output channels (number of filters)</li><li>\\( + C_{out} \\) = bias terms (one per filter)</li></ul><b>Example</b>: 3x3 kernel, 64 input channels, 128 output channels:<br>\\( 3 \\times 3 \\times 64 \\times 128 + 128 = 73,856 \\) parameters<br><br><b>Key insight</b>: Parameters are independent of input spatial size (unlike fully connected).",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "10-008",
+      "uid": "deep-learning-foundations-and-concepts-10-008",
       "front": "What is pooling and why is it used?",
       "back": "<b>Pooling</b> reduces spatial dimensions by summarizing local regions.<br><br><b>Types</b>:<ul><li><b>Max pooling</b>: Takes maximum value in each region (most common)</li><li><b>Average pooling</b>: Takes mean value in each region</li></ul><b>Typical setup</b>: 2x2 window with stride 2 (halves dimensions)<br><br><b>Why use pooling</b>:<ol><li>Reduces computation and memory</li><li>Provides slight translation invariance</li><li>Increases receptive field</li></ol><b>Modern trend</b>: Strided convolutions often replace pooling.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "10-009",
+      "uid": "deep-learning-foundations-and-concepts-10-009",
       "front": "What is the receptive field in a CNN?",
       "back": "The <b>receptive field</b> of a unit is the region of the original input that can influence that unit's value.<br><br><b>Intuition</b>: How much of the image can this neuron 'see'?<br><br><b>Growth</b>: Receptive field grows with depth:<ul><li>Layer 1 (3x3 kernel): 3x3 receptive field</li><li>Layer 2 (3x3 kernel): 5x5 receptive field</li><li>Layer 3 (3x3 kernel): 7x7 receptive field</li></ul><b>Formula</b> (stride 1): Each layer adds \\( (K-1) \\) to receptive field.<br><br><b>Why it matters</b>: To recognize large objects, you need units with large receptive fields.",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "10-010",
+      "uid": "deep-learning-foundations-and-concepts-10-010",
       "front": "Why use CNNs instead of fully connected networks for images?",
       "back": "<b>1. Parameter efficiency</b>:<ul><li>FC on 224x224x3 image with 1000 hidden units: 150 million parameters</li><li>Conv layer (64 filters, 3x3): ~1,700 parameters</li></ul><b>2. Translation equivariance</b>: A cat is detected the same way regardless of position.<br><br><b>3. Local connectivity</b>: Pixels far apart rarely interact directly; local patterns matter most.<br><br><b>4. Hierarchical features</b>: Build complex features from simple ones (edges to textures to parts to objects).",
       "tags": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "10-011",
+      "uid": "deep-learning-foundations-and-concepts-10-011",
       "front": "What is translation equivariance in CNNs?",
       "back": "<b>Translation equivariance</b>: If the input shifts, the output shifts by the same amount.<br><br><b>Intuition</b>: If you move a cat in the image, the feature map showing 'cat detected here' moves correspondingly.<br><br><b>Why CNNs have it</b>: Weight sharing - the same filter is applied everywhere, so it responds the same way to a pattern regardless of location.<br><br><b>Note</b>: This is <i>equivariance</i>, not <i>invariance</i>. Full invariance (output unchanged by translation) comes from pooling or global aggregation.",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "10-012",
+      "uid": "deep-learning-foundations-and-concepts-10-012",
       "front": "What is a 1x1 convolution and why is it useful?",
       "back": "A <b>1x1 convolution</b> applies a 1x1 kernel - it only mixes channels, not spatial information.<br><br><b>Uses</b>:<ol><li><b>Dimensionality reduction</b>: Reduce channels cheaply (e.g., 256 to 64 channels)</li><li><b>Add nonlinearity</b>: 1x1 conv + ReLU adds complexity without changing spatial size</li><li><b>Cross-channel interaction</b>: Learn combinations of features across channels</li></ol><b>Parameters</b>: \\( C_{in} \\times C_{out} + C_{out} \\) (much cheaper than 3x3)<br><br><b>Used in</b>: Inception, ResNet bottlenecks, channel attention.",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "10-013",
+      "uid": "deep-learning-foundations-and-concepts-10-013",
       "front": "What is global average pooling?",
       "back": "<b>Global average pooling</b> takes the spatial average of each feature map, reducing \\( H \\times W \\times C \\) to \\( 1 \\times 1 \\times C \\).<br><br><b>Intuition</b>: 'How much of feature X is present in the entire image?'<br><br><b>Advantages over fully connected</b>:<ul><li>No parameters (vs millions for FC)</li><li>More robust to input size variations</li><li>Acts as structural regularizer</li></ul><b>Common pattern</b>: Conv layers -> Global average pool -> Small FC -> Softmax",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "10-014",
+      "uid": "deep-learning-foundations-and-concepts-10-014",
       "front": "What are depthwise separable convolutions?",
       "back": "A factorization of standard convolution into two steps:<br><br><b>1. Depthwise conv</b>: Apply one filter per input channel (no cross-channel mixing)<br><b>2. Pointwise conv</b>: 1x1 conv to mix channels<br><br><b>Parameter savings</b>:<ul><li>Standard: \\( K^2 \\cdot C_{in} \\cdot C_{out} \\)</li><li>Separable: \\( K^2 \\cdot C_{in} + C_{in} \\cdot C_{out} \\)</li></ul><b>Reduction factor</b>: Roughly \\( 1/C_{out} + 1/K^2 \\) of original (often 8-9x fewer parameters)<br><br><b>Used in</b>: MobileNet, EfficientNet, Xception.",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "10-015",
+      "uid": "deep-learning-foundations-and-concepts-10-015",
       "front": "What is a transposed convolution (deconvolution)?",
       "back": "<b>Transposed convolution</b> upsamples by going 'backwards' through a convolution.<br><br><b>Intuition</b>: Instead of many-to-one (conv), it's one-to-many - each input value influences a region of the output.<br><br><b>Use cases</b>:<ul><li>Decoder in autoencoders</li><li>Upsampling in segmentation (U-Net)</li><li>Generator in GANs</li></ul><b>Alternative names</b>: Deconvolution (technically incorrect), fractionally strided convolution.<br><br><b>Checkerboard artifacts</b>: Can produce artifacts; bilinear upsampling + conv is often preferred.",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "10-016",
+      "uid": "deep-learning-foundations-and-concepts-10-016",
       "front": "What is dilated (atrous) convolution?",
       "back": "<b>Dilated convolution</b> inserts gaps between kernel elements, expanding the receptive field without adding parameters.<br><br><b>Dilation rate r</b>: Spacing between kernel elements. Rate 1 = standard conv.<br><br><b>Effective kernel size</b>: \\( K + (K-1)(r-1) \\)<br>Example: 3x3 kernel with dilation 2 has 5x5 receptive field.<br><br><b>Use cases</b>:<ul><li>Semantic segmentation (DeepLab)</li><li>Audio generation (WaveNet)</li><li>When you need large receptive field without downsampling</li></ul>",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "10-017",
+      "uid": "deep-learning-foundations-and-concepts-10-017",
       "front": "What is the typical structure of a CNN for image classification?",
       "back": "<b>Common pattern</b>:<br><ol><li><b>Feature extraction</b>: Alternating conv + ReLU + pooling blocks</li><li><b>Channels increase</b>: 64 -> 128 -> 256 -> 512 (double when spatial dims halve)</li><li><b>Spatial dims decrease</b>: 224 -> 112 -> 56 -> 28 -> 14 -> 7</li><li><b>Global pooling</b>: Reduce to 1x1 spatial</li><li><b>Classifier</b>: FC layer(s) + softmax</li></ol><b>Modern additions</b>: Batch norm after conv, residual connections, dropout before FC.",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "10-018",
+      "uid": "deep-learning-foundations-and-concepts-10-018",
       "front": "What is the key idea behind VGGNet?",
       "back": "<b>Key insight</b>: Use many small (3x3) filters instead of fewer large filters.<br><br><b>Why 3x3?</b><ul><li>Two 3x3 layers have same receptive field as one 5x5</li><li>But fewer parameters: \\( 2 \\times 3^2 = 18 \\) vs \\( 5^2 = 25 \\)</li><li>More nonlinearities (more ReLUs)</li></ul><b>Architecture</b>: Uniform 3x3 convs, 2x2 max pooling, doubling channels at each stage.<br><br><b>Legacy</b>: Established that depth matters; often used as feature extractor.",
       "tags": [
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "uid": "10-019",
+      "uid": "deep-learning-foundations-and-concepts-10-019",
       "front": "What is the key idea behind Inception/GoogLeNet?",
       "back": "<b>Key insight</b>: Let the network choose which filter size to use at each location.<br><br><b>Inception module</b>: Apply multiple filter sizes (1x1, 3x3, 5x5) in parallel, concatenate outputs.<br><br><b>Problem</b>: Computational explosion with many channels.<br><b>Solution</b>: Use 1x1 convs to reduce channels before expensive 3x3/5x5 convs ('bottleneck').<br><br><b>Benefits</b>:<ul><li>Multi-scale feature extraction</li><li>Efficient parameter use</li><li>22 layers deep with only 5M parameters</li></ul>",
       "tags": [
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "uid": "10-020",
+      "uid": "deep-learning-foundations-and-concepts-10-020",
       "front": "How do convolutions handle multi-channel inputs (e.g., RGB)?",
       "back": "A filter spans <b>all input channels</b>.<br><br><b>Example</b>: For RGB input (3 channels) with 3x3 filter:<ul><li>Filter shape: 3 x 3 x 3 (height x width x channels)</li><li>One filter produces one feature map</li><li>Sum over all channels after element-wise multiply</li></ul><b>Multiple filters</b>: 64 filters on RGB input = 64 output feature maps.<br><br><b>Key point</b>: Each filter sees all channels and produces one channel of output.",
       "tags": [
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "uid": "10-021",
+      "uid": "deep-learning-foundations-and-concepts-10-021",
       "front": "What is the difference between max pooling and average pooling?",
       "back": "<b>Max pooling</b>: Takes the maximum value in each region.<ul><li>Preserves strongest activations</li><li>Good for detecting presence of features</li><li>Most common choice</li></ul><b>Average pooling</b>: Takes the mean value.<ul><li>Smooths activations</li><li>Better for tasks where overall response matters</li><li>Used in global average pooling</li></ul><b>Modern view</b>: The difference is often small; strided convs let the network learn its own downsampling.",
       "tags": [
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "uid": "10-022",
+      "uid": "deep-learning-foundations-and-concepts-10-022",
       "front": "Why do deeper CNN layers detect more complex features?",
       "back": "<b>Hierarchical composition</b>: Each layer builds on the previous.<br><br><b>Progression</b>:<ul><li><b>Layer 1</b>: Edges, color gradients</li><li><b>Layer 2</b>: Textures, corners</li><li><b>Layer 3</b>: Parts (eyes, wheels)</li><li><b>Layer 4+</b>: Objects, scenes</li></ul><b>Why?</b> Growing receptive field + nonlinear combinations allow detecting increasingly abstract patterns.<br><br><b>Evidence</b>: Visualizing filters shows this hierarchy (Zeiler & Fergus, 2014).",
       "tags": [
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "uid": "10-023",
+      "uid": "deep-learning-foundations-and-concepts-10-023",
       "front": "What is the bottleneck design in ResNet?",
       "back": "A three-layer block that reduces then restores channel dimensions:<br><br><b>Structure</b>:<ol><li>1x1 conv: Reduce channels (e.g., 256 -> 64)</li><li>3x3 conv: Process at reduced dimensions</li><li>1x1 conv: Restore channels (64 -> 256)</li></ol><b>Why?</b> The expensive 3x3 conv operates on fewer channels.<br><br><b>Savings</b>: Roughly 9x fewer parameters than two 3x3 convs at full width.<br><br><b>Used in</b>: ResNet-50 and deeper, Inception.",
       "tags": [
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "uid": "10-024",
+      "uid": "deep-learning-foundations-and-concepts-10-024",
       "front": "What are some common data augmentation techniques for CNNs?",
       "back": "<b>Geometric</b>:<ul><li>Random crop and resize</li><li>Horizontal flip</li><li>Rotation (small angles)</li><li>Scale jittering</li></ul><b>Photometric</b>:<ul><li>Color jitter (brightness, contrast, saturation)</li><li>Random grayscale</li><li>Gaussian blur</li></ul><b>Advanced</b>:<ul><li>Cutout/Random erasing</li><li>Mixup (blend two images)</li><li>CutMix (paste patch from one image onto another)</li><li>AutoAugment (learned augmentation policies)</li></ul>",
       "tags": [
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "uid": "10-025",
+      "uid": "deep-learning-foundations-and-concepts-10-025",
       "front": "What is Grad-CAM?",
       "back": "<b>Gradient-weighted Class Activation Mapping</b>: A technique to visualize which parts of an image are important for a CNN's prediction.<br><br><b>How it works</b>:<ol><li>Compute gradients of the target class score w.r.t. feature maps of a conv layer</li><li>Global average pool the gradients to get importance weights</li><li>Weighted sum of feature maps gives the heatmap</li><li>Apply ReLU (only positive contributions)</li></ol><b>Formula</b>: \\( L^c = \\text{ReLU}\\left(\\sum_k \\alpha_k^c A^k\\right) \\)<br>where \\( \\alpha_k^c = \\frac{1}{Z}\\sum_i \\sum_j \\frac{\\partial y^c}{\\partial A^k_{ij}} \\)<br><br><b>Use cases</b>: Debugging, model interpretability, sanity checking.",
       "tags": [
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "uid": "10-026",
+      "uid": "deep-learning-foundations-and-concepts-10-026",
       "front": "What is saliency mapping for neural networks?",
       "back": "<b>Saliency maps</b> show which input pixels have the most influence on the output.<br><br><b>Basic method</b> (Vanilla Gradient):<ol><li>Compute gradient of output class score w.r.t. input image</li><li>Take absolute value (or squared)</li><li>Visualize as heatmap</li></ol><b>Intuition</b>: Pixels where small changes cause large output changes are salient.<br><br><b>Variants</b>:<ul><li><b>SmoothGrad</b>: Average gradients over noisy inputs</li><li><b>Integrated Gradients</b>: Accumulate gradients along path from baseline</li><li><b>Guided Backprop</b>: Only backprop positive gradients through ReLU</li></ul>",
       "tags": [
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "uid": "10-027",
+      "uid": "deep-learning-foundations-and-concepts-10-027",
       "front": "What is SHAP for model interpretability?",
       "back": "<b>SHapley Additive exPlanations</b>: A unified framework for feature attribution based on game theory.<br><br><b>Key idea</b>: Assign each feature an importance value based on Shapley values from cooperative game theory.<br><br><b>Properties</b> (uniquely satisfied):<ul><li><b>Local accuracy</b>: Attributions sum to model output</li><li><b>Missingness</b>: Missing features get zero attribution</li><li><b>Consistency</b>: If a feature's contribution increases, its attribution doesn't decrease</li></ul><b>Variants</b>:<ul><li><b>KernelSHAP</b>: Model-agnostic, uses weighted linear regression</li><li><b>DeepSHAP</b>: Efficient for deep networks</li><li><b>TreeSHAP</b>: Exact and fast for tree-based models</li></ul>",
       "tags": [
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "uid": "10-028",
+      "uid": "deep-learning-foundations-and-concepts-10-028",
       "front": "What is LIME for model interpretability?",
       "back": "<b>Local Interpretable Model-agnostic Explanations</b>: Explains individual predictions by fitting a simple model locally.<br><br><b>How it works</b>:<ol><li>Generate perturbed samples around the input</li><li>Get model predictions for perturbations</li><li>Fit an interpretable model (e.g., linear) to approximate locally</li><li>Interpret the simple model's coefficients</li></ol><b>For images</b>: Perturbations mask/reveal superpixels.<br><br><b>Advantages</b>:<ul><li>Model-agnostic (works for any classifier)</li><li>Produces human-understandable explanations</li></ul><b>Limitation</b>: Explanations can be unstable (sensitive to perturbation strategy).",
       "tags": [
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "uid": "10-029",
+      "uid": "deep-learning-foundations-and-concepts-10-029",
       "front": "What is the difference between global and local interpretability?",
       "back": "<b>Global interpretability</b>: Understanding the model's overall behavior.<ul><li>What features matter in general?</li><li>What patterns has the model learned?</li><li>Methods: Feature importance, partial dependence plots</li></ul><b>Local interpretability</b>: Understanding a specific prediction.<ul><li>Why did the model predict this for this input?</li><li>Which features drove this particular decision?</li><li>Methods: LIME, SHAP, Grad-CAM, saliency maps</li></ul><b>Trade-off</b>: Simpler models (linear, trees) are globally interpretable but less accurate. Complex models need post-hoc explanation methods.",
       "tags": [
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "uid": "10-030",
+      "uid": "deep-learning-foundations-and-concepts-10-030",
       "front": "How do you visualize what CNN filters have learned?",
       "back": "<b>1. Filter visualization</b>: Directly view the learned filter weights (useful for first layer).<br><br><b>2. Activation maximization</b>: Optimize an input image to maximally activate a neuron:<br>\\( x^* = \\arg\\max_x a_k(x) - \\lambda R(x) \\)<br>where R(x) is a regularizer for natural-looking images.<br><br><b>3. Feature visualization</b>: Similar but with more sophisticated regularizers (DeepDream, Lucid).<br><br><b>4. Maximum activation patches</b>: Find real image patches that most activate each filter.<br><br><b>Insights</b>: Early layers learn edges/textures; later layers learn object parts and semantic concepts.",
       "tags": [
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "uid": "10-031",
+      "uid": "deep-learning-foundations-and-concepts-10-031",
       "front": "What are channels in a CNN?",
       "back": "<b>Channels</b> are the depth dimension of a tensor in a CNN.<br><br><b>Input channels</b>:<ul><li>RGB image: 3 channels (red, green, blue)</li><li>Grayscale: 1 channel</li><li>Medical imaging: May have many channels (CT slices, MRI sequences)</li></ul><b>Feature map channels</b>: After a conv layer, each filter produces one channel. 64 filters = 64 output channels.<br><br><b>Intuition</b>: Each channel represents a different 'view' or 'feature type' of the spatial data. Early channels might be 'edge detector output' or 'red intensity'; later channels encode abstract concepts.<br><br><b>Notation</b>: Tensor shape is typically \\( (N, C, H, W) \\) or \\( (N, H, W, C) \\) where C = channels.",
       "tags": [
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "uid": "10-032",
+      "uid": "deep-learning-foundations-and-concepts-10-032",
       "front": "What is weight sharing in CNNs and why does it matter?",
       "back": "<b>Weight sharing</b>: The same filter weights are used at every spatial location.<br><br><b>Intuition</b>: A vertical edge detector should work the same way whether it's looking at the top-left or bottom-right of the image.<br><br><b>Why it matters</b>:<ul><li><b>Massive parameter reduction</b>: Instead of learning separate detectors for each location, learn one and reuse it</li><li><b>Translation equivariance</b>: Pattern detected the same way regardless of position</li><li><b>Better generalization</b>: Fewer parameters = less overfitting</li></ul><b>Example</b>: A 3x3 filter on a 224x224 image is applied ~50,000 times, but only has 9 weights (plus bias).<br><br><b>Contrast with FC</b>: A fully connected layer learns different weights for each input position - no sharing.",
       "tags": [
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "uid": "10-033",
+      "uid": "deep-learning-foundations-and-concepts-10-033",
       "front": "What is local connectivity in CNNs?",
       "back": "<b>Local connectivity</b>: Each neuron connects only to a small local region of the input, not all pixels.<br><br><b>Intuition</b>: Nearby pixels are more related than distant ones. An eye pixel tells you more about neighboring eye pixels than about a foot pixel across the image.<br><br><b>Implementation</b>: Defined by the kernel size. A 3x3 kernel means each output neuron sees only a 3x3 patch of the input.<br><br><b>Benefits</b>:<ul><li><b>Fewer parameters</b>: Don't need weights for every input-output pair</li><li><b>Captures local structure</b>: Edges, textures are local patterns</li><li><b>Compositionality</b>: Local features combine into global ones through depth</li></ul><b>Global context</b>: Achieved through stacking layers (growing receptive field) or attention mechanisms.",
       "tags": [
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "uid": "10-034",
+      "uid": "deep-learning-foundations-and-concepts-10-034",
       "front": "What is batch normalization and why is it used in CNNs?",
       "back": "<b>Batch normalization</b> normalizes activations across a mini-batch to have zero mean and unit variance, then applies learnable scale and shift.<br><br><b>Formula</b>: \\( \\hat{x} = \\gamma \\frac{x - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}} + \\beta \\)<br>where \\( \\mu_B, \\sigma_B^2 \\) are batch statistics, \\( \\gamma, \\beta \\) are learned.<br><br><b>In CNNs</b>: Normalize per channel (same \\( \\gamma, \\beta \\) for all spatial positions in a channel).<br><br><b>Benefits</b>:<ul><li>Enables higher learning rates</li><li>Reduces sensitivity to initialization</li><li>Acts as regularization</li><li>Stabilizes training of deep networks</li></ul><b>Placement</b>: Typically after conv, before activation (conv -> BN -> ReLU).<br><br><b>At inference</b>: Use running averages of mean/variance computed during training.",
       "tags": [
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "uid": "10-035",
+      "uid": "deep-learning-foundations-and-concepts-10-035",
       "front": "What is the difference between a convolutional layer and a fully connected layer?",
       "back": "<b>Fully Connected (FC)</b>:<ul><li>Every input connects to every output</li><li>Parameters: \\( \\text{input size} \\times \\text{output size} \\)</li><li>No spatial structure assumed</li><li>Position-specific: Weight from pixel (0,0) differs from (10,10)</li></ul><b>Convolutional</b>:<ul><li>Local connectivity: Each output connects to small input region</li><li>Weight sharing: Same filter everywhere</li><li>Parameters: \\( K^2 \\times C_{in} \\times C_{out} \\) (independent of spatial size)</li><li>Translation equivariant</li></ul><b>When to use which</b>:<ul><li>Conv: Spatial data (images, audio, sequences)</li><li>FC: Final classification layers, non-spatial features</li></ul><b>Equivalence</b>: A conv layer is a sparse, weight-tied FC layer. FC on spatial data = conv with kernel size = input size.",
       "tags": [
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "uid": "10-036",
+      "uid": "deep-learning-foundations-and-concepts-10-036",
       "front": "What happens at the border/edge of an image during convolution?",
       "back": "<b>The border problem</b>: When the kernel is at the edge, part of it falls outside the image.<br><br><b>Solutions</b>:<ul><li><b>Valid/No padding</b>: Only apply kernel where it fully fits. Output is smaller than input.</li><li><b>Zero padding</b>: Pad with zeros. Most common. Can introduce artifacts at borders.</li><li><b>Reflect padding</b>: Mirror the image at boundaries. More natural for images.</li><li><b>Replicate padding</b>: Repeat edge pixels.</li><li><b>Circular padding</b>: Wrap around (useful for periodic signals).</li></ul><b>Effect on output size</b>:<ul><li>No padding: Output = Input - Kernel + 1</li><li>Same padding: Output = Input (pad by \\( \\lfloor K/2 \\rfloor \\))</li></ul><b>In practice</b>: Zero padding with 'same' is the default in most frameworks.",
       "tags": [

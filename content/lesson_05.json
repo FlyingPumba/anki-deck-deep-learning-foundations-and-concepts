@@ -12,7 +12,7 @@
   ],
   "cards": [
     {
-      "uid": "05-001",
+      "uid": "deep-learning-foundations-and-concepts-05-001",
       "front": "What is the logistic sigmoid function?",
       "back": "\\( \\sigma(a) = \\frac{1}{1 + e^{-a}} \\)<br>Properties:<br><ul><li>Maps the whole real axis to the interval (0, 1)</li><li>'Sigmoid' means S-shaped</li><li>Used to model probabilities in binary classification</li></ul>",
       "tags": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "uid": "05-002",
+      "uid": "deep-learning-foundations-and-concepts-05-002",
       "front": "What is the logit function?",
       "back": "The <b>inverse of the logistic sigmoid</b>:<br>\\( \\text{logit}(p) = \\ln\\frac{p}{1-p} = \\sigma^{-1}(p) \\)<br>Also called the log-odds function. Maps (0,1) to the real line.",
       "tags": [
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "uid": "05-003",
+      "uid": "deep-learning-foundations-and-concepts-05-003",
       "front": "What is the softmax function (normalized exponential)?",
       "back": "For K classes:<br>\\( p(C_k|\\vec{x}) = \\frac{\\exp(a_k)}{\\sum_j \\exp(a_j)} \\)<br>where \\( a_k = \\vec{w}_k^T \\vec{x} \\)<br>Properties:<br><ul><li>Outputs sum to 1</li><li>All outputs in (0, 1)</li><li>Generalizes logistic sigmoid to K > 2 classes</li></ul>",
       "tags": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "uid": "05-004",
+      "uid": "deep-learning-foundations-and-concepts-05-004",
       "front": "For what types of inputs do posterior probabilities take the form of logistic sigmoid or softmax?",
       "back": "For both:<br><ul><li><b>Gaussian distributed inputs</b> (with shared covariance)</li><li><b>Discrete inputs</b></li></ul>The posterior class probabilities are logistic sigmoid (2 classes) or softmax (K classes) functions of a linear combination of inputs.",
       "tags": [
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "uid": "05-005",
+      "uid": "deep-learning-foundations-and-concepts-05-005",
       "front": "What is the advantage of discriminative models over generative models?",
       "back": "<b>Intuition</b>: To tell cats from dogs, you don't need to know everything about what makes a cat - just what makes them <i>different</i>.<br><b>Advantages</b>:<ul><li><b>Fewer parameters</b>: Only model the decision boundary, not the full data distribution</li><li><b>Focused</b>: Ignores complex structure in \\( p(\\vec{x}) \\) that's irrelevant for classification</li><li><b>Often more accurate</b>: All capacity goes toward the classification task</li></ul>",
       "tags": [
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "uid": "05-006",
+      "uid": "deep-learning-foundations-and-concepts-05-006",
       "front": "What is an activation function in neural networks?",
       "back": "A nonlinear function applied to the weighted sum of inputs:<br>\\( z = f(\\vec{w}^T \\vec{x} + b) \\)<br>For classification with discrete labels, we need a nonlinear activation to:<br><ul><li>Squash outputs to valid probability ranges</li><li>Create nonlinear decision boundaries</li></ul>",
       "tags": [
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "uid": "05-007",
+      "uid": "deep-learning-foundations-and-concepts-05-007",
       "front": "What are generalized linear models?",
       "back": "Models where the output is a nonlinear function of a linear combination of inputs:<br>\\( y = f(\\vec{w}^T \\phi(\\vec{x})) \\)<br>The function \\( f \\) is the <b>activation function</b> (or link function inverse).<br>Examples: Logistic regression, Poisson regression.",
       "tags": [
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "uid": "05-008",
+      "uid": "deep-learning-foundations-and-concepts-05-008",
       "front": "Are classes that are linearly separable in feature space necessarily linearly separable in input space?",
       "back": "<b>No</b>. Classes that are linearly separable in feature space \\( \\phi(\\vec{x}) \\) need not be linearly separable in the original input space \\( \\vec{x} \\).<br>This is the power of using nonlinear basis functions/features.",
       "tags": [
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "uid": "05-009",
+      "uid": "deep-learning-foundations-and-concepts-05-009",
       "front": "What is logistic regression?",
       "back": "A discriminative model for binary classification:<br>\\( p(C_1|\\vec{x}) = \\sigma(\\vec{w}^T \\phi(\\vec{x})) \\)<br>Trained by maximizing likelihood (or minimizing cross-entropy error).<br>Stochastic gradient descent is the principal approach for training.",
       "tags": [
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "uid": "05-010",
+      "uid": "deep-learning-foundations-and-concepts-05-010",
       "front": "How is the error function for logistic regression derived?",
       "back": "Take the <b>negative logarithm of the likelihood</b>:<br>\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\{t_n \\ln y_n + (1-t_n) \\ln(1-y_n)\\} \\)<br>where:<ul><li>\\( t_n \\in \\{0, 1\\} \\) is the target class label for example n</li><li>\\( y_n = \\sigma(\\vec{w}^T \\phi(\\vec{x}_n)) \\) is the predicted probability</li></ul><b>Why log?</b> Turns products into sums, making optimization easier and numerically stable.<br><b>Why negative?</b> We want to <i>minimize</i> error, but <i>maximize</i> likelihood. Negating converts max to min.<br>This is the <b>cross-entropy error function</b>.",
       "tags": [
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "uid": "05-011",
+      "uid": "deep-learning-foundations-and-concepts-05-011",
       "front": "What is the cross-entropy error function for multi-class classification?",
       "back": "\\( E(\\vec{w}) = -\\sum_{n=1}^{N} \\sum_{k=1}^{K} t_{nk} \\ln y_{nk} \\)<br>Where:<br><ul><li>\\( t_{nk} \\) is the one-hot encoded target</li><li>\\( y_{nk} = p(C_k|\\vec{x}_n) \\) from softmax</li></ul>Also called categorical cross-entropy or log loss.",
       "tags": [
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "uid": "05-012",
+      "uid": "deep-learning-foundations-and-concepts-05-012",
       "front": "What are shortcomings of linear models with fixed basis functions?",
       "back": "<b>Basis functions</b> \\( \\phi_j(\\vec{x}) \\) transform the input before the linear combination (e.g., polynomials, Gaussians). In fixed basis models, these are chosen beforehand.<br><b>Shortcomings</b>:<ol><li><b>Poor scaling</b> with dimensionality (curse of dimensionality)</li><li><b>Inability to adapt</b> features to the problem</li><li><b>Exponential growth</b> in parameters for expressive models</li></ol><b>Solution</b>: Learn the basis functions from data (neural networks).",
       "tags": [
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "uid": "05-013",
+      "uid": "deep-learning-foundations-and-concepts-05-013",
       "front": "How does the number of coefficients grow for a polynomial of order M in D dimensions?",
       "back": "The growth is \\( O(D^M) \\)<br>For high-dimensional spaces, polynomials become unwieldy very quickly.<br>Example: Degree 3 polynomial in 100 dimensions requires millions of terms.",
       "tags": [
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "uid": "05-014",
+      "uid": "deep-learning-foundations-and-concepts-05-014",
       "front": "What is the curse of dimensionality?",
       "back": "The exponential increase in volume/complexity as dimensionality grows.<br>Consequences:<br><ul><li>Data becomes sparse</li><li>Distance metrics become less meaningful</li><li>Number of parameters explodes</li><li>More training data needed</li></ul>If we divide space into M bins per dimension, total bins = \\( M^D \\).",
       "tags": [
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "uid": "05-015",
+      "uid": "deep-learning-foundations-and-concepts-05-015",
       "front": "Where is most of the volume of a high-dimensional hypersphere concentrated?",
       "back": "In spaces of high dimensionality, <b>most of the volume is concentrated in a thin shell near the surface</b>.<br>The volume scales as \\( r^D \\), so the ratio of inner volume to total volume vanishes as D increases.",
       "tags": [
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "uid": "05-016",
+      "uid": "deep-learning-foundations-and-concepts-05-016",
       "front": "Why can classification be easier in higher-dimensional spaces?",
       "back": "Because there's more room to separate classes with hyperplanes.<br>Classes that overlap in low dimensions may become linearly separable when projected to higher-dimensional feature spaces.<br>This is the intuition behind kernel methods and neural network embeddings.",
       "tags": [
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "uid": "05-017",
+      "uid": "deep-learning-foundations-and-concepts-05-017",
       "front": "Why does real data often not suffer from the full curse of dimensionality?",
       "back": "Real data is typically <b>confined to a region having lower effective dimensionality</b> than the ambient space.<br>Data lies on or near a <b>low-dimensional manifold</b>.<br>Example: Adjacent pixels in images are highly correlated, not independent.",
       "tags": [
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "uid": "05-018",
+      "uid": "deep-learning-foundations-and-concepts-05-018",
       "front": "What are basis functions also called in machine learning?",
       "back": "<b>Features</b>.<br>The terms are used interchangeably. Feature engineering/extraction was the traditional approach before deep learning.<br>In neural networks, features are learned from data rather than hand-crafted.",
       "tags": [
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "uid": "05-019",
+      "uid": "deep-learning-foundations-and-concepts-05-019",
       "front": "What is the key idea behind neural networks?",
       "back": "Choose basis functions \\( \\phi_j(\\vec{x}) \\) that <b>themselves have learnable parameters</b>.<br>This allows the basis functions to be adapted to the data during training, rather than being fixed in advance.",
       "tags": [
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "uid": "05-020",
+      "uid": "deep-learning-foundations-and-concepts-05-020",
       "front": "What are hidden units in a neural network?",
       "back": "The learnable basis functions \\( \\phi_j(\\vec{x}) \\) in a neural network.<br>Each hidden unit computes:<br>\\( z_j = h(\\vec{w}_j^T \\vec{x} + b_j) \\)<br>where \\( h \\) is a nonlinear activation function.<br>Called 'hidden' because their values are not directly observed.",
       "tags": [
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "uid": "05-021",
+      "uid": "deep-learning-foundations-and-concepts-05-021",
       "front": "Why can neural networks be trained with gradient-based methods?",
       "back": "Because provided the activation function \\( h(\\cdot) \\) is differentiable, the overall network function is differentiable with respect to all parameters.<br>This enables backpropagation and gradient descent optimization.",
       "tags": [
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "uid": "05-022",
+      "uid": "deep-learning-foundations-and-concepts-05-022",
       "front": "What are universal approximators?",
       "back": "Networks that can approximate any continuous function to arbitrary accuracy.<br>Two-layer networks with a wide range of activation functions are <b>universal approximators</b>.<br>However, this says nothing about:<br><ul><li>How many units are needed</li><li>Whether such a network can be found by learning</li></ul>",
       "tags": [
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "uid": "05-024",
+      "uid": "deep-learning-foundations-and-concepts-05-024",
       "front": "Why are nonlinear activation functions necessary in deep networks?",
       "back": "Because <b>composition of linear transformations is itself linear</b>.<br>Without nonlinearities, a deep network would collapse to a single linear transformation:<br>\\( W_L \\cdots W_2 W_1 \\vec{x} = W_{\\text{effective}} \\vec{x} \\)<br>Nonlinearities enable learning complex functions.",
       "tags": [
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "uid": "05-025",
+      "uid": "deep-learning-foundations-and-concepts-05-025",
       "front": "What is a bottleneck network of hidden units equivalent to?",
       "back": "<b>Principal Component Analysis (PCA)</b>.<br>If the number of hidden units is smaller than both input and output dimensions, a linear network learns a low-rank approximation.<br>This corresponds to projecting onto the principal components.",
       "tags": [
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "uid": "05-026",
+      "uid": "deep-learning-foundations-and-concepts-05-026",
       "front": "What is the tanh activation function and how does it relate to sigmoid?",
       "back": "\\( \\tanh(a) = \\frac{e^a - e^{-a}}{e^a + e^{-a}} \\)<br>Relation to sigmoid:<br>\\( \\tanh(a) = 2\\sigma(2a) - 1 \\)<br>Outputs range: (-1, 1) vs (0, 1) for sigmoid.<br>A linear combination of tanh functions is equivalent to a linear combination of sigmoids.",
       "tags": [
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "uid": "05-027",
+      "uid": "deep-learning-foundations-and-concepts-05-027",
       "front": "What is the ReLU activation function?",
       "back": "<b>Rectified Linear Unit</b>:<br>\\( \\text{ReLU}(a) = \\max(0, a) \\)<br>Advantages:<br><ul><li>One of the best-performing activation functions</li><li>Much less sensitive to random weight initialization</li><li>Computationally cheap to evaluate</li><li>Avoids vanishing gradients (for positive inputs)</li></ul>",
       "tags": [
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "uid": "05-028",
+      "uid": "deep-learning-foundations-and-concepts-05-028",
       "front": "What is the softplus activation function?",
       "back": "A smooth approximation to ReLU:<br>\\( \\text{softplus}(a) = \\ln(1 + e^a) \\)<br>Properties:<br><ul><li>Differentiable everywhere</li><li>Approaches ReLU as \\( a \\to \\infty \\)</li><li>Also called soft ReLU</li></ul>",
       "tags": [
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "uid": "05-029",
+      "uid": "deep-learning-foundations-and-concepts-05-029",
       "front": "What is the leaky ReLU activation function?",
       "back": "\\( \\text{LeakyReLU}(a) = \\begin{cases} a & \\text{if } a > 0 \\\\ \\alpha a & \\text{if } a \\leq 0 \\end{cases} \\)<br>where \\( \\alpha \\) is a small positive constant (e.g., 0.01).<br>Advantage: Non-zero gradient for negative inputs (avoids 'dying ReLU' problem).",
       "tags": [
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "uid": "05-030",
+      "uid": "deep-learning-foundations-and-concepts-05-030",
       "front": "What is the weight-space symmetry in neural networks?",
       "back": "A neural network with M hidden units has <b>\\( M! \\cdot 2^M \\)</b> equivalent weight configurations.<br>Sources:<br><ul><li>\\( M! \\) from permuting hidden units</li><li>\\( 2^M \\) from sign flips (for symmetric activations like tanh)</li></ul>All produce identical input-output mappings.",
       "tags": [
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "uid": "05-031",
+      "uid": "deep-learning-foundations-and-concepts-05-031",
       "front": "What determines the expressive power of a neural network?",
       "back": "The <b>number of layers of learnable weights</b>, not just the total number of layers.<br>Deep networks can represent certain functions with <b>exponentially fewer parameters</b> than shallow networks.",
       "tags": [
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "uid": "05-032",
+      "uid": "deep-learning-foundations-and-concepts-05-032",
       "front": "How does depth help neural networks divide input space?",
       "back": "The network function divides input space into a number of regions that is <b>exponential in the depth</b>.<br>Deeper networks can create more complex decision boundaries with the same number of parameters.",
       "tags": [
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "uid": "05-033",
+      "uid": "deep-learning-foundations-and-concepts-05-033",
       "front": "What is the compositional inductive bias of neural networks?",
       "back": "The network architecture encodes that the target function is built from <b>compositions of simpler functions</b>.<br>Each layer transforms representations, building hierarchically complex features from simpler ones.<br>This matches how many real-world problems are structured.",
       "tags": [
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "uid": "05-034",
+      "uid": "deep-learning-foundations-and-concepts-05-034",
       "front": "What is a distributed representation?",
       "back": "A representation where each unit in a hidden layer represents a 'feature' at that level of abstraction.<br>Combinations of active units encode meaning, rather than individual units having fixed meanings.<br>Contrast with local/one-hot representations.",
       "tags": [
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "uid": "05-035",
+      "uid": "deep-learning-foundations-and-concepts-05-035",
       "front": "What is an embedding space?",
       "back": "The space of learned representations in a neural network's hidden layers.<br>Successive layers transform data into spaces where classification/regression becomes easier.<br>The network learns a <b>nonlinear transformation</b> that makes the problem simpler.",
       "tags": [
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "uid": "05-041",
+      "uid": "deep-learning-foundations-and-concepts-05-041",
       "front": "What is meta-learning (learning to learn)?",
       "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
       "tags": [
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "uid": "05-042",
+      "uid": "deep-learning-foundations-and-concepts-05-042",
       "front": "What notation is used for the layers in a deep neural network?",
       "back": "\\( \\vec{z}^{(l)} \\) = activations at layer \\( l \\)<br>Special cases:<br><ul><li>\\( \\vec{z}^{(0)} = \\vec{x} \\) (input vector)</li><li>\\( \\vec{z}^{(L)} = \\vec{y} \\) (output vector)</li></ul>Number of layers counted by learnable weight matrices.",
       "tags": [
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "uid": "05-044",
+      "uid": "deep-learning-foundations-and-concepts-05-044",
       "front": "Why can neural networks learn deep hierarchical representations?",
       "back": "Because:<br><ol><li>Each layer learns features from the previous layer's output</li><li>Early layers learn simple features (edges, textures)</li><li>Later layers combine these into complex features (objects, concepts)</li><li>The composition creates a hierarchy of abstractions</li></ol>This matches the compositional structure of many real problems.",
       "tags": [
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "uid": "05-045",
+      "uid": "deep-learning-foundations-and-concepts-05-045",
       "front": "Why do we subtract the maximum logit before applying softmax?",
       "back": "For <b>numerical stability</b>.<br><br>Softmax is invariant to adding the same constant to every logit:<br>\\( \\text{softmax}(\\vec{a}) = \\text{softmax}(\\vec{a} - c\\mathbf{1}) \\).<br><br>So we compute:<br>\\( y_k = \\frac{\\exp(a_k - \\max_j a_j)}{\\sum_i \\exp(a_i - \\max_j a_j)} \\)<br>which prevents overflow when some logits are large.",
       "tags": [
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "uid": "05-046",
+      "uid": "deep-learning-foundations-and-concepts-05-046",
       "front": "What is label smoothing and why can it help in classification?",
       "back": "<b>Label smoothing</b> replaces a one-hot target distribution with a slightly \"soft\" target distribution.<br><br>For K classes and smoothing \\( \\epsilon \\):<br>\\( \\tilde{t}_k = (1-\\epsilon) t_k + \\epsilon/K \\).<br><br><b>Why it helps</b>: It acts as a regularizer that discourages overconfident predictions, often improving generalization and probability calibration.",
       "tags": [
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "uid": "05-047",
+      "uid": "deep-learning-foundations-and-concepts-05-047",
       "front": "What is the GELU activation function?",
       "back": "<b>Gaussian Error Linear Unit (GELU)</b> smoothly gates inputs based on their value:<br><br>\\( \\text{GELU}(x) = x \\cdot \\Phi(x) \\)<br><br>where \\( \\Phi(x) \\) is the standard Gaussian CDF.<br><br><b>Approximation</b>: \\( \\text{GELU}(x) \\approx 0.5x(1 + \\tanh[\\sqrt{2/\\pi}(x + 0.044715x^3)]) \\)<br><br><b>Intuition</b>: Unlike ReLU's hard cutoff at 0, GELU smoothly scales inputs - large positive values pass through, large negative values are zeroed, and values near zero are scaled by something in between.<br><br><b>Why popular</b>: Default in BERT, GPT, and most modern transformers. Often slightly outperforms ReLU in NLP.",
       "tags": [
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "uid": "05-048",
+      "uid": "deep-learning-foundations-and-concepts-05-048",
       "front": "What is the Swish (SiLU) activation function?",
       "back": "<b>Swish</b> (also called <b>SiLU</b> - Sigmoid Linear Unit):<br><br>\\( \\text{Swish}(x) = x \\cdot \\sigma(x) = \\frac{x}{1 + e^{-x}} \\)<br><br><b>Properties</b>:<ul><li>Smooth and non-monotonic (dips slightly below 0)</li><li>Self-gated: input multiplied by sigmoid of itself</li><li>Bounded below (~-0.28), unbounded above</li></ul><b>Comparison</b>:<ul><li>More similar to GELU than ReLU</li><li>Slightly faster than GELU (simpler formula)</li><li>Used in EfficientNet, many modern vision models</li></ul><b>Variant</b>: \\( \\text{Swish}_\\beta(x) = x \\cdot \\sigma(\\beta x) \\) where \\( \\beta \\) is learnable.",
       "tags": [
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "uid": "05-049",
+      "uid": "deep-learning-foundations-and-concepts-05-049",
       "front": "What is the dying ReLU problem?",
       "back": "<b>Dying ReLU</b>: When a ReLU neuron gets stuck outputting 0 for all inputs and stops learning.<br><br><b>How it happens</b>:<ol><li>If inputs are always negative, ReLU outputs 0</li><li>Gradient of ReLU is 0 for negative inputs</li><li>No gradient = no weight updates = neuron never recovers</li></ol><b>Causes</b>:<ul><li>Large learning rate causing weights to become very negative</li><li>Poor weight initialization</li><li>Large negative bias</li></ul><b>Solutions</b>:<ul><li><b>Leaky ReLU</b>: Small slope for negative inputs</li><li><b>PReLU</b>: Learnable slope for negative inputs</li><li><b>ELU</b>: Smooth negative region</li><li>Careful initialization (He initialization)</li><li>Lower learning rate</li></ul>",
       "tags": [
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "uid": "05-050",
+      "uid": "deep-learning-foundations-and-concepts-05-050",
       "front": "What is class imbalance and why is it a problem?",
       "back": "<b>Class imbalance</b>: When classes have very different numbers of samples (e.g., 99% negative, 1% positive).<br><br><b>Problems</b>:<ul><li>Model can achieve high accuracy by predicting majority class</li><li>Minority class is poorly learned</li><li>Standard metrics (accuracy) are misleading</li></ul><b>Examples</b>: Fraud detection, disease diagnosis, rare event prediction.<br><br><b>Metrics for imbalanced data</b>:<ul><li>Precision, recall, F1-score</li><li>AUROC (area under ROC curve)</li><li>AUPRC (area under precision-recall curve)</li><li>Matthews correlation coefficient</li></ul>",
       "tags": [
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "uid": "05-051",
+      "uid": "deep-learning-foundations-and-concepts-05-051",
       "front": "How do you handle class imbalance in training?",
       "back": "<b>Data-level methods</b>:<ul><li><b>Oversampling minority</b>: Duplicate minority samples (risk: overfitting)</li><li><b>Undersampling majority</b>: Remove majority samples (risk: lose information)</li><li><b>SMOTE</b>: Generate synthetic minority samples by interpolating</li></ul><b>Algorithm-level methods</b>:<ul><li><b>Class weights</b>: Weight loss inversely proportional to class frequency</li><li><b>Focal loss</b>: Down-weight easy examples, focus on hard ones</li><li><b>Threshold tuning</b>: Adjust decision threshold post-training</li></ul><b>Best practices</b>:<ul><li>Use appropriate metrics (F1, AUPRC)</li><li>Start with class weights, then try data-level methods</li><li>Cross-validate on stratified splits</li></ul>",
       "tags": [
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "uid": "05-053",
+      "uid": "deep-learning-foundations-and-concepts-05-053",
       "front": "When should you use AUPRC vs AUROC for imbalanced data?",
       "back": "<b>AUROC</b> (Area Under ROC Curve):<ul><li>ROC plots TPR vs FPR</li><li>Insensitive to class imbalance in some sense</li><li>Can be overly optimistic when negatives vastly outnumber positives</li></ul><b>AUPRC</b> (Area Under Precision-Recall Curve):<ul><li>PR curve plots Precision vs Recall</li><li>Focuses on positive class performance</li><li>More informative when positives are rare</li></ul><b>Rule of thumb</b>:<ul><li>Balanced classes: AUROC is fine</li><li>Imbalanced (rare positive): AUPRC is more informative</li><li>When false positives are costly: focus on precision</li><li>When false negatives are costly: focus on recall</li></ul>",
       "tags": [
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "uid": "05-054",
+      "uid": "deep-learning-foundations-and-concepts-05-054",
       "front": "How do you derive the gradient of the logistic regression loss?",
       "back": "<b>Setup</b>: For binary logistic regression with \\( y = \\sigma(\\vec{w}^T \\vec{x}) \\) and cross-entropy loss \\( E = -[t \\ln y + (1-t) \\ln(1-y)] \\).<br><br><b>Key derivative</b>: \\( \\frac{d\\sigma(a)}{da} = \\sigma(a)(1-\\sigma(a)) = y(1-y) \\)<br><br><b>Derivation</b>:<br>\\( \\frac{\\partial E}{\\partial w_j} = -\\left[\\frac{t}{y} - \\frac{1-t}{1-y}\\right] \\cdot y(1-y) \\cdot x_j \\)<br>\\( = -[t(1-y) - (1-t)y] \\cdot x_j \\)<br>\\( = (y - t) \\cdot x_j \\)<br><br><b>Result</b>: \\( \\nabla_w E = (y - t) \\vec{x} \\)<br><br><b>Implicit assumptions</b>:<ul><li>Data is IID (independent, identically distributed)</li><li>Linear decision boundary in feature space</li><li>Well-specified model (true relationship is logistic)</li></ul>",
       "tags": [
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "uid": "05-055",
+      "uid": "deep-learning-foundations-and-concepts-05-055",
       "front": "What is the difference between calibration and accuracy in classifiers?",
       "back": "<b>Accuracy</b>: How often the predicted class is correct.<br>\\( \\text{Accuracy} = \\frac{\\text{Correct predictions}}{\\text{Total predictions}} \\)<br><br><b>Calibration</b>: How well predicted probabilities match actual frequencies.<br><b>Intuition</b>: If model says \"80% chance of rain\" for 100 days, it should rain on ~80 of them.<br><br><b>Key insight</b>: A model can be <b>accurate but miscalibrated</b> (overconfident predictions), or <b>calibrated but less accurate</b>.<br><br><b>Measuring calibration</b>:<ul><li><b>Reliability diagram</b>: Plot predicted probability vs actual frequency</li><li><b>Expected Calibration Error (ECE)</b>: Weighted average of calibration gaps across bins</li><li><b>Brier score</b>: MSE of probability predictions</li></ul><b>Improving calibration</b>:<ul><li>Temperature scaling (divide logits by T)</li><li>Platt scaling (fit sigmoid to logits)</li><li>Isotonic regression</li></ul>",
       "tags": [
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "uid": "05-056",
+      "uid": "deep-learning-foundations-and-concepts-05-056",
       "front": "What are proper scoring rules and why do they matter?",
       "back": "<b>Proper scoring rule</b>: A loss function that is minimized when the predicted probabilities match the true probabilities.<br><br><b>Why it matters</b>: Improper scoring rules can incentivize wrong probability predictions. A proper rule ensures honest probability reporting is optimal.<br><br><b>Examples of proper scoring rules</b>:<ul><li><b>Log loss (cross-entropy)</b>: \\( -\\sum_k p_k \\log q_k \\)</li><li><b>Brier score</b>: \\( \\frac{1}{K}\\sum_k (p_k - q_k)^2 \\)</li><li><b>Spherical score</b>: \\( \\frac{q_k}{\\|\\vec{q}\\|} \\)</li></ul><b>Strictly proper</b>: Unique minimum at true distribution.<br><br><b>Improper example</b>: 0-1 accuracy (only cares about argmax, not probability values).<br><br><b>Practical implications</b>:<ul><li>Use cross-entropy for training classifiers</li><li>Use Brier score for evaluating probability quality</li><li>Avoid metrics that ignore probability magnitudes</li></ul>",
       "tags": [
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "uid": "05-057",
+      "uid": "deep-learning-foundations-and-concepts-05-057",
       "front": "What is the information bottleneck principle in representation learning?",
       "back": "<b>Information bottleneck</b>: A framework for learning representations that compress input while preserving task-relevant information.<br><br><b>Objective</b>: Find representation Z that:<ul><li>Minimizes \\( I(X; Z) \\) (compression - forget irrelevant details)</li><li>Maximizes \\( I(Z; Y) \\) (relevance - keep what predicts target)</li></ul><b>Trade-off</b>: \\( \\max_Z [I(Z; Y) - \\beta I(X; Z)] \\)<br><br><b>Intuition</b>: Like summarizing a book - keep the plot (relevant), discard prose style (irrelevant).<br><br><b>Practical pitfalls</b>:<ul><li>Mutual information is hard to estimate in high dimensions</li><li>Deterministic networks have infinite \\( I(X; Z) \\)</li><li>Need stochastic layers or other approximations</li><li>\\( \\beta \\) is hard to tune</li></ul><b>Applications</b>: Deep learning theory, representation learning, variational inference.",
       "tags": [

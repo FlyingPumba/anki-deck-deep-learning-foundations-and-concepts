@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "01-001",
+      "uid": "deep-learning-foundations-and-concepts-01-001",
       "front": "What is the relationship between the terms 'machine learning' and 'AI'?",
       "back": "The terms machine learning and AI are often used interchangeably. Many AI systems in current use represent applications of machine learning designed to solve specific problems.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "01-002",
+      "uid": "deep-learning-foundations-and-concepts-01-002",
       "front": "What are the adjustable parameters in a deep neural network called?",
       "back": "They are called <b>weights</b>.",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "01-003",
+      "uid": "deep-learning-foundations-and-concepts-01-003",
       "front": "What is the process of setting parameter values from data called in machine learning?",
       "back": "It is called <b>learning</b> or <b>training</b>.",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "01-004",
+      "uid": "deep-learning-foundations-and-concepts-01-004",
       "front": "What is a classification problem?",
       "back": "A <b>classification problem</b> is one where each input must be assigned to a discrete set of classes (e.g., benign or malignant).",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "01-005",
+      "uid": "deep-learning-foundations-and-concepts-01-005",
       "front": "What is a regression problem?",
       "back": "A <b>regression problem</b> is one where the output consists of one or more continuous variables (e.g., predicting the yield in a chemical process given temperature and pressure).",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "01-006",
+      "uid": "deep-learning-foundations-and-concepts-01-006",
       "front": "What is supervised learning?",
       "back": "<b>Supervised learning</b> is when the network is told the correct label for each training example. The training data consists of input-output pairs.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "01-007",
+      "uid": "deep-learning-foundations-and-concepts-01-007",
       "front": "What is unsupervised learning?",
       "back": "<b>Unsupervised learning</b> is when the training data consists of unlabelled examples, and the goal is to discover structure or patterns in the data (e.g., generating new images that share statistical properties with training images).",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "01-008",
+      "uid": "deep-learning-foundations-and-concepts-01-008",
       "front": "What is self-supervised learning?",
       "back": "<b>Self-supervised learning</b> is when a function from inputs to outputs is learned, but the labelled outputs are obtained automatically from the input training data without needing separate human-derived labels.<br>Example: predicting the next word in a sequence, where the target is derived from the text itself.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "01-009",
+      "uid": "deep-learning-foundations-and-concepts-01-009",
       "front": "What is generalization in machine learning?",
       "back": "<b>Generalization</b> is the ability to make accurate predictions on previously unseen inputs. It is a key goal in machine learning.",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "01-010",
+      "uid": "deep-learning-foundations-and-concepts-01-010",
       "front": "What is a generative model?",
       "back": "A <b>generative model</b> can generate new output examples that differ from those used to train the model but share the same statistical properties.",
       "tags": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "01-011",
+      "uid": "deep-learning-foundations-and-concepts-01-011",
       "front": "What is a linear model in machine learning?",
       "back": "A <b>linear model</b> is a function that is linear in its unknown parameters (weights), even if it is nonlinear in the input variables.<br>Example: \\( y(x, w) = w_0 + w_1 x + w_2 x^2 + \\ldots + w_M x^M \\) is linear in \\( w \\) but nonlinear in \\( x \\).",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "01-012",
+      "uid": "deep-learning-foundations-and-concepts-01-012",
       "front": "What is the sum-of-squares error function?",
       "back": "The sum-of-squares error function measures the misfit between predictions and training data:<br>\\( E(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 \\)<br>where \\( y(x_n, w) \\) is the prediction and \\( t_n \\) is the target value.",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "01-013",
+      "uid": "deep-learning-foundations-and-concepts-01-013",
       "front": "What is overfitting?",
       "back": "<b>Overfitting</b> occurs when a model fits the training data very well (possibly exactly) but gives poor predictions on new, unseen data. The model has essentially memorized the noise in the training data rather than learning the underlying pattern.",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "01-014",
+      "uid": "deep-learning-foundations-and-concepts-01-014",
       "front": "What is a test set used for?",
       "back": "A <b>test set</b> is a separate set of data used to evaluate how well a model generalizes to new data. It measures the model's predictive performance on data not used during training.",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "01-015",
+      "uid": "deep-learning-foundations-and-concepts-01-015",
       "front": "What is the root-mean-square (RMS) error and why is it useful?",
       "back": "\\( E_{RMS} = \\sqrt{\\frac{1}{N} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2} \\)<br>It is useful because:<br><ul><li>Division by \\( N \\) allows comparison across different dataset sizes</li><li>The square root ensures the error is measured in the same units as the target variable</li></ul>",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "01-016",
+      "uid": "deep-learning-foundations-and-concepts-01-016",
       "front": "How does the size of the training data affect overfitting?",
       "back": "For a given model complexity, the overfitting problem becomes less severe as the size of the data set increases. With a larger data set, we can afford to fit a more complex (more flexible) model to the data.",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "01-017",
+      "uid": "deep-learning-foundations-and-concepts-01-017",
       "front": "What is regularization in machine learning?",
       "back": "<b>Regularization</b> involves adding a penalty term to the error function to discourage the coefficients from having large magnitudes. It controls overfitting as an alternative to limiting the number of parameters.",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "01-018",
+      "uid": "deep-learning-foundations-and-concepts-01-018",
       "front": "What is the regularized error function with L2 penalty?",
       "back": "\\( \\tilde{E}(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\)<br>where \\( \\|w\\|^2 = w^T w = w_0^2 + w_1^2 + \\ldots + w_M^2 \\)<br>The coefficient \\( \\lambda \\) governs the relative importance of the regularization term.",
       "tags": [
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "uid": "01-019",
+      "uid": "deep-learning-foundations-and-concepts-01-019",
       "front": "What are shrinkage methods? What is another name for this in neural networks?",
       "back": "<b>Shrinkage methods</b> are techniques that reduce the value of the coefficients through regularization.<br>In the context of neural networks, this is called <b>weight decay</b> because the regularizer encourages the weights to decay towards zero.",
       "tags": [
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "uid": "01-020",
+      "uid": "deep-learning-foundations-and-concepts-01-020",
       "front": "What is a hyperparameter?",
       "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:<br><ul><li>The regularization coefficient \\( \\lambda \\)</li><li>The order \\( M \\) of a polynomial</li><li>Learning rate</li></ul>",
       "tags": [
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "uid": "01-021",
+      "uid": "deep-learning-foundations-and-concepts-01-021",
       "front": "What is the difference between a training set and a validation set?",
       "back": "<ul><li><b>Training set</b>: Used to determine the model parameters (weights)</li><li><b>Validation set</b> (also called hold-out or development set): Used to select hyperparameters and model architecture</li></ul>A third <b>test set</b> may be kept aside for final evaluation.",
       "tags": [
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "uid": "01-022",
+      "uid": "deep-learning-foundations-and-concepts-01-022",
       "front": "What is S-fold cross-validation?",
       "back": "<b>S-fold cross-validation</b> partitions data into S groups. For each run:<br><ul><li>Train on S-1 groups</li><li>Evaluate on the remaining group</li></ul>Repeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
       "tags": [
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "uid": "01-023",
+      "uid": "deep-learning-foundations-and-concepts-01-023",
       "front": "What is the perceptron and what is its historical significance?",
       "back": "The <b>perceptron</b> (Rosenblatt, 1962) is a single-layer neural network with a step activation function:<br>\\( f(a) = \\begin{cases} 0, & \\text{if } a \\leq 0 \\\\ 1, & \\text{if } a > 0 \\end{cases} \\)<br>It was one of the first trainable neural network models, but Minsky and Papert (1969) gave formal proofs of its limited capabilities.",
       "tags": [
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "uid": "01-024",
+      "uid": "deep-learning-foundations-and-concepts-01-024",
       "front": "What is a multilayer perceptron (MLP)?",
       "back": "A <b>multilayer perceptron (MLP)</b> is a modern neural network with multiple layers of learnable parameters. Despite the name, it uses continuous differentiable activation functions (not step functions like the original perceptron).",
       "tags": [
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "uid": "01-025",
+      "uid": "deep-learning-foundations-and-concepts-01-025",
       "front": "What two key changes enabled training of multilayer neural networks?",
       "back": "<ol><li>Replace the step function with <b>continuous differentiable activation functions</b> having non-zero gradients</li><li>Introduce <b>differentiable error functions</b> that define how well parameter values predict target variables</li></ol>",
       "tags": [
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "uid": "01-028",
+      "uid": "deep-learning-foundations-and-concepts-01-028",
       "front": "What is error backpropagation?",
       "back": "<b>Error backpropagation</b> (or just backprop) is an efficient algorithm for computing the derivatives of the error function with respect to all network parameters. Information flows backwards through the network from outputs towards inputs.",
       "tags": [
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "uid": "01-029",
+      "uid": "deep-learning-foundations-and-concepts-01-029",
       "front": "What is stochastic gradient descent (SGD)?",
       "back": "<b>Stochastic gradient descent</b> is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset.<br><b>Formula</b>: \\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\) where \\( \\eta \\) is the learning rate.<br><b>Advantages</b>:<br><ul><li>Can escape local minima (due to noise)</li><li>Efficient for large datasets</li><li>Online learning capability</li></ul>",
       "tags": [
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "uid": "01-031",
+      "uid": "deep-learning-foundations-and-concepts-01-031",
       "front": "What is feature extraction in traditional machine learning?",
       "back": "<b>Feature extraction</b> is hand-crafted pre-processing that transforms input variables into a new space where the machine learning problem is easier to solve. Deep learning largely eliminates the need for this by learning features directly from data.",
       "tags": [
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "uid": "01-032",
+      "uid": "deep-learning-foundations-and-concepts-01-032",
       "front": "What are deep neural networks?",
       "back": "<b>Deep neural networks</b> are networks with many layers of learnable weights. The sub-field of machine learning focusing on such networks is called <b>deep learning</b>.",
       "tags": [
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "uid": "01-033",
+      "uid": "deep-learning-foundations-and-concepts-01-033",
       "front": "What role do GPUs play in deep learning?",
       "back": "<b>GPUs (Graphics Processing Units)</b> are specialist processors originally developed for graphics rendering. They are well-suited for training neural networks because units in one layer can be evaluated in parallel, mapping well onto the massive parallelism of GPUs.",
       "tags": [
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "uid": "01-034",
+      "uid": "deep-learning-foundations-and-concepts-01-034",
       "front": "How did compute requirements for state-of-the-art neural networks change before and after 2012?",
       "back": "<ul><li><b>Before 2012 (perceptron era)</b>: Compute doubled roughly every 2 years (following Moore's law)</li><li><b>After 2012 (deep learning era)</b>: Doubling time reduced to 3.4 months (10x increase per year)</li></ul>",
       "tags": [
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "uid": "01-035",
+      "uid": "deep-learning-foundations-and-concepts-01-035",
       "front": "What is representation learning?",
       "back": "<b>Representation learning</b> views hidden layers as transforming input data into new representations that are semantically meaningful, creating an easier problem for final layers to solve. These learned representations can be repurposed for related problems via transfer learning.",
       "tags": [
@@ -331,7 +331,7 @@
       ]
     },
     {
-      "uid": "01-038",
+      "uid": "deep-learning-foundations-and-concepts-01-038",
       "front": "What is automatic differentiation and why is it important?",
       "back": "<b>Automatic differentiation</b> automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.<br>This allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
       "tags": [
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "uid": "01-039",
+      "uid": "deep-learning-foundations-and-concepts-01-039",
       "front": "How many neurons and synapses does a human brain contain?",
       "back": "A human brain contains:<br><ul><li>Around <b>90 billion neurons</b></li><li>Each neuron has on average several thousand synapses</li><li>Total of around <b>100 trillion (10^14) synapses</b></li></ul>",
       "tags": [
@@ -351,7 +351,7 @@
       ]
     },
     {
-      "uid": "01-040",
+      "uid": "deep-learning-foundations-and-concepts-01-040",
       "front": "What is the mathematical model of a single artificial neuron?",
       "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)<br>Activation: \\( y = f(a) \\)<br>where:<ul><li>\\( x_1, \\ldots, x_M \\) are inputs</li><li>\\( w_1, \\ldots, w_M \\) are weights (synapse strengths)</li><li>\\( f(\\cdot) \\) is the activation function</li></ul>",
       "tags": [
@@ -361,7 +361,7 @@
       ]
     },
     {
-      "uid": "01-042",
+      "uid": "deep-learning-foundations-and-concepts-01-042",
       "front": "Why can't we determine hyperparameters by minimizing the training error jointly with model parameters?",
       "back": "Minimizing training error jointly would lead to extreme values:<br><ul><li>Regularization \\( \\lambda \\to 0 \\) (no regularization)</li><li>Polynomial order \\( M \\to \\) large values</li></ul>Both result in overfitting with small/zero training error but poor generalization.",
       "tags": [
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "uid": "01-043",
+      "uid": "deep-learning-foundations-and-concepts-01-043",
       "front": "What is data leakage in machine learning?",
       "back": "<b>Data leakage</b> is when information that would not be available at prediction time (often from the validation/test set, or from the future) influences training.<br><br><b>Why it matters</b>: It makes evaluation metrics look much better than real-world performance.<br><br><b>Common leak patterns</b>:<ul><li><b>Preprocessing leakage</b>: Fitting normalization/feature selection on all data (train+val+test) instead of training data only</li><li><b>Target leakage</b>: A feature directly/indirectly encodes the label (e.g., using \"refund issued\" when predicting fraud)</li><li><b>Temporal leakage</b>: Using future information when predicting the past</li></ul><b>Fix</b>: Fit every transform strictly on the training split, then apply to validation/test.",
       "tags": [
@@ -381,7 +381,7 @@
       ]
     },
     {
-      "uid": "01-044",
+      "uid": "deep-learning-foundations-and-concepts-01-044",
       "front": "What is dataset shift (distribution shift) and what are the main types?",
       "back": "<b>Dataset shift</b> means the data distribution changes between training and deployment, so training performance no longer predicts real-world performance.<br><br><b>Common types</b>:<ul><li><b>Covariate shift</b>: \\( p(\\vec{x}) \\) changes but \\( p(y|\\vec{x}) \\) stays the same (inputs look different)</li><li><b>Label shift</b>: \\( p(y) \\) changes but \\( p(\\vec{x}|y) \\) stays the same (class proportions change)</li><li><b>Concept drift</b>: \\( p(y|\\vec{x}) \\) changes (the underlying relationship changes)</li></ul>",
       "tags": [
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "uid": "01-045",
+      "uid": "deep-learning-foundations-and-concepts-01-045",
       "front": "When is a random train/validation/test split a bad idea?",
       "back": "Random splitting is risky when it breaks the assumptions of independence between splits.<br><br><b>Common cases</b>:<ul><li><b>Time series</b>: Random split causes temporal leakage; prefer chronological splits</li><li><b>Grouped data</b> (e.g., multiple samples per user/patient): Random split leaks identity; use group-based splits</li><li><b>Near-duplicates</b> (e.g., similar frames/images): Duplicates across splits inflate metrics; deduplicate or split by source</li></ul>",
       "tags": [
@@ -401,7 +401,7 @@
       ]
     },
     {
-      "uid": "01-046",
+      "uid": "deep-learning-foundations-and-concepts-01-046",
       "front": "What is the correct role of the test set in model development?",
       "back": "The <b>test set</b> should be used <b>only once</b>, at the end, to estimate generalization after all modeling decisions are fixed.<br><br><b>Rule</b>: If you look at test performance and then change anything (features, preprocessing, architecture, hyperparameters), the test set has become part of model selection and your evaluation is biased.<br><br>Use <b>validation</b> (or cross-validation) for all choices; reserve the test set for the final report.",
       "tags": [
@@ -411,7 +411,7 @@
       ]
     },
     {
-      "uid": "01-047",
+      "uid": "deep-learning-foundations-and-concepts-01-047",
       "front": "What is a stratified split and when should you use it?",
       "back": "A <b>stratified split</b> preserves the class proportions across train/validation/test splits.<br><br><b>When to use</b>: In classification, especially with <b>imbalanced classes</b>, stratification reduces the chance that one split has too few positives (which makes metrics noisy and misleading).",
       "tags": [
@@ -421,7 +421,7 @@
       ]
     },
     {
-      "uid": "01-048",
+      "uid": "deep-learning-foundations-and-concepts-01-048",
       "front": "What is contrastive learning?",
       "back": "<b>Contrastive learning</b> trains models by comparing similar and dissimilar examples.<br><br><b>Core idea</b>: Pull 'positive pairs' (similar examples) close together in embedding space, push 'negative pairs' (dissimilar examples) apart.<br><br><b>Self-supervised setup</b>: Create positive pairs by augmenting the same image twice (e.g., different crops). Other images in the batch are negatives.<br><br><b>Why useful</b>: Learns meaningful representations without labels. The model must capture semantic content to recognize that two augmented views are the same image.",
       "tags": [
@@ -431,7 +431,7 @@
       ]
     },
     {
-      "uid": "01-049",
+      "uid": "deep-learning-foundations-and-concepts-01-049",
       "front": "What is the InfoNCE loss (contrastive loss)?",
       "back": "<b>InfoNCE</b> is the standard loss for contrastive learning:<br><br>\\( L = -\\log \\frac{\\exp(\\text{sim}(z_i, z_j)/\\tau)}{\\sum_{k \\neq i} \\exp(\\text{sim}(z_i, z_k)/\\tau)} \\)<br><br>where:<ul><li>\\( z_i, z_j \\) = embeddings of a positive pair</li><li>\\( \\text{sim} \\) = similarity (usually cosine)</li><li>\\( \\tau \\) = temperature (controls sharpness)</li><li>Sum over k includes all negatives</li></ul><b>Intuition</b>: Softmax over similarities. Maximize probability of the positive pair being most similar.",
       "tags": [
@@ -441,7 +441,7 @@
       ]
     },
     {
-      "uid": "01-050",
+      "uid": "deep-learning-foundations-and-concepts-01-050",
       "front": "What are examples of contrastive learning methods?",
       "back": "<b>Vision</b>:<ul><li><b>SimCLR</b>: Simple framework using large batches for negatives</li><li><b>MoCo</b>: Uses a momentum encoder and queue of negatives</li><li><b>BYOL/SimSiam</b>: No explicit negatives (avoids collapse via architectural tricks)</li></ul><b>Language</b>:<ul><li>Sentence embeddings (e.g., SimCSE)</li></ul><b>Multimodal</b>:<ul><li><b>CLIP</b>: Aligns image and text embeddings contrastively</li></ul><b>Key insight</b>: Quality and diversity of augmentations matter more than specific architecture.",
       "tags": [
@@ -451,7 +451,7 @@
       ]
     },
     {
-      "uid": "01-051",
+      "uid": "deep-learning-foundations-and-concepts-01-051",
       "front": "What is the Vapnik-Chervonenkis (VC) dimension?",
       "back": "<b>VC dimension</b> measures the <b>capacity</b> (expressiveness) of a hypothesis class.<br><br><b>Definition</b>: The largest number of points that can be <b>shattered</b> (classified in all possible ways) by the hypothesis class.<br><br><b>Examples</b>:<ul><li>Linear classifiers in 2D: VC dim = 3 (can shatter 3 points, not 4)</li><li>Linear classifiers in d dimensions: VC dim = d + 1</li><li>Neural networks: Roughly proportional to number of parameters</li></ul><b>Why it matters</b>:<ul><li>Bounds generalization error: higher VC dim needs more data</li><li>Helps understand model complexity beyond parameter count</li><li>Fundamental concept in statistical learning theory</li></ul>",
       "tags": [
@@ -461,7 +461,7 @@
       ]
     },
     {
-      "uid": "01-052",
+      "uid": "deep-learning-foundations-and-concepts-01-052",
       "front": "What is the PAC (Probably Approximately Correct) learning framework?",
       "back": "<b>PAC learning</b> formalizes what it means for a hypothesis class to be learnable.<br><br><b>Definition</b>: A class is PAC-learnable if there exists an algorithm that, for any target function in the class and any distribution over inputs, can find a hypothesis with:<ul><li>Error at most \\( \\epsilon \\) (approximately correct)</li><li>Probability at least \\( 1 - \\delta \\) (probably)</li><li>Using polynomial samples in \\( 1/\\epsilon \\), \\( 1/\\delta \\), and problem size</li></ul><b>Key results</b>:<ul><li>Finite hypothesis classes are PAC-learnable</li><li>Sample complexity depends on VC dimension</li><li>Fundamental theorem: A class is PAC-learnable iff it has finite VC dimension</li></ul><b>Intuition</b>: PAC gives guarantees on <i>how much data</i> you need for <i>how good</i> a solution.",
       "tags": [
@@ -471,7 +471,7 @@
       ]
     },
     {
-      "uid": "01-053",
+      "uid": "deep-learning-foundations-and-concepts-01-053",
       "front": "Compare maximum likelihood, contrastive estimation, and noise contrastive estimation (NCE).",
       "back": "<b>Maximum Likelihood Estimation (MLE)</b>:<ul><li>Maximize \\( \\sum_n \\log p_\\theta(x_n) \\)</li><li>Requires computing \\( Z(\\theta) = \\sum_x \\exp(f_\\theta(x)) \\) (partition function)</li><li>Intractable when output space is large</li></ul><b>Contrastive Estimation</b>:<ul><li>Learn by comparing positive and negative examples</li><li>Avoid computing full partition function</li><li>InfoNCE: \\( -\\log \\frac{\\exp(f(x, x^+))}{\\sum_k \\exp(f(x, x_k^-))} \\)</li></ul><b>Noise Contrastive Estimation (NCE)</b>:<ul><li>Turn density estimation into binary classification</li><li>Classify real data vs samples from noise distribution</li><li>Learn \\( \\log p(x) \\) directly, treating \\( \\log Z \\) as a parameter</li><li>As noise samples increase, approaches MLE</li></ul><b>When to use</b>:<ul><li>MLE: Small discrete outputs, tractable partition function</li><li>Contrastive: Representation learning, similarity tasks</li><li>NCE: Large vocabularies (word embeddings), energy models</li></ul>",
       "tags": [
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "uid": "01-054",
+      "uid": "deep-learning-foundations-and-concepts-01-054",
       "front": "Compare self-supervised learning objectives: contrastive vs masked prediction.",
       "back": "<b>Contrastive learning</b> (e.g., SimCLR, CLIP):<ul><li><b>Objective</b>: Pull similar pairs close, push dissimilar pairs apart</li><li><b>Inductive bias</b>: Augmentation-invariant representations. What you augment away is deemed irrelevant.</li><li><b>Requires</b>: Careful augmentation design, large batches or memory banks for negatives</li><li><b>Risk</b>: Can collapse to trivial solution without proper design</li></ul><b>Masked prediction</b> (e.g., BERT, MAE):<ul><li><b>Objective</b>: Predict masked/corrupted parts from visible parts</li><li><b>Inductive bias</b>: Learn dependencies between parts. Context should predict content.</li><li><b>Requires</b>: High redundancy in data (language, images)</li><li><b>Risk</b>: May learn low-level statistics instead of semantics</li></ul><b>Key differences</b>:<ul><li>Contrastive: Instance-level discrimination</li><li>Masked: Token/patch-level prediction</li><li>Contrastive works better with smaller data; masked scales better</li></ul>",
       "tags": [
@@ -493,7 +493,7 @@
       ]
     },
     {
-      "uid": "01-055",
+      "uid": "deep-learning-foundations-and-concepts-01-055",
       "front": "What is the difference between causal and predictive modeling?",
       "back": "<b>Predictive modeling</b>: Find \\( P(Y|X) \\) to predict Y from X.<ul><li>Correlation is sufficient</li><li>Spurious correlations can help prediction</li><li>Fails under distribution shift</li></ul><b>Causal modeling</b>: Understand how interventions on X affect Y.<ul><li>Requires \\( P(Y|do(X)) \\), not just \\( P(Y|X) \\)</li><li>Robust to certain distribution shifts</li><li>Enables answering counterfactual questions</li></ul><b>Key distinction</b>: Prediction asks 'what will Y be if I observe X?'. Causation asks 'what will Y be if I <i>set</i> X?'<br><br><b>Testing causality from observational data</b>:<ul><li>Randomized experiments (gold standard)</li><li>Instrumental variables</li><li>Regression discontinuity</li><li>Difference-in-differences</li><li>Causal discovery algorithms (PC, FCI)</li></ul><b>Challenges</b>: Confounders, selection bias, unobserved variables. Observational data alone rarely proves causation without strong assumptions.",
       "tags": [

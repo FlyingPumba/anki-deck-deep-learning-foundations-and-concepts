@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "16-001",
+      "uid": "deep-learning-foundations-and-concepts-16-001",
       "front": "What is the motivation for continuous latent variable models?",
       "back": "Many data sets lie close to a <b>manifold of lower dimensionality</b> than the data space.<br>Example: Handwritten digits with varying position and rotation have 3 degrees of freedom (translation + rotation) in a 10,000-pixel space.<br>The translation and rotation are <b>latent variables</b> not directly observed.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "16-002",
+      "uid": "deep-learning-foundations-and-concepts-16-002",
       "front": "What is Principal Component Analysis (PCA)?",
       "back": "A technique for <b>linear dimensionality reduction</b>.<br>Applications:<br><ul><li>Dimensionality reduction</li><li>Lossy data compression</li><li>Feature extraction</li><li>Data visualization</li></ul>Projects data onto a lower-dimensional <b>principal subspace</b>.",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "16-003",
+      "uid": "deep-learning-foundations-and-concepts-16-003",
       "front": "What are the two equivalent definitions of PCA?",
       "back": "<ol><li><b>Maximum variance</b>: Linear projection that maximizes variance of projected data</li><li><b>Minimum error</b>: Linear projection that minimizes mean squared distance between points and their projections</li></ol>Both lead to same solution: eigenvectors of covariance matrix.",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "16-004",
+      "uid": "deep-learning-foundations-and-concepts-16-004",
       "front": "How is the first principal component found?",
       "back": "Maximize projected variance \\( \\mathbf{u}_1^T \\mathbf{S} \\mathbf{u}_1 \\) subject to \\( ||\\mathbf{u}_1|| = 1 \\).<br>Using Lagrange multipliers: \\( \\mathbf{S} \\mathbf{u}_1 = \\lambda_1 \\mathbf{u}_1 \\)<br>Solution: \\( \\mathbf{u}_1 \\) is eigenvector of covariance matrix S with <b>largest eigenvalue</b> \\( \\lambda_1 \\).<br>The variance equals \\( \\lambda_1 \\).",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "16-005",
+      "uid": "deep-learning-foundations-and-concepts-16-005",
       "front": "What is the data covariance matrix in PCA?",
       "back": "\\( \\mathbf{S} = \\frac{1}{N} \\sum_{n=1}^{N} (\\mathbf{x}_n - \\bar{\\mathbf{x}})(\\mathbf{x}_n - \\bar{\\mathbf{x}})^T \\)<br>where \\( \\bar{\\mathbf{x}} = \\frac{1}{N} \\sum_n \\mathbf{x}_n \\) is the sample mean.<br>The eigenvectors of S define the principal directions.",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "16-006",
+      "uid": "deep-learning-foundations-and-concepts-16-006",
       "front": "How is the PCA reconstruction error computed?",
       "back": "Using M principal components, the error is:<br>\\( J = \\sum_{i=M+1}^{D} \\lambda_i \\)<br>The sum of eigenvalues of <b>discarded</b> eigenvectors.<br>Choose the M eigenvectors with <b>largest</b> eigenvalues to minimize J.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "16-007",
+      "uid": "deep-learning-foundations-and-concepts-16-007",
       "front": "What is the PCA approximation of a data point?",
       "back": "\\( \\tilde{\\mathbf{x}}_n = \\bar{\\mathbf{x}} + \\sum_{i=1}^{M} (\\mathbf{x}_n^T \\mathbf{u}_i - \\bar{\\mathbf{x}}^T \\mathbf{u}_i) \\mathbf{u}_i \\)<br>Compression: Replace D-dimensional vector with M coefficients \\( (\\mathbf{x}_n^T \\mathbf{u}_i - \\bar{\\mathbf{x}}^T \\mathbf{u}_i) \\).<br>Reconstruction: Linear combination of M eigenvectors plus mean.",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "16-008",
+      "uid": "deep-learning-foundations-and-concepts-16-008",
       "front": "What is data whitening (sphering)?",
       "back": "Transformation to give data <b>zero mean</b> and <b>identity covariance</b>:<br>\\( \\mathbf{y}_n = \\mathbf{L}^{-1/2} \\mathbf{U}^T (\\mathbf{x}_n - \\bar{\\mathbf{x}}) \\)<br>where U contains eigenvectors and L is diagonal matrix of eigenvalues.<br>Result: Variables become uncorrelated with unit variance.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "16-009",
+      "uid": "deep-learning-foundations-and-concepts-16-009",
       "front": "What is data standardization?",
       "back": "Transform each variable to have <b>zero mean</b> and <b>unit variance</b>:<br>\\( z_i = \\frac{x_i - \\mu_i}{\\sigma_i} \\)<br>Used when variables have different units or scales.<br>Correlation matrix of standardized data has \\( \\rho_{ij} = 1 \\) if perfectly correlated.",
       "tags": [
@@ -101,9 +101,9 @@
       ]
     },
     {
-      "uid": "16-010",
+      "uid": "deep-learning-foundations-and-concepts-16-010",
       "front": "How to handle PCA when N < D?",
-      "back": "When data points N < dimensionality D:<br><ul><li>At most N-1 non-zero eigenvalues exist</li><li>Solve eigenproblem for \\( N \\times N \\) matrix \\( \\frac{1}{N} \\mathbf{X} \\mathbf{X}^T \\) instead of \\( D \\times D \\)</li><li>Cost: \\( O(N^3) \\) instead of \\( O(D^3) \\)</li><li>Recover eigenvectors via \\( \\mathbf{u}_i = \\frac{1}{\\sqrt{N\\lambda_i}} \\mathbf{X}^T \\mathbf{v}_i \\)</li></ul>",
+      "back": "When data points N &lt; dimensionality D:<br><ul><li>At most N-1 non-zero eigenvalues exist</li><li>Solve eigenproblem for \\( N \\times N \\) matrix \\( \\frac{1}{N} \\mathbf{X} \\mathbf{X}^T \\) instead of \\( D \\times D \\)</li><li>Cost: \\( O(N^3) \\) instead of \\( O(D^3) \\)</li><li>Recover eigenvectors via \\( \\mathbf{u}_i = \\frac{1}{\\sqrt{N\\lambda_i}} \\mathbf{X}^T \\mathbf{v}_i \\)</li></ul>",
       "tags": [
         "ch16",
         "pca",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "16-011",
+      "uid": "deep-learning-foundations-and-concepts-16-011",
       "front": "What is probabilistic PCA?",
       "back": "PCA reformulated as a <b>linear-Gaussian latent variable model</b>:<br>\\( p(\\mathbf{z}) = \\mathcal{N}(\\mathbf{z}|\\mathbf{0}, \\mathbf{I}) \\)<br>\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|\\mathbf{W}\\mathbf{z} + \\boldsymbol{\\mu}, \\sigma^2 \\mathbf{I}) \\)<br>The D-dimensional x is a linear transformation of M-dimensional z plus Gaussian noise.",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "16-012",
+      "uid": "deep-learning-foundations-and-concepts-16-012",
       "front": "What are the advantages of probabilistic PCA over standard PCA?",
       "back": "<ol><li><b>EM algorithm</b> for efficient computation</li><li>Handle <b>missing values</b> in data</li><li>Build <b>mixtures</b> of PCA models</li><li><b>Compare</b> with other density models via likelihood</li><li><b>Bayesian</b> treatment to find dimensionality automatically</li><li><b>Generate samples</b> from the distribution</li></ol>",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "16-013",
+      "uid": "deep-learning-foundations-and-concepts-16-013",
       "front": "What is the marginal distribution in probabilistic PCA?",
       "back": "Marginalizing over z:<br>\\( p(\\mathbf{x}) = \\mathcal{N}(\\mathbf{x}|\\boldsymbol{\\mu}, \\mathbf{C}) \\)<br>where:<br>\\( \\mathbf{C} = \\mathbf{W}\\mathbf{W}^T + \\sigma^2 \\mathbf{I} \\)<br>This is a Gaussian with constrained covariance structure (low-rank plus diagonal).",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "16-014",
+      "uid": "deep-learning-foundations-and-concepts-16-014",
       "front": "What is the maximum likelihood solution for probabilistic PCA?",
       "back": "The MLE for W is:<br>\\( \\mathbf{W}_{ML} = \\mathbf{U}_M (\\mathbf{L}_M - \\sigma^2 \\mathbf{I})^{1/2} \\mathbf{R} \\)<br>where:<br><ul><li>\\( \\mathbf{U}_M \\): M leading eigenvectors of S</li><li>\\( \\mathbf{L}_M \\): corresponding eigenvalues</li><li>R: arbitrary rotation matrix</li></ul>Reduces to standard PCA as \\( \\sigma^2 \\to 0 \\).",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "16-015",
+      "uid": "deep-learning-foundations-and-concepts-16-015",
       "front": "What is factor analysis?",
       "back": "Similar to probabilistic PCA but with <b>diagonal</b> noise covariance:<br>\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|\\mathbf{W}\\mathbf{z} + \\boldsymbol{\\mu}, \\boldsymbol{\\Psi}) \\)<br>where \\( \\boldsymbol{\\Psi} = \\text{diag}(\\psi_1, \\ldots, \\psi_D) \\).<br>Allows different noise levels for different observed variables.<br>No closed-form MLE; use EM algorithm.",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "16-016",
+      "uid": "deep-learning-foundations-and-concepts-16-016",
       "front": "What is Independent Component Analysis (ICA)?",
       "back": "Latent variable model where sources are <b>non-Gaussian and independent</b>:<br>\\( \\mathbf{x} = \\mathbf{A}\\mathbf{s} \\)<br>Goal: Recover independent sources s from observed mixtures x.<br>Requires non-Gaussian distributions (Gaussian sources are unidentifiable).<br>Application: Blind source separation (cocktail party problem).",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "16-017",
+      "uid": "deep-learning-foundations-and-concepts-16-017",
       "front": "Why can't ICA recover Gaussian sources?",
       "back": "For Gaussian distributions, <b>uncorrelated implies independent</b>.<br>Any rotation of independent Gaussians gives independent Gaussians.<br>The mixing matrix A is only identifiable up to rotation.<br>Non-Gaussian distributions break this rotational symmetry.",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "16-018",
+      "uid": "deep-learning-foundations-and-concepts-16-018",
       "front": "What is a Kalman filter?",
       "back": "A linear-Gaussian model for <b>sequential data</b> with continuous latent variables.<br>\\( p(\\mathbf{z}_t | \\mathbf{z}_{t-1}) = \\mathcal{N}(\\mathbf{z}_t | \\mathbf{A}\\mathbf{z}_{t-1}, \\mathbf{Q}) \\)<br>\\( p(\\mathbf{x}_t | \\mathbf{z}_t) = \\mathcal{N}(\\mathbf{x}_t | \\mathbf{C}\\mathbf{z}_t, \\mathbf{R}) \\)<br>Used for tracking, navigation, signal processing.",
       "tags": [
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "uid": "16-019",
+      "uid": "deep-learning-foundations-and-concepts-16-019",
       "front": "How does the EM algorithm apply to probabilistic PCA?",
       "back": "E step: Compute posterior \\( p(\\mathbf{z}_n | \\mathbf{x}_n, \\mathbf{W}, \\sigma^2) \\)<br>M step: Update W and \\( \\sigma^2 \\) using expected sufficient statistics.<br>Advantages:<br><ul><li>Avoids explicit covariance matrix computation</li><li>Cost O(NM) per iteration instead of O(D^3)</li><li>Handles missing data naturally</li></ul>",
       "tags": [
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "uid": "16-020",
+      "uid": "deep-learning-foundations-and-concepts-16-020",
       "front": "What is the relationship between PCA and rotation invariance?",
       "back": "If M = D (no dimensionality reduction), PCA is just a <b>rotation</b> of coordinate axes.<br>Axes align with principal components (eigenvectors of covariance).<br>The MLE solution for probabilistic PCA has <b>rotational ambiguity</b> - any rotation R of W gives the same likelihood.",
       "tags": [
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "uid": "16-021",
+      "uid": "deep-learning-foundations-and-concepts-16-021",
       "front": "Why is the principal subspace projection orthogonal?",
       "back": "The error vector \\( \\mathbf{x}_n - \\tilde{\\mathbf{x}}_n \\) lies in the space <b>orthogonal</b> to principal subspace.<br>This minimizes squared projection error because:<br><ul><li>Projected points can move freely within subspace</li><li>Minimum distance from a point to a subspace is perpendicular distance</li></ul>",
       "tags": [
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "uid": "16-022",
+      "uid": "deep-learning-foundations-and-concepts-16-022",
       "front": "What determines how many principal components to keep?",
       "back": "Methods to choose M:<br><ol><li><b>Variance explained</b>: Keep components explaining X% of variance</li><li><b>Elbow method</b>: Look for \"elbow\" in eigenvalue spectrum</li><li><b>Cross-validation</b>: Choose M minimizing held-out reconstruction error</li><li><b>Bayesian PCA</b>: Automatically determines M from data</li><li><b>Application-specific</b>: Based on downstream task performance</li></ol>",
       "tags": [
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "uid": "16-023",
+      "uid": "deep-learning-foundations-and-concepts-16-023",
       "front": "What is the computational complexity of standard PCA?",
       "back": "Full eigenvector decomposition: \\( O(D^3) \\)<br>For M principal components only: \\( O(MD^2) \\) using power method<br>For N < D: \\( O(N^3) \\) by using the smaller matrix \\( \\mathbf{X}\\mathbf{X}^T \\)<br>EM for probabilistic PCA: \\( O(NMD) \\) per iteration",
       "tags": [
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "uid": "16-024",
+      "uid": "deep-learning-foundations-and-concepts-16-024",
       "front": "What is the generative view of latent variable models?",
       "back": "To generate a data point:<br><ol><li>Sample latent variable z from prior p(z)</li><li>Sample observation x from conditional p(x|z)</li></ol>The departures from the manifold are interpreted as <b>noise</b>.<br>This view enables sampling new data points from the learned distribution.",
       "tags": [
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "uid": "16-025",
+      "uid": "deep-learning-foundations-and-concepts-16-025",
       "front": "How do nonlinear latent variable models extend PCA?",
       "back": "Replace linear mapping with <b>neural network</b>:<br>\\( p(\\mathbf{x}|\\mathbf{z}) = \\mathcal{N}(\\mathbf{x}|f(\\mathbf{z}; \\theta), \\sigma^2 \\mathbf{I}) \\)<br>where f is a deep neural network.<br>Examples:<br><ul><li>Variational Autoencoders (VAEs)</li><li>Normalizing Flows</li><li>Diffusion Models</li></ul>Can model complex nonlinear manifolds.",
       "tags": [
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "uid": "16-026",
+      "uid": "deep-learning-foundations-and-concepts-16-026",
       "front": "What is t-SNE?",
       "back": "<b>t-Distributed Stochastic Neighbor Embedding</b>: A nonlinear dimensionality reduction method for visualization.<br><br><b>Key idea</b>: Preserve local neighborhood structure when projecting to 2D/3D.<br><br><b>How it works</b>:<ol><li>Compute pairwise similarities in high-D using Gaussian kernel</li><li>Compute pairwise similarities in low-D using Student-t distribution</li><li>Minimize KL divergence between the two distributions</li></ol><b>Why Student-t?</b> Heavy tails allow moderate distances in high-D to become larger in low-D, preventing crowding.<br><br><b>Limitation</b>: Non-parametric (no projection function), slow for large datasets, sensitive to hyperparameters.",
       "tags": [
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "uid": "16-027",
+      "uid": "deep-learning-foundations-and-concepts-16-027",
       "front": "What is the crowding problem in dimensionality reduction?",
       "back": "In high dimensions, most points are roughly equidistant from each other.<br><br>When projecting to 2D:<ul><li>Not enough room to preserve all distances</li><li>Moderately distant points get crushed together</li><li>Local structure is destroyed</li></ul><b>t-SNE's solution</b>: Use heavy-tailed Student-t distribution in low-D space. This allows moderately similar points to be placed further apart without high cost.<br><br><b>Intuition</b>: The t-distribution has more probability mass in the tails, so distant points in low-D are less penalized.",
       "tags": [
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "uid": "16-028",
+      "uid": "deep-learning-foundations-and-concepts-16-028",
       "front": "What is the perplexity hyperparameter in t-SNE?",
       "back": "<b>Perplexity</b> controls the effective number of neighbors each point considers.<br><br><b>Interpretation</b>: Roughly the number of close neighbors used for similarity computation.<br><br><b>Typical values</b>: 5-50 (default often 30)<br><br><b>Effect</b>:<ul><li>Low perplexity: Focus on very local structure, may fragment clusters</li><li>High perplexity: Consider more global structure, clusters more coherent</li></ul><b>Best practice</b>: Try multiple values; results can vary significantly.",
       "tags": [
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "uid": "16-029",
+      "uid": "deep-learning-foundations-and-concepts-16-029",
       "front": "What are common pitfalls when interpreting t-SNE plots?",
       "back": "<b>1. Cluster sizes don't reflect real sizes</b>: t-SNE expands dense clusters and contracts sparse ones.<br><br><b>2. Distances between clusters are meaningless</b>: Only local distances are preserved; global distances are not.<br><br><b>3. Random initialization matters</b>: Different runs give different layouts. Run multiple times.<br><br><b>4. Perplexity changes everything</b>: The same data can look very different with different perplexity.<br><br><b>5. Not suitable for new points</b>: No projection function; must rerun on entire dataset.<br><br><b>Rule</b>: Use for exploration, not for making quantitative claims about cluster relationships.",
       "tags": [
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "uid": "16-030",
+      "uid": "deep-learning-foundations-and-concepts-16-030",
       "front": "What is UMAP?",
       "back": "<b>Uniform Manifold Approximation and Projection</b>: A faster alternative to t-SNE for visualization and dimensionality reduction.<br><br><b>Key advantages over t-SNE</b>:<ul><li>Much faster (scales better to large datasets)</li><li>Better preserves global structure</li><li>Can be used for general dimensionality reduction (not just 2D)</li><li>Has a learned projection (can embed new points)</li></ul><b>How it works</b>: Constructs a topological representation using fuzzy simplicial sets, then optimizes a low-dimensional representation to match.<br><br><b>Hyperparameters</b>: n_neighbors (like perplexity), min_dist (controls clustering tightness).",
       "tags": [
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "uid": "16-031",
+      "uid": "deep-learning-foundations-and-concepts-16-031",
       "front": "How do t-SNE and UMAP compare?",
       "back": "<b>Speed</b>: UMAP is significantly faster, especially for large N.<br><br><b>Global structure</b>: UMAP tends to preserve more global structure; t-SNE focuses on local.<br><br><b>Reproducibility</b>: UMAP is more deterministic (less sensitive to initialization).<br><br><b>Out-of-sample</b>: UMAP can embed new points; t-SNE cannot.<br><br><b>Dimensionality</b>: UMAP works well for any target dimension; t-SNE is mainly for 2D/3D.<br><br><b>When to use which</b>:<ul><li>t-SNE: Smaller datasets, publication-quality 2D visualizations</li><li>UMAP: Larger datasets, need for speed, or dimensionality reduction for downstream tasks</li></ul>",
       "tags": [
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "uid": "16-032",
+      "uid": "deep-learning-foundations-and-concepts-16-032",
       "front": "When should you use PCA vs t-SNE/UMAP?",
       "back": "<b>Use PCA when</b>:<ul><li>You need a linear projection</li><li>Interpretability of components matters</li><li>Fast computation on very large data</li><li>Preprocessing before other algorithms</li><li>Need to project new points easily</li></ul><b>Use t-SNE/UMAP when</b>:<ul><li>Data lies on nonlinear manifolds</li><li>Goal is visualization in 2D/3D</li><li>Preserving local cluster structure is important</li><li>Exploring data interactively</li></ul><b>Common workflow</b>: PCA to reduce to ~50 dimensions, then t-SNE/UMAP to 2D for visualization.",
       "tags": [

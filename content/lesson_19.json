@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "19-001",
+      "uid": "deep-learning-foundations-and-concepts-19-001",
       "front": "What is an autoencoder?",
       "back": "A neural network trained to <b>map each input onto itself</b>.<br>Structure:<br><ul><li><b>Encoder</b>: Maps input x to latent representation z</li><li><b>Decoder</b>: Reconstructs x from z</li></ul>Also called auto-associative neural network.<br>Constraint forces network to learn useful representations.",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "19-002",
+      "uid": "deep-learning-foundations-and-concepts-19-002",
       "front": "What is the bottleneck in an autoencoder?",
       "back": "A hidden layer with <b>fewer units</b> than input dimensionality.<br>Forces compression of information.<br>Encoder: D → M dimensions (M < D)<br>Decoder: M → D dimensions<br>Network must learn efficient representation to reconstruct accurately.",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "19-003",
+      "uid": "deep-learning-foundations-and-concepts-19-003",
       "front": "How do linear autoencoders relate to PCA?",
       "back": "With <b>linear activations</b> and bottleneck:<br><ul><li>Global minimum projects onto M-dimensional subspace</li><li>Subspace is spanned by first M principal components</li></ul>But: No advantage over standard PCA (SVD gives correct answer in finite time).",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "19-004",
+      "uid": "deep-learning-foundations-and-concepts-19-004",
       "front": "Why use nonlinear autoencoders instead of PCA?",
       "back": "Nonlinear autoencoders perform <b>nonlinear dimensionality reduction</b>.<br>Can capture:<br><ul><li>Curved manifolds</li><li>Complex data distributions</li><li>Nonlinear relationships</li></ul>PCA limited to linear subspaces.",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "19-005",
+      "uid": "deep-learning-foundations-and-concepts-19-005",
       "front": "What is a sparse autoencoder?",
       "back": "An autoencoder with <b>sparsity constraint</b> on hidden activations.<br>Regularizer on activations:<br>\\( \\Omega = \\sum_k |h_k| \\)<br>Encourages most hidden units to be inactive.<br>Note: Regularizes <b>activations</b> (not weights).<br>Can have more hidden units than inputs (overcomplete).",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "19-006",
+      "uid": "deep-learning-foundations-and-concepts-19-006",
       "front": "What is a denoising autoencoder?",
       "back": "Trained to <b>reconstruct clean input from corrupted input</b>.<br>Process:<br><ol><li>Corrupt input x with noise → \\( \\tilde{x} \\)</li><li>Encode \\( \\tilde{x} \\) to latent z</li><li>Decode to reconstruct original x</li></ol>Forces network to learn robust features by undoing corruption.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "19-007",
+      "uid": "deep-learning-foundations-and-concepts-19-007",
       "front": "What is a masked autoencoder?",
       "back": "A denoising autoencoder where corruption is <b>masking parts of input</b>.<br>Process:<br><ol><li>Randomly mask patches of input image</li><li>Encoder sees only visible patches</li><li>Decoder reconstructs full image</li></ol>Loss computed only on masked regions.<br>Images have high redundancy, so high masking ratios (75%) work well.",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "19-008",
+      "uid": "deep-learning-foundations-and-concepts-19-008",
       "front": "What is a Variational Autoencoder (VAE)?",
       "back": "A <b>probabilistic</b> generative model combining:<br><ol><li><b>Encoder</b> (inference network): Approximates posterior q(z|x)</li><li><b>Decoder</b> (generator): Models p(x|z)</li><li><b>Prior</b>: p(z) typically standard Gaussian</li></ol>Trained by maximizing the <b>ELBO</b> (evidence lower bound).",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "19-009",
+      "uid": "deep-learning-foundations-and-concepts-19-009",
       "front": "What are the three key ideas behind VAEs?",
       "back": "<ol><li><b>ELBO</b>: Approximate intractable likelihood with lower bound</li><li><b>Amortized inference</b>: Neural network approximates posterior for all x (not just one)</li><li><b>Reparameterization trick</b>: Enable backpropagation through stochastic sampling</li></ol>",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "19-010",
+      "uid": "deep-learning-foundations-and-concepts-19-010",
       "front": "What is the ELBO in VAEs?",
       "back": "<b>Evidence Lower BOund</b> on log likelihood:<br>\\( \\ln p(x) \\geq E_{q(z|x)}[\\ln p(x|z)] - D_{KL}(q(z|x) || p(z)) \\)<br>Two terms:<br><ol><li><b>Reconstruction</b>: Expected log likelihood</li><li><b>KL divergence</b>: Regularizes posterior toward prior</li></ol>",
       "tags": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "19-011",
+      "uid": "deep-learning-foundations-and-concepts-19-011",
       "front": "What is amortized inference?",
       "back": "Using a <b>single neural network</b> to approximate the posterior for all data points.<br>Traditional VI: Optimize separate q(z) for each x<br>Amortized: Encoder network q(z|x; \\( \\phi \\)) works for any x<br><b>Cost amortized</b> across all data points during training.",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "19-012",
+      "uid": "deep-learning-foundations-and-concepts-19-012",
       "front": "What is the reparameterization trick?",
       "back": "A technique to backpropagate through stochastic sampling.<br>Instead of: \\( z \\sim \\mathcal{N}(\\mu, \\sigma^2) \\)<br>Write: \\( z = \\mu + \\sigma \\cdot \\epsilon \\) where \\( \\epsilon \\sim \\mathcal{N}(0, 1) \\)<br>Gradients flow through \\( \\mu \\) and \\( \\sigma \\), not through sampling operation.",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "19-013",
+      "uid": "deep-learning-foundations-and-concepts-19-013",
       "front": "What does the encoder output in a VAE?",
       "back": "Parameters of the approximate posterior:<br>\\( q(z|x) = \\mathcal{N}(z | \\mu(x), \\sigma^2(x)) \\)<br>Encoder outputs:<br><ul><li>Mean \\( \\mu(x) \\)</li><li>Variance \\( \\sigma^2(x) \\) (often log-variance for numerical stability)</li></ul>Different from deterministic autoencoder which outputs z directly.",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "19-014",
+      "uid": "deep-learning-foundations-and-concepts-19-014",
       "front": "Why does the KL term in ELBO act as regularization?",
       "back": "KL divergence \\( D_{KL}(q(z|x) || p(z)) \\) penalizes deviation from prior.<br>Effects:<br><ul><li>Prevents encoder from producing delta functions</li><li>Encourages smooth, structured latent space</li><li>Enables meaningful interpolation between points</li></ul>Without it: VAE degenerates to deterministic autoencoder.",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "19-015",
+      "uid": "deep-learning-foundations-and-concepts-19-015",
       "front": "How do you sample from a trained VAE?",
       "back": "<ol><li>Sample latent: \\( z \\sim p(z) = \\mathcal{N}(0, I) \\)</li><li>Decode: Pass z through decoder network</li><li>Output: Either use decoder mean directly, or sample from p(x|z)</li></ol>No need for encoder at generation time.",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "19-016",
+      "uid": "deep-learning-foundations-and-concepts-19-016",
       "front": "What is the difference between VAE encoder and decoder roles?",
       "back": "<b>Encoder</b> (inference): Compresses data x → approximate posterior q(z|x)<br>Used for: Latent representation, inference<br><b>Decoder</b> (generative): Maps latent z → data distribution p(x|z)<br>Used for: Generation, reconstruction",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "19-017",
+      "uid": "deep-learning-foundations-and-concepts-19-017",
       "front": "Why are VAE samples sometimes blurry compared to GANs?",
       "back": "VAEs optimize a <b>reconstruction loss</b> (often MSE).<br>MSE encourages average of possible reconstructions → blurry.<br>GANs optimize adversarial loss → sharper but may miss modes.<br>Trade-off: VAEs more stable, GANs sharper.",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "19-018",
+      "uid": "deep-learning-foundations-and-concepts-19-018",
       "front": "What makes the VAE latent space structured?",
       "back": "The <b>KL regularization</b> toward standard Gaussian:<br><ul><li>Latent space is continuous (no gaps)</li><li>Nearby points in z-space → similar reconstructions</li><li>Enables smooth interpolation</li><li>Standard Gaussian prior makes sampling easy</li></ul>",
       "tags": [
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "uid": "19-019",
+      "uid": "deep-learning-foundations-and-concepts-19-019",
       "front": "Compare variational inference (VI) and MCMC for Bayesian posterior approximation.",
       "back": "<b>Variational Inference</b>:<ul><li>Approximates posterior with tractable distribution q(z)</li><li>Optimizes ELBO (lower bound on log evidence)</li><li>Fast, scalable to large datasets</li><li>Biased: q may not match true posterior shape</li></ul><b>MCMC</b> (Markov Chain Monte Carlo):<ul><li>Samples from true posterior via Markov chain</li><li>Asymptotically exact (unbiased with infinite samples)</li><li>Slow, hard to diagnose convergence</li><li>Doesn't scale well to large data</li></ul><b>Failure modes</b>:<ul><li><b>VI</b>: Mode-seeking (may miss modes), underestimates variance, can give overconfident posteriors</li><li><b>MCMC</b>: Poor mixing (chain stuck in one mode), slow convergence, hard to tune step sizes</li></ul><b>When to use</b>:<ul><li>VI: Large datasets, need speed, okay with approximation</li><li>MCMC: Small data, need accurate uncertainty, can afford computation</li></ul>",
       "tags": [
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "uid": "19-020",
+      "uid": "deep-learning-foundations-and-concepts-19-020",
       "front": "Derive the Evidence Lower Bound (ELBO) for a latent variable model.",
       "back": "<b>Goal</b>: Maximize log evidence \\( \\log p(x) \\) but it's intractable.<br><br><b>Derivation</b>: For any distribution q(z):<br>\\( \\log p(x) = \\log \\int p(x,z) dz \\)<br>\\( = \\log \\int q(z) \\frac{p(x,z)}{q(z)} dz \\)<br>\\( \\geq \\int q(z) \\log \\frac{p(x,z)}{q(z)} dz \\) (Jensen's inequality)<br>\\( = \\mathbb{E}_q[\\log p(x,z)] - \\mathbb{E}_q[\\log q(z)] \\)<br>\\( = \\mathbb{E}_q[\\log p(x|z)] - D_{KL}(q(z) \\| p(z)) \\)<br><br><b>The ELBO</b>: \\( \\mathcal{L} = \\mathbb{E}_q[\\log p(x|z)] - D_{KL}(q(z) \\| p(z)) \\)<br><br><b>What optimizing ELBO does</b>:<ul><li>Reconstruction term: Make q(z) encode information about x</li><li>KL term: Keep q(z) close to prior p(z)</li><li>Tightness: ELBO = log p(x) when q(z) = p(z|x)</li></ul>",
       "tags": [
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "uid": "19-021",
+      "uid": "deep-learning-foundations-and-concepts-19-021",
       "front": "What are normalizing flows and how do they work?",
       "back": "<b>Normalizing flows</b>: Generative models that transform a simple distribution into a complex one via a sequence of invertible mappings.<br><br><b>Key idea</b>: Start with \\( z_0 \\sim p_0(z) \\) (e.g., Gaussian), apply transformations:<br>\\( z_K = f_K \\circ f_{K-1} \\circ \\cdots \\circ f_1(z_0) \\)<br><br><b>Change of variables</b>:<br>\\( \\log p(x) = \\log p_0(f^{-1}(x)) + \\sum_{k=1}^K \\log |\\det \\frac{\\partial f_k^{-1}}{\\partial z_k}| \\)<br><br><b>Requirements</b>: Each \\( f_k \\) must be invertible with tractable Jacobian determinant.<br><br><b>Examples</b>: RealNVP, Glow, Neural Spline Flows.<br><br><b>Advantages</b>:<ul><li>Exact likelihood computation</li><li>Exact sampling</li><li>Invertible (can go from x to z)</li></ul><b>Limitations</b>:<ul><li>Architectural constraints for tractable Jacobian</li><li>Can be slow (many sequential transformations)</li><li>Mode coverage can be poor</li></ul>",
       "tags": [

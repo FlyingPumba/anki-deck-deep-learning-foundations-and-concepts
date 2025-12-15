@@ -11,7 +11,7 @@
   ],
   "cards": [
     {
-      "uid": "07-001",
+      "uid": "deep-learning-foundations-and-concepts-07-001",
       "front": "What is automatic differentiation (autodiff)?",
       "back": "A technique to compute exact derivatives by:<br><ol><li>Taking code that evaluates a function</li><li>Augmenting it to also compute derivatives</li></ol>Unlike numerical differentiation (finite differences) or symbolic differentiation, autodiff:<br><ul><li>Has no approximation error</li><li>Handles control flow (loops, conditionals)</li><li>Scales efficiently</li></ul>",
       "tags": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "uid": "07-002",
+      "uid": "deep-learning-foundations-and-concepts-07-002",
       "front": "What is the evaluation trace in automatic differentiation?",
       "back": "A directed acyclic graph (DAG) representing the sequence of elementary operations in a computation.<br>Each node is an intermediate variable. Edges connect operations.<br><ul><li>pa(i): parents of node i (inputs to the operation)</li><li>ch(i): children of node i (operations that use this value)</li></ul>",
       "tags": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "uid": "07-003",
+      "uid": "deep-learning-foundations-and-concepts-07-003",
       "front": "What are primal and tangent variables in forward-mode autodiff?",
       "back": "<b>Primal variable</b> \\( z_i \\): The actual computed value at node i<br><b>Tangent variable</b> \\( \\dot{z}_i \\): The derivative \\( \\frac{\\partial z_i}{\\partial x_j} \\) with respect to one input \\( x_j \\)<br>Both are computed together in a single forward pass.",
       "tags": [
@@ -41,7 +41,7 @@
       ]
     },
     {
-      "uid": "07-004",
+      "uid": "deep-learning-foundations-and-concepts-07-004",
       "front": "What is forward propagation in neural networks?",
       "back": "Computing the network output by passing inputs through layers sequentially:<br>\\( \\vec{x} \\to \\vec{z}^{(1)} \\to \\vec{z}^{(2)} \\to \\cdots \\to \\vec{y} \\)<br>Each layer applies: linear transformation + activation function.<br>Must be done before backpropagation.",
       "tags": [
@@ -51,7 +51,7 @@
       ]
     },
     {
-      "uid": "07-005",
+      "uid": "deep-learning-foundations-and-concepts-07-005",
       "front": "What is the backpropagation formula?",
       "back": "For hidden unit j:<br>\\( \\delta_j = h'(a_j) \\sum_{k} w_{kj} \\delta_k \\)<br>Where:<br><ul><li>\\( \\delta_j = \\frac{\\partial E}{\\partial a_j} \\) is the error signal</li><li>Sum is over units k that receive input from j</li><li>\\( h' \\) is the activation derivative</li></ul>Errors propagate backwards from output to input.",
       "tags": [
@@ -61,7 +61,7 @@
       ]
     },
     {
-      "uid": "07-006",
+      "uid": "deep-learning-foundations-and-concepts-07-006",
       "front": "How is the gradient with respect to a weight computed in backpropagation?",
       "back": "\\( \\frac{\\partial E}{\\partial w_{ji}} = \\delta_j \\cdot z_i \\)<br>The derivative is the product of:<br><ul><li>The error signal \\( \\delta_j \\) at the receiving unit</li><li>The activation \\( z_i \\) of the sending unit</li></ul>Simply multiply 'error signal' by 'input to the link'.",
       "tags": [
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "uid": "07-007",
+      "uid": "deep-learning-foundations-and-concepts-07-007",
       "front": "What is the computational complexity of backpropagation?",
       "back": "<b>O(W)</b> where W is the number of weights.<br>For networks with non-sparse connections, W dominates and the cost is essentially the same as a forward pass.<br>This is why gradient-based training is practical for large networks.",
       "tags": [
@@ -81,7 +81,7 @@
       ]
     },
     {
-      "uid": "07-008",
+      "uid": "deep-learning-foundations-and-concepts-07-008",
       "front": "What is the Jacobian matrix in neural networks?",
       "back": "Matrix of partial derivatives of outputs with respect to inputs:<br>\\( J_{ki} = \\frac{\\partial y_k}{\\partial x_i} \\)<br>Provides a measure of <b>local sensitivity</b> of outputs to input changes.<br>Useful for understanding network behavior and some training algorithms.",
       "tags": [
@@ -91,7 +91,7 @@
       ]
     },
     {
-      "uid": "07-009",
+      "uid": "deep-learning-foundations-and-concepts-07-009",
       "front": "What are the drawbacks of numerical differentiation?",
       "back": "<b>Limited accuracy</b>: Finite difference approximation has truncation error.<br><b>Computational cost</b>: O(W) function evaluations needed for W parameters.<br>Symmetrical central differences improve accuracy but double the cost.",
       "tags": [
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "uid": "07-010",
+      "uid": "deep-learning-foundations-and-concepts-07-010",
       "front": "What are the drawbacks of symbolic differentiation?",
       "back": "<ol><li><b>Expression swell</b>: Resulting expressions can be exponentially larger than original</li><li><b>Requires closed-form expressions</b>: Cannot handle control flow (loops, conditionals)</li><li><b>Redundant computation</b>: May recompute shared subexpressions</li></ol>",
       "tags": [
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "uid": "07-011",
+      "uid": "deep-learning-foundations-and-concepts-07-011",
       "front": "What is forward-mode automatic differentiation?",
       "back": "Computes derivatives by propagating tangent values <b>forward</b> through the computation graph.<br>For function with D inputs and K outputs:<br><ul><li>One forward pass computes derivatives w.r.t. <b>one input</b></li><li>Need D passes to get all gradients</li></ul>Efficient when K >> D (few inputs, many outputs).",
       "tags": [
@@ -121,7 +121,7 @@
       ]
     },
     {
-      "uid": "07-012",
+      "uid": "deep-learning-foundations-and-concepts-07-012",
       "front": "What is reverse-mode automatic differentiation?",
       "back": "Computes derivatives by propagating <b>adjoint variables</b> backward through the computation graph.<br>For function with D inputs and K outputs:<br><ul><li>One backward pass computes derivatives w.r.t. <b>all inputs</b></li><li>Need K passes for all output gradients</li></ul>Efficient when D >> K (many inputs, few outputs). <b>Backpropagation is a special case.</b>",
       "tags": [
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "uid": "07-013",
+      "uid": "deep-learning-foundations-and-concepts-07-013",
       "front": "What are adjoint variables in reverse-mode autodiff?",
       "back": "\\( \\bar{z}_i = \\frac{\\partial E}{\\partial z_i} \\)<br>The derivative of the final output (loss) with respect to intermediate variable \\( z_i \\).<br>Computed by backward propagation:<br>\\( \\bar{z}_i = \\sum_{j \\in \\text{ch}(i)} \\bar{z}_j \\frac{\\partial z_j}{\\partial z_i} \\)",
       "tags": [
@@ -141,7 +141,7 @@
       ]
     },
     {
-      "uid": "07-014",
+      "uid": "deep-learning-foundations-and-concepts-07-014",
       "front": "Why is reverse-mode autodiff more memory intensive than forward-mode?",
       "back": "Reverse mode requires storing <b>all intermediate values</b> from the forward pass to use during the backward pass.<br>Forward mode computes primal and tangent values together, discarding them as it goes.<br>Memory vs. computation tradeoff.",
       "tags": [
@@ -151,7 +151,7 @@
       ]
     },
     {
-      "uid": "07-015",
+      "uid": "deep-learning-foundations-and-concepts-07-015",
       "front": "What is a regularization penalty term?",
       "back": "An additional term in the loss function that penalizes model complexity:<br>\\( \\tilde{E}(\\vec{w}) = E(\\vec{w}) + \\lambda \\Omega(\\vec{w}) \\)<br>Where:<br><ul><li>\\( E \\) is the data error</li><li>\\( \\Omega \\) is the regularizer</li><li>\\( \\lambda \\) controls the strength</li></ul>Reduces overfitting by constraining parameter values.",
       "tags": [
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "uid": "07-016",
+      "uid": "deep-learning-foundations-and-concepts-07-016",
       "front": "What is the bias-variance trade-off in the context of regularization?",
       "back": "Regularization:<br><ul><li><b>Increases bias</b>: Model is more constrained, may underfit</li><li><b>Decreases variance</b>: Less sensitive to training data variations</li></ul>Optimal regularization balances these to minimize total error on test data.",
       "tags": [
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "uid": "07-017",
+      "uid": "deep-learning-foundations-and-concepts-07-017",
       "front": "What is weight decay (L2 regularization)?",
       "back": "Regularizer that penalizes large weight magnitudes:<br>\\( \\Omega(\\vec{w}) = \\frac{1}{2}\\|\\vec{w}\\|^2 = \\frac{1}{2}\\sum_i w_i^2 \\)<br>Called 'weight decay' because it encourages weights to <b>decay towards zero</b> unless supported by data.<br>Gradient contribution: \\( \\lambda w_i \\)",
       "tags": [
@@ -181,7 +181,7 @@
       ]
     },
     {
-      "uid": "07-018",
+      "uid": "deep-learning-foundations-and-concepts-07-018",
       "front": "How does L2 regularization affect the effective number of parameters?",
       "back": "L2 regularization <b>suppresses parameters</b> that have little effect on the data fit.<br>The <b>effective number of parameters</b> is the number that remain active (non-negligible) after regularization.<br>This can be much smaller than the total parameter count.",
       "tags": [
@@ -191,7 +191,7 @@
       ]
     },
     {
-      "uid": "07-020",
+      "uid": "deep-learning-foundations-and-concepts-07-020",
       "front": "What is L1 regularization (lasso)?",
       "back": "Regularizer using absolute values:<br>\\( \\Omega(\\vec{w}) = \\sum_i |w_i| \\)<br>Key property: Produces <b>sparse solutions</b> where many weights are exactly zero.<br>As \\( \\lambda \\) increases, more parameters are driven to zero.<br>Useful for feature selection.",
       "tags": [
@@ -201,7 +201,7 @@
       ]
     },
     {
-      "uid": "07-021",
+      "uid": "deep-learning-foundations-and-concepts-07-021",
       "front": "Why does L1 regularization produce sparse solutions while L2 does not?",
       "back": "<b>Intuition</b>: Think of minimizing error subject to a budget constraint on weights.<ul><li><b>L2 constraint</b>: A circle (2D) or sphere. The optimal point where error contours touch the circle is usually <i>not</i> on an axis - weights are small but non-zero.</li><li><b>L1 constraint</b>: A diamond shape with <i>corners on the axes</i>. Error contours are much more likely to first touch the diamond at a corner, where some weights are exactly zero.</li></ul><b>Gradient view</b>:<ul><li>L1 gradient is constant (\\( \\pm 1 \\)) regardless of weight magnitude - it pushes weights all the way to zero.</li><li>L2 gradient is proportional to weight (\\( 2w \\)) - it weakens as weights shrink, so they approach but rarely reach zero.</li></ul>",
       "tags": [
@@ -211,7 +211,7 @@
       ]
     },
     {
-      "uid": "07-022",
+      "uid": "deep-learning-foundations-and-concepts-07-022",
       "front": "What is early stopping?",
       "back": "A regularization technique that <b>stops training before convergence</b> based on validation error.<br>As training progresses:<br><ul><li>Training error decreases</li><li>Validation error initially decreases, then increases (overfitting)</li></ul>Stop at minimum validation error.",
       "tags": [
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "uid": "07-024",
+      "uid": "deep-learning-foundations-and-concepts-07-024",
       "front": "What are learning curves?",
       "back": "Plots of performance measures (training/validation error) vs. training progress.<br>Used to diagnose:<br><ul><li>Overfitting (training error << validation error)</li><li>Underfitting (both errors high)</li><li>When to apply early stopping</li></ul>Can also plot vs. dataset size or model complexity.",
       "tags": [
@@ -231,7 +231,7 @@
       ]
     },
     {
-      "uid": "07-028",
+      "uid": "deep-learning-foundations-and-concepts-07-028",
       "front": "What is geometric deep learning?",
       "back": "A framework for designing neural networks that respect <b>symmetries</b> in data.<br>Key idea: Build invariances/equivariances into network architecture.<br>Examples:<br><ul><li>CNNs: Translation equivariance</li><li>Graph NNs: Permutation equivariance</li><li>Spherical CNNs: Rotation equivariance</li></ul>",
       "tags": [
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "uid": "07-030",
+      "uid": "deep-learning-foundations-and-concepts-07-030",
       "front": "What is the double descent phenomenon?",
       "back": "A model's test error initially <b>decreases</b> with the number of parameters, then <b>peaks</b>, then <b>decreases again</b>.<br><br>The peak usually occurs near the <b>interpolation threshold</b>, where the number of parameters equals the number of training data points.<br><br><b>Why does error decrease again?</b> With many more parameters than needed, the model can choose among many perfect fits and picks a smoother one (via implicit regularization from optimization).<br><br>This is surprising because it contradicts classical assumptions about overfitting - traditionally we expected error to only increase once models become too complex.",
       "tags": [
@@ -251,7 +251,7 @@
       ]
     },
     {
-      "uid": "07-031",
+      "uid": "deep-learning-foundations-and-concepts-07-031",
       "front": "What is effective model complexity?",
       "back": "The <b>maximum training set size</b> that a model can interpolate (fit exactly).<br>Effective complexity increases with:<br><ul><li>More parameters</li><li>More training epochs</li><li>Smaller regularization</li></ul>Not just parameter count, but capacity to fit data.",
       "tags": [
@@ -261,7 +261,7 @@
       ]
     },
     {
-      "uid": "07-032",
+      "uid": "deep-learning-foundations-and-concepts-07-032",
       "front": "Why can increasing model size sometimes improve generalization?",
       "back": "In the over-parameterized regime:<br><ul><li>Many solutions can interpolate training data</li><li>Optimization and regularization select <b>simpler</b> solutions</li><li>Larger models can find smoother interpolations</li></ul>This explains double descent: after the interpolation threshold, more capacity helps.",
       "tags": [
@@ -271,7 +271,7 @@
       ]
     },
     {
-      "uid": "07-033",
+      "uid": "deep-learning-foundations-and-concepts-07-033",
       "front": "What is model-based machine learning?",
       "back": "An approach where:<br><ol><li><b>Domain knowledge</b> is encoded in model structure</li><li><b>Inductive biases</b> are explicitly designed</li><li>Learning is constrained by the model's assumptions</li></ol>Contrast with purely data-driven approaches. Combines expert knowledge with learning from data.",
       "tags": [
@@ -281,7 +281,7 @@
       ]
     },
     {
-      "uid": "07-034",
+      "uid": "deep-learning-foundations-and-concepts-07-034",
       "front": "What is the difference between maximum likelihood (MLE) and maximum a posteriori (MAP) estimation?",
       "back": "<b>MLE</b>: Choose parameters to maximize likelihood:<br>\\( \\theta_{MLE} = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta) \\).<br><br><b>MAP</b>: Choose parameters to maximize posterior (likelihood times prior):<br>\\( \\theta_{MAP} = \\arg\\max_\\theta \\; p(\\theta|\\mathcal{D}) = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta)p(\\theta) \\).<br><br><b>Key link to regularization</b>: Taking negative logs turns MAP into minimizing a loss plus a penalty term from \\( -\\ln p(\\theta) \\).",
       "tags": [
@@ -291,7 +291,7 @@
       ]
     },
     {
-      "uid": "07-035",
+      "uid": "deep-learning-foundations-and-concepts-07-035",
       "front": "How do L2 and L1 regularization correspond to priors in a MAP view?",
       "back": "<b>L2 regularization</b> corresponds to a <b>Gaussian prior</b> on weights:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\frac{\\lambda}{2}\\|\\vec{w}\\|^2\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\frac{\\lambda}{2}\\|\\vec{w}\\|^2 \\).<br><br><b>L1 regularization</b> corresponds to a <b>Laplace prior</b>:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\lambda \\|\\vec{w}\\|_1\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\lambda \\|\\vec{w}\\|_1 \\).<br><br><b>Intuition</b>: The Laplace prior has a sharp peak at 0, which encourages sparsity.",
       "tags": [
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "uid": "07-036",
+      "uid": "deep-learning-foundations-and-concepts-07-036",
       "front": "What is Elastic Net regularization?",
       "back": "<b>Elastic Net</b> combines L1 and L2 regularization:<br><br>\\( \\Omega(\\vec{w}) = \\lambda_1 \\|\\vec{w}\\|_1 + \\lambda_2 \\|\\vec{w}\\|_2^2 \\)<br><br>Or with mixing parameter \\( \\alpha \\in [0,1] \\):<br>\\( \\Omega(\\vec{w}) = \\alpha \\|\\vec{w}\\|_1 + (1-\\alpha) \\|\\vec{w}\\|_2^2 \\)<br><br><b>Why combine them?</b><ul><li><b>L1 alone</b>: Sparse but unstable when features are correlated (picks one arbitrarily)</li><li><b>L2 alone</b>: Stable but not sparse</li><li><b>Elastic Net</b>: Sparse AND groups correlated features together</li></ul><b>When to use</b>: Many features, some correlated, want sparse selection.",
       "tags": [
@@ -311,7 +311,7 @@
       ]
     },
     {
-      "uid": "07-037",
+      "uid": "deep-learning-foundations-and-concepts-07-037",
       "front": "Why does early stopping act like regularization? When does this analogy break?",
       "back": "<b>Rigorous explanation</b>:<br>For linear regression with gradient descent starting from \\( w=0 \\):<br>\\( w_t = (I - (I - \\eta H)^t) H^{-1} X^T y \\)<br><br>As \\( t \\to \\infty \\): \\( w_t \\to w_{OLS} \\) (ordinary least squares)<br><br><b>Key insight</b>: The eigenvalues of \\( (I - \\eta H)^t \\) decay at different rates. Directions with small eigenvalues (high curvature) are learned slowly. Stopping early limits how much the model can move in these directions.<br><br><b>Equivalence to L2</b>: For small \\( \\eta \\) and appropriate stopping time, early stopping approximates L2 regularization with \\( \\lambda \\propto 1/(\\eta t) \\).<br><br><b>When the analogy breaks</b>:<ul><li><b>Nonlinear models</b>: Trajectory depends on initialization, not just distance from origin</li><li><b>Adaptive optimizers</b>: Adam, RMSprop break the simple correspondence</li><li><b>Large learning rates</b>: Trajectory can be chaotic, not monotonic</li><li><b>Multiple passes through data</b>: SGD noise complicates the picture</li></ul><b>In practice</b>: Early stopping still regularizes deep networks, but the mechanism is more complex than L2 equivalence.",
       "tags": [

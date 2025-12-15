@@ -12,7 +12,7 @@
   ],
   "cards": [
     {
-      "uid": "06-001",
+      "uid": "deep-learning-foundations-and-concepts-06-001",
       "front": "What is few-shot learning?",
       "back": "Learning from only a few labelled examples per class.<br>When only a <b>single labelled example</b> is available per class, it's called <b>one-shot learning</b>.<br>Requires models that can generalize from very limited data.",
       "tags": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "uid": "06-003",
+      "uid": "deep-learning-foundations-and-concepts-06-003",
       "front": "What is a feed-forward architecture in neural networks?",
       "back": "A network where information flows in <b>one direction only</b>: from input to output, with no cycles or loops.<br>Connections go from layer \\( l \\) to layer \\( l+1 \\), never backwards.<br>Contrast with recurrent networks that have feedback connections.",
       "tags": [
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "uid": "06-004",
+      "uid": "deep-learning-foundations-and-concepts-06-004",
       "front": "What are tensors in machine learning?",
       "back": "Higher-dimensional arrays:<br><ul><li>Scalar: 0D tensor (single number)</li><li>Vector: 1D tensor</li><li>Matrix: 2D tensor</li><li>3D+ arrays: higher-order tensors</li></ul>Used to represent batches of data, images (height x width x channels), etc.",
       "tags": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "uid": "06-005",
+      "uid": "deep-learning-foundations-and-concepts-06-005",
       "front": "In machine learning, do we typically maximize likelihood or minimize a loss?",
       "back": "We typically <b>minimize a loss/error function</b>.<br>The error function is the <b>negative log likelihood</b>.<br>Maximizing likelihood = Minimizing negative log likelihood.<br>This convention aligns with optimization literature.",
       "tags": [
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "uid": "06-006",
+      "uid": "deep-learning-foundations-and-concepts-06-006",
       "front": "What error function matches Gaussian noise assumption in regression?",
       "back": "<b>Sum-of-squares error</b>:<br>\\( E = \\frac{1}{2}\\sum_{n=1}^{N}(y_n - t_n)^2 \\)<br>Maximizing likelihood under Gaussian noise is equivalent to minimizing sum-of-squares.<br>Use with <b>linear output activations</b>.",
       "tags": [
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "uid": "06-007",
+      "uid": "deep-learning-foundations-and-concepts-06-007",
       "front": "What error function should be used for classification problems?",
       "back": "<b>Cross-entropy error</b>:<br>\\( E = -\\sum_{n=1}^{N}\\sum_{k=1}^{K} t_{nk} \\ln y_{nk} \\)<br>Using cross-entropy instead of sum-of-squares for classification leads to <b>faster training</b> and <b>better generalization</b>.",
       "tags": [
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "uid": "06-008",
+      "uid": "deep-learning-foundations-and-concepts-06-008",
       "front": "What is the natural pairing of output activation and error function for different tasks?",
       "back": "<b>Regression</b>: Linear outputs + sum-of-squares error<br><b>Binary classification</b>: Sigmoid output + binary cross-entropy<br><b>Multi-class classification</b>: Softmax outputs + categorical cross-entropy<br>These pairings come from maximum likelihood under appropriate distributions.",
       "tags": [
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "uid": "06-009",
+      "uid": "deep-learning-foundations-and-concepts-06-009",
       "front": "What is a mixture density network?",
       "back": "A neural network that outputs parameters of a <b>mixture model</b> (e.g., Gaussian mixture).<br>Outputs: mixing coefficients \\( \\pi_k \\), means \\( \\mu_k \\), variances \\( \\sigma_k^2 \\)<br>Useful for multi-modal distributions where a single prediction is insufficient.",
       "tags": [
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "uid": "06-010",
+      "uid": "deep-learning-foundations-and-concepts-06-010",
       "front": "Why can neural network error functions be optimized efficiently?",
       "back": "Because:<br><ol><li>The network function is <b>differentiable by design</b> (smooth activation functions)</li><li>The error function is also <b>differentiable</b></li><li><b>Backpropagation</b> efficiently computes gradients</li></ol>This enables gradient-based optimization.",
       "tags": [
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "uid": "06-011",
+      "uid": "deep-learning-foundations-and-concepts-06-011",
       "front": "What is the goal when training a neural network?",
       "back": "Find weights and biases that achieve <b>good generalization</b> on unseen data.<br>Not just minimizing training error, but finding parameters that work well on new inputs.<br>This typically involves finding a point where \\( \\nabla E(\\vec{w}) = 0 \\).",
       "tags": [
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "uid": "06-012",
+      "uid": "deep-learning-foundations-and-concepts-06-012",
       "front": "What are stationary points in optimization?",
       "back": "Points where the gradient vanishes: \\( \\nabla E(\\vec{w}) = 0 \\)<br>Types of stationary points:<br><ul><li><b>Local minima</b>: Lower than all nearby points</li><li><b>Local maxima</b>: Higher than all nearby points</li><li><b>Saddle points</b>: Minimum in some directions, maximum in others</li></ul>",
       "tags": [
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "uid": "06-013",
+      "uid": "deep-learning-foundations-and-concepts-06-013",
       "front": "What is the difference between global and local minima?",
       "back": "<b>Global minimum</b>: The smallest value of the error function across the entire weight space.<br><b>Local minimum</b>: A point lower than all nearby points, but not necessarily the lowest overall.<br>Neural networks typically have many local minima.",
       "tags": [
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "uid": "06-046",
+      "uid": "deep-learning-foundations-and-concepts-06-046",
       "front": "What is the Hessian matrix?",
       "back": "The <b>Hessian</b> is the matrix of second derivatives of a function:<br>\\( H_{ij} = \\frac{\\partial^2 E}{\\partial w_i \\partial w_j} \\)<br><b>Intuition</b>: Analogous to the second derivative \\( f''(x) \\) in single-variable calculus, but for multiple dimensions. While the gradient tells you the slope, the Hessian tells you the <i>curvature</i> - how the slope is changing.<br><b>Uses</b>:<ul><li>Determines if a stationary point is a min, max, or saddle</li><li>Enables second-order optimization (Newton's method)</li></ul>",
       "tags": [
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "uid": "06-014",
+      "uid": "deep-learning-foundations-and-concepts-06-014",
       "front": "When is a matrix H positive definite?",
       "back": "When \\( \\vec{v}^T H \\vec{v} > 0 \\) for all non-zero vectors \\( \\vec{v} \\).<br>Equivalently: all eigenvalues are positive.<br>At a local minimum, the Hessian matrix must be positive definite.",
       "tags": [
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "uid": "06-015",
+      "uid": "deep-learning-foundations-and-concepts-06-015",
       "front": "What conditions must hold for a point to be a local minimum?",
       "back": "Necessary and sufficient conditions:<br><ol><li>Gradient is zero: \\( \\nabla E(\\vec{w}^*) = 0 \\)</li><li>Hessian is <b>positive definite</b>: all eigenvalues > 0</li></ol>If the Hessian has negative eigenvalues, it's a saddle point or maximum.",
       "tags": [
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "uid": "06-016",
+      "uid": "deep-learning-foundations-and-concepts-06-016",
       "front": "Why does the solution found by gradient descent depend on initialization?",
       "back": "Because the error surface has <b>multiple local minima</b>.<br>Gradient descent finds a local minimum near the starting point.<br>Different initializations \\( \\vec{w}^{(0)} \\) lead to different final solutions.",
       "tags": [
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "uid": "06-017",
+      "uid": "deep-learning-foundations-and-concepts-06-017",
       "front": "Why is gradient information essential for training neural networks?",
       "back": "The gradient \\( \\nabla E \\) is a vector of length W (number of weights).<br>Each evaluation provides <b>W pieces of information</b> about the error surface.<br>This makes gradient-based methods far more efficient than gradient-free approaches.",
       "tags": [
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "uid": "06-018",
+      "uid": "deep-learning-foundations-and-concepts-06-018",
       "front": "What is the gradient descent update rule?",
       "back": "\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E(\\vec{w}^{(\\tau)}) \\)<br>Where:<br><ul><li>\\( \\eta > 0 \\) is the <b>learning rate</b></li><li>\\( \\tau \\) is the iteration number</li></ul>Takes a small step in the direction of steepest descent.",
       "tags": [
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "uid": "06-019",
+      "uid": "deep-learning-foundations-and-concepts-06-019",
       "front": "What are batch methods in optimization?",
       "back": "Methods that use the <b>whole dataset at once</b> to compute the gradient.<br>Advantages: Stable gradient estimates<br>Disadvantages: Computationally expensive for large datasets, requires all data in memory.",
       "tags": [
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "uid": "06-021",
+      "uid": "deep-learning-foundations-and-concepts-06-021",
       "front": "What is a training epoch?",
       "back": "A <b>complete pass through the entire training set</b>.<br>In SGD, one epoch = N weight updates (for N data points).<br>Training typically runs for many epochs until convergence.",
       "tags": [
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "uid": "06-022",
+      "uid": "deep-learning-foundations-and-concepts-06-022",
       "front": "What is online gradient descent?",
       "back": "SGD applied to streaming data where examples arrive one at a time and may not be stored.<br>Useful when:<br><ul><li>Data arrives continuously</li><li>Dataset doesn't fit in memory</li><li>Real-time adaptation is needed</li></ul>",
       "tags": [
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "uid": "06-023",
+      "uid": "deep-learning-foundations-and-concepts-06-023",
       "front": "How can SGD escape local minima?",
       "back": "The <b>stochasticity</b> (randomness) in gradient estimates acts like noise.<br>This noise can push the optimization out of shallow local minima.<br>Batch gradient descent follows the exact gradient and gets trapped more easily.",
       "tags": [
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "uid": "06-024",
+      "uid": "deep-learning-foundations-and-concepts-06-024",
       "front": "What is a downside of pure SGD (single-point updates)?",
       "back": "The gradient estimate from one data point is <b>noisy</b> (high variance).<br>This can cause:<br><ul><li>Erratic updates</li><li>Slower convergence</li><li>Difficulty reaching precise minima</li></ul>",
       "tags": [
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "uid": "06-025",
+      "uid": "deep-learning-foundations-and-concepts-06-025",
       "front": "What is mini-batch gradient descent?",
       "back": "Uses a <b>small subset of data points</b> (mini-batch) to estimate the gradient:<br>\\( \\nabla E \\approx \\frac{1}{B}\\sum_{n \\in \\text{batch}} \\nabla E_n \\)<br>Balances:<br><ul><li>Computational efficiency (parallelism)</li><li>Gradient accuracy (lower variance than SGD)</li><li>Memory constraints</li></ul>",
       "tags": [
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "uid": "06-026",
+      "uid": "deep-learning-foundations-and-concepts-06-026",
       "front": "Why are there diminishing returns from increasing mini-batch size?",
       "back": "Standard error of gradient estimate decreases as \\( 1/\\sqrt{B} \\).<br>Doubling batch size only reduces noise by \\( \\sqrt{2} \\approx 1.4 \\).<br>Computational cost increases linearly while accuracy improves sub-linearly.",
       "tags": [
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "uid": "06-027",
+      "uid": "deep-learning-foundations-and-concepts-06-027",
       "front": "What is symmetry breaking in neural network initialization?",
       "back": "Initializing weights <b>randomly</b> rather than identically.<br>If all weights start the same, all hidden units compute the same function and learn the same features.<br>Random initialization breaks this symmetry, allowing diverse features to emerge.",
       "tags": [
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "uid": "06-028",
+      "uid": "deep-learning-foundations-and-concepts-06-028",
       "front": "What is He initialization?",
       "back": "Weight initialization scaled by \\( \\sqrt{2/M} \\) where M is the number of input units:<br>\\( w \\sim N(0, 2/M) \\)<br>Designed for ReLU activations to maintain variance of activations across layers.<br>Prevents vanishing/exploding gradients.",
       "tags": [
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "uid": "06-029",
+      "uid": "deep-learning-foundations-and-concepts-06-029",
       "front": "What happens if the learning rate is too large?",
       "back": "<b>Divergent oscillations</b>: steps overshoot the minimum and bounce back and forth with increasing amplitude.<br>The optimization diverges instead of converging.<br>Must keep \\( \\eta \\) small enough to avoid this.",
       "tags": [
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "uid": "06-030",
+      "uid": "deep-learning-foundations-and-concepts-06-030",
       "front": "What is the convergence rate of gradient descent near a minimum?",
       "back": "<b>Linear convergence</b>: error decreases by a constant factor per iteration.<br>\\( E^{(\\tau+1)} - E^{*} \\approx c(E^{(\\tau)} - E^{*}) \\)<br>where \\( 0 < c < 1 \\) and \\( E^{*} \\) is the minimum error.<br>Slower than quadratic (Newton's method) but each iteration is cheaper.",
       "tags": [
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "uid": "06-031",
+      "uid": "deep-learning-foundations-and-concepts-06-031",
       "front": "What problem arises with elongated error surfaces (different eigenvalues)?",
       "back": "Gradient descent <b>oscillates</b> across narrow valleys while making slow progress along them.<br>The step size must be small enough for the steepest direction, causing slow convergence in shallow directions.<br>Momentum helps address this.",
       "tags": [
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "uid": "06-032",
+      "uid": "deep-learning-foundations-and-concepts-06-032",
       "front": "What is momentum in gradient descent?",
       "back": "Adding a fraction of the previous update to the current update:<br>\\( \\vec{v}^{(\\tau+1)} = \\mu \\vec{v}^{(\\tau)} - \\eta \\nabla E \\)<br>\\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} + \\vec{v}^{(\\tau+1)} \\)<br>Effectively adds <b>inertia</b> to motion through weight space, smoothing out oscillations.",
       "tags": [
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "uid": "06-033",
+      "uid": "deep-learning-foundations-and-concepts-06-033",
       "front": "How does momentum help optimization?",
       "back": "<ol><li><b>Smooths oscillations</b> across valleys</li><li><b>Accelerates</b> along consistent gradient directions</li><li>Leads to <b>faster convergence</b> without needing larger learning rates</li></ol>Momentum accumulates in directions of consistent gradient.",
       "tags": [
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "uid": "06-034",
+      "uid": "deep-learning-foundations-and-concepts-06-034",
       "front": "What is the best strategy for setting the learning rate during training?",
       "back": "Use a <b>larger learning rate at the start</b> and <b>reduce it during training</b>.<br>Early: Large steps for fast initial progress<br>Late: Small steps for fine-tuning near minimum<br>Called learning rate scheduling or annealing.",
       "tags": [
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "uid": "06-035",
+      "uid": "deep-learning-foundations-and-concepts-06-035",
       "front": "What is Root Mean Square Propagation (RMSProp)?",
       "back": "An adaptive learning rate method.<br>Maintains moving average of squared gradients per parameter:<br>\\( v_i^{(\\tau+1)} = \\rho v_i^{(\\tau)} + (1-\\rho)(g_i^{(\\tau)})^2 \\)<br>Scales learning rate: \\( \\Delta w_i = -\\frac{\\eta}{\\sqrt{v_i + \\epsilon}} g_i \\)<br>Gives each parameter its own effective learning rate.",
       "tags": [
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "uid": "06-036",
+      "uid": "deep-learning-foundations-and-concepts-06-036",
       "front": "What is Adam optimization?",
       "back": "<b>Adaptive Moments</b>: Combines RMSProp with momentum.<br>Maintains:<br><ul><li>First moment (momentum): \\( m_i \\) (moving average of gradients)</li><li>Second moment: \\( v_i \\) (moving average of squared gradients)</li></ul><b>Most widely adopted</b> learning algorithm in deep learning.",
       "tags": [
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "uid": "06-037",
+      "uid": "deep-learning-foundations-and-concepts-06-037",
       "front": "What are the three kinds of normalization in neural networks?",
       "back": "<b>Intuition</b>: Normalization keeps activations in a 'healthy' range, preventing them from exploding or vanishing as they flow through layers.<br><br><ol><li><b>Input normalization</b>: Rescale each input feature across the dataset to zero mean, unit variance. <i>When</i>: preprocessing step before training.</li><li><b>Batch normalization</b>: For each hidden unit, normalize across examples in the mini-batch. <i>When</i>: during training, uses batch statistics; at inference, uses running averages.</li><li><b>Layer normalization</b>: For each example, normalize across all hidden units in a layer. <i>When</i>: works identically at train and test time, preferred for transformers and small batches.</li></ol><b>Key difference</b>: Batch norm averages over examples (vertical slice), layer norm averages over features (horizontal slice).",
       "tags": [
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "uid": "06-038",
+      "uid": "deep-learning-foundations-and-concepts-06-038",
       "front": "Why is input normalization beneficial?",
       "back": "When input variables span <b>very different ranges</b>, gradients can be poorly scaled.<br>Re-scaling inputs to have zero mean and unit variance:<br>\\( \\tilde{x}_i = \\frac{x_i - \\mu_i}{\\sigma_i} \\)<br>Makes optimization more efficient and stable.",
       "tags": [
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "uid": "06-039",
+      "uid": "deep-learning-foundations-and-concepts-06-039",
       "front": "What is batch normalization?",
       "back": "Normalizing hidden unit activations <b>across the mini-batch</b>:<br>\\( \\hat{a}_i = \\frac{a_i - \\mu_B}{\\sqrt{\\sigma_B^2 + \\epsilon}} \\)<br>Then rescale: \\( \\tilde{a}_i = \\gamma_i \\hat{a}_i + \\beta_i \\)<br>where \\( \\gamma_i, \\beta_i \\) are learned parameters.<br>Helps with vanishing/exploding gradients.",
       "tags": [
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "uid": "06-040",
+      "uid": "deep-learning-foundations-and-concepts-06-040",
       "front": "What are vanishing gradients and exploding gradients?",
       "back": "In deep networks, gradients are products of many terms (chain rule).<br><b>Vanishing</b>: Product tends to 0 if terms < 1 - early layers don't learn<br><b>Exploding</b>: Product tends to infinity if terms > 1 - training becomes unstable<br>Batch normalization and careful initialization help prevent both.",
       "tags": [
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "uid": "06-041",
+      "uid": "deep-learning-foundations-and-concepts-06-041",
       "front": "Why does batch normalization include learnable scale and shift parameters?",
       "back": "The parameters \\( \\gamma_i \\) and \\( \\beta_i \\) let the network <b>undo the normalization</b> if needed.<br>Without them, normalization might remove useful information.<br>With them, the network can learn the optimal scaling while still benefiting from normalized gradients.",
       "tags": [
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "uid": "06-042",
+      "uid": "deep-learning-foundations-and-concepts-06-042",
       "front": "How is batch normalization applied at inference time?",
       "back": "Use <b>moving averages</b> of mean and variance computed during training, not the current batch statistics.<br>These moving averages are updated during training:<br>\\( \\mu_{\\text{running}} = \\alpha \\mu_{\\text{running}} + (1-\\alpha)\\mu_B \\)<br>This allows consistent predictions for single examples.",
       "tags": [
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "uid": "06-043",
+      "uid": "deep-learning-foundations-and-concepts-06-043",
       "front": "What is layer normalization?",
       "back": "Normalizing <b>across hidden units for each example separately</b> (not across the batch).<br>Advantages over batch normalization:<br><ul><li>Works with any batch size (even size 1)</li><li>Same computation at training and inference</li><li>Useful in transformers and RNNs</li></ul>",
       "tags": [
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "uid": "06-044",
+      "uid": "deep-learning-foundations-and-concepts-06-044",
       "front": "When is layer normalization preferred over batch normalization?",
       "back": "Layer normalization is useful when:<br><ul><li><b>Small batch sizes</b> (batch norm estimates are noisy)</li><li><b>Transformers</b> (standard choice)</li><li><b>Recurrent networks</b> (variable sequence lengths)</li><li><b>Inference</b> on single examples</li></ul>Same normalization function at train and test time.",
       "tags": [
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "uid": "06-045",
+      "uid": "deep-learning-foundations-and-concepts-06-045",
       "front": "Should batch normalization be applied before or after the activation function?",
       "back": "We have a choice: normalize <b>pre-activation values</b> \\( a_i \\) or <b>post-activation values</b> \\( z_i \\).<br>Both approaches are used in practice.<br>Original paper normalized before activation, but normalizing after also works well.",
       "tags": [
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "uid": "06-047",
+      "uid": "deep-learning-foundations-and-concepts-06-047",
       "front": "What is Xavier (Glorot) initialization and when is it used?",
       "back": "<b>Xavier/Glorot initialization</b> sets weight scales to keep the variance of activations (and gradients) roughly constant across layers.<br><br>Common form (for tanh/sigmoid-like activations):<br>\\( w \\sim \\mathcal{N}\\left(0, \\frac{2}{\\text{fan\\_in}+\\text{fan\\_out}}\\right) \\)<br>or uniform with matching variance.<br><br><b>Rule of thumb</b>: Use Xavier for tanh/sigmoid, and He initialization for ReLU-family activations.",
       "tags": [
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "uid": "06-048",
+      "uid": "deep-learning-foundations-and-concepts-06-048",
       "front": "What is gradient clipping and why is it used?",
       "back": "<b>Gradient clipping</b> limits the size of the gradient update to improve training stability, especially when gradients can <b>explode</b> (common in recurrent networks and very deep nets).<br><br><b>Global norm clipping</b>: If \\( \\|\\vec{g}\\| > c \\), rescale:<br>\\( \\vec{g} \\leftarrow \\vec{g} \\cdot \\frac{c}{\\|\\vec{g}\\|} \\)<br><br>This prevents a single huge update from destabilizing training.",
       "tags": [
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "uid": "06-049",
+      "uid": "deep-learning-foundations-and-concepts-06-049",
       "front": "Why use learning-rate schedules (and warmup) when training deep networks?",
       "back": "Because the <b>best step size changes over training</b>.<br><br><b>Typical pattern</b>:<ul><li><b>Warmup</b>: start with a small learning rate and increase it for a short period to stabilize early training (common for transformers)</li><li><b>Decay</b>: gradually reduce the learning rate to refine the solution near a good minimum</li></ul>Schedules (step decay, cosine decay, etc.) often improve both convergence and final generalization.",
       "tags": [
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "uid": "06-050",
+      "uid": "deep-learning-foundations-and-concepts-06-050",
       "front": "What is group normalization?",
       "back": "<b>Group normalization</b> divides channels into groups and normalizes within each group.<br><br>For each example separately:<br>\\( \\hat{x} = \\frac{x - \\mu_g}{\\sqrt{\\sigma_g^2 + \\epsilon}} \\)<br>where \\( \\mu_g, \\sigma_g^2 \\) are computed over spatial dimensions and channels within each group.<br><br><b>Key properties</b>:<ul><li>Independent of batch size (like layer norm)</li><li>Works well for small batches</li><li>Common in object detection (Mask R-CNN)</li></ul><b>Special cases</b>:<ul><li>G = C (channels): Instance normalization</li><li>G = 1: Layer normalization</li></ul>",
       "tags": [
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "uid": "06-051",
+      "uid": "deep-learning-foundations-and-concepts-06-051",
       "front": "What is instance normalization?",
       "back": "<b>Instance normalization</b> normalizes each channel of each example independently.<br><br>Compute mean and variance over spatial dimensions (H, W) only:<br>\\( \\hat{x}_{nchw} = \\frac{x_{nchw} - \\mu_{nc}}{\\sqrt{\\sigma_{nc}^2 + \\epsilon}} \\)<br><br><b>Key properties</b>:<ul><li>Each channel normalized separately</li><li>No dependence on batch or other channels</li><li>Removes instance-specific contrast</li></ul><b>Use cases</b>: Style transfer, image generation (normalizes away style information).<br><br><b>Comparison</b>: Batch norm averages over batch; instance norm does not.",
       "tags": [
@@ -502,7 +502,7 @@
       ]
     },
     {
-      "uid": "06-052",
+      "uid": "deep-learning-foundations-and-concepts-06-052",
       "front": "What is RMSNorm and why is it used in modern transformers?",
       "back": "<b>RMSNorm</b> (Root Mean Square Normalization) simplifies layer norm by removing the mean centering:<br><br>\\( \\hat{x}_i = \\frac{x_i}{\\text{RMS}(x)} \\cdot \\gamma_i \\)<br>where \\( \\text{RMS}(x) = \\sqrt{\\frac{1}{n}\\sum_i x_i^2} \\)<br><br><b>Comparison to LayerNorm</b>:<ul><li>LayerNorm: Subtract mean, divide by std</li><li>RMSNorm: Just divide by RMS (no mean subtraction)</li></ul><b>Advantages</b>:<ul><li>~10-15% faster (fewer operations)</li><li>Empirically similar or better performance</li></ul><b>Used in</b>: LLaMA, Gemma, and many modern LLMs.",
       "tags": [
@@ -512,7 +512,7 @@
       ]
     },
     {
-      "uid": "06-053",
+      "uid": "deep-learning-foundations-and-concepts-06-053",
       "front": "How do you choose which normalization technique to use?",
       "back": "<b>Rules of thumb</b>:<br><br><b>Batch normalization</b>:<ul><li>CNNs with large batches (>=32)</li><li>Image classification</li></ul><b>Layer normalization</b>:<ul><li>Transformers, RNNs</li><li>Small batch sizes</li><li>Sequence models</li></ul><b>Group normalization</b>:<ul><li>Object detection, segmentation</li><li>When batch size varies</li></ul><b>Instance normalization</b>:<ul><li>Style transfer</li><li>Image generation</li></ul><b>RMSNorm</b>:<ul><li>Modern LLMs (faster than LayerNorm)</li></ul>",
       "tags": [
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "uid": "06-054",
+      "uid": "deep-learning-foundations-and-concepts-06-054",
       "front": "What is gradient accumulation?",
       "back": "<b>Gradient accumulation</b> simulates larger batch sizes when GPU memory is limited.<br><br><b>How it works</b>:<ol><li>Process small mini-batches that fit in memory</li><li>Accumulate gradients over N steps without updating weights</li><li>Update weights after N accumulation steps</li></ol><b>Effective batch size</b> = mini-batch size \\( \\times \\) accumulation steps<br><br><b>Example</b>: Mini-batch of 8, accumulate for 4 steps = effective batch of 32.<br><br><b>Key points</b>:<ul><li>Mathematically equivalent to large batch (for sum/mean reductions)</li><li>Slower (sequential instead of parallel)</li><li>Enables training large models on limited hardware</li></ul>",
       "tags": [
@@ -532,7 +532,7 @@
       ]
     },
     {
-      "uid": "06-055",
+      "uid": "deep-learning-foundations-and-concepts-06-055",
       "front": "What is mixed precision training?",
       "back": "<b>Mixed precision</b> uses both FP16 (16-bit) and FP32 (32-bit) floating point during training.<br><br><b>How it works</b>:<ul><li><b>Forward pass</b>: FP16 (faster, less memory)</li><li><b>Backward pass</b>: FP16</li><li><b>Master weights</b>: FP32 (for accurate accumulation)</li><li><b>Loss scaling</b>: Scale loss up before backward to prevent gradient underflow</li></ul><b>Benefits</b>:<ul><li>~2x memory reduction</li><li>~2x faster on modern GPUs (Tensor Cores)</li><li>Nearly identical accuracy to FP32</li></ul><b>Key technique</b>: <b>Loss scaling</b> - multiply loss by a large constant before backward pass, then unscale gradients before optimizer step.",
       "tags": [
@@ -542,7 +542,7 @@
       ]
     },
     {
-      "uid": "06-056",
+      "uid": "deep-learning-foundations-and-concepts-06-056",
       "front": "What is loss scaling in mixed precision training?",
       "back": "<b>Loss scaling</b> prevents gradient underflow in FP16 training.<br><br><b>Problem</b>: Small gradients (< 2^-24) become zero in FP16, causing training to stall.<br><br><b>Solution</b>:<ol><li>Multiply loss by a large scale factor S before backward pass</li><li>Gradients are scaled by S (larger, avoids underflow)</li><li>Unscale gradients by dividing by S before optimizer step</li></ol><b>Dynamic loss scaling</b>:<ul><li>Start with large S (e.g., 2^16)</li><li>If gradients overflow (NaN/Inf), skip update and halve S</li><li>If no overflow for N steps, double S</li></ul>Used in PyTorch AMP, TensorFlow mixed precision.",
       "tags": [
@@ -552,7 +552,7 @@
       ]
     },
     {
-      "uid": "06-057",
+      "uid": "deep-learning-foundations-and-concepts-06-057",
       "front": "What is bfloat16 (BF16) and how does it differ from FP16?",
       "back": "<b>BF16</b> (Brain Floating Point 16) uses 16 bits with different allocation than FP16:<br><br><b>Format comparison</b>:<ul><li><b>FP32</b>: 1 sign, 8 exponent, 23 mantissa</li><li><b>FP16</b>: 1 sign, 5 exponent, 10 mantissa</li><li><b>BF16</b>: 1 sign, 8 exponent, 7 mantissa</li></ul><b>Key difference</b>: BF16 has same range as FP32 (8-bit exponent) but less precision (7-bit mantissa).<br><br><b>Advantages of BF16</b>:<ul><li>No loss scaling needed (same dynamic range as FP32)</li><li>Simpler training code</li><li>Better for gradients that vary widely in magnitude</li></ul><b>Support</b>: Google TPUs, NVIDIA A100+, Intel.",
       "tags": [
@@ -562,7 +562,7 @@
       ]
     },
     {
-      "uid": "06-058",
+      "uid": "deep-learning-foundations-and-concepts-06-058",
       "front": "What is catastrophic forgetting?",
       "back": "<b>Catastrophic forgetting</b>: When training on new data causes a neural network to forget what it learned from previous data.<br><br><b>Why it happens</b>: Updating weights to minimize loss on new task can increase loss on old tasks. No explicit mechanism to preserve old knowledge.<br><br><b>Example</b>: Train on Task A, then Task B. Performance on A drops significantly.<br><br><b>Contrast with humans</b>: We can learn new skills without forgetting old ones (mostly).<br><br><b>Relevance</b>: Critical for continual/lifelong learning, multi-task learning, and fine-tuning pre-trained models.",
       "tags": [
@@ -572,7 +572,7 @@
       ]
     },
     {
-      "uid": "06-059",
+      "uid": "deep-learning-foundations-and-concepts-06-059",
       "front": "What are approaches to prevent catastrophic forgetting?",
       "back": "<b>1. Regularization-based</b>:<ul><li><b>EWC</b> (Elastic Weight Consolidation): Penalize changes to important weights</li><li>Measure importance via Fisher information</li></ul><b>2. Replay-based</b>:<ul><li>Store subset of old data, mix with new data during training</li><li><b>Generative replay</b>: Train generative model to produce old examples</li></ul><b>3. Architecture-based</b>:<ul><li>Allocate different parameters for different tasks</li><li>Progressive neural networks: Add new modules, freeze old</li></ul><b>4. Practical approach</b>:<ul><li>Multi-task training from scratch when possible</li><li>Fine-tune with low learning rate</li><li>Use LoRA/adapters (freeze base model)</li></ul>",
       "tags": [
@@ -582,7 +582,7 @@
       ]
     },
     {
-      "uid": "06-060",
+      "uid": "deep-learning-foundations-and-concepts-06-060",
       "front": "What is transfer learning?",
       "back": "<b>Transfer learning</b>: Leveraging knowledge from one task/domain to improve performance on another.<br><br><b>Common pattern</b>:<ol><li>Pre-train on large dataset (e.g., ImageNet, web text)</li><li>Fine-tune on target task with smaller dataset</li></ol><b>Why it works</b>:<ul><li>Early layers learn general features (edges, textures)</li><li>These transfer across tasks</li><li>Only need to learn task-specific features</li></ul><b>Approaches</b>:<ul><li><b>Feature extraction</b>: Freeze pre-trained layers, train new head</li><li><b>Fine-tuning</b>: Unfreeze some/all layers, train with low LR</li></ul><b>Examples</b>: BERT for NLP tasks, ResNet for vision tasks.",
       "tags": [
@@ -592,7 +592,7 @@
       ]
     },
     {
-      "uid": "06-061",
+      "uid": "deep-learning-foundations-and-concepts-06-061",
       "front": "What is the difference between fine-tuning and feature extraction?",
       "back": "<b>Feature extraction</b>:<ul><li>Freeze all pre-trained layers</li><li>Only train a new classification head</li><li>Fast training, less risk of overfitting</li><li>Good when target task is similar to pre-training task</li></ul><b>Fine-tuning</b>:<ul><li>Unfreeze some or all pre-trained layers</li><li>Train with low learning rate</li><li>Can adapt features to new domain</li><li>Risk of catastrophic forgetting if LR too high</li></ul><b>Gradual unfreezing</b>: Start with only head, progressively unfreeze earlier layers.<br><br><b>Rule of thumb</b>: More data = more layers to fine-tune. Little data = feature extraction only.",
       "tags": [
@@ -602,7 +602,7 @@
       ]
     },
     {
-      "uid": "06-062",
+      "uid": "deep-learning-foundations-and-concepts-06-062",
       "front": "Why is convexity of a loss function important in optimization?",
       "back": "<b>Convex function</b>: A function where any line segment between two points lies above the graph. Formally: \\( f(\\lambda x + (1-\\lambda)y) \\leq \\lambda f(x) + (1-\\lambda) f(y) \\) for \\( \\lambda \\in [0,1] \\).<br><br><b>Why convexity matters</b>:<ul><li><b>Single global minimum</b>: Any local minimum is also the global minimum</li><li><b>Gradient descent converges</b>: Guaranteed to find optimal solution</li><li><b>No saddle points or bad local minima</b></li></ul><b>Convex problems in ML</b>: Linear regression, logistic regression, SVMs (with convex kernels), L2-regularized problems.<br><br><b>Non-convex problems</b>: Neural networks have non-convex loss landscapes with many local minima, saddle points, and plateaus. Yet they train well in practice due to:<ul><li>Over-parameterization creating many good solutions</li><li>SGD noise helping escape bad regions</li><li>Many local minima being nearly as good as global</li></ul>",
       "tags": [
@@ -612,7 +612,7 @@
       ]
     },
     {
-      "uid": "06-063",
+      "uid": "deep-learning-foundations-and-concepts-06-063",
       "front": "What is the implicit bias (inductive bias) of SGD in deep learning?",
       "back": "<b>Implicit bias</b>: The tendency of an optimization algorithm to prefer certain solutions over others, even without explicit regularization.<br><br><b>What SGD prefers</b>:<ul><li><b>Flat minima</b>: Solutions with low curvature (wide valleys) generalize better. SGD noise helps find these.</li><li><b>Low-rank solutions</b>: In matrix factorization, gradient descent finds minimum nuclear norm solutions.</li><li><b>Max-margin classifiers</b>: For separable data, gradient descent on logistic loss converges to max-margin (SVM-like) solution.</li><li><b>Simpler functions</b>: Neural networks trained with SGD tend toward lower-complexity functions.</li></ul><b>Why it happens</b>:<ul><li>Gradient flow dynamics have inherent geometry</li><li>Mini-batch noise acts as implicit regularization</li><li>Learning rate affects sharpness of found minima</li></ul><b>Practical implications</b>: SGD often finds solutions that generalize well even without explicit regularization.",
       "tags": [
@@ -622,7 +622,7 @@
       ]
     },
     {
-      "uid": "06-064",
+      "uid": "deep-learning-foundations-and-concepts-06-064",
       "front": "What do we know about optimization landscapes in deep networks?",
       "back": "<b>Key observations</b>:<br><br><b>Symmetries</b>: Many equivalent minima exist due to weight permutation symmetry (\\( M! \\cdot 2^M \\) equivalent parameterizations).<br><br><b>Flat vs sharp minima</b>:<ul><li>Flat minima: Wide valleys, often generalize better</li><li>Sharp minima: Narrow valleys, may overfit</li><li>Large learning rate/batch noise biases toward flat minima</li></ul><b>Local minima vs saddle points</b>:<ul><li>In high dimensions, most critical points are saddle points, not local minima</li><li>Local minima that exist tend to have similar loss values</li><li>Saddle points slow training more than local minima</li></ul><b>Loss barriers</b>: Good minima may be connected by paths of low loss (mode connectivity).<br><br><b>Evidence against intuitions</b>:<ul><li>Sharp minima can generalize well with proper normalization</li><li>Flat minima are not always better (scale-dependent)</li><li>Lottery ticket hypothesis: Sparse subnetworks can perform well</li></ul>",
       "tags": [
@@ -632,7 +632,7 @@
       ]
     },
     {
-      "uid": "06-065",
+      "uid": "deep-learning-foundations-and-concepts-06-065",
       "front": "How do you choose among active, semi-supervised, transfer, and meta-learning for limited labels?",
       "back": "<b>Choose based on your situation</b>:<br><br><b>Active learning</b>: You can query labels for specific examples.<ul><li>Best when: Labeling is expensive but possible on demand</li><li>Strategy: Query most uncertain or informative points</li></ul><b>Semi-supervised learning</b>: You have lots of unlabeled data, few labels.<ul><li>Best when: Unlabeled data is plentiful and from same distribution</li><li>Methods: Pseudo-labeling, consistency regularization, contrastive learning</li></ul><b>Transfer learning</b>: Related task with abundant labeled data exists.<ul><li>Best when: Pre-trained model available for similar domain</li><li>Methods: Fine-tuning, feature extraction</li></ul><b>Few-shot/meta-learning</b>: You need to learn many tasks with few examples each.<ul><li>Best when: Task distribution is known, need rapid adaptation</li><li>Methods: MAML, Prototypical Networks, in-context learning (LLMs)</li></ul><b>Signals guiding choice</b>:<ul><li>Can you get more labels? → Active learning</li><li>Have unlabeled data? → Semi-supervised</li><li>Related pretrained model? → Transfer learning</li><li>Many similar tasks? → Meta-learning</li></ul>",
       "tags": [
@@ -642,7 +642,7 @@
       ]
     },
     {
-      "uid": "06-066",
+      "uid": "deep-learning-foundations-and-concepts-06-066",
       "front": "What is catastrophic cancellation in floating point arithmetic?",
       "back": "<b>Catastrophic cancellation</b> occurs when subtracting two nearly equal floating point numbers, causing massive loss of significant digits.<br><br><b>Example</b>: If \\( a = 1.234567890 \\) and \\( b = 1.234567889 \\), and we only have 7 digits of precision:<ul><li>Stored: \\( a = 1.234568 \\), \\( b = 1.234568 \\)</li><li>Result: \\( a - b = 0 \\) (should be \\( 10^{-9} \\))</li></ul><b>The problem</b>: The significant digits cancel, leaving only the noise from rounding errors.<br><br><b>When it happens</b>: When subtracting values that are close together relative to their magnitude (large values, small difference).<br><br><b>In ML</b>: Common in computing variances, softmax, log-sum-exp, and anywhere you subtract similar quantities.",
       "tags": [
@@ -652,7 +652,7 @@
       ]
     },
     {
-      "uid": "06-067",
+      "uid": "deep-learning-foundations-and-concepts-06-067",
       "front": "What numerical problems can arise when computing sqrt(f(x)² - g(x)²) where f ≥ g ≥ 0?",
       "back": "<b>The problem</b>: Even though mathematically \\( f^2 - g^2 \\geq 0 \\), floating point errors can make it negative, and sqrt of a negative number is undefined (NaN).<br><br><b>When it happens</b>: When f and g are very close together relative to their magnitude. The squared values \\( f^2 \\) and \\( g^2 \\) become very large, but their difference is very small, causing catastrophic cancellation.<br><br><b>Example</b>: \\( f = 1000000.001 \\), \\( g = 1000000.000 \\)<br>True: \\( f^2 - g^2 \\approx 2000 \\)<br>With limited precision: \\( f^2 \\) and \\( g^2 \\) lose precision in lower digits, result may be wrong or negative.<br><br><b>Root cause</b>: Squaring amplifies the magnitude, wasting precision on large values when we only care about their small difference.",
       "tags": [
@@ -662,7 +662,7 @@
       ]
     },
     {
-      "uid": "06-068",
+      "uid": "deep-learning-foundations-and-concepts-06-068",
       "front": "How do you fix numerical instability in sqrt(f² - g²)?",
       "back": "<b>Quick fixes</b> (prevent NaN but lose accuracy):<ul><li><code>sqrt(abs(f² - g²))</code></li><li><code>sqrt(max(f² - g², 0))</code></li><li><code>sqrt(f² - g² + epsilon)</code></li></ul><b>Better solution</b> - avoid squaring:<br>\\( \\sqrt{f^2 - g^2} = \\sqrt{(f+g)(f-g)} \\)<br><br><b>Why this helps</b>: We compute \\( (f-g) \\) directly on the original (smaller) values, before they get squared. The cancellation still happens, but with less magnitude inflation.<br><br><b>Can still add safety</b>: <code>sqrt(max((f+g)*(f-g), 0))</code><br><br><b>General principle</b>: Rearrange formulas to avoid subtracting large similar quantities. Compute differences before magnitudes grow.",
       "tags": [
@@ -672,7 +672,7 @@
       ]
     },
     {
-      "uid": "06-069",
+      "uid": "deep-learning-foundations-and-concepts-06-069",
       "front": "What are common numerically unstable operations in ML and their stable alternatives?",
       "back": "<b>1. Softmax</b>:<ul><li>Unstable: \\( \\frac{e^{x_i}}{\\sum_j e^{x_j}} \\) (overflow if x large)</li><li>Stable: Subtract max first: \\( \\frac{e^{x_i - \\max(x)}}{\\sum_j e^{x_j - \\max(x)}} \\)</li></ul><b>2. Log-sum-exp</b>:<ul><li>Unstable: \\( \\log(\\sum_i e^{x_i}) \\)</li><li>Stable: \\( \\max(x) + \\log(\\sum_i e^{x_i - \\max(x)}) \\)</li></ul><b>3. Cross-entropy loss</b>:<ul><li>Unstable: Separate softmax then log</li><li>Stable: <code>log_softmax</code> or <code>cross_entropy_with_logits</code></li></ul><b>4. Variance</b>:<ul><li>Unstable: \\( E[x^2] - E[x]^2 \\) (catastrophic cancellation)</li><li>Stable: Welford's online algorithm, or two-pass</li></ul><b>5. Small probabilities</b>:<ul><li>Unstable: Multiply many small probs (underflow to 0)</li><li>Stable: Work in log space, add log-probs</li></ul>",
       "tags": [

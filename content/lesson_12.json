@@ -12,7 +12,7 @@
   ],
   "cards": [
     {
-      "uid": "12-001",
+      "uid": "deep-learning-foundations-and-concepts-12-001",
       "front": "What are transformers in deep learning?",
       "back": "Models that <b>transform a set of input vectors into output vectors</b> using attention mechanisms.<br>Key properties:<br><ul><li>Process sequences without recurrence</li><li>Capture long-range dependencies</li><li>Enable parallel computation</li><li>Foundation for modern NLP and beyond</li></ul>",
       "tags": [
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "uid": "12-002",
+      "uid": "deep-learning-foundations-and-concepts-12-002",
       "front": "What is a foundation model?",
       "back": "A <b>large-scale model</b> trained on broad data that can be <b>adapted to solve multiple downstream tasks</b>.<br>Examples: GPT, BERT, CLIP<br>Typically:<br><ul><li>Pre-trained on massive datasets</li><li>Fine-tuned for specific applications</li><li>Transfer learning across tasks</li></ul>",
       "tags": [
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "uid": "12-003",
+      "uid": "deep-learning-foundations-and-concepts-12-003",
       "front": "How can transformers be trained without labelled data?",
       "back": "Using <b>self-supervised learning</b> on unlabelled data.<br>Examples:<br><ul><li><b>Masked language modeling</b>: Predict masked words</li><li><b>Next token prediction</b>: Predict next word</li><li><b>Contrastive learning</b>: Learn similar/different pairs</li></ul>No manual labels required.",
       "tags": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "uid": "12-004",
+      "uid": "deep-learning-foundations-and-concepts-12-004",
       "front": "What does 'attend to' mean in transformers?",
       "back": "Using <b>context provided by other elements</b> to process the current element.<br>Attention uses <b>weighting factors</b> whose values depend on the specific input sequence.<br>Different from fixed weights - attention is <b>data-dependent</b>.",
       "tags": [
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "uid": "12-005",
+      "uid": "deep-learning-foundations-and-concepts-12-005",
       "front": "What is a token in transformer terminology?",
       "back": "An individual <b>data vector</b> in the input sequence.<br>Tokens can represent:<br><ul><li>Words or subwords (NLP)</li><li>Image patches (vision)</li><li>Audio segments</li></ul>Input is a matrix X of dimensions N x D (N tokens, D features).",
       "tags": [
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "uid": "12-006",
+      "uid": "deep-learning-foundations-and-concepts-12-006",
       "front": "What is the basic operation of a transformer layer?",
       "back": "A transformer layer has two main sub-layers:<br><br><b>1. Self-attention</b>: Each output token is a weighted combination of all input tokens:<br>\\( \\vec{y}_m = \\sum_n a_{mn} \\vec{v}_n \\)<br>where \\( a_{mn} \\) are data-dependent <b>attention weights</b>.<br><br><b>2. Feed-forward network (FFN)</b>: Applied independently to each token position.<br><br><b>Additional components</b>:<br><ul><li><b>Residual connections</b>: Add input to output of each sub-layer</li><li><b>Layer normalization</b>: Applied after each sub-layer</li></ul>",
       "tags": [
@@ -72,7 +72,7 @@
       ]
     },
     {
-      "uid": "12-007",
+      "uid": "deep-learning-foundations-and-concepts-12-007",
       "front": "What are attention weights?",
       "back": "Scalars that determine how much each output token attends to each input token.<br><br><b>How they're computed</b>:<br>\\( a_{mn} = \\text{softmax}\\left(\\frac{\\vec{q}_m \\cdot \\vec{k}_n}{\\sqrt{D_k}}\\right) \\)<br>The dot product measures similarity between query m and key n.<br><br><b>Properties</b>:<br><ul><li>Non-negative and sum to 1 (due to softmax)</li><li>Data-dependent: computed from the input itself</li><li>Higher weight = token m pays more attention to token n</li></ul>",
       "tags": [
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "uid": "12-008",
+      "uid": "deep-learning-foundations-and-concepts-12-008",
       "front": "What are queries, keys, and values in attention?",
       "back": "Movie database analogy:<br><b>Key</b>: Attributes of each item (movie metadata)<br><b>Value</b>: The actual content (movie file)<br><b>Query</b>: What you're searching for (your preferences)<br>Attention finds values whose keys match the query.",
       "tags": [
@@ -92,7 +92,7 @@
       ]
     },
     {
-      "uid": "12-009",
+      "uid": "deep-learning-foundations-and-concepts-12-009",
       "front": "What is soft attention?",
       "back": "Attention where weights are <b>continuous values</b> (not binary).<br>Computed via softmax, producing a <b>weighted average</b> of values.<br>Contrast with hard attention which selects discrete items.<br>Soft attention is differentiable and easier to train.",
       "tags": [
@@ -102,7 +102,7 @@
       ]
     },
     {
-      "uid": "12-010",
+      "uid": "deep-learning-foundations-and-concepts-12-010",
       "front": "What is self-attention?",
       "back": "Attention where queries, keys, and values all come from the <b>same sequence</b>.<br>Each position attends to all positions in the same sequence.<br>Also called <b>intra-attention</b>.<br>Contrast with cross-attention where queries come from a different sequence.",
       "tags": [
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "uid": "12-011",
+      "uid": "deep-learning-foundations-and-concepts-12-011",
       "front": "What is dot-product self-attention?",
       "back": "Computing attention weights using dot products:<br><ol><li>Query \\( \\vec{q}_m \\) = input \\( \\vec{x}_m \\)</li><li>Key \\( \\vec{k}_n \\) = input \\( \\vec{x}_n \\)</li><li>Similarity = \\( \\vec{q}_m \\cdot \\vec{k}_n \\)</li><li>Weights = softmax over similarities</li></ol>Simplest form before adding learnable projections.",
       "tags": [
@@ -122,7 +122,7 @@
       ]
     },
     {
-      "uid": "12-012",
+      "uid": "deep-learning-foundations-and-concepts-12-012",
       "front": "Why use separate Q, K, V matrices in attention?",
       "back": "<ol><li><b>Feature flexibility</b>: Focus on different aspects of input</li><li><b>Asymmetry</b>: Query and key can be different (A attending to B ≠ B attending to A)</li><li><b>Learnable transformations</b>: Network learns optimal projections</li></ol>Q, K, V matrices have <b>independent learnable parameters</b>.",
       "tags": [
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "uid": "12-013",
+      "uid": "deep-learning-foundations-and-concepts-12-013",
       "front": "What is the computational complexity of computing QK^T?",
       "back": "<b>O(N²D)</b> for N tokens with D dimensions.<br>The N x N attention matrix is the main bottleneck for long sequences.<br>This quadratic scaling limits maximum sequence length in practice.",
       "tags": [
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "uid": "12-014",
+      "uid": "deep-learning-foundations-and-concepts-12-014",
       "front": "Why is scaled dot-product attention needed?",
       "back": "Without scaling, dot products can be very large, causing softmax to have <b>exponentially small gradients</b>.<br><br><b>Why?</b> If Q and K elements are independent random variables with variance 1, the dot product has variance \\( D_k \\) (the key dimension).<br><br><b>Solution</b>: Scale by \\( 1/\\sqrt{D_k} \\) to normalize variance back to 1:<br>\\( \\text{Attention}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^T}{\\sqrt{D_k}}\\right)V \\)<br><br><b>Computing the scalar</b>: \\( D_k \\) is the dimension of the key vectors. For multi-head attention with model dimension \\( D \\) and \\( H \\) heads: \\( D_k = D/H \\).",
       "tags": [
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "uid": "12-015",
+      "uid": "deep-learning-foundations-and-concepts-12-015",
       "front": "What is multi-head attention?",
       "back": "Running <b>multiple attention operations in parallel</b> with independent parameters.<br>Each 'head' can attend to different aspects of the input.<br>Outputs are <b>concatenated</b> then linearly projected.<br>Typically \\( D_v = D/H \\) so final dimension matches input.",
       "tags": [
@@ -162,7 +162,7 @@
       ]
     },
     {
-      "uid": "12-016",
+      "uid": "deep-learning-foundations-and-concepts-12-016",
       "front": "Why use multiple attention heads?",
       "back": "A single head <b>averages</b> over different effects.<br>Multiple heads can capture:<br><ul><li>Different relationship types</li><li>Different distance ranges</li><li>Different semantic aspects</li></ul>Each head has independent learnable parameters.",
       "tags": [
@@ -172,7 +172,7 @@
       ]
     },
     {
-      "uid": "12-017",
+      "uid": "deep-learning-foundations-and-concepts-12-017",
       "front": "What is a transformer layer (block)?",
       "back": "Combines:<br><ol><li><b>Multi-head attention</b> sublayer</li><li><b>Feed-forward network</b> sublayer</li><li><b>Layer normalization</b> after each sublayer</li><li><b>Residual connections</b> around each sublayer</li></ol>Improves training efficiency and gradient flow.",
       "tags": [
@@ -182,7 +182,7 @@
       ]
     },
     {
-      "uid": "12-018",
+      "uid": "deep-learning-foundations-and-concepts-12-018",
       "front": "Why add a feed-forward network after attention?",
       "back": "Attention computes a <b>weighted sum</b> of value vectors - linear in V, but the weights come from softmax (nonlinear in Q and K).<br><br>This limits expressiveness: each output is a convex combination of values.<br><br>The feed-forward network (MLP) adds <b>position-wise non-linearity</b> to enhance flexibility.<br>Typically: Linear -> ReLU/GELU -> Linear",
       "tags": [
@@ -192,7 +192,7 @@
       ]
     },
     {
-      "uid": "12-019",
+      "uid": "deep-learning-foundations-and-concepts-12-019",
       "front": "Why is positional encoding needed in transformers?",
       "back": "Self-attention is <b>permutation equivariant</b>: shuffling inputs shuffles outputs.<br>It doesn't inherently know <b>position</b> or <b>order</b> of tokens.<br>Positional encodings add position information so the model can use sequence order.",
       "tags": [
@@ -202,7 +202,7 @@
       ]
     },
     {
-      "uid": "12-020",
+      "uid": "deep-learning-foundations-and-concepts-12-020",
       "front": "What properties should an ideal positional encoding have?",
       "back": "<ol><li><b>Unique</b> representation for each position</li><li><b>Consistent distance</b> between adjacent positions</li><li><b>Generalize</b> to longer sequences than training</li><li>Encoding at position n+k should be <b>representable</b> as function of encoding at n</li></ol>",
       "tags": [
@@ -212,7 +212,7 @@
       ]
     },
     {
-      "uid": "12-021",
+      "uid": "deep-learning-foundations-and-concepts-12-021",
       "front": "How does sinusoidal positional encoding work?",
       "back": "Uses sine and cosine functions of different frequencies:<br>\\( PE_{(pos, 2i)} = \\sin(pos / 10000^{2i/d}) \\)<br>\\( PE_{(pos, 2i+1)} = \\cos(pos / 10000^{2i/d}) \\)<br>For any fixed offset k, encoding at position n+k is a <b>linear function</b> of encoding at n.",
       "tags": [
@@ -222,7 +222,7 @@
       ]
     },
     {
-      "uid": "12-022",
+      "uid": "deep-learning-foundations-and-concepts-12-022",
       "front": "What is word embedding?",
       "back": "Mapping discrete words to <b>continuous vectors</b> in a learned embedding space.<br>Embedding matrix E of size D x K (D dimensions, K vocabulary size).<br>Word n is represented by column n of E.<br>Captures semantic relationships (similar words = similar vectors).",
       "tags": [
@@ -232,7 +232,7 @@
       ]
     },
     {
-      "uid": "12-023",
+      "uid": "deep-learning-foundations-and-concepts-12-023",
       "front": "What is the continuous bag of words (CBOW) model?",
       "back": "A word embedding training method where the <b>target is the center word</b> predicted from surrounding context words.<br>Input: Context words (before and after)<br>Output: Predict center word<br>Form of self-supervised learning.",
       "tags": [
@@ -242,7 +242,7 @@
       ]
     },
     {
-      "uid": "12-024",
+      "uid": "deep-learning-foundations-and-concepts-12-024",
       "front": "What is the skip-gram model?",
       "back": "Word embedding training that <b>reverses CBOW</b>:<br>Input: Center word<br>Output: Predict surrounding context words<br>Often works better for rare words than CBOW.<br>Both are forms of self-supervised learning.",
       "tags": [
@@ -252,7 +252,7 @@
       ]
     },
     {
-      "uid": "12-025",
+      "uid": "deep-learning-foundations-and-concepts-12-025",
       "front": "What is tokenization?",
       "back": "Converting text into a sequence of <b>tokens</b> (discrete units).<br>Options:<br><ul><li>Word-level: Each word is a token</li><li>Character-level: Each character is a token</li><li>Subword: Compromise (e.g., byte pair encoding)</li></ul>Tradeoff between vocabulary size and sequence length.",
       "tags": [
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "uid": "12-026",
+      "uid": "deep-learning-foundations-and-concepts-12-026",
       "front": "What is byte pair encoding (BPE)?",
       "back": "A subword tokenization algorithm:<br><ol><li>Start with individual characters</li><li>Find most frequent adjacent pair</li><li>Merge into new token</li><li>Repeat until vocabulary size reached</li></ol>Balances vocabulary size and sequence length. Handles rare/unknown words.",
       "tags": [
@@ -272,7 +272,7 @@
       ]
     },
     {
-      "uid": "12-027",
+      "uid": "deep-learning-foundations-and-concepts-12-027",
       "front": "What is a bag-of-words model?",
       "back": "A model that <b>ignores word order</b>, treating text as unordered collection.<br>Limitation: 'Dog bites man' = 'Man bites dog'<br>Maximum likelihood just counts word frequencies.<br>Simple baseline but loses sequential information.",
       "tags": [
@@ -282,7 +282,7 @@
       ]
     },
     {
-      "uid": "12-028",
+      "uid": "deep-learning-foundations-and-concepts-12-028",
       "front": "What are n-gram language models?",
       "back": "Models that predict next word based on previous <b>n-1 words</b>:<br><ul><li>Unigram (n=1): Word frequencies only</li><li>Bigram (n=2): P(word | previous word)</li><li>Trigram (n=3): P(word | previous 2 words)</li></ul>Poor scaling with sequence length; can't capture long-range dependencies.",
       "tags": [
@@ -292,7 +292,7 @@
       ]
     },
     {
-      "uid": "12-029",
+      "uid": "deep-learning-foundations-and-concepts-12-029",
       "front": "What is a recurrent neural network (RNN)?",
       "back": "A network that processes sequences by maintaining a <b>hidden state</b>:<br>\\( \\vec{h}_n = f(\\vec{h}_{n-1}, \\vec{x}_n) \\)<br>State carries information from previous steps.<br>Limitations: Sequential (no parallelism), vanishing gradients, bottleneck for long sequences.",
       "tags": [
@@ -302,7 +302,7 @@
       ]
     },
     {
-      "uid": "12-030",
+      "uid": "deep-learning-foundations-and-concepts-12-030",
       "front": "What is backpropagation through time (BPTT)?",
       "back": "Training RNNs by <b>unrolling</b> the network over time steps and applying standard backpropagation.<br>Gradients flow backward through all time steps.<br>Problems: Vanishing/exploding gradients for long sequences.",
       "tags": [
@@ -312,7 +312,7 @@
       ]
     },
     {
-      "uid": "12-031",
+      "uid": "deep-learning-foundations-and-concepts-12-031",
       "front": "What is the bottleneck problem in sequence-to-sequence models?",
       "back": "A sequence of <b>arbitrary length</b> must be compressed into a <b>single hidden state</b> before decoding.<br>This fixed-size vector limits information capacity.<br>Solution: Attention mechanisms that can access all encoder states.",
       "tags": [
@@ -322,7 +322,7 @@
       ]
     },
     {
-      "uid": "12-032",
+      "uid": "deep-learning-foundations-and-concepts-12-032",
       "front": "What are LSTM and GRU?",
       "back": "<b>Long Short-Term Memory</b> and <b>Gated Recurrent Unit</b>: RNN variants with gating mechanisms.<br>Gates control information flow, allowing longer-range dependencies.<br>Better than vanilla RNN but still:<br><ul><li>Sequential (no parallelism)</li><li>Superseded by transformers for most tasks</li></ul>",
       "tags": [
@@ -332,7 +332,7 @@
       ]
     },
     {
-      "uid": "12-033",
+      "uid": "deep-learning-foundations-and-concepts-12-033",
       "front": "What are the three categories of large language models?",
       "back": "<ol><li><b>Encoder-only</b> (e.g., BERT): Bidirectional, good for understanding</li><li><b>Decoder-only</b> (e.g., GPT): Autoregressive, good for generation</li><li><b>Encoder-decoder</b> (e.g., T5): Sequence-to-sequence tasks</li></ol>",
       "tags": [
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "uid": "12-034",
+      "uid": "deep-learning-foundations-and-concepts-12-034",
       "front": "What is GPT?",
       "back": "<b>Generative Pre-trained Transformer</b>: A decoder-only transformer.<br>Trained to predict next token given previous tokens.<br>Autoregressive generation: Output becomes input for next step.<br>Pre-trained on large corpus, can be fine-tuned.",
       "tags": [
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "uid": "12-035",
+      "uid": "deep-learning-foundations-and-concepts-12-035",
       "front": "What is masked attention (causal attention)?",
       "back": "Attention where tokens can only attend to <b>previous positions</b> (not future).<br>Implemented by setting attention weights to -∞ (before softmax) for future positions.<br>Required for autoregressive generation to prevent 'cheating'.",
       "tags": [
@@ -362,7 +362,7 @@
       ]
     },
     {
-      "uid": "12-036",
+      "uid": "deep-learning-foundations-and-concepts-12-036",
       "front": "What is the padding token in transformers?",
       "back": "A special token \\( \\langle pad \\rangle \\) used to <b>fill sequences to equal length</b> for batching.<br>Padding positions are masked in attention to avoid influencing computation.<br>Allows parallel processing of variable-length sequences.",
       "tags": [
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "uid": "12-037",
+      "uid": "deep-learning-foundations-and-concepts-12-037",
       "front": "Why can transformer decoding reuse computation?",
       "back": "Due to masked attention, the embedding for position n <b>doesn't change</b> when new tokens are added.<br>Key-value pairs for previous positions can be <b>cached</b> (KV cache).<br>Only need to compute attention for new token, not entire sequence.",
       "tags": [
@@ -382,7 +382,7 @@
       ]
     },
     {
-      "uid": "12-038",
+      "uid": "deep-learning-foundations-and-concepts-12-038",
       "front": "What is greedy search in text generation?",
       "back": "Selecting the <b>highest probability token</b> at each step.<br>Cost: O(KN) for K vocabulary, N steps.<br>Problem: Locally optimal choices may not give globally optimal sequence.<br>Simple but often produces repetitive or suboptimal text.",
       "tags": [
@@ -392,7 +392,7 @@
       ]
     },
     {
-      "uid": "12-039",
+      "uid": "deep-learning-foundations-and-concepts-12-039",
       "front": "What is beam search?",
       "back": "Maintaining <b>B best hypotheses</b> (beam width) at each step.<br>For each hypothesis, expand all K possible next tokens.<br>Prune to keep top B by probability.<br>Cost: O(BKN). Better than greedy but still not optimal.<br>Normalize by length to avoid favoring short sequences.",
       "tags": [
@@ -402,7 +402,7 @@
       ]
     },
     {
-      "uid": "12-040",
+      "uid": "deep-learning-foundations-and-concepts-12-040",
       "front": "Why do deterministic decoding methods produce unnatural text?",
       "back": "Human text has a <b>long tail</b> of many low-probability tokens.<br>Deterministic methods always pick high-probability tokens.<br>Result: Repetitive, predictable, 'boring' text.<br>Sampling introduces needed diversity.",
       "tags": [
@@ -412,7 +412,7 @@
       ]
     },
     {
-      "uid": "12-041",
+      "uid": "deep-learning-foundations-and-concepts-12-041",
       "front": "What is top-K sampling?",
       "back": "Sample from only the <b>K most probable</b> tokens.<br>Re-normalize probabilities over the top K.<br>Reduces probability of nonsensical tokens while maintaining diversity.<br>K is a hyperparameter (e.g., K=40).",
       "tags": [
@@ -422,7 +422,7 @@
       ]
     },
     {
-      "uid": "12-042",
+      "uid": "deep-learning-foundations-and-concepts-12-042",
       "front": "What is nucleus sampling (top-p)?",
       "back": "Sample from tokens whose <b>cumulative probability</b> exceeds threshold p.<br>Dynamically adjusts number of candidates based on distribution.<br>If confident: Few candidates. If uncertain: Many candidates.<br>Often works better than fixed top-K.",
       "tags": [
@@ -432,7 +432,7 @@
       ]
     },
     {
-      "uid": "12-043",
+      "uid": "deep-learning-foundations-and-concepts-12-043",
       "front": "What is temperature in softmax sampling?",
       "back": "A parameter T that controls distribution sharpness:<br>\\( p_k = \\frac{\\exp(a_k/T)}{\\sum_j \\exp(a_j/T)} \\)<br><ul><li>T=0: Deterministic (argmax)</li><li>T=1: Original distribution</li><li>T>1: Flatter (more random)</li><li>T<1: Sharper (more deterministic)</li></ul>",
       "tags": [
@@ -442,7 +442,7 @@
       ]
     },
     {
-      "uid": "12-044",
+      "uid": "deep-learning-foundations-and-concepts-12-044",
       "front": "What is BERT?",
       "back": "<b>Bidirectional Encoder Representations from Transformers</b>.<br>Encoder-only model that sees words <b>both before and after</b> target.<br>Pre-trained with masked language modeling.<br>Good for understanding tasks (classification, NER) but not generation.",
       "tags": [
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "uid": "12-045",
+      "uid": "deep-learning-foundations-and-concepts-12-045",
       "front": "How does BERT training differ from GPT?",
       "back": "<b>BERT</b>: Masked language modeling - predict randomly masked words (15%)<br><b>GPT</b>: Next token prediction - predict each next word<br>BERT is bidirectional (sees full context), GPT is unidirectional.<br>BERT less efficient: Only masked tokens provide training signal.",
       "tags": [
@@ -462,7 +462,7 @@
       ]
     },
     {
-      "uid": "12-046",
+      "uid": "deep-learning-foundations-and-concepts-12-046",
       "front": "What is cross-attention in encoder-decoder transformers?",
       "back": "Attention where <b>queries come from decoder</b> and <b>keys/values come from encoder</b>.<br>Allows decoder to attend to relevant parts of encoder output.<br>Same as self-attention except Q and K/V sources differ.",
       "tags": [
@@ -472,7 +472,7 @@
       ]
     },
     {
-      "uid": "12-047",
+      "uid": "deep-learning-foundations-and-concepts-12-047",
       "front": "What is a vision transformer (ViT)?",
       "back": "Applying transformers to images by treating <b>image patches as tokens</b>.<br>Split image into fixed-size patches (e.g., 16x16).<br>Flatten and linearly embed each patch.<br>Add positional encoding.<br>Process with standard transformer.",
       "tags": [
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "uid": "12-048",
+      "uid": "deep-learning-foundations-and-concepts-12-048",
       "front": "What is perplexity in language modeling?",
       "back": "<b>Perplexity</b> measures how 'surprised' a language model is by test data.<br><br><b>Formula</b>:<br>\\( \\text{PPL} = \\exp\\left(-\\frac{1}{N}\\sum_{i=1}^{N} \\ln p(w_i | w_{1:i-1})\\right) \\)<br><br><b>Intuition</b>: The average number of equally likely next words the model considers. Lower = better.<ul><li>PPL = 1: Perfect prediction (only one choice)</li><li>PPL = 100: Model is as uncertain as choosing uniformly from 100 words</li></ul><b>Connection to cross-entropy</b>: \\( \\text{PPL} = \\exp(H) \\) where H is the cross-entropy loss.",
       "tags": [
@@ -492,7 +492,7 @@
       ]
     },
     {
-      "uid": "12-049",
+      "uid": "deep-learning-foundations-and-concepts-12-049",
       "front": "How do you compare language models using perplexity?",
       "back": "<b>Lower perplexity = better model</b> (less surprised by data).<br><br><b>Caveats</b>:<ul><li><b>Same vocabulary</b>: Can only compare models with the same tokenizer/vocabulary</li><li><b>Same test set</b>: Must evaluate on identical data</li><li><b>Domain matters</b>: A model trained on news will have high perplexity on code</li></ul><b>Typical values</b>:<ul><li>Good models on standard benchmarks: PPL ~20-50</li><li>State-of-the-art LLMs: PPL < 10 on some benchmarks</li></ul><b>Limitation</b>: Low perplexity doesn't guarantee good generations or task performance.",
       "tags": [
@@ -502,7 +502,7 @@
       ]
     },
     {
-      "uid": "12-050",
+      "uid": "deep-learning-foundations-and-concepts-12-050",
       "front": "What is Rotary Position Embedding (RoPE)?",
       "back": "<b>RoPE</b> encodes position by rotating the query and key vectors:<br><br>\\( \\text{RoPE}(\\vec{x}, m) = \\vec{x} \\cdot R_m \\)<br><br>where \\( R_m \\) is a rotation matrix that depends on position \\( m \\).<br><br><b>Key insight</b>: The dot product \\( q_m^T k_n \\) depends only on relative position \\( m - n \\), not absolute positions.<br><br><b>Advantages over sinusoidal</b>:<ul><li>Naturally encodes relative position in attention</li><li>Better extrapolation to longer sequences</li><li>No need for separate positional embedding</li></ul><b>Used in</b>: LLaMA, GPT-NeoX, PaLM, and most modern LLMs.",
       "tags": [
@@ -512,7 +512,7 @@
       ]
     },
     {
-      "uid": "12-051",
+      "uid": "deep-learning-foundations-and-concepts-12-051",
       "front": "What is the key difference between absolute and relative positional encodings?",
       "back": "<b>Absolute positional encoding</b>:<ul><li>Each position gets a fixed embedding</li><li>Added to input: \\( x' = x + PE_{pos} \\)</li><li>Examples: Sinusoidal (original Transformer), learned embeddings</li></ul><b>Relative positional encoding</b>:<ul><li>Encodes the <i>distance</i> between positions</li><li>Modifies attention directly, not input</li><li>Examples: RoPE, ALiBi, T5 bias</li></ul><b>Why relative is often better</b>:<ul><li>Translation invariant: Same relationship regardless of absolute position</li><li>Better length generalization</li><li>More natural for many tasks (relative order matters more than absolute)</li></ul>",
       "tags": [
@@ -522,7 +522,7 @@
       ]
     },
     {
-      "uid": "12-052",
+      "uid": "deep-learning-foundations-and-concepts-12-052",
       "front": "What is ALiBi (Attention with Linear Biases)?",
       "back": "<b>ALiBi</b> adds a linear penalty to attention scores based on distance:<br><br>\\( \\text{attention}(q, k) = \\text{softmax}\\left(\\frac{qk^T}{\\sqrt{d}} - m \\cdot |i - j|\\right) \\)<br><br>where \\( m \\) is a head-specific slope.<br><br><b>Key idea</b>: No positional embeddings at all - just bias attention to prefer nearby tokens.<br><br><b>Advantages</b>:<ul><li>Excellent length extrapolation</li><li>Simpler than RoPE</li><li>No additional parameters</li></ul><b>Trade-off</b>: May perform slightly worse than RoPE on some tasks but generalizes better to longer sequences.",
       "tags": [
@@ -532,7 +532,7 @@
       ]
     },
     {
-      "uid": "12-053",
+      "uid": "deep-learning-foundations-and-concepts-12-053",
       "front": "What is FlashAttention and why is it important?",
       "back": "<b>FlashAttention</b> is an IO-aware exact attention algorithm that avoids materializing the full \\( N \\times N \\) attention matrix.<br><br><b>Key insight</b>: Standard attention is memory-bound, not compute-bound. Moving data between GPU memory levels is the bottleneck.<br><br><b>How it works</b>:<ul><li>Compute attention in tiles/blocks</li><li>Use online softmax (compute softmax incrementally)</li><li>Fuse operations to minimize memory reads/writes</li></ul><b>Benefits</b>:<ul><li>2-4x faster than standard attention</li><li>Memory: O(N) instead of O(N^2)</li><li>Enables much longer context lengths</li><li>Exact (not approximate)</li></ul><b>Used in</b>: Most modern LLM training and inference.",
       "tags": [
@@ -542,7 +542,7 @@
       ]
     },
     {
-      "uid": "12-054",
+      "uid": "deep-learning-foundations-and-concepts-12-054",
       "front": "What is Multi-Query Attention (MQA)?",
       "back": "<b>Multi-Query Attention</b> shares key and value heads across all query heads.<br><br><b>Standard multi-head</b>: H separate Q, K, V projections<br><b>MQA</b>: H query heads, but only 1 shared K and 1 shared V<br><br><b>Benefits</b>:<ul><li><b>KV cache size</b>: Reduced by factor of H</li><li><b>Memory bandwidth</b>: Much lower during inference</li><li><b>Faster decoding</b>: Especially for long sequences</li></ul><b>Trade-off</b>: Slight quality degradation vs standard multi-head.<br><br><b>Used in</b>: PaLM, Falcon, StarCoder.",
       "tags": [
@@ -552,7 +552,7 @@
       ]
     },
     {
-      "uid": "12-055",
+      "uid": "deep-learning-foundations-and-concepts-12-055",
       "front": "What is Grouped Query Attention (GQA)?",
       "back": "<b>Grouped Query Attention</b> is a middle ground between multi-head and multi-query attention.<br><br><b>Setup</b>: Group query heads together; each group shares one K and V head.<br><br><b>Examples</b>:<ul><li>32 query heads, 8 KV heads = groups of 4</li><li>MQA = GQA with 1 group</li><li>MHA = GQA where groups = heads</li></ul><b>Benefits</b>:<ul><li>Better quality than MQA</li><li>Smaller KV cache than standard MHA</li><li>Tunable trade-off</li></ul><b>Used in</b>: LLaMA 2 (70B), Mistral, Gemma.",
       "tags": [
@@ -562,7 +562,7 @@
       ]
     },
     {
-      "uid": "12-056",
+      "uid": "deep-learning-foundations-and-concepts-12-056",
       "front": "What are neural scaling laws?",
       "back": "<b>Scaling laws</b> describe how model performance improves predictably with scale.<br><br><b>Kaplan et al. (2020)</b>: Loss scales as power law with:<ul><li>Model parameters N: \\( L \\propto N^{-0.076} \\)</li><li>Dataset size D: \\( L \\propto D^{-0.095} \\)</li><li>Compute C: \\( L \\propto C^{-0.050} \\)</li></ul><b>Chinchilla (2022)</b>: Optimal allocation - parameters and data should scale equally. Many models were undertrained.<br><br><b>Implications</b>:<ul><li>Performance is predictable before training</li><li>Can extrapolate to larger scales</li><li>Guides resource allocation</li></ul>",
       "tags": [
@@ -572,7 +572,7 @@
       ]
     },
     {
-      "uid": "12-057",
+      "uid": "deep-learning-foundations-and-concepts-12-057",
       "front": "What is the Chinchilla scaling law?",
       "back": "<b>Chinchilla</b> (Hoffmann et al., 2022) revised compute-optimal scaling.<br><br><b>Key finding</b>: For a fixed compute budget, model size and training tokens should scale <b>equally</b>.<br><br><b>Optimal ratio</b>: ~20 tokens per parameter<br>(e.g., 70B model needs ~1.4T tokens)<br><br><b>Implication</b>: Many large models (GPT-3, Gopher) were undertrained - they used too many parameters for their training data.<br><br><b>Impact</b>: Shifted focus toward more training data, smaller but better-trained models (LLaMA trained on 1-2T tokens).",
       "tags": [
@@ -582,7 +582,7 @@
       ]
     },
     {
-      "uid": "12-058",
+      "uid": "deep-learning-foundations-and-concepts-12-058",
       "front": "What is in-context learning (ICL)?",
       "back": "<b>In-context learning</b>: A model performs a task by conditioning on examples in the prompt, without updating weights.<br><br><b>Example</b>:<br><code>Translate to French:<br>cat -> chat<br>dog -> chien<br>house -> </code><br>Model outputs 'maison' by pattern matching, not fine-tuning.<br><br><b>Key properties</b>:<ul><li>No gradient updates</li><li>Task specified at inference time</li><li>Emerges in large language models</li><li>Performance improves with more examples (few-shot)</li></ul><b>Why it works</b>: Still debated. May be implicit Bayesian inference, or task location in pretraining distribution.",
       "tags": [
@@ -592,7 +592,7 @@
       ]
     },
     {
-      "uid": "12-059",
+      "uid": "deep-learning-foundations-and-concepts-12-059",
       "front": "What is RLHF (Reinforcement Learning from Human Feedback)?",
       "back": "<b>RLHF</b> aligns language models with human preferences using RL.<br><br><b>Pipeline stages</b>:<ol><li><b>Base model (pretraining)</b>: Train LLM on broad text with next-token prediction. Gives general language ability but not aligned behavior.</li><li><b>Supervised fine-tuning (SFT)</b>: Collect human-written good responses to prompts. Fine-tune base model to imitate them.</li><li><b>Preference data collection</b>: Sample multiple responses from SFT model. Humans rank which is better (helpfulness, harmlessness, honesty).</li><li><b>Reward model (RM) training</b>: Train a model to predict human preferences (scalar reward or pairwise win-probability). This becomes the learned objective.</li><li><b>RL optimization (policy training)</b>: Start from SFT model. Use RL (commonly PPO) to maximize RM score with a <b>KL penalty</b> to prevent drifting too far from SFT model.</li><li><b>Evaluation + iteration</b>: Human evals, safety tests, red-teaming. Add new data on failures, retrain RM and/or do more SFT/RL rounds.</li></ol><b>Why needed</b>: Next-token prediction doesn't optimize for helpfulness, safety, or instruction-following.<br><br><b>Variants</b>: DPO skips explicit reward model + RL step, but classic RLHF is SFT → RM → RL with KL regularization.",
       "tags": [
@@ -602,7 +602,7 @@
       ]
     },
     {
-      "uid": "12-060",
+      "uid": "deep-learning-foundations-and-concepts-12-060",
       "front": "What is DPO (Direct Preference Optimization)?",
       "back": "<b>DPO</b> is a simpler alternative to RLHF that directly optimizes for preferences without RL.<br><br><b>Key insight</b>: The optimal policy under the RLHF objective can be expressed in closed form. This allows directly optimizing the policy without training a separate reward model.<br><br><b>Loss</b>: \\( L = -\\log \\sigma\\left(\\beta \\log \\frac{\\pi(y_w|x)}{\\pi_{ref}(y_w|x)} - \\beta \\log \\frac{\\pi(y_l|x)}{\\pi_{ref}(y_l|x)}\\right) \\)<br><br>where \\( y_w \\) is preferred, \\( y_l \\) is dispreferred.<br><br><b>Advantages over RLHF</b>:<ul><li>No reward model to train</li><li>No RL optimization (PPO)</li><li>Simpler and more stable</li></ul>",
       "tags": [
@@ -612,7 +612,7 @@
       ]
     },
     {
-      "uid": "12-061",
+      "uid": "deep-learning-foundations-and-concepts-12-061",
       "front": "What is LoRA (Low-Rank Adaptation)?",
       "back": "<b>LoRA</b> is a parameter-efficient fine-tuning method that adds low-rank updates to frozen weights.<br><br><b>Key idea</b>: Instead of updating \\( W \\), learn \\( W + BA \\) where:<ul><li>\\( B \\in \\mathbb{R}^{d \\times r} \\), \\( A \\in \\mathbb{R}^{r \\times k} \\)</li><li>\\( r \\ll \\min(d, k) \\) (rank is small, e.g., 8-64)</li></ul><b>Benefits</b>:<ul><li>Train ~0.1% of parameters</li><li>No inference latency (merge BA into W)</li><li>Multiple LoRAs for different tasks</li><li>Much lower memory than full fine-tuning</li></ul><b>Applied to</b>: Attention projections (Q, K, V, O) typically.<br><br><b>Used in</b>: Virtually all LLM fine-tuning today.",
       "tags": [
@@ -622,7 +622,7 @@
       ]
     },
     {
-      "uid": "12-062",
+      "uid": "deep-learning-foundations-and-concepts-12-062",
       "front": "What is parameter-efficient fine-tuning (PEFT)?",
       "back": "<b>PEFT</b> methods adapt large pre-trained models by training only a small number of parameters.<br><br><b>Methods</b>:<ul><li><b>LoRA</b>: Low-rank weight updates</li><li><b>Adapters</b>: Small trainable modules inserted between layers</li><li><b>Prefix tuning</b>: Learnable prefix tokens prepended to input</li><li><b>Prompt tuning</b>: Learnable soft prompts</li><li><b>IA3</b>: Learned rescaling of activations</li></ul><b>Benefits</b>:<ul><li>Train <1% of parameters</li><li>Lower memory and compute</li><li>Store many task-specific adaptations cheaply</li><li>Often matches full fine-tuning quality</li></ul>",
       "tags": [
@@ -632,7 +632,7 @@
       ]
     },
     {
-      "uid": "12-063",
+      "uid": "deep-learning-foundations-and-concepts-12-063",
       "front": "What are emergent abilities in large language models?",
       "back": "<b>Emergent abilities</b>: Capabilities that appear suddenly at scale, absent in smaller models.<br><br><b>Examples</b>:<ul><li>Multi-step arithmetic</li><li>Chain-of-thought reasoning</li><li>Word unscrambling</li><li>Following complex instructions</li></ul><b>Characteristics</b>:<ul><li>Near-random performance below threshold</li><li>Sharp improvement above threshold</li><li>Not predictable from smaller scales</li></ul><b>Debate</b>: Some argue emergence is an artifact of evaluation metrics (discrete accuracy). With continuous metrics, improvements may be gradual.<br><br><b>Implication</b>: Scaling may unlock qualitatively new capabilities.",
       "tags": [
@@ -642,7 +642,7 @@
       ]
     },
     {
-      "uid": "12-064",
+      "uid": "deep-learning-foundations-and-concepts-12-064",
       "front": "What is chain-of-thought (CoT) prompting?",
       "back": "<b>Chain-of-thought</b> prompting improves reasoning by having the model show its work.<br><br><b>Standard prompting</b>:<br>Q: Roger has 5 balls. He buys 2 more. How many?<br>A: 7<br><br><b>CoT prompting</b>:<br>Q: Roger has 5 balls. He buys 2 more. How many?<br>A: Roger started with 5 balls. He bought 2 more. 5 + 2 = 7. The answer is 7.<br><br><b>Why it helps</b>:<ul><li>Breaks problem into steps</li><li>Intermediate results stay in context</li><li>Reduces compounding errors</li></ul><b>Variants</b>:<ul><li>Zero-shot CoT: Add 'Let's think step by step'</li><li>Self-consistency: Sample multiple chains, majority vote</li></ul>",
       "tags": [
@@ -652,7 +652,7 @@
       ]
     },
     {
-      "uid": "12-065",
+      "uid": "deep-learning-foundations-and-concepts-12-065",
       "front": "What is a Graph Neural Network (GNN)?",
       "back": "A neural network designed to operate on <b>graph-structured data</b>.<br><br><b>Input</b>: Graph G = (V, E) with node features \\( \\mathbf{h}_v \\) and optionally edge features.<br><br><b>Key operation</b>: Message passing - nodes aggregate information from neighbors:<br>\\( \\mathbf{h}_v^{(l+1)} = \\text{UPDATE}\\left(\\mathbf{h}_v^{(l)}, \\text{AGGREGATE}(\\{\\mathbf{h}_u^{(l)} : u \\in \\mathcal{N}(v)\\})\\right) \\)<br><br><b>Applications</b>:<ul><li>Molecular property prediction</li><li>Social network analysis</li><li>Recommendation systems</li><li>Knowledge graphs</li><li>Combinatorial optimization</li></ul>",
       "tags": [
@@ -662,7 +662,7 @@
       ]
     },
     {
-      "uid": "12-066",
+      "uid": "deep-learning-foundations-and-concepts-12-066",
       "front": "What is message passing in GNNs?",
       "back": "<b>Message passing</b> is the core operation where nodes exchange information with neighbors.<br><br><b>Three steps per layer</b>:<ol><li><b>Message</b>: Compute messages from neighbors<br>\\( \\mathbf{m}_{u \\to v} = \\text{MSG}(\\mathbf{h}_u, \\mathbf{h}_v, \\mathbf{e}_{uv}) \\)</li><li><b>Aggregate</b>: Combine all incoming messages<br>\\( \\mathbf{m}_v = \\text{AGG}(\\{\\mathbf{m}_{u \\to v} : u \\in \\mathcal{N}(v)\\}) \\)</li><li><b>Update</b>: Update node representation<br>\\( \\mathbf{h}_v' = \\text{UPDATE}(\\mathbf{h}_v, \\mathbf{m}_v) \\)</li></ol><b>Aggregation must be permutation-invariant</b>: sum, mean, max are common choices.",
       "tags": [
@@ -672,7 +672,7 @@
       ]
     },
     {
-      "uid": "12-067",
+      "uid": "deep-learning-foundations-and-concepts-12-067",
       "front": "What is the relationship between GNNs and transformers?",
       "back": "<b>Transformers are GNNs on fully-connected graphs</b>.<br><br><b>Self-attention</b>: Every token attends to every other token = complete graph.<br><br><b>Difference</b>:<ul><li>Transformers: Dense attention (all pairs)</li><li>GNNs: Sparse attention (only neighbors)</li></ul><b>Graph Transformers</b>: Combine both - use attention but incorporate graph structure via:<ul><li>Edge features in attention</li><li>Positional encodings from graph (Laplacian eigenvectors)</li><li>Sparse attention following graph edges</li></ul><b>Complexity</b>: Transformers O(N^2), sparse GNNs O(E) where E = edges.",
       "tags": [
@@ -682,7 +682,7 @@
       ]
     },
     {
-      "uid": "12-068",
+      "uid": "deep-learning-foundations-and-concepts-12-068",
       "front": "What are common GNN architectures?",
       "back": "<b>GCN</b> (Graph Convolutional Network):<br>\\( \\mathbf{h}_v' = \\sigma\\left(\\sum_{u \\in \\mathcal{N}(v) \\cup \\{v\\}} \\frac{1}{\\sqrt{d_u d_v}} \\mathbf{W} \\mathbf{h}_u\\right) \\)<br>Mean aggregation with degree normalization.<br><br><b>GraphSAGE</b>: Sample neighbors, concatenate own embedding with aggregated neighbors.<br><br><b>GAT</b> (Graph Attention Network): Use attention to weight neighbor contributions:<br>\\( \\alpha_{vu} = \\text{softmax}_u(\\text{LeakyReLU}(\\mathbf{a}^T[\\mathbf{W}\\mathbf{h}_v || \\mathbf{W}\\mathbf{h}_u])) \\)<br><br><b>GIN</b> (Graph Isomorphism Network): Provably as powerful as the Weisfeiler-Lehman test.",
       "tags": [
@@ -692,7 +692,7 @@
       ]
     },
     {
-      "uid": "12-069",
+      "uid": "deep-learning-foundations-and-concepts-12-069",
       "front": "What is over-smoothing in GNNs?",
       "back": "<b>Over-smoothing</b>: After many message-passing layers, all node representations become similar.<br><br><b>Why it happens</b>: Repeated averaging with neighbors causes features to converge to a uniform value.<br><br><b>Analogy</b>: Like heat diffusion - eventually everything reaches the same temperature.<br><br><b>Consequence</b>: Deep GNNs (>3-4 layers) often perform worse than shallow ones.<br><br><b>Solutions</b>:<ul><li>Residual connections</li><li>Jumping knowledge (concatenate outputs from all layers)</li><li>DropEdge (randomly remove edges during training)</li><li>PairNorm (normalize to prevent collapse)</li></ul>",
       "tags": [
@@ -702,7 +702,7 @@
       ]
     },
     {
-      "uid": "12-070",
+      "uid": "deep-learning-foundations-and-concepts-12-070",
       "front": "What graph-level tasks can GNNs solve?",
       "back": "<b>Node-level</b>: Predict properties of individual nodes.<ul><li>Node classification</li><li>Example: Predict user interests in social network</li></ul><b>Edge-level</b>: Predict properties of edges.<ul><li>Link prediction (will edge form?)</li><li>Example: Recommend friends, predict interactions</li></ul><b>Graph-level</b>: Predict properties of entire graphs.<ul><li>Graph classification/regression</li><li>Requires graph pooling (sum/mean node embeddings, or hierarchical pooling)</li><li>Example: Predict molecule toxicity</li></ul>",
       "tags": [

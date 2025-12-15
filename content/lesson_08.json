@@ -10,7 +10,7 @@
   ],
   "cards": [
     {
-      "uid": "08-001",
+      "uid": "deep-learning-foundations-and-concepts-08-001",
       "front": "What is weight sharing (parameter tying)?",
       "back": "Using the <b>same weight value</b> for multiple connections in a network.<br>The shared value is learned from data.<br>Benefits:<br><ul><li>Reduces number of parameters</li><li>Encodes prior knowledge about structure</li><li>Key mechanism in CNNs (same filter applied everywhere)</li></ul>",
       "tags": [
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "uid": "08-002",
+      "uid": "deep-learning-foundations-and-concepts-08-002",
       "front": "What is the shattered gradients problem?",
       "back": "In very deep networks, gradients become increasingly <b>uncorrelated</b> and noisy across layers.<br>With ReLU activations: exponential increase in the number of linear regions.<br>This makes optimization difficult without special techniques like residual connections.",
       "tags": [
@@ -30,7 +30,7 @@
       ]
     },
     {
-      "uid": "08-003",
+      "uid": "deep-learning-foundations-and-concepts-08-003",
       "front": "What are residual connections (skip connections)?",
       "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)<br>A particular form of skip-layer connections.<br>Allow gradients to flow directly through the network, mitigating vanishing gradients.<br><b>Impact</b>: Introduced by He et al. (2015), enabling training of networks with hundreds of layers.",
       "tags": [
@@ -40,7 +40,7 @@
       ]
     },
     {
-      "uid": "08-004",
+      "uid": "deep-learning-foundations-and-concepts-08-004",
       "front": "What is a residual block?",
       "back": "A network module where input is added to output:<br>\\( \\vec{y} = F(\\vec{x}; \\vec{w}) + \\vec{x} \\)<br>The function \\( F \\) learns the <b>residual</b> - what needs to be added to the input.<br>Easier to learn small corrections than full transformations.",
       "tags": [
@@ -50,7 +50,7 @@
       ]
     },
     {
-      "uid": "08-005",
+      "uid": "deep-learning-foundations-and-concepts-08-005",
       "front": "What is a ResNet?",
       "back": "<b>Residual Network</b>: A deep network composed of multiple residual blocks.<br>Key properties:<br><ul><li>Can train very deep networks (100+ layers)</li><li>Gradients flow through skip connections</li><li>Each block learns residual mapping</li></ul>Enabled breakthrough in image recognition (He et al., 2016).",
       "tags": [
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "uid": "08-006",
+      "uid": "deep-learning-foundations-and-concepts-08-006",
       "front": "Why is the term 'residual' used in ResNets?",
       "back": "Because each block learns \\( F(\\vec{x}) = H(\\vec{x}) - \\vec{x} \\), the <b>residual</b> between desired output \\( H(\\vec{x}) \\) and input \\( \\vec{x} \\).<br>If identity mapping is optimal, the residual is just zero.<br>Easier to push residual to zero than learn identity explicitly.",
       "tags": [
@@ -70,7 +70,7 @@
       ]
     },
     {
-      "uid": "08-007",
+      "uid": "deep-learning-foundations-and-concepts-08-007",
       "front": "What are committees (ensembles) in machine learning?",
       "back": "Combining predictions from <b>multiple models</b> to improve performance.<br>Methods:<br><ul><li><b>Averaging</b>: Mean of predictions</li><li><b>Voting</b>: Majority vote for classification</li><li><b>Weighted combination</b>: Based on model quality</li></ul>Reduces variance and often improves accuracy.",
       "tags": [
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "uid": "08-008",
+      "uid": "deep-learning-foundations-and-concepts-08-008",
       "front": "What is bootstrap aggregation (bagging)?",
       "back": "Creating multiple models trained on <b>bootstrap samples</b> of the data.<br>Bootstrap sample: Draw N points <b>with replacement</b> from original N points.<br>Each model sees different subset. Average predictions for final output.<br>Reduces variance without increasing bias.",
       "tags": [
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "uid": "08-009",
+      "uid": "deep-learning-foundations-and-concepts-08-009",
       "front": "What is a bootstrap dataset?",
       "back": "A dataset \\( X_B \\) created by drawing N points <b>at random with replacement</b> from original dataset X of N points.<br>Some points appear multiple times, others not at all.<br>On average, ~63.2% of original points appear in each bootstrap sample.",
       "tags": [
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "uid": "08-010",
+      "uid": "deep-learning-foundations-and-concepts-08-010",
       "front": "Why doesn't ensemble averaging reduce error as much as theory suggests?",
       "back": "Theory: Averaging M models reduces error by factor of M.<br>Reality: <b>Errors are typically highly correlated</b> between models.<br>Correlated errors don't cancel out. Reduction is much smaller than 1/M.<br>Diversity among ensemble members is key to improvement.",
       "tags": [
@@ -110,7 +110,7 @@
       ]
     },
     {
-      "uid": "08-011",
+      "uid": "deep-learning-foundations-and-concepts-08-011",
       "front": "What is boosting?",
       "back": "An ensemble method that combines multiple <b>weak classifiers</b> sequentially.<br>Each new classifier focuses on examples the previous ones got wrong.<br>Final prediction is weighted combination.<br>Examples: AdaBoost, Gradient Boosting, XGBoost.",
       "tags": [
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "uid": "08-012",
+      "uid": "deep-learning-foundations-and-concepts-08-012",
       "front": "What is dropout?",
       "back": "A regularization technique that <b>randomly deletes nodes</b> during training.<br>With probability p, each hidden/input node is 'dropped' (set to zero).<br>At test time: Use all nodes but scale activations by (1-p).<br>Can be viewed as implicit model averaging.",
       "tags": [
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "uid": "08-013",
+      "uid": "deep-learning-foundations-and-concepts-08-013",
       "front": "Which nodes does dropout apply to?",
       "back": "Dropout is applied to:<br><ul><li><b>Hidden nodes</b>: Yes</li><li><b>Input nodes</b>: Yes (sometimes)</li><li><b>Output nodes</b>: No</li></ul>Output nodes are never dropped as they define the prediction.",
       "tags": [
@@ -140,7 +140,7 @@
       ]
     },
     {
-      "uid": "08-014",
+      "uid": "deep-learning-foundations-and-concepts-08-014",
       "front": "Why is dropout interpreted as model averaging?",
       "back": "Each dropout mask defines a <b>different sub-network</b>.<br>With N droppable nodes, there are \\( 2^N \\) possible sub-networks.<br>Training samples different networks; inference averages them.<br>Approximate ensemble without training multiple models explicitly.",
       "tags": [
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "uid": "08-015",
+      "uid": "deep-learning-foundations-and-concepts-08-015",
       "front": "How does dropout affect training time?",
       "back": "Training takes <b>longer</b> with dropout because:<br><ul><li>Each parameter update uses only a subset of nodes</li><li>Updates are noisier (higher variance)</li><li>More epochs needed for convergence</li></ul>But generalization often improves, justifying the extra training.",
       "tags": [
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "uid": "08-016",
+      "uid": "deep-learning-foundations-and-concepts-08-016",
       "front": "What is Monte Carlo dropout?",
       "back": "Using dropout at <b>test time</b> (not just training) to estimate uncertainty.<br>Run multiple forward passes with different dropout masks.<br>Variance in predictions indicates model uncertainty.<br>Provides approximate Bayesian inference cheaply.",
       "tags": [
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "uid": "08-017",
+      "uid": "deep-learning-foundations-and-concepts-08-017",
       "front": "What is knowledge distillation?",
       "back": "<b>Knowledge distillation</b> transfers knowledge from a large 'teacher' model to a smaller 'student' model.<br><br><b>Key idea</b>: Train the student to mimic the teacher's <b>soft outputs</b> (probability distributions), not just the hard labels.<br><br><b>Why soft labels help</b>: They encode 'dark knowledge' - relationships between classes. If teacher says 'probably cat (0.7), maybe dog (0.2), unlikely car (0.001)', that's more informative than just 'cat'.<br><br><b>Loss</b>: \\( L = \\alpha L_{hard} + (1-\\alpha) L_{soft} \\)<br>where \\( L_{soft} \\) matches student and teacher distributions.",
       "tags": [
@@ -180,7 +180,7 @@
       ]
     },
     {
-      "uid": "08-018",
+      "uid": "deep-learning-foundations-and-concepts-08-018",
       "front": "What is temperature in knowledge distillation?",
       "back": "<b>Temperature</b> controls how soft the probability distributions are:<br>\\( p_i = \\frac{\\exp(z_i / T)}{\\sum_j \\exp(z_j / T)} \\)<br><br><b>Effect</b>:<ul><li><b>T = 1</b>: Standard softmax</li><li><b>T > 1</b>: Softer distribution (more uniform)</li><li><b>T -> infinity</b>: Completely uniform</li></ul><b>Why use high T?</b> With T=1, teacher might output 0.99 for correct class, hiding information about other classes. Higher T reveals more structure.<br><br><b>Important</b>: Use same temperature for both teacher and student during distillation; reset to T=1 at inference.",
       "tags": [
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "uid": "08-019",
+      "uid": "deep-learning-foundations-and-concepts-08-019",
       "front": "What are the benefits of knowledge distillation?",
       "back": "<b>1. Model compression</b>: Deploy smaller, faster models with similar accuracy.<br><br><b>2. Ensemble to single model</b>: Distill an ensemble's knowledge into one model.<br><br><b>3. Label smoothing effect</b>: Soft targets act as implicit regularization.<br><br><b>4. Cross-architecture transfer</b>: Teacher and student can have different architectures.<br><br><b>Use cases</b>:<ul><li>Mobile deployment</li><li>Edge devices</li><li>Reducing latency</li><li>Training with noisy labels (teacher can denoise)</li></ul>",
       "tags": [
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "uid": "08-020",
+      "uid": "deep-learning-foundations-and-concepts-08-020",
       "front": "What is model quantization?",
       "back": "<b>Quantization</b> reduces model size by using lower-precision numbers.<br><br><b>Common approaches</b>:<ul><li><b>FP32 to FP16</b>: 2x smaller, minimal accuracy loss</li><li><b>FP32 to INT8</b>: 4x smaller, faster inference</li><li><b>FP32 to INT4</b>: 8x smaller, used for LLM inference</li></ul><b>Types</b>:<ul><li><b>Post-training quantization (PTQ)</b>: Quantize after training</li><li><b>Quantization-aware training (QAT)</b>: Simulate quantization during training</li></ul><b>Trade-off</b>: Lower precision = smaller/faster but potential accuracy loss.<br><br><b>Use cases</b>: Mobile deployment, edge devices, LLM inference (GPTQ, AWQ, GGUF).",
       "tags": [
@@ -210,7 +210,7 @@
       ]
     },
     {
-      "uid": "08-021",
+      "uid": "deep-learning-foundations-and-concepts-08-021",
       "front": "What is the difference between PTQ and QAT?",
       "back": "<b>Post-Training Quantization (PTQ)</b>:<ul><li>Quantize a trained model without retraining</li><li>Fast and easy to apply</li><li>May have accuracy loss, especially for aggressive quantization</li><li>Uses calibration data to determine quantization ranges</li></ul><b>Quantization-Aware Training (QAT)</b>:<ul><li>Simulate quantization during training</li><li>Model learns to be robust to quantization noise</li><li>Better accuracy than PTQ</li><li>More expensive (requires training)</li></ul><b>Rule of thumb</b>: Use PTQ first; if accuracy drops too much, try QAT.",
       "tags": [
@@ -220,7 +220,7 @@
       ]
     },
     {
-      "uid": "08-022",
+      "uid": "deep-learning-foundations-and-concepts-08-022",
       "front": "What is neural network pruning?",
       "back": "<b>Pruning</b> removes unnecessary weights or neurons to create smaller, faster models.<br><br><b>Types</b>:<ul><li><b>Unstructured pruning</b>: Remove individual weights (creates sparse matrices)</li><li><b>Structured pruning</b>: Remove entire neurons, channels, or layers (maintains dense operations)</li></ul><b>Process</b>:<ol><li>Train the full model</li><li>Identify unimportant weights (e.g., small magnitude)</li><li>Remove/zero them out</li><li>Fine-tune to recover accuracy</li></ol><b>Lottery Ticket Hypothesis</b>: Dense networks contain sparse subnetworks that can train to same accuracy from scratch.",
       "tags": [
@@ -230,7 +230,7 @@
       ]
     },
     {
-      "uid": "08-023",
+      "uid": "deep-learning-foundations-and-concepts-08-023",
       "front": "What is the Lottery Ticket Hypothesis?",
       "back": "<b>Lottery Ticket Hypothesis</b> (Frankle & Carlin, 2019): Dense neural networks contain sparse subnetworks (<b>winning tickets</b>) that, when trained in isolation from their original initialization, can match the full network's accuracy.<br><br><b>Key insight</b>: It's not just about the sparse architecture, but also the <b>initial weights</b>. Random reinitialization doesn't work.<br><br><b>Implications</b>:<ul><li>Overparameterization may help find good subnetworks</li><li>Pruning + rewinding can find efficient models</li><li>Not all initializations are equal</li></ul><b>Limitation</b>: Finding winning tickets requires training the full network first.",
       "tags": [
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "uid": "08-024",
+      "uid": "deep-learning-foundations-and-concepts-08-024",
       "front": "What are the different notions of robustness in machine learning?",
       "back": "<b>Adversarial robustness</b>: Resistance to small, intentionally crafted perturbations.<ul><li>Perturbations are often imperceptible to humans</li><li>Evaluated via PGD attacks, AutoAttack</li><li>Defense: Adversarial training, certified defenses</li></ul><b>Distributional robustness</b>: Performance on data from shifted distributions.<ul><li>Domain shift, covariate shift, dataset bias</li><li>Evaluated on OOD benchmarks (ImageNet-C, -R, -A)</li><li>Defense: Data augmentation, domain adaptation</li></ul><b>Label noise robustness</b>: Learning despite mislabeled training examples.<ul><li>Common in web-scraped or crowdsourced data</li><li>Defense: Noise-robust losses, co-teaching, confident learning</li></ul><b>Key differences</b>:<ul><li>Adversarial: Worst-case perturbations, small \\( \\ell_p \\) balls</li><li>Distributional: Natural shifts, may be large but structured</li><li>Label noise: Corruption in training labels, not inputs</li></ul><b>Trade-offs</b>: Adversarial training often hurts clean accuracy; models robust to one shift may fail on others.",
       "tags": [
