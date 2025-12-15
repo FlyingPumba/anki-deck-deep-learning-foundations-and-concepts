@@ -720,6 +720,151 @@
         "normalization",
         "llm"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-072",
+      "front": "How is an encoder-only transformer structured?",
+      "back": "A stack of <b>encoder blocks</b>, each containing:<br><ol><li><b>Bidirectional self-attention</b>: every token attends to every other token (full N×N attention matrix)</li><li><b>Feed-forward network</b>: applied independently to each position</li><li><b>Residual connections + layer norm</b> around each sub-layer</li></ol><b>Input</b>: sequence of token embeddings + positional encodings<br><b>Output</b>: sequence of <i>contextualized embeddings</i> (same length as input)<br><br><b>Key insight</b>: The output at position 5 has \"seen\" all other positions. This is powerful for <i>understanding</i> but means there's no built-in mechanism for generation - you get embeddings, not predictions.",
+      "tags": [
+        "ch12",
+        "encoder-only",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-073",
+      "front": "How is a decoder-only transformer structured?",
+      "back": "A stack of <b>decoder blocks</b>, each containing:<br><ol><li><b>Causal (masked) self-attention</b>: position i can only attend to positions ≤ i (lower-triangular attention matrix)</li><li><b>Feed-forward network</b>: applied independently to each position</li><li><b>Residual connections + layer norm</b> around each sub-layer</li></ol><b>Input</b>: sequence of tokens<br><b>Output</b>: at each position, a probability distribution over the next token<br><br><b>Key insight</b>: The causal mask means position 5's representation only depends on positions 1-4. This matches how generation works: you predict token 6 using only tokens 1-5. Training and inference see the same information structure.",
+      "tags": [
+        "ch12",
+        "decoder-only",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-074",
+      "front": "How is an encoder-decoder transformer structured?",
+      "back": "<b>Two separate stacks</b>:<br><br><b>Encoder</b> (processes input):<ul><li>Bidirectional self-attention (sees full input)</li><li>Produces contextualized representations of the input sequence</li></ul><b>Decoder</b> (generates output):<ul><li>Causal self-attention (sees only previously generated tokens)</li><li><b>Cross-attention</b>: queries from decoder, keys/values from encoder output</li><li>Generates one token at a time</li></ul><b>Key insight</b>: Cross-attention is the bridge. The decoder can \"look back\" at any part of the encoded input while generating each output token. This is natural for translation: understand the full source sentence, then generate the target word-by-word while consulting the source.",
+      "tags": [
+        "ch12",
+        "encoder-decoder",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-075",
+      "front": "What is the difference in the attention mask between encoder and decoder?",
+      "back": "<b>Encoder (bidirectional)</b>: No mask, or equivalently, a matrix of all 1s. Every position attends to every other position.<br><br><b>Decoder (causal)</b>: Lower-triangular mask. Position i can only attend to positions 1 through i. Future positions are masked out (set to -∞ before softmax).<br><br><b>Visualization</b>:<br>Encoder attention (4 tokens):<br><code>1 1 1 1<br>1 1 1 1<br>1 1 1 1<br>1 1 1 1</code><br><br>Decoder attention (4 tokens):<br><code>1 0 0 0<br>1 1 0 0<br>1 1 1 0<br>1 1 1 1</code><br><br>The mask determines the <i>information flow</i>: what can influence what.",
+      "tags": [
+        "ch12",
+        "attention-mask",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-076",
+      "front": "Why can't encoder-only models generate text autoregressively?",
+      "back": "Autoregressive generation means: given tokens 1 to n, predict token n+1. But encoder-only models have a fundamental mismatch:<br><br><b>During training</b>: Every position sees <i>all</i> other positions (bidirectional attention). The model learns representations assuming full context is available.<br><br><b>During generation</b>: When predicting token n+1, tokens n+2, n+3, ... don't exist yet. The model has <i>never</i> seen this partial-information situation.<br><br><b>Analogy</b>: It's like training someone to summarize complete documents, then asking them to summarize a document mid-sentence. They've never practiced working with incomplete information.<br><br><b>The fix</b>: Use causal masking during training so the model learns to work with partial sequences.",
+      "tags": [
+        "ch12",
+        "encoder-only",
+        "generation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-077",
+      "front": "Why does causal masking make autoregressive generation possible?",
+      "back": "Causal masking ensures <b>training matches inference</b>:<br><br><b>During training</b>: When computing the representation at position 5, the model only sees positions 1-4 (future is masked). It learns to predict position 6 from this partial view.<br><br><b>During inference</b>: When generating token 6, the model has tokens 1-5. This is <i>exactly</i> the situation it trained on.<br><br><b>Without causal masking</b>: The model would \"cheat\" during training by looking at the answer. At inference, it would face an unfamiliar situation (no future tokens to peek at) and fail.<br><br><b>Key insight</b>: The mask isn't just about preventing cheating - it's about ensuring the model practices the exact task it will perform at inference time.",
+      "tags": [
+        "ch12",
+        "causal-masking",
+        "generation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-078",
+      "front": "What is the purpose of cross-attention in encoder-decoder models?",
+      "back": "Cross-attention lets the decoder <b>consult the encoded input</b> while generating each output token.<br><br><b>Mechanism</b>:<ul><li><b>Queries</b>: from the decoder (\"what am I looking for?\")</li><li><b>Keys and Values</b>: from the encoder output (\"what's in the input?\")</li></ul>At each decoder position, cross-attention computes: \"Given what I'm trying to generate, which parts of the input are relevant?\"<br><br><b>Why needed</b>: The decoder's self-attention only sees previously generated tokens. Without cross-attention, it would have no direct access to the input - only whatever information was compressed into the initial decoder state.<br><br><b>Translation example</b>: When generating the French word for \"cat\", cross-attention can directly attend to \"cat\" in the English input, rather than hoping that information survived through the decoder's hidden state.",
+      "tags": [
+        "ch12",
+        "cross-attention",
+        "encoder-decoder"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-079",
+      "front": "Why use encoder-decoder for translation instead of decoder-only?",
+      "back": "<b>Encoder-decoder advantages for translation</b>:<ul><li><b>Full source understanding first</b>: Encoder reads entire source sentence bidirectionally before any translation begins. Word order differences between languages are handled naturally.</li><li><b>Explicit access via cross-attention</b>: Decoder can attend to any source word at any time. Useful when target word order differs from source.</li><li><b>Separation of concerns</b>: Encoder specializes in understanding source; decoder specializes in generating target.</li></ul><b>Decoder-only can work too</b>: Frame as \"English: The cat sat. French:\" and let it complete. At scale, this works surprisingly well. But:<ul><li>Source must fit in context and be \"remembered\" through hidden states</li><li>No explicit mechanism to align source and target</li><li>Less parameter-efficient for the translation-specific task</li></ul><b>Trade-off</b>: Encoder-decoder is more efficient for translation; decoder-only is more flexible across tasks.",
+      "tags": [
+        "ch12",
+        "encoder-decoder",
+        "decoder-only",
+        "translation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-080",
+      "front": "Why use encoder-only for classification instead of decoder-only?",
+      "back": "<b>Classification needs</b>: Look at the entire input, then produce a single label.<br><br><b>Encoder-only is natural</b>:<ul><li>Bidirectional attention means every token sees full context</li><li>The [CLS] token (or pooled output) captures a representation of the whole sequence</li><li>Add a classifier head on top → done</li></ul><b>Decoder-only can work</b>: Process the full sequence, then the <i>final</i> position has seen everything (due to causal attention accumulating information left-to-right). Classify from there.<br><br><b>But decoder-only is awkward</b>:<ul><li>Early positions haven't seen later tokens - wasted computation</li><li>Information must \"flow forward\" through the sequence</li><li>The causal structure doesn't match the task: you're not generating anything</li></ul><b>Rule of thumb</b>: If you need to understand before deciding (not generate), encoder-only is more natural.",
+      "tags": [
+        "ch12",
+        "encoder-only",
+        "decoder-only",
+        "classification"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-081",
+      "front": "Why do decoder-only models dominate modern LLMs?",
+      "back": "<b>1. Simplicity</b>: One architecture, one objective (next token prediction). No encoder, no cross-attention, fewer design choices.<br><br><b>2. Flexibility through prompting</b>: The same model handles Q&A, summarization, translation, coding - just change the prompt. Encoder-decoder models were designed for specific input→output tasks.<br><br><b>3. Scaling predictability</b>: Next-token prediction scales smoothly. More compute → better predictions → emergent capabilities. The training objective is universal.<br><br><b>4. In-context learning</b>: Decoder-only models naturally do few-shot learning by conditioning on examples in the prompt. This emerged unexpectedly and is incredibly useful.<br><br><b>5. No input/output distinction needed</b>: Many tasks don't have a clean separation. Conversation, reasoning, code completion - all are just \"continue the sequence.\"<br><br><b>Trade-off</b>: Encoder-decoder is still more parameter-efficient for tasks with clear input→output structure (translation, summarization). But flexibility won.",
+      "tags": [
+        "ch12",
+        "decoder-only",
+        "llm",
+        "scaling"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-082",
+      "front": "Can a decoder-only model perform tasks that seem to need an encoder?",
+      "back": "<b>Yes</b>, by reframing tasks as text completion:<br><br><b>Translation</b>: \"Translate to French: The cat sat on the mat →\" The model completes with the French translation.<br><br><b>Summarization</b>: \"Article: [long text]. TL;DR:\" The model completes with a summary.<br><br><b>Classification</b>: \"Review: This movie was terrible. Sentiment:\" The model completes with \"negative\".<br><br><b>Why this works</b>:<ul><li>By the time the model reaches \"→\" or \":\", it has processed the full input (through causal attention accumulation)</li><li>The prompt format tells the model what task to perform</li><li>Large models learn these patterns from diverse training data</li></ul><b>Limitation</b>: The input must fit in context. Very long documents may need chunking or specialized approaches.<br><br><b>Key insight</b>: The distinction between \"understanding\" and \"generation\" blurs when everything is framed as sequence completion.",
+      "tags": [
+        "ch12",
+        "decoder-only",
+        "prompting",
+        "task-framing"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-083",
+      "front": "What information does each position have access to in encoder vs decoder?",
+      "back": "<b>Encoder (bidirectional)</b>:<br>Position 3 in a 5-token sequence sees: [1, 2, <b>3</b>, 4, 5]<br>Every position has the same \"view\" of the full sequence (though from its own perspective via attention).<br><br><b>Decoder (causal)</b>:<br>Position 3 sees: [1, 2, <b>3</b>, -, -]<br>Each position sees only itself and the past. Position 1 sees only itself; position 5 sees everything.<br><br><b>Why this matters</b>:<ul><li>Encoder: Good for tasks where the answer depends on global context (e.g., \"is this sentence positive?\" requires seeing all words)</li><li>Decoder: Good for tasks where you build up incrementally (e.g., \"what word comes next?\" shouldn't depend on future words)</li></ul><b>Practical consequence</b>: In decoder-only models, only the final position has seen the full input. Earlier positions have progressively less information.",
+      "tags": [
+        "ch12",
+        "information-flow",
+        "encoder-only",
+        "decoder-only"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-084",
+      "front": "Why does the encoder in an encoder-decoder model use bidirectional attention?",
+      "back": "The encoder's job is to <b>understand the input fully</b> before any output is generated.<br><br><b>Translation example</b>: To translate \"I saw the man with the telescope\", you need to resolve ambiguity. Did I use the telescope to see? Or did the man have a telescope? This may depend on words anywhere in the sentence.<br><br><b>Bidirectional attention enables this</b>: Each word's representation incorporates context from both directions. By the time encoding is done, the representation of \"saw\" knows about both \"I\" (before) and \"telescope\" (after).<br><br><b>Why not causal?</b>: If the encoder used causal attention, the representation of \"saw\" wouldn't know about \"telescope\". The decoder would have to figure out the ambiguity on its own, without the encoder's help.<br><br><b>Key insight</b>: The encoder has no generation constraint - it processes a complete input. So there's no reason to limit what it can see.",
+      "tags": [
+        "ch12",
+        "encoder-decoder",
+        "bidirectional-attention"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-085",
+      "front": "Why does the decoder in an encoder-decoder model still need causal masking?",
+      "back": "Even with an encoder providing input understanding, the decoder generates <b>one token at a time</b>:<br><br><b>At training time</b>: The decoder sees the target sequence (e.g., the French translation). Without causal masking, position 3 could look at positions 4, 5, 6... and \"cheat\" by seeing the answer.<br><br><b>At inference time</b>: When generating token 4, tokens 5, 6, ... don't exist yet. The decoder must work with partial information.<br><br><b>Cross-attention is different</b>: The decoder <i>should</i> see the full encoder output (the source sentence) - that's not cheating, that's the input! But it shouldn't see future <i>target</i> tokens.<br><br><b>Summary</b>:<ul><li>Self-attention in decoder: causal (can't see future outputs)</li><li>Cross-attention: full (can see all of encoder output)</li></ul>",
+      "tags": [
+        "ch12",
+        "encoder-decoder",
+        "causal-masking"
+      ]
     }
   ]
 }

@@ -13,6 +13,26 @@
 - Add practical notes like **Why useful** or **Trade-offs** where relevant
 - Avoid dry, formula-first definitions - make concepts memorable and relatable
 
+### Pedagogical Principles
+- **Teach concepts, not just examples**: Explain what something *is* and *why* it works that way. Specific models/algorithms are examples of deeper concepts.
+- **Build understanding progressively**: Each card should help the learner build a mental model, not just memorize facts.
+- **Explain the "why"**: Why does this design choice matter? What problem does it solve? What are the trade-offs?
+- **Connect to intuition**: Help the learner see *why* something makes sense, not just *what* it is.
+- **Avoid information dumps**: A card that lists 10 bullet points teaches nothing. Focus on one clear insight per card.
+- **Be exhaustive**: Cover a topic thoroughly with multiple cards from different angles rather than one overloaded card.
+
+### Good Question Types
+- **Structural**: "How is X structured?" - explain the components and how they fit together
+- **Comparative**: "Why use X instead of Y for Z?" - forces understanding of trade-offs and design choices
+- **Reasoning**: "Why does X work?" or "Why can't X do Y?" - builds deeper understanding
+- **Mechanism**: "What does X do?" or "What is the purpose of X?" - clarifies function
+- **Consequences**: "What information does X have access to?" - traces through implications
+
+### Question Phrasing
+- Ask about the concept, not the specific instance (e.g., "How is an encoder-only transformer structured?" not "How is BERT structured?")
+- Comparative questions should highlight the relevant context (e.g., "Why use encoder-decoder for translation instead of decoder-only?")
+- Avoid yes/no questions - prefer "why" and "how"
+
 ### LaTeX
 - Use LaTeX for all mathematical equations
 - Inline math: `\( ... \)`
