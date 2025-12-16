@@ -946,6 +946,16 @@
         "geometric-deep-learning",
         "symmetry"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-094",
+      "front": "What is RMSNorm and why is it used in modern transformers?",
+      "back": "<b>RMSNorm</b> (Root Mean Square Normalization) simplifies layer norm by removing the mean centering:<br><br>\\( \\hat{x}_i = \\frac{x_i}{\\text{RMS}(x)} \\cdot \\gamma_i \\)<br>where \\( \\text{RMS}(x) = \\sqrt{\\frac{1}{n}\\sum_i x_i^2} \\)<br><br><b>Comparison to LayerNorm</b>:<ul><li>LayerNorm: Subtract mean, divide by std</li><li>RMSNorm: Just divide by RMS (no mean subtraction)</li></ul><b>Advantages</b>:<ul><li>~10-15% faster (fewer operations)</li><li>Empirically similar or better performance</li></ul><b>Used in</b>: LLaMA, Gemma, and many modern LLMs.",
+      "tags": [
+        "ch12",
+        "rmsnorm",
+        "normalization"
+      ]
     }
   ]
 }

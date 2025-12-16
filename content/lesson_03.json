@@ -171,26 +171,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-03-018",
-      "front": "What is a mixture distribution?",
-      "back": "A <b>mixture distribution</b> combines simpler distributions to model complex data.<br><b>Intuition</b>: Like mixing paint colors. If your data has multiple clusters, use one \"paint\" (distribution) per cluster and blend them. Each component has a weight \\( \\pi_k \\) saying how much of that \"paint\" to use.<br><b>Formula</b>: \\( p(\\mathbf{x}) = \\sum_{k=1}^{K} \\pi_k p_k(\\mathbf{x}) \\) where weights sum to 1.",
-      "tags": [
-        "ch03",
-        "mixture-models",
-        "definition"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-03-022",
-      "front": "Why is maximum likelihood for Gaussian mixtures more complex than for a single Gaussian?",
-      "back": "<b>Intuition</b>: For a single Gaussian, we can solve for the best parameters directly (closed-form). For mixtures, the components are \"entangled\" - we don't know which points belong to which cluster.<br><b>The problem</b>: Log of a sum \\( \\ln(\\sum_k ...) \\) doesn't simplify nicely, unlike sum of logs.<br><b>Solution</b>: Use iterative methods like <b>EM algorithm</b> - alternate between guessing cluster assignments and updating parameters.",
-      "tags": [
-        "ch03",
-        "gmm",
-        "maximum-likelihood"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-03-023",
       "front": "What is sequential estimation and why is it useful?",
       "back": "<b>Sequential estimation</b> updates parameters one data point at a time.<br><b>Intuition</b>: Instead of waiting for all data and computing the average, update your running average as each point arrives. New estimate = old estimate + small correction based on new point.<br><b>Formula</b>: \\( \\mu^{(N)} = \\mu^{(N-1)} + \\frac{1}{N}(x_N - \\mu^{(N-1)}) \\)<br><b>Why useful</b>: Streaming data, huge datasets that don't fit in memory, real-time applications.",
@@ -198,16 +178,6 @@
         "ch03",
         "sequential-estimation",
         "online-learning"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-03-024",
-      "front": "What is a limitation of using a single Gaussian for multimodal data?",
-      "back": "<b>Intuition</b>: A single bell curve has one peak. If your data has multiple clusters (like heights of children vs adults), one Gaussian will awkwardly sit between them.<br><b>Problems</b>:<ul><li>Misses the cluster structure entirely</li><li>Assigns high probability to the \"gap\" between clusters where no data exists</li></ul><b>Solution</b>: Use a mixture of Gaussians - one bell curve per cluster.",
-      "tags": [
-        "ch03",
-        "gaussian-limitations",
-        "multimodal"
       ]
     },
     {

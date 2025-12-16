@@ -131,36 +131,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-01-016",
-      "front": "How does the size of the training data affect overfitting?",
-      "back": "For a given model complexity, the overfitting problem becomes less severe as the size of the data set increases. With a larger data set, we can afford to fit a more complex (more flexible) model to the data.",
-      "tags": [
-        "ch01",
-        "overfitting",
-        "data-size"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-017",
-      "front": "What is regularization in machine learning?",
-      "back": "<b>Regularization</b> involves adding a penalty term to the error function to discourage the coefficients from having large magnitudes. It controls overfitting as an alternative to limiting the number of parameters.",
-      "tags": [
-        "ch01",
-        "regularization",
-        "overfitting"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-018",
-      "front": "What is the regularized error function with L2 penalty?",
-      "back": "\\( \\tilde{E}(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 + \\frac{\\lambda}{2} \\|w\\|^2 \\)<br>where \\( \\|w\\|^2 = w^T w = w_0^2 + w_1^2 + \\ldots + w_M^2 \\)<br>The coefficient \\( \\lambda \\) governs the relative importance of the regularization term.",
-      "tags": [
-        "ch01",
-        "regularization",
-        "l2-regularization"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-01-020",
       "front": "What is a hyperparameter?",
       "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:<br><ul><li>The regularization coefficient \\( \\lambda \\)</li><li>The order \\( M \\) of a polynomial</li><li>Learning rate</li></ul>",
