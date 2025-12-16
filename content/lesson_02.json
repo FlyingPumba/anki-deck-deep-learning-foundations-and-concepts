@@ -62,16 +62,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-02-006",
-      "front": "What is a false positive? What is a false negative?",
-      "back": "<ul><li><b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)</li><li><b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)</li></ul>",
-      "tags": [
-        "ch02",
-        "testing",
-        "definition"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-02-007",
       "front": "What are random variables (stochastic variables)?",
       "back": "<b>Random variables</b> (or <b>stochastic variables</b>) are variables whose values can vary in a way that is generally unknown from one instance to another.<br>Example: X could represent presence/absence of cancer, Y could represent test outcome.",
@@ -462,17 +452,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-02-047",
-      "front": "Compare maximum likelihood, contrastive estimation, and noise contrastive estimation (NCE).",
-      "back": "<b>Maximum Likelihood Estimation (MLE)</b>:<ul><li>Maximize \\( \\sum_n \\log p_\\theta(x_n) \\)</li><li>Requires computing \\( Z(\\theta) = \\sum_x \\exp(f_\\theta(x)) \\) (partition function)</li><li>Intractable when output space is large</li></ul><b>Contrastive Estimation</b>:<ul><li>Learn by comparing positive and negative examples</li><li>Avoid computing full partition function</li><li>InfoNCE: \\( -\\log \\frac{\\exp(f(x, x^+))}{\\sum_k \\exp(f(x, x_k^-))} \\)</li></ul><b>Noise Contrastive Estimation (NCE)</b>:<ul><li>Turn density estimation into binary classification</li><li>Classify real data vs samples from noise distribution</li><li>Learn \\( \\log p(x) \\) directly, treating \\( \\log Z \\) as a parameter</li><li>As noise samples increase, approaches MLE</li></ul><b>When to use</b>:<ul><li>MLE: Small discrete outputs, tractable partition function</li><li>Contrastive: Representation learning, similarity tasks</li><li>NCE: Large vocabularies (word embeddings), energy models</li></ul>",
-      "tags": [
-        "ch02",
-        "mle",
-        "nce",
-        "contrastive-learning"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-02-048",
       "front": "What is the difference between maximum likelihood (MLE) and maximum a posteriori (MAP) estimation?",
       "back": "<b>MLE</b>: Choose parameters to maximize likelihood:<br>\\( \\theta_{MLE} = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta) \\).<br><br><b>MAP</b>: Choose parameters to maximize posterior (likelihood times prior):<br>\\( \\theta_{MAP} = \\arg\\max_\\theta \\; p(\\theta|\\mathcal{D}) = \\arg\\max_\\theta \\; p(\\mathcal{D}|\\theta)p(\\theta) \\).<br><br><b>Key link to regularization</b>: Taking negative logs turns MAP into minimizing a loss plus a penalty term from \\( -\\ln p(\\theta) \\).",
@@ -480,16 +459,6 @@
         "ch02",
         "map",
         "regularization"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-02-049",
-      "front": "How do L2 and L1 regularization correspond to priors in a MAP view?",
-      "back": "<b>L2 regularization</b> corresponds to a <b>Gaussian prior</b> on weights:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\frac{\\lambda}{2}\\|\\vec{w}\\|^2\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\frac{\\lambda}{2}\\|\\vec{w}\\|^2 \\).<br><br><b>L1 regularization</b> corresponds to a <b>Laplace prior</b>:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\lambda \\|\\vec{w}\\|_1\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\lambda \\|\\vec{w}\\|_1 \\).<br><br><b>Intuition</b>: The Laplace prior has a sharp peak at 0, which encourages sparsity.",
-      "tags": [
-        "ch02",
-        "l1-vs-l2",
-        "bayesian"
       ]
     }
   ]

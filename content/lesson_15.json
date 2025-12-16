@@ -299,6 +299,16 @@
         "gaussian-limitations",
         "multimodal"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-15-030",
+      "front": "What is a mixture density network?",
+      "back": "A neural network that outputs parameters of a <b>mixture model</b> (e.g., Gaussian mixture).<br>Outputs: mixing coefficients \\( \\pi_k \\), means \\( \\mu_k \\), variances \\( \\sigma_k^2 \\)<br>Useful for multi-modal distributions where a single prediction is insufficient.",
+      "tags": [
+        "ch15",
+        "mixture-density",
+        "probabilistic"
+      ]
     }
   ]
 }

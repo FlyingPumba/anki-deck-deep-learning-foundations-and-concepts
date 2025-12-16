@@ -279,6 +279,56 @@
         "model-based",
         "inductive-bias"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-028",
+      "front": "How can averaging help with the bias-variance trade-off?",
+      "back": "Averaging predictions from multiple models can reduce variance without increasing bias.<br>This is the basis for <b>ensemble methods</b> like:<br><ul><li>Bagging</li><li>Random forests</li><li>Model averaging</li></ul>Combines multiple high-variance models to get lower variance.",
+      "tags": [
+        "ch11",
+        "ensemble",
+        "averaging"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-029",
+      "front": "What is SHAP for model interpretability?",
+      "back": "<b>SHapley Additive exPlanations</b>: A unified framework for feature attribution based on game theory.<br><br><b>Key idea</b>: Assign each feature an importance value based on Shapley values from cooperative game theory.<br><br><b>Properties</b> (uniquely satisfied):<ul><li><b>Local accuracy</b>: Attributions sum to model output</li><li><b>Missingness</b>: Missing features get zero attribution</li><li><b>Consistency</b>: If a feature's contribution increases, its attribution doesn't decrease</li></ul><b>Variants</b>:<ul><li><b>KernelSHAP</b>: Model-agnostic, uses weighted linear regression</li><li><b>DeepSHAP</b>: Efficient for deep networks</li><li><b>TreeSHAP</b>: Exact and fast for tree-based models</li></ul>",
+      "tags": [
+        "ch11",
+        "shap",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-030",
+      "front": "What is LIME for model interpretability?",
+      "back": "<b>Local Interpretable Model-agnostic Explanations</b>: Explains individual predictions by fitting a simple model locally.<br><br><b>How it works</b>:<ol><li>Generate perturbed samples around the input</li><li>Get model predictions for perturbations</li><li>Fit an interpretable model (e.g., linear) to approximate locally</li><li>Interpret the simple model's coefficients</li></ol><b>For images</b>: Perturbations mask/reveal superpixels.<br><br><b>Advantages</b>:<ul><li>Model-agnostic (works for any classifier)</li><li>Produces human-understandable explanations</li></ul><b>Limitation</b>: Explanations can be unstable (sensitive to perturbation strategy).",
+      "tags": [
+        "ch11",
+        "lime",
+        "interpretability"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-031",
+      "front": "What is the difference between global and local interpretability?",
+      "back": "<b>Global interpretability</b>: Understanding the model's overall behavior.<ul><li>What features matter in general?</li><li>What patterns has the model learned?</li><li>Methods: Feature importance, partial dependence plots</li></ul><b>Local interpretability</b>: Understanding a specific prediction.<ul><li>Why did the model predict this for this input?</li><li>Which features drove this particular decision?</li><li>Methods: LIME, SHAP, Grad-CAM, saliency maps</li></ul><b>Trade-off</b>: Simpler models (linear, trees) are globally interpretable but less accurate. Complex models need post-hoc explanation methods.",
+      "tags": [
+        "ch11",
+        "interpretability",
+        "concepts"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-032",
+      "front": "What is the difference between causal and predictive modeling?",
+      "back": "<b>Predictive modeling</b>: Find \\( P(Y|X) \\) to predict Y from X.<ul><li>Correlation is sufficient</li><li>Spurious correlations can help prediction</li><li>Fails under distribution shift</li></ul><b>Causal modeling</b>: Understand how interventions on X affect Y.<ul><li>Requires \\( P(Y|do(X)) \\), not just \\( P(Y|X) \\)</li><li>Robust to certain distribution shifts</li><li>Enables answering counterfactual questions</li></ul><b>Key distinction</b>: Prediction asks 'what will Y be if I observe X?'. Causation asks 'what will Y be if I <i>set</i> X?'<br><br><b>Testing causality from observational data</b>:<ul><li>Randomized experiments (gold standard)</li><li>Instrumental variables</li><li>Regression discontinuity</li><li>Difference-in-differences</li><li>Causal discovery algorithms (PC, FCI)</li></ul><b>Challenges</b>: Confounders, selection bias, unobserved variables. Observational data alone rarely proves causation without strong assumptions.",
+      "tags": [
+        "ch11",
+        "causality",
+        "prediction"
+      ]
     }
   ]
 }

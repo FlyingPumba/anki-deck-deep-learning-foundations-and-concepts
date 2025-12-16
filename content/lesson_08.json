@@ -88,6 +88,16 @@
         "robustness",
         "adversarial"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-08-025",
+      "front": "What is dataset shift (distribution shift) and what are the main types?",
+      "back": "<b>Dataset shift</b> means the data distribution changes between training and deployment, so training performance no longer predicts real-world performance.<br><br><b>Common types</b>:<ul><li><b>Covariate shift</b>: \\( p(\\vec{x}) \\) changes but \\( p(y|\\vec{x}) \\) stays the same (inputs look different)</li><li><b>Label shift</b>: \\( p(y) \\) changes but \\( p(\\vec{x}|y) \\) stays the same (class proportions change)</li><li><b>Concept drift</b>: \\( p(y|\\vec{x}) \\) changes (the underlying relationship changes)</li></ul>",
+      "tags": [
+        "ch08",
+        "dataset-shift",
+        "generalization"
+      ]
     }
   ]
 }

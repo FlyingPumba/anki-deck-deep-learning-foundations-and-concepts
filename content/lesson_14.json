@@ -1,0 +1,74 @@
+{
+  "id": "14",
+  "title": "Lesson 14: Transfer, Continual, and Meta-Learning",
+  "lesson_title": "Transfer, Continual, and Meta-Learning",
+  "objectives": [
+    "Understand transfer learning and when to use it",
+    "Learn fine-tuning vs feature extraction approaches",
+    "Master continual learning and catastrophic forgetting",
+    "Understand meta-learning (learning to learn)",
+    "Compare active, semi-supervised, transfer, and meta-learning"
+  ],
+  "cards": [
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-001",
+      "front": "What is catastrophic forgetting?",
+      "back": "<b>Catastrophic forgetting</b>: When training on new data causes a neural network to forget what it learned from previous data.<br><br><b>Why it happens</b>: Updating weights to minimize loss on new task can increase loss on old tasks. No explicit mechanism to preserve old knowledge.<br><br><b>Example</b>: Train on Task A, then Task B. Performance on A drops significantly.<br><br><b>Contrast with humans</b>: We can learn new skills without forgetting old ones (mostly).<br><br><b>Relevance</b>: Critical for continual/lifelong learning, multi-task learning, and fine-tuning pre-trained models.",
+      "tags": [
+        "ch14",
+        "catastrophic-forgetting",
+        "continual-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-002",
+      "front": "What are approaches to prevent catastrophic forgetting?",
+      "back": "<b>1. Regularization-based</b>:<ul><li><b>EWC</b> (Elastic Weight Consolidation): Penalize changes to important weights</li><li>Measure importance via Fisher information</li></ul><b>2. Replay-based</b>:<ul><li>Store subset of old data, mix with new data during training</li><li><b>Generative replay</b>: Train generative model to produce old examples</li></ul><b>3. Architecture-based</b>:<ul><li>Allocate different parameters for different tasks</li><li>Progressive neural networks: Add new modules, freeze old</li></ul><b>4. Practical approach</b>:<ul><li>Multi-task training from scratch when possible</li><li>Fine-tune with low learning rate</li><li>Use LoRA/adapters (freeze base model)</li></ul>",
+      "tags": [
+        "ch14",
+        "catastrophic-forgetting",
+        "solutions"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-003",
+      "front": "What is transfer learning?",
+      "back": "<b>Transfer learning</b>: Leveraging knowledge from one task/domain to improve performance on another.<br><br><b>Common pattern</b>:<ol><li>Pre-train on large dataset (e.g., ImageNet, web text)</li><li>Fine-tune on target task with smaller dataset</li></ol><b>Why it works</b>:<ul><li>Early layers learn general features (edges, textures)</li><li>These transfer across tasks</li><li>Only need to learn task-specific features</li></ul><b>Approaches</b>:<ul><li><b>Feature extraction</b>: Freeze pre-trained layers, train new head</li><li><b>Fine-tuning</b>: Unfreeze some/all layers, train with low LR</li></ul><b>Examples</b>: BERT for NLP tasks, ResNet for vision tasks.",
+      "tags": [
+        "ch14",
+        "transfer-learning",
+        "pre-training"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-004",
+      "front": "What is the difference between fine-tuning and feature extraction?",
+      "back": "<b>Feature extraction</b>:<ul><li>Freeze all pre-trained layers</li><li>Only train a new classification head</li><li>Fast training, less risk of overfitting</li><li>Good when target task is similar to pre-training task</li></ul><b>Fine-tuning</b>:<ul><li>Unfreeze some or all pre-trained layers</li><li>Train with low learning rate</li><li>Can adapt features to new domain</li><li>Risk of catastrophic forgetting if LR too high</li></ul><b>Gradual unfreezing</b>: Start with only head, progressively unfreeze earlier layers.<br><br><b>Rule of thumb</b>: More data = more layers to fine-tune. Little data = feature extraction only.",
+      "tags": [
+        "ch14",
+        "fine-tuning",
+        "transfer-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-005",
+      "front": "How do you choose among active, semi-supervised, transfer, and meta-learning for limited labels?",
+      "back": "<b>Choose based on your situation</b>:<br><br><b>Active learning</b>: You can query labels for specific examples.<ul><li>Best when: Labeling is expensive but possible on demand</li><li>Strategy: Query most uncertain or informative points</li></ul><b>Semi-supervised learning</b>: You have lots of unlabeled data, few labels.<ul><li>Best when: Unlabeled data is plentiful and from same distribution</li><li>Methods: Pseudo-labeling, consistency regularization, contrastive learning</li></ul><b>Transfer learning</b>: Related task with abundant labeled data exists.<ul><li>Best when: Pre-trained model available for similar domain</li><li>Methods: Fine-tuning, feature extraction</li></ul><b>Few-shot/meta-learning</b>: You need to learn many tasks with few examples each.<ul><li>Best when: Task distribution is known, need rapid adaptation</li><li>Methods: MAML, Prototypical Networks, in-context learning (LLMs)</li></ul><b>Signals guiding choice</b>:<ul><li>Can you get more labels? → Active learning</li><li>Have unlabeled data? → Semi-supervised</li><li>Related pretrained model? → Transfer learning</li><li>Many similar tasks? → Meta-learning</li></ul>",
+      "tags": [
+        "ch14",
+        "limited-labels",
+        "learning-paradigms"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-14-006",
+      "front": "What is meta-learning (learning to learn)?",
+      "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
+      "tags": [
+        "ch14",
+        "meta-learning",
+        "neural-networks"
+      ]
+    }
+  ]
+}

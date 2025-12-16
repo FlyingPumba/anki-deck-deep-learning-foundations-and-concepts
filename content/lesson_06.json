@@ -1,7 +1,7 @@
 {
   "id": "06",
-  "title": "Lesson 06: Deep Neural Networks",
-  "lesson_title": "Deep Neural Networks",
+  "title": "Lesson 06: Neural Networks: Fundamentals & Optimization",
+  "lesson_title": "Neural Networks: Fundamentals & Optimization",
   "objectives": [
     "Understand feed-forward network architecture",
     "Learn about error functions and output activations",
@@ -69,16 +69,6 @@
         "ch06",
         "output-activation",
         "error-function"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-009",
-      "front": "What is a mixture density network?",
-      "back": "A neural network that outputs parameters of a <b>mixture model</b> (e.g., Gaussian mixture).<br>Outputs: mixing coefficients \\( \\pi_k \\), means \\( \\mu_k \\), variances \\( \\sigma_k^2 \\)<br>Useful for multi-modal distributions where a single prediction is insufficient.",
-      "tags": [
-        "ch06",
-        "mixture-density",
-        "probabilistic"
       ]
     },
     {
@@ -542,46 +532,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-06-058",
-      "front": "What is catastrophic forgetting?",
-      "back": "<b>Catastrophic forgetting</b>: When training on new data causes a neural network to forget what it learned from previous data.<br><br><b>Why it happens</b>: Updating weights to minimize loss on new task can increase loss on old tasks. No explicit mechanism to preserve old knowledge.<br><br><b>Example</b>: Train on Task A, then Task B. Performance on A drops significantly.<br><br><b>Contrast with humans</b>: We can learn new skills without forgetting old ones (mostly).<br><br><b>Relevance</b>: Critical for continual/lifelong learning, multi-task learning, and fine-tuning pre-trained models.",
-      "tags": [
-        "ch06",
-        "catastrophic-forgetting",
-        "continual-learning"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-059",
-      "front": "What are approaches to prevent catastrophic forgetting?",
-      "back": "<b>1. Regularization-based</b>:<ul><li><b>EWC</b> (Elastic Weight Consolidation): Penalize changes to important weights</li><li>Measure importance via Fisher information</li></ul><b>2. Replay-based</b>:<ul><li>Store subset of old data, mix with new data during training</li><li><b>Generative replay</b>: Train generative model to produce old examples</li></ul><b>3. Architecture-based</b>:<ul><li>Allocate different parameters for different tasks</li><li>Progressive neural networks: Add new modules, freeze old</li></ul><b>4. Practical approach</b>:<ul><li>Multi-task training from scratch when possible</li><li>Fine-tune with low learning rate</li><li>Use LoRA/adapters (freeze base model)</li></ul>",
-      "tags": [
-        "ch06",
-        "catastrophic-forgetting",
-        "solutions"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-060",
-      "front": "What is transfer learning?",
-      "back": "<b>Transfer learning</b>: Leveraging knowledge from one task/domain to improve performance on another.<br><br><b>Common pattern</b>:<ol><li>Pre-train on large dataset (e.g., ImageNet, web text)</li><li>Fine-tune on target task with smaller dataset</li></ol><b>Why it works</b>:<ul><li>Early layers learn general features (edges, textures)</li><li>These transfer across tasks</li><li>Only need to learn task-specific features</li></ul><b>Approaches</b>:<ul><li><b>Feature extraction</b>: Freeze pre-trained layers, train new head</li><li><b>Fine-tuning</b>: Unfreeze some/all layers, train with low LR</li></ul><b>Examples</b>: BERT for NLP tasks, ResNet for vision tasks.",
-      "tags": [
-        "ch06",
-        "transfer-learning",
-        "pre-training"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-061",
-      "front": "What is the difference between fine-tuning and feature extraction?",
-      "back": "<b>Feature extraction</b>:<ul><li>Freeze all pre-trained layers</li><li>Only train a new classification head</li><li>Fast training, less risk of overfitting</li><li>Good when target task is similar to pre-training task</li></ul><b>Fine-tuning</b>:<ul><li>Unfreeze some or all pre-trained layers</li><li>Train with low learning rate</li><li>Can adapt features to new domain</li><li>Risk of catastrophic forgetting if LR too high</li></ul><b>Gradual unfreezing</b>: Start with only head, progressively unfreeze earlier layers.<br><br><b>Rule of thumb</b>: More data = more layers to fine-tune. Little data = feature extraction only.",
-      "tags": [
-        "ch06",
-        "fine-tuning",
-        "transfer-learning"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-06-062",
       "front": "Why is convexity of a loss function important in optimization?",
       "back": "<b>Convex function</b>: A function where any line segment between two points lies above the graph. Formally: \\( f(\\lambda x + (1-\\lambda)y) \\leq \\lambda f(x) + (1-\\lambda) f(y) \\) for \\( \\lambda \\in [0,1] \\).<br><br><b>Why convexity matters</b>:<ul><li><b>Single global minimum</b>: Any local minimum is also the global minimum</li><li><b>Gradient descent converges</b>: Guaranteed to find optimal solution</li><li><b>No saddle points or bad local minima</b></li></ul><b>Convex problems in ML</b>: Linear regression, logistic regression, SVMs (with convex kernels), L2-regularized problems.<br><br><b>Non-convex problems</b>: Neural networks have non-convex loss landscapes with many local minima, saddle points, and plateaus. Yet they train well in practice due to:<ul><li>Over-parameterization creating many good solutions</li><li>SGD noise helping escape bad regions</li><li>Many local minima being nearly as good as global</li></ul>",
@@ -592,16 +542,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-06-063",
-      "front": "What is the implicit bias (inductive bias) of SGD in deep learning?",
-      "back": "<b>Implicit bias</b>: The tendency of an optimization algorithm to prefer certain solutions over others, even without explicit regularization.<br><br><b>What SGD prefers</b>:<ul><li><b>Flat minima</b>: Solutions with low curvature (wide valleys) generalize better. SGD noise helps find these.</li><li><b>Low-rank solutions</b>: In matrix factorization, gradient descent finds minimum nuclear norm solutions.</li><li><b>Max-margin classifiers</b>: For separable data, gradient descent on logistic loss converges to max-margin (SVM-like) solution.</li><li><b>Simpler functions</b>: Neural networks trained with SGD tend toward lower-complexity functions.</li></ul><b>Why it happens</b>:<ul><li>Gradient flow dynamics have inherent geometry</li><li>Mini-batch noise acts as implicit regularization</li><li>Learning rate affects sharpness of found minima</li></ul><b>Practical implications</b>: SGD often finds solutions that generalize well even without explicit regularization.",
-      "tags": [
-        "ch06",
-        "implicit-bias",
-        "sgd"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-06-064",
       "front": "What do we know about optimization landscapes in deep networks?",
       "back": "<b>Key observations</b>:<br><br><b>Symmetries</b>: Many equivalent minima exist due to weight permutation symmetry (\\( M! \\cdot 2^M \\) equivalent parameterizations).<br><br><b>Flat vs sharp minima</b>:<ul><li>Flat minima: Wide valleys, often generalize better</li><li>Sharp minima: Narrow valleys, may overfit</li><li>Large learning rate/batch noise biases toward flat minima</li></ul><b>Local minima vs saddle points</b>:<ul><li>In high dimensions, most critical points are saddle points, not local minima</li><li>Local minima that exist tend to have similar loss values</li><li>Saddle points slow training more than local minima</li></ul><b>Loss barriers</b>: Good minima may be connected by paths of low loss (mode connectivity).<br><br><b>Evidence against intuitions</b>:<ul><li>Sharp minima can generalize well with proper normalization</li><li>Flat minima are not always better (scale-dependent)</li><li>Lottery ticket hypothesis: Sparse subnetworks can perform well</li></ul>",
@@ -609,16 +549,6 @@
         "ch06",
         "loss-landscape",
         "optimization"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-065",
-      "front": "How do you choose among active, semi-supervised, transfer, and meta-learning for limited labels?",
-      "back": "<b>Choose based on your situation</b>:<br><br><b>Active learning</b>: You can query labels for specific examples.<ul><li>Best when: Labeling is expensive but possible on demand</li><li>Strategy: Query most uncertain or informative points</li></ul><b>Semi-supervised learning</b>: You have lots of unlabeled data, few labels.<ul><li>Best when: Unlabeled data is plentiful and from same distribution</li><li>Methods: Pseudo-labeling, consistency regularization, contrastive learning</li></ul><b>Transfer learning</b>: Related task with abundant labeled data exists.<ul><li>Best when: Pre-trained model available for similar domain</li><li>Methods: Fine-tuning, feature extraction</li></ul><b>Few-shot/meta-learning</b>: You need to learn many tasks with few examples each.<ul><li>Best when: Task distribution is known, need rapid adaptation</li><li>Methods: MAML, Prototypical Networks, in-context learning (LLMs)</li></ul><b>Signals guiding choice</b>:<ul><li>Can you get more labels? → Active learning</li><li>Have unlabeled data? → Semi-supervised</li><li>Related pretrained model? → Transfer learning</li><li>Many similar tasks? → Meta-learning</li></ul>",
-      "tags": [
-        "ch06",
-        "limited-labels",
-        "learning-paradigms"
       ]
     },
     {
@@ -659,16 +589,6 @@
         "ch06",
         "numerical-stability",
         "best-practices"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-06-070",
-      "front": "What is meta-learning (learning to learn)?",
-      "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
-      "tags": [
-        "ch06",
-        "meta-learning",
-        "neural-networks"
       ]
     },
     {
@@ -892,13 +812,43 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-06-093",
-      "front": "What is the information bottleneck principle in representation learning?",
-      "back": "<b>Information bottleneck</b>: A framework for learning representations that compress input while preserving task-relevant information.<br><br><b>Objective</b>: Find representation Z that:<ul><li>Minimizes \\( I(X; Z) \\) (compression - forget irrelevant details)</li><li>Maximizes \\( I(Z; Y) \\) (relevance - keep what predicts target)</li></ul><b>Trade-off</b>: \\( \\max_Z [I(Z; Y) - \\beta I(X; Z)] \\)<br><br><b>Intuition</b>: Like summarizing a book - keep the plot (relevant), discard prose style (irrelevant).<br><br><b>Practical pitfalls</b>:<ul><li>Mutual information is hard to estimate in high dimensions</li><li>Deterministic networks have infinite \\( I(X; Z) \\)</li><li>Need stochastic layers or other approximations</li><li>\\( \\beta \\) is hard to tune</li></ul><b>Applications</b>: Deep learning theory, representation learning, variational inference.",
+      "uid": "deep-learning-foundations-and-concepts-06-094",
+      "front": "What is stochastic gradient descent (SGD)?",
+      "back": "<b>Stochastic gradient descent</b> is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset.<br><b>Formula</b>: \\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\) where \\( \\eta \\) is the learning rate.<br><b>Advantages</b>:<br><ul><li>Can escape local minima (due to noise)</li><li>Efficient for large datasets</li><li>Online learning capability</li></ul>",
       "tags": [
         "ch06",
-        "information-bottleneck",
-        "representation-learning"
+        "sgd",
+        "optimization"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-06-095",
+      "front": "What is a batch method in machine learning?",
+      "back": "A method where the <b>entire training data set is processed at once</b> to update parameters.<br>Contrast with sequential/online methods that process data points one at a time.",
+      "tags": [
+        "ch06",
+        "batch-learning",
+        "training"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-06-096",
+      "front": "What is the mathematical model of a single artificial neuron?",
+      "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)<br>Activation: \\( y = f(a) \\)<br>where:<ul><li>\\( x_1, \\ldots, x_M \\) are inputs</li><li>\\( w_1, \\ldots, w_M \\) are weights (synapse strengths)</li><li>\\( f(\\cdot) \\) is the activation function</li></ul>",
+      "tags": [
+        "ch06",
+        "neural-networks",
+        "mathematics"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-06-097",
+      "front": "What is an activation function in neural networks?",
+      "back": "A nonlinear function applied to the weighted sum of inputs:<br>\\( z = f(\\vec{w}^T \\vec{x} + b) \\)<br>For classification with discrete labels, we need a nonlinear activation to:<br><ul><li>Squash outputs to valid probability ranges</li><li>Create nonlinear decision boundaries</li></ul>",
+      "tags": [
+        "ch06",
+        "activation-functions",
+        "neural-networks"
       ]
     }
   ]

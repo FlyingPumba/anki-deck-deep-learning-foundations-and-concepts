@@ -1,7 +1,7 @@
 {
   "id": "12",
-  "title": "Lesson 12: Transformers",
-  "lesson_title": "Transformers",
+  "title": "Lesson 12: Transformers & Foundation-Model Concepts",
+  "lesson_title": "Transformers & Foundation-Model Concepts",
   "objectives": [
     "Understand attention mechanisms and self-attention",
     "Master transformer architecture: queries, keys, values",
@@ -955,6 +955,17 @@
         "ch12",
         "rmsnorm",
         "normalization"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-095",
+      "front": "Compare maximum likelihood, contrastive estimation, and noise contrastive estimation (NCE).",
+      "back": "<b>Maximum Likelihood Estimation (MLE)</b>:<ul><li>Maximize \\( \\sum_n \\log p_\\theta(x_n) \\)</li><li>Requires computing \\( Z(\\theta) = \\sum_x \\exp(f_\\theta(x)) \\) (partition function)</li><li>Intractable when output space is large</li></ul><b>Contrastive Estimation</b>:<ul><li>Learn by comparing positive and negative examples</li><li>Avoid computing full partition function</li><li>InfoNCE: \\( -\\log \\frac{\\exp(f(x, x^+))}{\\sum_k \\exp(f(x, x_k^-))} \\)</li></ul><b>Noise Contrastive Estimation (NCE)</b>:<ul><li>Turn density estimation into binary classification</li><li>Classify real data vs samples from noise distribution</li><li>Learn \\( \\log p(x) \\) directly, treating \\( \\log Z \\) as a parameter</li><li>As noise samples increase, approaches MLE</li></ul><b>When to use</b>:<ul><li>MLE: Small discrete outputs, tractable partition function</li><li>Contrastive: Representation learning, similarity tasks</li><li>NCE: Large vocabularies (word embeddings), energy models</li></ul>",
+      "tags": [
+        "ch12",
+        "mle",
+        "nce",
+        "contrastive-learning"
       ]
     }
   ]

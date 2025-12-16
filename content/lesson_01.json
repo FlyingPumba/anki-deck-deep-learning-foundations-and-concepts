@@ -91,16 +91,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-01-009",
-      "front": "What is generalization in machine learning?",
-      "back": "<b>Generalization</b> is the ability to make accurate predictions on previously unseen inputs. It is a key goal in machine learning.",
-      "tags": [
-        "ch01",
-        "generalization",
-        "definition"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-01-010",
       "front": "What is a generative model?",
       "back": "A <b>generative model</b> can generate new output examples that differ from those used to train the model but share the same statistical properties.",
@@ -108,56 +98,6 @@
         "ch01",
         "generative-models",
         "definition"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-013",
-      "front": "What is overfitting?",
-      "back": "<b>Overfitting</b> occurs when a model fits the training data very well (possibly exactly) but gives poor predictions on new, unseen data. The model has essentially memorized the noise in the training data rather than learning the underlying pattern.",
-      "tags": [
-        "ch01",
-        "overfitting",
-        "generalization"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-014",
-      "front": "What is a test set used for?",
-      "back": "A <b>test set</b> is a separate set of data used to evaluate how well a model generalizes to new data. It measures the model's predictive performance on data not used during training.",
-      "tags": [
-        "ch01",
-        "test-set",
-        "evaluation"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-020",
-      "front": "What is a hyperparameter?",
-      "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:<br><ul><li>The regularization coefficient \\( \\lambda \\)</li><li>The order \\( M \\) of a polynomial</li><li>Learning rate</li></ul>",
-      "tags": [
-        "ch01",
-        "hyperparameters",
-        "definition"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-021",
-      "front": "What is the difference between a training set and a validation set?",
-      "back": "<ul><li><b>Training set</b>: Used to determine the model parameters (weights)</li><li><b>Validation set</b> (also called hold-out or development set): Used to select hyperparameters and model architecture</li></ul>A third <b>test set</b> may be kept aside for final evaluation.",
-      "tags": [
-        "ch01",
-        "data-splits",
-        "model-selection"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-022",
-      "front": "What is S-fold cross-validation?",
-      "back": "<b>S-fold cross-validation</b> partitions data into S groups. For each run:<br><ul><li>Train on S-1 groups</li><li>Evaluate on the remaining group</li></ul>Repeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
-      "tags": [
-        "ch01",
-        "cross-validation",
-        "model-selection"
       ]
     },
     {
@@ -188,26 +128,6 @@
         "ch01",
         "backpropagation",
         "history"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-028",
-      "front": "What is error backpropagation?",
-      "back": "<b>Error backpropagation</b> (or just backprop) is an efficient algorithm for computing the derivatives of the error function with respect to all network parameters. Information flows backwards through the network from outputs towards inputs.",
-      "tags": [
-        "ch01",
-        "backpropagation",
-        "training"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-029",
-      "front": "What is stochastic gradient descent (SGD)?",
-      "back": "<b>Stochastic gradient descent</b> is an optimization algorithm that updates parameters iteratively using gradients computed on small subsets (or single examples) of training data, rather than the entire dataset.<br><b>Formula</b>: \\( \\vec{w}^{(\\tau+1)} = \\vec{w}^{(\\tau)} - \\eta \\nabla E_n \\) where \\( \\eta \\) is the learning rate.<br><b>Advantages</b>:<br><ul><li>Can escape local minima (due to noise)</li><li>Efficient for large datasets</li><li>Online learning capability</li></ul>",
-      "tags": [
-        "ch01",
-        "sgd",
-        "optimization"
       ]
     },
     {
@@ -268,86 +188,6 @@
         "ch01",
         "neuroscience",
         "background"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-040",
-      "front": "What is the mathematical model of a single artificial neuron?",
-      "back": "Pre-activation: \\( a = \\sum_{i=1}^{M} w_i x_i \\)<br>Activation: \\( y = f(a) \\)<br>where:<ul><li>\\( x_1, \\ldots, x_M \\) are inputs</li><li>\\( w_1, \\ldots, w_M \\) are weights (synapse strengths)</li><li>\\( f(\\cdot) \\) is the activation function</li></ul>",
-      "tags": [
-        "ch01",
-        "neural-networks",
-        "mathematics"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-042",
-      "front": "Why can't we determine hyperparameters by minimizing the training error jointly with model parameters?",
-      "back": "Minimizing training error jointly would lead to extreme values:<br><ul><li>Regularization \\( \\lambda \\to 0 \\) (no regularization)</li><li>Polynomial order \\( M \\to \\) large values</li></ul>Both result in overfitting with small/zero training error but poor generalization.",
-      "tags": [
-        "ch01",
-        "hyperparameters",
-        "overfitting"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-043",
-      "front": "What is data leakage in machine learning?",
-      "back": "<b>Data leakage</b> is when information that would not be available at prediction time (often from the validation/test set, or from the future) influences training.<br><br><b>Why it matters</b>: It makes evaluation metrics look much better than real-world performance.<br><br><b>Common leak patterns</b>:<ul><li><b>Preprocessing leakage</b>: Fitting normalization/feature selection on all data (train+val+test) instead of training data only</li><li><b>Target leakage</b>: A feature directly/indirectly encodes the label (e.g., using \"refund issued\" when predicting fraud)</li><li><b>Temporal leakage</b>: Using future information when predicting the past</li></ul><b>Fix</b>: Fit every transform strictly on the training split, then apply to validation/test.",
-      "tags": [
-        "ch01",
-        "data-leakage",
-        "evaluation"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-044",
-      "front": "What is dataset shift (distribution shift) and what are the main types?",
-      "back": "<b>Dataset shift</b> means the data distribution changes between training and deployment, so training performance no longer predicts real-world performance.<br><br><b>Common types</b>:<ul><li><b>Covariate shift</b>: \\( p(\\vec{x}) \\) changes but \\( p(y|\\vec{x}) \\) stays the same (inputs look different)</li><li><b>Label shift</b>: \\( p(y) \\) changes but \\( p(\\vec{x}|y) \\) stays the same (class proportions change)</li><li><b>Concept drift</b>: \\( p(y|\\vec{x}) \\) changes (the underlying relationship changes)</li></ul>",
-      "tags": [
-        "ch01",
-        "dataset-shift",
-        "generalization"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-045",
-      "front": "When is a random train/validation/test split a bad idea?",
-      "back": "Random splitting is risky when it breaks the assumptions of independence between splits.<br><br><b>Common cases</b>:<ul><li><b>Time series</b>: Random split causes temporal leakage; prefer chronological splits</li><li><b>Grouped data</b> (e.g., multiple samples per user/patient): Random split leaks identity; use group-based splits</li><li><b>Near-duplicates</b> (e.g., similar frames/images): Duplicates across splits inflate metrics; deduplicate or split by source</li></ul>",
-      "tags": [
-        "ch01",
-        "data-splits",
-        "evaluation"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-046",
-      "front": "What is the correct role of the test set in model development?",
-      "back": "The <b>test set</b> should be used <b>only once</b>, at the end, to estimate generalization after all modeling decisions are fixed.<br><br><b>Rule</b>: If you look at test performance and then change anything (features, preprocessing, architecture, hyperparameters), the test set has become part of model selection and your evaluation is biased.<br><br>Use <b>validation</b> (or cross-validation) for all choices; reserve the test set for the final report.",
-      "tags": [
-        "ch01",
-        "test-set",
-        "model-selection"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-047",
-      "front": "What is a stratified split and when should you use it?",
-      "back": "A <b>stratified split</b> preserves the class proportions across train/validation/test splits.<br><br><b>When to use</b>: In classification, especially with <b>imbalanced classes</b>, stratification reduces the chance that one split has too few positives (which makes metrics noisy and misleading).",
-      "tags": [
-        "ch01",
-        "data-splits",
-        "imbalanced-classes"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-055",
-      "front": "What is the difference between causal and predictive modeling?",
-      "back": "<b>Predictive modeling</b>: Find \\( P(Y|X) \\) to predict Y from X.<ul><li>Correlation is sufficient</li><li>Spurious correlations can help prediction</li><li>Fails under distribution shift</li></ul><b>Causal modeling</b>: Understand how interventions on X affect Y.<ul><li>Requires \\( P(Y|do(X)) \\), not just \\( P(Y|X) \\)</li><li>Robust to certain distribution shifts</li><li>Enables answering counterfactual questions</li></ul><b>Key distinction</b>: Prediction asks 'what will Y be if I observe X?'. Causation asks 'what will Y be if I <i>set</i> X?'<br><br><b>Testing causality from observational data</b>:<ul><li>Randomized experiments (gold standard)</li><li>Instrumental variables</li><li>Regression discontinuity</li><li>Difference-in-differences</li><li>Causal discovery algorithms (PC, FCI)</li></ul><b>Challenges</b>: Confounders, selection bias, unobserved variables. Observational data alone rarely proves causation without strong assumptions.",
-      "tags": [
-        "ch01",
-        "causality",
-        "prediction"
       ]
     }
   ]

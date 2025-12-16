@@ -92,16 +92,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-04-010",
-      "front": "What is a batch method in machine learning?",
-      "back": "A method where the <b>entire training data set is processed at once</b> to update parameters.<br>Contrast with sequential/online methods that process data points one at a time.",
-      "tags": [
-        "ch04",
-        "batch-learning",
-        "training"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-04-011",
       "front": "What are sequential algorithms (online algorithms)?",
       "back": "Algorithms that process data points <b>one at a time</b> and then discard them.<br>Important for:<br><ul><li>Online applications</li><li>Large datasets where batch processing is infeasible</li></ul>Also called online algorithms.",
@@ -169,66 +159,6 @@
         "ch04",
         "regularization",
         "model-selection"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-020",
-      "front": "What is the bias-variance trade-off?",
-      "back": "<b>Bias</b>: How far off the average prediction is from the truth (systematic error).<br><b>Variance</b>: How much predictions change across different training sets (sensitivity to data).<br><b>Trade-off</b>:<br>\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)<br><ul><li>Flexible models: low bias, high variance (overfit)</li><li>Simple models: high bias, low variance (underfit)</li></ul>Optimal complexity balances these.",
-      "tags": [
-        "ch04",
-        "bias-variance",
-        "model-selection"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-021",
-      "front": "What is the squared bias in the bias-variance decomposition?",
-      "back": "The extent to which the <b>average prediction</b> over all possible datasets differs from the true value:<br>\\( (\\text{bias})^2 = \\{E_D[f(\\vec{x}; D)] - h(\\vec{x})\\}^2 \\)<br>Where \\( h(\\vec{x}) \\) is the true underlying function.",
-      "tags": [
-        "ch04",
-        "bias-variance",
-        "bias"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-022",
-      "front": "What is the variance in the bias-variance decomposition?",
-      "back": "The extent to which solutions for individual datasets vary around their average:<br>\\( \\text{variance} = E_D[\\{f(\\vec{x}; D) - E_D[f(\\vec{x}; D)]\\}^2] \\)<br>Measures sensitivity to the particular training set used.",
-      "tags": [
-        "ch04",
-        "bias-variance",
-        "variance"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-023",
-      "front": "Why does the bias-variance decomposition have limited practical value?",
-      "back": "Because it is based on <b>averages with respect to ensembles of datasets</b>.<br>In practice, we have only a single dataset, so we cannot directly measure these quantities.<br>Useful conceptually but hard to apply directly.",
-      "tags": [
-        "ch04",
-        "bias-variance",
-        "limitations"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-024",
-      "front": "Does overfitting arise in Bayesian settings?",
-      "back": "<b>No</b> - overfitting does not arise when we marginalize over parameters in a Bayesian setting.<br>The Bayesian approach integrates over the posterior distribution of parameters rather than using a single point estimate, naturally incorporating uncertainty.",
-      "tags": [
-        "ch04",
-        "overfitting",
-        "bayesian"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-04-025",
-      "front": "How can averaging help with the bias-variance trade-off?",
-      "back": "Averaging predictions from multiple models can reduce variance without increasing bias.<br>This is the basis for <b>ensemble methods</b> like:<br><ul><li>Bagging</li><li>Random forests</li><li>Model averaging</li></ul>Combines multiple high-variance models to get lower variance.",
-      "tags": [
-        "ch04",
-        "ensemble",
-        "averaging"
       ]
     },
     {

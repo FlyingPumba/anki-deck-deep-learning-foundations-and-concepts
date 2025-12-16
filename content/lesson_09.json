@@ -1,7 +1,7 @@
 {
   "id": "09",
-  "title": "Lesson 09: Regularization",
-  "lesson_title": "Regularization",
+  "title": "Lesson 09: Regularization & Generalization",
+  "lesson_title": "Regularization & Generalization",
   "objectives": [
     "Understand inductive bias and its role in machine learning",
     "Learn weight decay and L2 regularization",
@@ -48,16 +48,6 @@
         "ch09",
         "symmetry",
         "approaches"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-09-005",
-      "front": "What is translation invariance vs translation equivariance?",
-      "back": "<b>Invariance</b>: Output unchanged when input is translated<br>\\( f(T(\\mathbf{x})) = f(\\mathbf{x}) \\)<br>Example: Object classification - cat remains a cat regardless of position<br><b>Equivariance</b>: Output transforms in the same way as input<br>\\( f(T(\\mathbf{x})) = T(f(\\mathbf{x})) \\)<br>Example: Image segmentation - translated input gives translated segmentation",
-      "tags": [
-        "ch09",
-        "invariance",
-        "equivariance"
       ]
     },
     {
@@ -108,16 +98,6 @@
         "ch09",
         "invariance",
         "equivariance"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-09-022",
-      "front": "What is weight sharing (parameter tying)?",
-      "back": "Using the <b>same weight value</b> for multiple connections in a network.<br>The shared value is learned from data.<br>Benefits:<br><ul><li>Reduces number of parameters</li><li>Encodes prior knowledge about structure</li><li>Key mechanism in CNNs (same filter applied everywhere)</li></ul>",
-      "tags": [
-        "ch09",
-        "weight-sharing",
-        "architecture"
       ]
     },
     {
@@ -358,6 +338,196 @@
         "ch09",
         "regularization",
         "l2-regularization"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-047",
+      "front": "What is the bias-variance trade-off?",
+      "back": "<b>Bias</b>: How far off the average prediction is from the truth (systematic error).<br><b>Variance</b>: How much predictions change across different training sets (sensitivity to data).<br><b>Trade-off</b>:<br>\\( \\text{Expected loss} = (\\text{bias})^2 + \\text{variance} + \\text{noise} \\)<br><ul><li>Flexible models: low bias, high variance (overfit)</li><li>Simple models: high bias, low variance (underfit)</li></ul>Optimal complexity balances these.",
+      "tags": [
+        "ch09",
+        "bias-variance",
+        "model-selection"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-048",
+      "front": "What is the squared bias in the bias-variance decomposition?",
+      "back": "The extent to which the <b>average prediction</b> over all possible datasets differs from the true value:<br>\\( (\\text{bias})^2 = \\{E_D[f(\\vec{x}; D)] - h(\\vec{x})\\}^2 \\)<br>Where \\( h(\\vec{x}) \\) is the true underlying function.",
+      "tags": [
+        "ch09",
+        "bias-variance",
+        "bias"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-049",
+      "front": "What is the variance in the bias-variance decomposition?",
+      "back": "The extent to which solutions for individual datasets vary around their average:<br>\\( \\text{variance} = E_D[\\{f(\\vec{x}; D) - E_D[f(\\vec{x}; D)]\\}^2] \\)<br>Measures sensitivity to the particular training set used.",
+      "tags": [
+        "ch09",
+        "bias-variance",
+        "variance"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-050",
+      "front": "Why does the bias-variance decomposition have limited practical value?",
+      "back": "Because it is based on <b>averages with respect to ensembles of datasets</b>.<br>In practice, we have only a single dataset, so we cannot directly measure these quantities.<br>Useful conceptually but hard to apply directly.",
+      "tags": [
+        "ch09",
+        "bias-variance",
+        "limitations"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-051",
+      "front": "Does overfitting arise in Bayesian settings?",
+      "back": "<b>No</b> - overfitting does not arise when we marginalize over parameters in a Bayesian setting.<br>The Bayesian approach integrates over the posterior distribution of parameters rather than using a single point estimate, naturally incorporating uncertainty.",
+      "tags": [
+        "ch09",
+        "overfitting",
+        "bayesian"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-052",
+      "front": "How do L2 and L1 regularization correspond to priors in a MAP view?",
+      "back": "<b>L2 regularization</b> corresponds to a <b>Gaussian prior</b> on weights:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\frac{\\lambda}{2}\\|\\vec{w}\\|^2\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\frac{\\lambda}{2}\\|\\vec{w}\\|^2 \\).<br><br><b>L1 regularization</b> corresponds to a <b>Laplace prior</b>:<br>\\( p(\\vec{w}) \\propto \\exp\\left(-\\lambda \\|\\vec{w}\\|_1\\right) \\) so \\( -\\ln p(\\vec{w}) \\propto \\lambda \\|\\vec{w}\\|_1 \\).<br><br><b>Intuition</b>: The Laplace prior has a sharp peak at 0, which encourages sparsity.",
+      "tags": [
+        "ch09",
+        "l1-vs-l2",
+        "bayesian"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-053",
+      "front": "What is generalization in machine learning?",
+      "back": "<b>Generalization</b> is the ability to make accurate predictions on previously unseen inputs. It is a key goal in machine learning.",
+      "tags": [
+        "ch09",
+        "generalization",
+        "definition"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-054",
+      "front": "What is overfitting?",
+      "back": "<b>Overfitting</b> occurs when a model fits the training data very well (possibly exactly) but gives poor predictions on new, unseen data. The model has essentially memorized the noise in the training data rather than learning the underlying pattern.",
+      "tags": [
+        "ch09",
+        "overfitting",
+        "generalization"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-055",
+      "front": "What is a test set used for?",
+      "back": "A <b>test set</b> is a separate set of data used to evaluate how well a model generalizes to new data. It measures the model's predictive performance on data not used during training.",
+      "tags": [
+        "ch09",
+        "test-set",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-056",
+      "front": "What is a hyperparameter?",
+      "back": "A <b>hyperparameter</b> is a parameter whose value is fixed during training (not learned from data). Examples include:<br><ul><li>The regularization coefficient \\( \\lambda \\)</li><li>The order \\( M \\) of a polynomial</li><li>Learning rate</li></ul>",
+      "tags": [
+        "ch09",
+        "hyperparameters",
+        "definition"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-057",
+      "front": "What is the difference between a training set and a validation set?",
+      "back": "<ul><li><b>Training set</b>: Used to determine the model parameters (weights)</li><li><b>Validation set</b> (also called hold-out or development set): Used to select hyperparameters and model architecture</li></ul>A third <b>test set</b> may be kept aside for final evaluation.",
+      "tags": [
+        "ch09",
+        "data-splits",
+        "model-selection"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-058",
+      "front": "What is S-fold cross-validation?",
+      "back": "<b>S-fold cross-validation</b> partitions data into S groups. For each run:<br><ul><li>Train on S-1 groups</li><li>Evaluate on the remaining group</li></ul>Repeat for all S choices of held-out group and average the scores. This uses (S-1)/S of data for training while evaluating on all data.",
+      "tags": [
+        "ch09",
+        "cross-validation",
+        "model-selection"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-059",
+      "front": "What is data leakage in machine learning?",
+      "back": "<b>Data leakage</b> is when information that would not be available at prediction time (often from the validation/test set, or from the future) influences training.<br><br><b>Why it matters</b>: It makes evaluation metrics look much better than real-world performance.<br><br><b>Common leak patterns</b>:<ul><li><b>Preprocessing leakage</b>: Fitting normalization/feature selection on all data (train+val+test) instead of training data only</li><li><b>Target leakage</b>: A feature directly/indirectly encodes the label (e.g., using \"refund issued\" when predicting fraud)</li><li><b>Temporal leakage</b>: Using future information when predicting the past</li></ul><b>Fix</b>: Fit every transform strictly on the training split, then apply to validation/test.",
+      "tags": [
+        "ch09",
+        "data-leakage",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-060",
+      "front": "When is a random train/validation/test split a bad idea?",
+      "back": "Random splitting is risky when it breaks the assumptions of independence between splits.<br><br><b>Common cases</b>:<ul><li><b>Time series</b>: Random split causes temporal leakage; prefer chronological splits</li><li><b>Grouped data</b> (e.g., multiple samples per user/patient): Random split leaks identity; use group-based splits</li><li><b>Near-duplicates</b> (e.g., similar frames/images): Duplicates across splits inflate metrics; deduplicate or split by source</li></ul>",
+      "tags": [
+        "ch09",
+        "data-splits",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-061",
+      "front": "What is the correct role of the test set in model development?",
+      "back": "The <b>test set</b> should be used <b>only once</b>, at the end, to estimate generalization after all modeling decisions are fixed.<br><br><b>Rule</b>: If you look at test performance and then change anything (features, preprocessing, architecture, hyperparameters), the test set has become part of model selection and your evaluation is biased.<br><br>Use <b>validation</b> (or cross-validation) for all choices; reserve the test set for the final report.",
+      "tags": [
+        "ch09",
+        "test-set",
+        "model-selection"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-062",
+      "front": "What is a stratified split and when should you use it?",
+      "back": "A <b>stratified split</b> preserves the class proportions across train/validation/test splits.<br><br><b>When to use</b>: In classification, especially with <b>imbalanced classes</b>, stratification reduces the chance that one split has too few positives (which makes metrics noisy and misleading).",
+      "tags": [
+        "ch09",
+        "data-splits",
+        "imbalanced-classes"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-063",
+      "front": "Why can't we determine hyperparameters by minimizing the training error jointly with model parameters?",
+      "back": "Minimizing training error jointly would lead to extreme values:<br><ul><li>Regularization \\( \\lambda \\to 0 \\) (no regularization)</li><li>Polynomial order \\( M \\to \\) large values</li></ul>Both result in overfitting with small/zero training error but poor generalization.",
+      "tags": [
+        "ch09",
+        "hyperparameters",
+        "overfitting"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-064",
+      "front": "What is the information bottleneck principle in representation learning?",
+      "back": "<b>Information bottleneck</b>: A framework for learning representations that compress input while preserving task-relevant information.<br><br><b>Objective</b>: Find representation Z that:<ul><li>Minimizes \\( I(X; Z) \\) (compression - forget irrelevant details)</li><li>Maximizes \\( I(Z; Y) \\) (relevance - keep what predicts target)</li></ul><b>Trade-off</b>: \\( \\max_Z [I(Z; Y) - \\beta I(X; Z)] \\)<br><br><b>Intuition</b>: Like summarizing a book - keep the plot (relevant), discard prose style (irrelevant).<br><br><b>Practical pitfalls</b>:<ul><li>Mutual information is hard to estimate in high dimensions</li><li>Deterministic networks have infinite \\( I(X; Z) \\)</li><li>Need stochastic layers or other approximations</li><li>\\( \\beta \\) is hard to tune</li></ul><b>Applications</b>: Deep learning theory, representation learning, variational inference.",
+      "tags": [
+        "ch09",
+        "information-bottleneck",
+        "representation-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-09-065",
+      "front": "What is the implicit bias (inductive bias) of SGD in deep learning?",
+      "back": "<b>Implicit bias</b>: The tendency of an optimization algorithm to prefer certain solutions over others, even without explicit regularization.<br><br><b>What SGD prefers</b>:<ul><li><b>Flat minima</b>: Solutions with low curvature (wide valleys) generalize better. SGD noise helps find these.</li><li><b>Low-rank solutions</b>: In matrix factorization, gradient descent finds minimum nuclear norm solutions.</li><li><b>Max-margin classifiers</b>: For separable data, gradient descent on logistic loss converges to max-margin (SVM-like) solution.</li><li><b>Simpler functions</b>: Neural networks trained with SGD tend toward lower-complexity functions.</li></ul><b>Why it happens</b>:<ul><li>Gradient flow dynamics have inherent geometry</li><li>Mini-batch noise acts as implicit regularization</li><li>Learning rate affects sharpness of found minima</li></ul><b>Practical implications</b>: SGD often finds solutions that generalize well even without explicit regularization.",
+      "tags": [
+        "ch09",
+        "implicit-bias",
+        "sgd"
       ]
     }
   ]

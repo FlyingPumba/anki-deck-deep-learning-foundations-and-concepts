@@ -62,16 +62,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-05-006",
-      "front": "What is an activation function in neural networks?",
-      "back": "A nonlinear function applied to the weighted sum of inputs:<br>\\( z = f(\\vec{w}^T \\vec{x} + b) \\)<br>For classification with discrete labels, we need a nonlinear activation to:<br><ul><li>Squash outputs to valid probability ranges</li><li>Create nonlinear decision boundaries</li></ul>",
-      "tags": [
-        "ch05",
-        "activation-functions",
-        "neural-networks"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-05-007",
       "front": "What are generalized linear models?",
       "back": "Models where the output is a nonlinear function of a linear combination of inputs:<br>\\( y = f(\\vec{w}^T \\phi(\\vec{x})) \\)<br>The function \\( f \\) is the <b>activation function</b> (or link function inverse).<br>Examples: Logistic regression, Poisson regression.",
@@ -549,6 +539,16 @@
         "ch05",
         "roc",
         "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-086",
+      "front": "What is a false positive? What is a false negative?",
+      "back": "<ul><li><b>False positive</b>: Test indicates condition is present when it is not (e.g., testing positive for cancer when healthy)</li><li><b>False negative</b>: Test indicates condition is absent when it is present (e.g., testing negative for cancer when you have it)</li></ul>",
+      "tags": [
+        "ch05",
+        "testing",
+        "definition"
       ]
     }
   ]

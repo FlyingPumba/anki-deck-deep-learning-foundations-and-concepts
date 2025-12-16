@@ -159,6 +159,16 @@
         "autodiff",
         "training"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-07-039",
+      "front": "What is error backpropagation?",
+      "back": "<b>Error backpropagation</b> (or just backprop) is an efficient algorithm for computing the derivatives of the error function with respect to all network parameters. Information flows backwards through the network from outputs towards inputs.",
+      "tags": [
+        "ch07",
+        "backpropagation",
+        "training"
+      ]
     }
   ]
 }
