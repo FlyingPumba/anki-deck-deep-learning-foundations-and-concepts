@@ -103,7 +103,7 @@
     {
       "uid": "deep-learning-foundations-and-concepts-13-010",
       "front": "Describe the algorithm for policy evaluation via fixed-point iteration.",
-      "back": "<b>Policy Evaluation Algorithm</b>:<br><br><b>Input</b>: Policy \\( \\pi \\), transition T, reward r, discount \\( \\gamma \\)<br><br><b>Steps</b>:<ol><li>Initialize \\( V(s) = 0 \\) for all states s</li><li>Repeat until convergence:<ul><li>For each state s:</li><li>Compute expected reward: \\( R(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot r(s,a,s') \\)</li><li>Compute expected next value: \\( V'(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot V(s') \\)</li><li>Update: \\( V(s) \\leftarrow R(s) + \\gamma \\cdot V'(s) \\)</li></ul></li><li>Convergence: when \\( \\max_s |V_{new}(s) - V_{old}(s)| < \\epsilon \\)</li></ol><b>Guaranteed to converge</b> for \\( \\gamma < 1 \\) because the Bellman operator is a contraction.",
+      "back": "<b>Policy Evaluation Algorithm</b>:<br><br><b>Input</b>: Policy \\( \\pi \\), transition T, reward r, discount \\( \\gamma \\)<br><br><b>Steps</b>:<ol><li>Initialize \\( V(s) = 0 \\) for all states s</li><li>Repeat until convergence:<ul><li>For each state s:</li><li>Compute expected immediate reward: \\( R(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot r(s,a,s') \\)</li><li>Compute expected next value: \\( V'(s) = \\sum_a \\pi(a|s) \\sum_{s'} T(s'|s,a) \\cdot V(s') \\)</li><li>Update: \\( V(s) \\leftarrow R(s) + \\gamma \\cdot V'(s) \\)</li></ul></li><li>Convergence: when \\( \\max_s |V_{new}(s) - V_{old}(s)| < \\epsilon \\)</li></ol><b>Guaranteed to converge</b> for \\( \\gamma < 1 \\) because the Bellman operator is a contraction.",
       "tags": [
         "ch13",
         "policy-evaluation",
