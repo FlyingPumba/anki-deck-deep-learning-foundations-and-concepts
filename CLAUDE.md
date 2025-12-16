@@ -62,8 +62,9 @@
 - Title format: `"Lesson XX: {title}"` (for proper Anki sorting)
 
 ### Card UIDs
-- Format: `XX-YYY` where XX is lesson number, YYY is card number
-- Example: `01-001`, `14-005`
+- Format: `{uid_prefix}-XX-YYY` where XX is lesson number, YYY is card number
+- The `uid_prefix` is configured in `content/config.json`
+- Example: `uid_prefix-01-001`
 
 ### Tags
 - Always include chapter tag: `chXX`
@@ -85,28 +86,3 @@
   - Uploaded to Anki when syncing
   - Deleted from Anki when the corresponding card is removed or when the image file is deleted from `content/images/`
 
-## Content Source
-- Based on "Deep Learning: Foundations and Concepts" by Christopher Bishop and Hugh Bishop
-- Book text available in `book.txt`
-- Annotations fetched from Zotero are in `content/annotations.json` (gitignored)
-
-## Workflow for Creating Lessons
-
-### Prerequisites
-- Fetch annotations: `uv run python fetch_annotations.py` (requires Zotero running)
-- Annotations are stored in `content/annotations.json`
-
-### Creating a New Lesson
-1. Check which chapters have annotations in `content/annotations.json`
-2. **Skip chapters with no annotations**
-3. For each chapter with annotations:
-   - Read the chapter content from `book.txt`
-   - Read the annotations for that chapter's page range
-   - Create cards based on both book content and annotations
-   - Write to `content/lesson_XX.json`
-4. Sync to Anki: `uv run python sync_anki.py`
-
-### Working Iteratively
-- Create one lesson at a time
-- Get user approval before proceeding to the next chapter
-- Cards should cover key concepts from both the book and user's annotations
