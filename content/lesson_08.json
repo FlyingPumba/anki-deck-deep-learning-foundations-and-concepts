@@ -1,7 +1,7 @@
 {
   "id": "08",
-  "title": "Lesson 08: Backpropagation",
-  "lesson_title": "Backpropagation",
+  "title": "Lesson 08: Model Compression & Robustness",
+  "lesson_title": "Model Compression & Robustness",
   "objectives": [
     "Understand weight sharing and parameter tying",
     "Learn about residual connections and ResNets",

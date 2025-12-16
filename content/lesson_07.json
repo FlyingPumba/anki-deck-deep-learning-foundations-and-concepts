@@ -1,7 +1,7 @@
 {
   "id": "07",
-  "title": "Lesson 07: Gradient Descent",
-  "lesson_title": "Gradient Descent",
+  "title": "Lesson 07: Automatic Differentiation & Backprop Mechanics",
+  "lesson_title": "Automatic Differentiation & Backprop Mechanics",
   "objectives": [
     "Understand automatic differentiation and backpropagation",
     "Learn forward vs reverse mode autodiff",

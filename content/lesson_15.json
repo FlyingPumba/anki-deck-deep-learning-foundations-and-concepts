@@ -1,7 +1,7 @@
 {
   "id": "15",
-  "title": "Lesson 15: Discrete Latent Variables",
-  "lesson_title": "Discrete Latent Variables",
+  "title": "Lesson 15: Clustering & Mixture Models (EM)",
+  "lesson_title": "Clustering & Mixture Models (EM)",
   "objectives": [
     "Understand K-means clustering algorithm",
     "Learn Gaussian mixture models and their properties",
