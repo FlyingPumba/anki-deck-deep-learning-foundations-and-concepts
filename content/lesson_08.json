@@ -110,16 +110,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-08-011",
-      "front": "What is boosting?",
-      "back": "An ensemble method that combines multiple <b>weak classifiers</b> sequentially.<br>Each new classifier focuses on examples the previous ones got wrong.<br>Final prediction is weighted combination.<br>Examples: AdaBoost, Gradient Boosting, XGBoost.",
-      "tags": [
-        "ch08",
-        "boosting",
-        "ensemble"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-08-012",
       "front": "What is dropout?",
       "back": "A regularization technique that <b>randomly deletes nodes</b> during training.<br>With probability p, each hidden/input node is 'dropped' (set to zero).<br>At test time: Use all nodes but scale activations by (1-p).<br>Can be viewed as implicit model averaging.",

@@ -121,15 +121,19 @@ def find_note_by_uid(uid_tag: str, parent_deck: str) -> int | None:
 def update_note_in_anki(
     old_uid: str,
     new_uid: str,
+    old_lesson_num: int,
+    new_lesson_num: int,
     new_deck: str,
     parent_deck: str,
 ) -> bool:
     """
-    Update a note in Anki: change uid tag and move to new deck.
+    Update a note in Anki: change uid tag, chapter tag, and move to new deck.
     Returns True if successful.
     """
     old_uid_tag = f"uid:{old_uid}"
     new_uid_tag = f"uid:{new_uid}"
+    old_ch_tag = f"ch{old_lesson_num:02d}"
+    new_ch_tag = f"ch{new_lesson_num:02d}"
 
     # Find the note
     note_id = find_note_by_uid(old_uid_tag, parent_deck)
@@ -140,9 +144,13 @@ def update_note_in_anki(
     # Get card IDs for this note (to move to new deck)
     card_ids = invoke("findCards", {"query": f"nid:{note_id}"})
 
-    # Update tags: remove old, add new
+    # Update uid tag: remove old, add new
     invoke("removeTags", {"notes": [note_id], "tags": old_uid_tag})
     invoke("addTags", {"notes": [note_id], "tags": new_uid_tag})
+
+    # Update chapter tag: remove old, add new
+    invoke("removeTags", {"notes": [note_id], "tags": old_ch_tag})
+    invoke("addTags", {"notes": [note_id], "tags": new_ch_tag})
 
     # Move cards to new deck
     if card_ids:
@@ -185,10 +193,14 @@ def move_card(
     dest_lesson_title = dest_lesson_data.get("title", f"Lesson {dest_lesson_num:02d}")
     new_deck = f"{parent_deck}::{dest_lesson_title}"
 
+    old_ch_tag = f"ch{src_lesson_num:02d}"
+    new_ch_tag = f"ch{dest_lesson_num:02d}"
+
     print(f"Moving card:")
     print(f"  From: {card_uid}")
     print(f"  To:   {new_uid}")
     print(f"  Deck: {new_deck}")
+    print(f"  Tags: {old_ch_tag} → {new_ch_tag}")
     print(f"  Question: {card['front'][:60]}...")
 
     if dry_run:
@@ -197,6 +209,14 @@ def move_card(
 
     # Update the card's UID
     card["uid"] = new_uid
+
+    # Update chapter tag in the card's tags
+    tags = card.get("tags", [])
+    if old_ch_tag in tags:
+        tags.remove(old_ch_tag)
+    if new_ch_tag not in tags:
+        tags.insert(0, new_ch_tag)  # Add at beginning (chapter tag comes first)
+    card["tags"] = tags
 
     # Remove from source lesson
     src_lesson_data["cards"].pop(card_index)
@@ -210,8 +230,8 @@ def move_card(
     print(f"  Updated JSON files")
 
     # Update Anki
-    if update_note_in_anki(card_uid, new_uid, new_deck, parent_deck):
-        print(f"  Updated Anki (tag and deck)")
+    if update_note_in_anki(card_uid, new_uid, src_lesson_num, dest_lesson_num, new_deck, parent_deck):
+        print(f"  Updated Anki (uid tag, chapter tag, and deck)")
     else:
         print(f"  Warning: Could not update Anki. Run sync to fix.")
 

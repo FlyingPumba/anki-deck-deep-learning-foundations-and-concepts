@@ -189,6 +189,16 @@
         "gradient-boosting",
         "comparison"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-019",
+      "front": "What is boosting?",
+      "back": "An ensemble method that combines multiple <b>weak classifiers</b> sequentially.<br>Each new classifier focuses on examples the previous ones got wrong.<br>Final prediction is weighted combination.<br>Examples: AdaBoost, Gradient Boosting, XGBoost.",
+      "tags": [
+        "ch11",
+        "boosting",
+        "ensemble"
+      ]
     }
   ]
 }
