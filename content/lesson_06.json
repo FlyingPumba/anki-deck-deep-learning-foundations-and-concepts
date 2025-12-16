@@ -12,16 +12,6 @@
   ],
   "cards": [
     {
-      "uid": "deep-learning-foundations-and-concepts-06-001",
-      "front": "What is few-shot learning?",
-      "back": "Learning from only a few labelled examples per class.<br>When only a <b>single labelled example</b> is available per class, it's called <b>one-shot learning</b>.<br>Requires models that can generalize from very limited data.",
-      "tags": [
-        "ch06",
-        "few-shot",
-        "learning-paradigms"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-06-003",
       "front": "What is a feed-forward architecture in neural networks?",
       "back": "A network where information flows in <b>one direction only</b>: from input to output, with no cycles or loops.<br>Connections go from layer \\( l \\) to layer \\( l+1 \\), never backwards.<br>Contrast with recurrent networks that have feedback connections.",
@@ -679,6 +669,26 @@
         "ch06",
         "numerical-stability",
         "best-practices"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-06-070",
+      "front": "What is meta-learning (learning to learn)?",
+      "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
+      "tags": [
+        "ch06",
+        "meta-learning",
+        "neural-networks"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-06-071",
+      "front": "What is the shattered gradients problem?",
+      "back": "In very deep networks, gradients become increasingly <b>uncorrelated</b> and noisy across layers.<br>With ReLU activations: exponential increase in the number of linear regions.<br>This makes optimization difficult without special techniques like residual connections.",
+      "tags": [
+        "ch06",
+        "shattered-gradients",
+        "deep-networks"
       ]
     }
   ]

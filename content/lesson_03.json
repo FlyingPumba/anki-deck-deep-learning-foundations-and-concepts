@@ -251,16 +251,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-03-029",
-      "front": "How does K-nearest neighbors work for classification?",
-      "back": "<b>Intuition</b>: \"You are who your friends are.\" To classify a new point, look at its K nearest neighbors and take a vote.<br><b>Example</b>: If K=5 and 3 neighbors are cats, 2 are dogs, classify as cat.<br><b>Choosing K</b>: Small K = sensitive to noise, large K = smoother boundaries but may miss local patterns.<br><b>Downside</b>: Must store all training data and compare against each for every prediction.",
-      "tags": [
-        "ch03",
-        "knn-classification",
-        "nonparametric"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-03-030",
       "front": "What is a major limitation of nonparametric methods like KNN and kernel density estimation?",
       "back": "<b>The problem</b>: Both KNN and kernel density estimation must keep all training data forever.<br><b>Intuition</b>: It's like memorizing every example rather than learning general rules. More data = more memory needed, and predictions get slower.<br><b>Scale issue</b>: With millions of data points, storing and searching through all of them becomes impractical.<br><b>Deep learning solution</b>: Learn patterns in fixed-size weights - once trained, you can throw away the data.",

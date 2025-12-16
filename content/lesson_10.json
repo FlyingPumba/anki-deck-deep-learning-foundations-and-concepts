@@ -369,6 +369,46 @@
         "padding",
         "borders"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-10-037",
+      "front": "What are residual connections (skip connections)?",
+      "back": "Connections that <b>add the input directly to the output</b> of a layer:<br>\\( \\vec{y} = F(\\vec{x}) + \\vec{x} \\)<br>A particular form of skip-layer connections.<br>Allow gradients to flow directly through the network, mitigating vanishing gradients.<br><b>Impact</b>: Introduced by He et al. (2015), enabling training of networks with hundreds of layers.",
+      "tags": [
+        "ch10",
+        "residual-connections",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-10-038",
+      "front": "What is a residual block?",
+      "back": "A network module where input is added to output:<br>\\( \\vec{y} = F(\\vec{x}; \\vec{w}) + \\vec{x} \\)<br>The function \\( F \\) learns the <b>residual</b> - what needs to be added to the input.<br>Easier to learn small corrections than full transformations.",
+      "tags": [
+        "ch10",
+        "residual-block",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-10-039",
+      "front": "What is a ResNet?",
+      "back": "<b>Residual Network</b>: A deep network composed of multiple residual blocks.<br>Key properties:<br><ul><li>Can train very deep networks (100+ layers)</li><li>Gradients flow through skip connections</li><li>Each block learns residual mapping</li></ul>Enabled breakthrough in image recognition (He et al., 2016).",
+      "tags": [
+        "ch10",
+        "resnet",
+        "architecture"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-10-040",
+      "front": "Why is the term 'residual' used in ResNets?",
+      "back": "Because each block learns \\( F(\\vec{x}) = H(\\vec{x}) - \\vec{x} \\), the <b>residual</b> between desired output \\( H(\\vec{x}) \\) and input \\( \\vec{x} \\).<br>If identity mapping is optimal, the residual is just zero.<br>Easier to push residual to zero than learn identity explicitly.",
+      "tags": [
+        "ch10",
+        "residual",
+        "intuition"
+      ]
     }
   ]
 }

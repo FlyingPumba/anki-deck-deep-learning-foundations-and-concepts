@@ -865,6 +865,87 @@
         "encoder-decoder",
         "causal-masking"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-086",
+      "front": "What is contrastive learning?",
+      "back": "<b>Contrastive learning</b> trains models by comparing similar and dissimilar examples.<br><br><b>Core idea</b>: Pull 'positive pairs' (similar examples) close together in embedding space, push 'negative pairs' (dissimilar examples) apart.<br><br><b>Self-supervised setup</b>: Create positive pairs by augmenting the same image twice (e.g., different crops). Other images in the batch are negatives.<br><br><b>Why useful</b>: Learns meaningful representations without labels. The model must capture semantic content to recognize that two augmented views are the same image.",
+      "tags": [
+        "ch12",
+        "contrastive-learning",
+        "self-supervised"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-087",
+      "front": "What is the InfoNCE loss (contrastive loss)?",
+      "back": "<b>InfoNCE</b> is the standard loss for contrastive learning:<br><br>\\( L = -\\log \\frac{\\exp(\\text{sim}(z_i, z_j)/\\tau)}{\\sum_{k \\neq i} \\exp(\\text{sim}(z_i, z_k)/\\tau)} \\)<br><br>where:<ul><li>\\( z_i, z_j \\) = embeddings of a positive pair</li><li>\\( \\text{sim} \\) = similarity (usually cosine)</li><li>\\( \\tau \\) = temperature (controls sharpness)</li><li>Sum over k includes all negatives</li></ul><b>Intuition</b>: Softmax over similarities. Maximize probability of the positive pair being most similar.",
+      "tags": [
+        "ch12",
+        "contrastive-learning",
+        "loss-function"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-088",
+      "front": "What are examples of contrastive learning methods?",
+      "back": "<b>Vision</b>:<ul><li><b>SimCLR</b>: Simple framework using large batches for negatives</li><li><b>MoCo</b>: Uses a momentum encoder and queue of negatives</li><li><b>BYOL/SimSiam</b>: No explicit negatives (avoids collapse via architectural tricks)</li></ul><b>Language</b>:<ul><li>Sentence embeddings (e.g., SimCSE)</li></ul><b>Multimodal</b>:<ul><li><b>CLIP</b>: Aligns image and text embeddings contrastively</li></ul><b>Key insight</b>: Quality and diversity of augmentations matter more than specific architecture.",
+      "tags": [
+        "ch12",
+        "contrastive-learning",
+        "methods"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-089",
+      "front": "Compare self-supervised learning objectives: contrastive vs masked prediction.",
+      "back": "<b>Contrastive learning</b> (e.g., SimCLR, CLIP):<ul><li><b>Objective</b>: Pull similar pairs close, push dissimilar pairs apart</li><li><b>Inductive bias</b>: Augmentation-invariant representations. What you augment away is deemed irrelevant.</li><li><b>Requires</b>: Careful augmentation design, large batches or memory banks for negatives</li><li><b>Risk</b>: Can collapse to trivial solution without proper design</li></ul><b>Masked prediction</b> (e.g., BERT, MAE):<ul><li><b>Objective</b>: Predict masked/corrupted parts from visible parts</li><li><b>Inductive bias</b>: Learn dependencies between parts. Context should predict content.</li><li><b>Requires</b>: High redundancy in data (language, images)</li><li><b>Risk</b>: May learn low-level statistics instead of semantics</li></ul><b>Key differences</b>:<ul><li>Contrastive: Instance-level discrimination</li><li>Masked: Token/patch-level prediction</li><li>Contrastive works better with smaller data; masked scales better</li></ul>",
+      "tags": [
+        "ch12",
+        "self-supervised",
+        "contrastive-learning",
+        "masked-prediction"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-090",
+      "front": "What is triplet loss?",
+      "back": "<b>Triplet loss</b> learns embeddings where similar items are close and dissimilar items are far:<br><br>\\( L = \\max(0, d(a, p) - d(a, n) + m) \\)<br><br>where:<ul><li>\\( a \\) = anchor example</li><li>\\( p \\) = positive (same class as anchor)</li><li>\\( n \\) = negative (different class)</li><li>\\( d \\) = distance (e.g., Euclidean)</li><li>\\( m \\) = margin</li></ul><b>Goal</b>: Make \\( d(a, p) + m < d(a, n) \\) - positive closer than negative by at least margin \\( m \\).<br><br><b>Use cases</b>: Face recognition (FaceNet), image retrieval, one-shot learning.<br><br><b>Challenge</b>: Triplet mining - choosing informative triplets is crucial for training.",
+      "tags": [
+        "ch12",
+        "triplet-loss",
+        "metric-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-091",
+      "front": "What is the difference between hard and semi-hard triplet mining?",
+      "back": "<b>Triplet mining</b> selects which (anchor, positive, negative) triplets to train on.<br><br><b>Hard negatives</b>: \\( d(a, n) < d(a, p) \\)<br>Negative is closer than positive - violates the desired ordering.<br><br><b>Semi-hard negatives</b>: \\( d(a, p) < d(a, n) < d(a, p) + m \\)<br>Negative is farther than positive but within the margin.<br><br><b>In practice</b>:<ul><li>Hard negatives can cause training collapse (always choosing impossible triplets)</li><li>Semi-hard negatives provide useful gradients without being too difficult</li><li>Online mining: Select from current batch</li><li>Offline mining: Pre-compute across dataset</li></ul>",
+      "tags": [
+        "ch12",
+        "triplet-loss",
+        "metric-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-092",
+      "front": "What is few-shot learning?",
+      "back": "Learning from only a few labelled examples per class.<br>When only a <b>single labelled example</b> is available per class, it's called <b>one-shot learning</b>.<br>Requires models that can generalize from very limited data.",
+      "tags": [
+        "ch12",
+        "few-shot",
+        "learning-paradigms"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-12-093",
+      "front": "What is geometric deep learning?",
+      "back": "A framework for designing neural networks that respect <b>symmetries</b> in data.<br>Key idea: Build invariances/equivariances into network architecture.<br>Examples:<br><ul><li>CNNs: Translation equivariance</li><li>Graph NNs: Permutation equivariance</li><li>Spherical CNNs: Rotation equivariance</li></ul>",
+      "tags": [
+        "ch12",
+        "geometric-deep-learning",
+        "symmetry"
+      ]
     }
   ]
 }

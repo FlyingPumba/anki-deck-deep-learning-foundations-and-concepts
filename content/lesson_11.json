@@ -199,6 +199,86 @@
         "boosting",
         "ensemble"
       ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-020",
+      "front": "What are committees (ensembles) in machine learning?",
+      "back": "Combining predictions from <b>multiple models</b> to improve performance.<br>Methods:<br><ul><li><b>Averaging</b>: Mean of predictions</li><li><b>Voting</b>: Majority vote for classification</li><li><b>Weighted combination</b>: Based on model quality</li></ul>Reduces variance and often improves accuracy.",
+      "tags": [
+        "ch11",
+        "ensemble",
+        "committees"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-021",
+      "front": "What is bootstrap aggregation (bagging)?",
+      "back": "Creating multiple models trained on <b>bootstrap samples</b> of the data.<br>Bootstrap sample: Draw N points <b>with replacement</b> from original N points.<br>Each model sees different subset. Average predictions for final output.<br>Reduces variance without increasing bias.",
+      "tags": [
+        "ch11",
+        "bagging",
+        "ensemble"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-022",
+      "front": "What is a bootstrap dataset?",
+      "back": "A dataset \\( X_B \\) created by drawing N points <b>at random with replacement</b> from original dataset X of N points.<br>Some points appear multiple times, others not at all.<br>On average, ~63.2% of original points appear in each bootstrap sample.",
+      "tags": [
+        "ch11",
+        "bootstrap",
+        "sampling"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-023",
+      "front": "Why doesn't ensemble averaging reduce error as much as theory suggests?",
+      "back": "Theory: Averaging M models reduces error by factor of M.<br>Reality: <b>Errors are typically highly correlated</b> between models.<br>Correlated errors don't cancel out. Reduction is much smaller than 1/M.<br>Diversity among ensemble members is key to improvement.",
+      "tags": [
+        "ch11",
+        "ensemble",
+        "correlation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-024",
+      "front": "How does K-nearest neighbors work for classification?",
+      "back": "<b>Intuition</b>: \"You are who your friends are.\" To classify a new point, look at its K nearest neighbors and take a vote.<br><b>Example</b>: If K=5 and 3 neighbors are cats, 2 are dogs, classify as cat.<br><b>Choosing K</b>: Small K = sensitive to noise, large K = smoother boundaries but may miss local patterns.<br><b>Downside</b>: Must store all training data and compare against each for every prediction.",
+      "tags": [
+        "ch11",
+        "knn-classification",
+        "nonparametric"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-025",
+      "front": "What is the naive Bayes model?",
+      "back": "A generative model that assumes <b>conditional independence</b> of features given the class.<br><br><b>Intuition</b>: Imagine classifying emails as spam. Naive Bayes assumes that given an email is spam, the presence of the word 'free' is independent of the word 'money' - each word contributes evidence independently. This is 'naive' because words often <i>do</i> correlate, but the simplification works surprisingly well.<br><br><b>Formula</b>: \\( p(\\vec{x}|C_k) = \\prod_i p(x_i|C_k) \\)<br><br><b>Why it works</b>: Even if independence is violated, the model often ranks classes correctly. We only need the <i>most probable</i> class, not accurate probabilities.",
+      "tags": [
+        "ch11",
+        "naive-bayes",
+        "generative"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-026",
+      "front": "What is outlier detection (novelty detection)?",
+      "back": "Identifying inputs that differ significantly from the training data.<br>Important when test data may contain examples from classes not seen during training.<br>Generative models are naturally suited for this since they model \\( p(\\vec{x}) \\).",
+      "tags": [
+        "ch11",
+        "outlier-detection",
+        "novelty-detection"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-11-027",
+      "front": "What is model-based machine learning?",
+      "back": "An approach where:<br><ol><li><b>Domain knowledge</b> is encoded in model structure</li><li><b>Inductive biases</b> are explicitly designed</li><li>Learning is constrained by the model's assumptions</li></ol>Contrast with purely data-driven approaches. Combines expert knowledge with learning from data.",
+      "tags": [
+        "ch11",
+        "model-based",
+        "inductive-bias"
+      ]
     }
   ]
 }

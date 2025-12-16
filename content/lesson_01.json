@@ -111,26 +111,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-01-011",
-      "front": "What is a linear model in machine learning?",
-      "back": "A <b>linear model</b> is a function that is linear in its unknown parameters (weights), even if it is nonlinear in the input variables.<br>Example: \\( y(x, w) = w_0 + w_1 x + w_2 x^2 + \\ldots + w_M x^M \\) is linear in \\( w \\) but nonlinear in \\( x \\).",
-      "tags": [
-        "ch01",
-        "linear-models",
-        "definition"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-012",
-      "front": "What is the sum-of-squares error function?",
-      "back": "The sum-of-squares error function measures the misfit between predictions and training data:<br>\\( E(w) = \\frac{1}{2} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2 \\)<br>where \\( y(x_n, w) \\) is the prediction and \\( t_n \\) is the target value.",
-      "tags": [
-        "ch01",
-        "error-function",
-        "loss"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-01-013",
       "front": "What is overfitting?",
       "back": "<b>Overfitting</b> occurs when a model fits the training data very well (possibly exactly) but gives poor predictions on new, unseen data. The model has essentially memorized the noise in the training data rather than learning the underlying pattern.",
@@ -147,16 +127,6 @@
       "tags": [
         "ch01",
         "test-set",
-        "evaluation"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-015",
-      "front": "What is the root-mean-square (RMS) error and why is it useful?",
-      "back": "\\( E_{RMS} = \\sqrt{\\frac{1}{N} \\sum_{n=1}^{N} \\{y(x_n, w) - t_n\\}^2} \\)<br>It is useful because:<br><ul><li>Division by \\( N \\) allows comparison across different dataset sizes</li><li>The square root ensures the error is measured in the same units as the target variable</li></ul>",
-      "tags": [
-        "ch01",
-        "error-function",
         "evaluation"
       ]
     },
@@ -188,16 +158,6 @@
         "ch01",
         "regularization",
         "l2-regularization"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-019",
-      "front": "What are shrinkage methods? What is another name for this in neural networks?",
-      "back": "<b>Shrinkage methods</b> are techniques that reduce the value of the coefficients through regularization.<br>In the context of neural networks, this is called <b>weight decay</b> because the regularizer encourages the weights to decay towards zero.",
-      "tags": [
-        "ch01",
-        "regularization",
-        "weight-decay"
       ]
     },
     {
@@ -331,16 +291,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-01-038",
-      "front": "What is automatic differentiation and why is it important?",
-      "back": "<b>Automatic differentiation</b> automatically generates code for computing error function gradients (backpropagation) from the forward propagation code.<br>This allows researchers to rapidly experiment with different architectures since only the forward pass needs to be coded explicitly.",
-      "tags": [
-        "ch01",
-        "autodiff",
-        "training"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-01-039",
       "front": "How many neurons and synapses does a human brain contain?",
       "back": "A human brain contains:<br><ul><li>Around <b>90 billion neurons</b></li><li>Each neuron has on average several thousand synapses</li><li>Total of around <b>100 trillion (10^14) synapses</b></li></ul>",
@@ -418,78 +368,6 @@
         "ch01",
         "data-splits",
         "imbalanced-classes"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-048",
-      "front": "What is contrastive learning?",
-      "back": "<b>Contrastive learning</b> trains models by comparing similar and dissimilar examples.<br><br><b>Core idea</b>: Pull 'positive pairs' (similar examples) close together in embedding space, push 'negative pairs' (dissimilar examples) apart.<br><br><b>Self-supervised setup</b>: Create positive pairs by augmenting the same image twice (e.g., different crops). Other images in the batch are negatives.<br><br><b>Why useful</b>: Learns meaningful representations without labels. The model must capture semantic content to recognize that two augmented views are the same image.",
-      "tags": [
-        "ch01",
-        "contrastive-learning",
-        "self-supervised"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-049",
-      "front": "What is the InfoNCE loss (contrastive loss)?",
-      "back": "<b>InfoNCE</b> is the standard loss for contrastive learning:<br><br>\\( L = -\\log \\frac{\\exp(\\text{sim}(z_i, z_j)/\\tau)}{\\sum_{k \\neq i} \\exp(\\text{sim}(z_i, z_k)/\\tau)} \\)<br><br>where:<ul><li>\\( z_i, z_j \\) = embeddings of a positive pair</li><li>\\( \\text{sim} \\) = similarity (usually cosine)</li><li>\\( \\tau \\) = temperature (controls sharpness)</li><li>Sum over k includes all negatives</li></ul><b>Intuition</b>: Softmax over similarities. Maximize probability of the positive pair being most similar.",
-      "tags": [
-        "ch01",
-        "contrastive-learning",
-        "loss-function"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-050",
-      "front": "What are examples of contrastive learning methods?",
-      "back": "<b>Vision</b>:<ul><li><b>SimCLR</b>: Simple framework using large batches for negatives</li><li><b>MoCo</b>: Uses a momentum encoder and queue of negatives</li><li><b>BYOL/SimSiam</b>: No explicit negatives (avoids collapse via architectural tricks)</li></ul><b>Language</b>:<ul><li>Sentence embeddings (e.g., SimCSE)</li></ul><b>Multimodal</b>:<ul><li><b>CLIP</b>: Aligns image and text embeddings contrastively</li></ul><b>Key insight</b>: Quality and diversity of augmentations matter more than specific architecture.",
-      "tags": [
-        "ch01",
-        "contrastive-learning",
-        "methods"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-051",
-      "front": "What is the Vapnik-Chervonenkis (VC) dimension?",
-      "back": "<b>VC dimension</b> measures the <b>capacity</b> (expressiveness) of a hypothesis class.<br><br><b>Definition</b>: The largest number of points that can be <b>shattered</b> (classified in all possible ways) by the hypothesis class.<br><br><b>Examples</b>:<ul><li>Linear classifiers in 2D: VC dim = 3 (can shatter 3 points, not 4)</li><li>Linear classifiers in d dimensions: VC dim = d + 1</li><li>Neural networks: Roughly proportional to number of parameters</li></ul><b>Why it matters</b>:<ul><li>Bounds generalization error: higher VC dim needs more data</li><li>Helps understand model complexity beyond parameter count</li><li>Fundamental concept in statistical learning theory</li></ul>",
-      "tags": [
-        "ch01",
-        "vc-dimension",
-        "learning-theory"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-052",
-      "front": "What is the PAC (Probably Approximately Correct) learning framework?",
-      "back": "<b>PAC learning</b> formalizes what it means for a hypothesis class to be learnable.<br><br><b>Definition</b>: A class is PAC-learnable if there exists an algorithm that, for any target function in the class and any distribution over inputs, can find a hypothesis with:<ul><li>Error at most \\( \\epsilon \\) (approximately correct)</li><li>Probability at least \\( 1 - \\delta \\) (probably)</li><li>Using polynomial samples in \\( 1/\\epsilon \\), \\( 1/\\delta \\), and problem size</li></ul><b>Key results</b>:<ul><li>Finite hypothesis classes are PAC-learnable</li><li>Sample complexity depends on VC dimension</li><li>Fundamental theorem: A class is PAC-learnable iff it has finite VC dimension</li></ul><b>Intuition</b>: PAC gives guarantees on <i>how much data</i> you need for <i>how good</i> a solution.",
-      "tags": [
-        "ch01",
-        "pac-learning",
-        "learning-theory"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-053",
-      "front": "Compare maximum likelihood, contrastive estimation, and noise contrastive estimation (NCE).",
-      "back": "<b>Maximum Likelihood Estimation (MLE)</b>:<ul><li>Maximize \\( \\sum_n \\log p_\\theta(x_n) \\)</li><li>Requires computing \\( Z(\\theta) = \\sum_x \\exp(f_\\theta(x)) \\) (partition function)</li><li>Intractable when output space is large</li></ul><b>Contrastive Estimation</b>:<ul><li>Learn by comparing positive and negative examples</li><li>Avoid computing full partition function</li><li>InfoNCE: \\( -\\log \\frac{\\exp(f(x, x^+))}{\\sum_k \\exp(f(x, x_k^-))} \\)</li></ul><b>Noise Contrastive Estimation (NCE)</b>:<ul><li>Turn density estimation into binary classification</li><li>Classify real data vs samples from noise distribution</li><li>Learn \\( \\log p(x) \\) directly, treating \\( \\log Z \\) as a parameter</li><li>As noise samples increase, approaches MLE</li></ul><b>When to use</b>:<ul><li>MLE: Small discrete outputs, tractable partition function</li><li>Contrastive: Representation learning, similarity tasks</li><li>NCE: Large vocabularies (word embeddings), energy models</li></ul>",
-      "tags": [
-        "ch01",
-        "mle",
-        "nce",
-        "contrastive-learning"
-      ]
-    },
-    {
-      "uid": "deep-learning-foundations-and-concepts-01-054",
-      "front": "Compare self-supervised learning objectives: contrastive vs masked prediction.",
-      "back": "<b>Contrastive learning</b> (e.g., SimCLR, CLIP):<ul><li><b>Objective</b>: Pull similar pairs close, push dissimilar pairs apart</li><li><b>Inductive bias</b>: Augmentation-invariant representations. What you augment away is deemed irrelevant.</li><li><b>Requires</b>: Careful augmentation design, large batches or memory banks for negatives</li><li><b>Risk</b>: Can collapse to trivial solution without proper design</li></ul><b>Masked prediction</b> (e.g., BERT, MAE):<ul><li><b>Objective</b>: Predict masked/corrupted parts from visible parts</li><li><b>Inductive bias</b>: Learn dependencies between parts. Context should predict content.</li><li><b>Requires</b>: High redundancy in data (language, images)</li><li><b>Risk</b>: May learn low-level statistics instead of semantics</li></ul><b>Key differences</b>:<ul><li>Contrastive: Instance-level discrimination</li><li>Masked: Token/patch-level prediction</li><li>Contrastive works better with smaller data; masked scales better</li></ul>",
-      "tags": [
-        "ch01",
-        "self-supervised",
-        "contrastive-learning",
-        "masked-prediction"
       ]
     },
     {

@@ -352,16 +352,6 @@
       ]
     },
     {
-      "uid": "deep-learning-foundations-and-concepts-05-041",
-      "front": "What is meta-learning (learning to learn)?",
-      "back": "Learning algorithms that improve their learning ability across multiple tasks.<br>Goal: Learn to learn new tasks quickly from few examples.<br>Extends transfer learning to learning across many tasks, adapting the learning process itself.",
-      "tags": [
-        "ch05",
-        "meta-learning",
-        "neural-networks"
-      ]
-    },
-    {
       "uid": "deep-learning-foundations-and-concepts-05-042",
       "front": "What notation is used for the layers in a deep neural network?",
       "back": "\\( \\vec{z}^{(l)} \\) = activations at layer \\( l \\)<br>Special cases:<br><ul><li>\\( \\vec{z}^{(0)} = \\vec{x} \\) (input vector)</li><li>\\( \\vec{z}^{(L)} = \\vec{y} \\) (output vector)</li></ul>Number of layers counted by learnable weight matrices.",
@@ -499,6 +489,286 @@
         "ch05",
         "information-bottleneck",
         "representation-learning"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-058",
+      "front": "What is a decision region in classification?",
+      "back": "A region of input space where all points are assigned to the same class.<br>The input space is divided into decision regions \\( R_k \\) for each class \\( C_k \\).",
+      "tags": [
+        "ch05",
+        "classification",
+        "decision-regions"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-059",
+      "front": "What are decision boundaries (decision surfaces)?",
+      "back": "The boundaries between decision regions.<br>For a linear discriminant: the hyperplane where \\( y(\\vec{x}) = 0 \\), i.e., \\( \\vec{w}^T\\vec{x} + w_0 = 0 \\).",
+      "tags": [
+        "ch05",
+        "classification",
+        "decision-boundaries"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-060",
+      "front": "What does it mean for data to be linearly separable?",
+      "back": "Data from different classes can be separated by a linear decision boundary (hyperplane).<br>If classes overlap, they are not linearly separable.",
+      "tags": [
+        "ch05",
+        "classification",
+        "linear-separability"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-061",
+      "front": "What is a discriminant function?",
+      "back": "A function that takes an input vector \\( \\vec{x} \\) and assigns it directly to one of K classes.<br>Simplest form for two classes:<br>\\( y(\\vec{x}) = \\vec{w}^T\\vec{x} + w_0 \\)<br>Classify as \\( C_1 \\) if \\( y(\\vec{x}) > 0 \\), else \\( C_2 \\).",
+      "tags": [
+        "ch05",
+        "classification",
+        "discriminant"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-062",
+      "front": "What is the geometric interpretation of the weight vector in a linear discriminant?",
+      "back": "The weight vector \\( \\vec{w} \\) is <b>orthogonal to the decision surface</b>.<br>The bias \\( w_0 \\) determines the <b>location</b> of the decision surface (its distance from the origin).",
+      "tags": [
+        "ch05",
+        "classification",
+        "geometry"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-063",
+      "front": "What is a one-versus-the-rest classifier?",
+      "back": "For K classes, train K binary classifiers, each separating one class from all others combined.<br>Problem: Can lead to ambiguous regions where multiple classifiers claim the point, or no classifier claims it.",
+      "tags": [
+        "ch05",
+        "multi-class",
+        "classification"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-064",
+      "front": "What is a one-versus-one classifier?",
+      "back": "For K classes, train \\( K(K-1)/2 \\) binary classifiers for every pair of classes.<br>Requires more classifiers than one-versus-the-rest but can still lead to ambiguous regions.",
+      "tags": [
+        "ch05",
+        "multi-class",
+        "classification"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-065",
+      "front": "For K-class linear discriminants, what shape are the decision regions?",
+      "back": "The decision regions are always <b>singly connected and convex</b>.<br>This follows from the linearity of the discriminant functions.",
+      "tags": [
+        "ch05",
+        "classification",
+        "decision-regions"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-066",
+      "front": "What is a discriminative probabilistic model?",
+      "back": "A model that directly models the posterior probability \\( p(C_k|\\vec{x}) \\) without modeling the class-conditional densities.<br>Examples: Logistic regression, neural network classifiers.<br>Contrast with generative models.",
+      "tags": [
+        "ch05",
+        "discriminative",
+        "probabilistic"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-067",
+      "front": "What is a generative probabilistic model?",
+      "back": "A model that computes posterior probabilities using Bayes' theorem by modeling:<br><ul><li>Class-conditional densities \\( p(\\vec{x}|C_k) \\)</li><li>Prior probabilities \\( p(C_k) \\)</li></ul>Then uses: \\( p(C_k|\\vec{x}) = \\frac{p(\\vec{x}|C_k)p(C_k)}{p(\\vec{x})} \\)<br>Also models the input distribution \\( p(\\vec{x}) \\).",
+      "tags": [
+        "ch05",
+        "generative",
+        "probabilistic"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-068",
+      "front": "What is the confusion matrix in classification?",
+      "back": "A table showing prediction outcomes:<br>|  | Predicted + | Predicted - |<br>|--|-------------|-------------|<br>| Actual + | True Positive (TP) | False Negative (FN) |<br>| Actual - | False Positive (FP) | True Negative (TN) |<br>False positives = Type 1 errors<br>False negatives = Type 2 errors",
+      "tags": [
+        "ch05",
+        "confusion-matrix",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-069",
+      "front": "Why can accuracy be misleading for imbalanced classes?",
+      "back": "With strongly imbalanced classes, a naive classifier that always predicts the majority class can achieve high accuracy.<br>Example: 99% negative class - predicting all negative gives 99% accuracy but is useless.<br>Need metrics like precision, recall, F-score instead.",
+      "tags": [
+        "ch05",
+        "accuracy",
+        "imbalanced-classes"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-070",
+      "front": "What is precision in classification?",
+      "back": "The fraction of positive predictions that are correct:<br>\\( \\text{Precision} = \\frac{TP}{TP + FP} \\)<br>Represents the probability that a positive prediction is actually positive.<br>Also called Positive Predictive Value (PPV).",
+      "tags": [
+        "ch05",
+        "precision",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-071",
+      "front": "What is recall in classification?",
+      "back": "The fraction of actual positives that are correctly identified:<br>\\( \\text{Recall} = \\frac{TP}{TP + FN} \\)<br>Also called sensitivity or True Positive Rate (TPR).",
+      "tags": [
+        "ch05",
+        "recall",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-072",
+      "front": "What is the false positive rate (FPR)?",
+      "back": "The fraction of actual negatives that are incorrectly classified as positive:<br>\\( \\text{FPR} = \\frac{FP}{FP + TN} \\)<br>Also called the fall-out rate. Used in ROC curves.",
+      "tags": [
+        "ch05",
+        "fpr",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-073",
+      "front": "What is the false discovery rate (FDR)?",
+      "back": "The fraction of positive predictions that are incorrect:<br>\\( \\text{FDR} = \\frac{FP}{FP + TP} = 1 - \\text{Precision} \\)<br>The complement of precision.",
+      "tags": [
+        "ch05",
+        "fdr",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-074",
+      "front": "What is an ROC curve?",
+      "back": "<b>Receiver Operating Characteristic</b> curve: a plot of True Positive Rate vs False Positive Rate as the classification threshold varies.<br>Each point represents a different threshold, giving a different confusion matrix.<br>Useful for comparing classifiers and choosing operating points.",
+      "tags": [
+        "ch05",
+        "roc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-075",
+      "front": "What does a classifier below the diagonal mean on an ROC curve?",
+      "back": "It performs <b>worse than random guessing</b>.<br>The diagonal represents random classification.<br>Above diagonal = better than random.<br>Perfect classifier = top-left corner (TPR=1, FPR=0).",
+      "tags": [
+        "ch05",
+        "roc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-076",
+      "front": "What is AUC (Area Under the ROC Curve)?",
+      "back": "A summary measure of classifier performance:<br><ul><li>AUC = 0.5: Random guessing</li><li>AUC = 1.0: Perfect classifier</li></ul>Represents the probability that a randomly chosen positive example ranks higher than a randomly chosen negative example.",
+      "tags": [
+        "ch05",
+        "auc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-077",
+      "front": "What is the F-score?",
+      "back": "The harmonic mean of precision and recall:<br>\\( F_1 = 2 \\cdot \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}} \\)<br>Balances precision and recall. The general \\( F_\\beta \\) score weights recall \\( \\beta \\) times as much as precision.",
+      "tags": [
+        "ch05",
+        "f-score",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-078",
+      "front": "What is the reject option in classification?",
+      "back": "Refusing to classify inputs where the classifier is uncertain.<br>Implemented by introducing a threshold \\( \\theta \\) and rejecting inputs where the largest posterior probability \\( \\max_k p(C_k|\\vec{x}) < \\theta \\).<br>Reduces errors at the cost of leaving some inputs unclassified.",
+      "tags": [
+        "ch05",
+        "reject-option",
+        "classification"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-079",
+      "front": "What are four reasons to compute posterior probabilities even if you just need class predictions?",
+      "back": "<ol><li><b>Minimizing risk</b>: Incorporate different misclassification costs</li><li><b>Reject option</b>: Refuse uncertain predictions</li><li><b>Compensating for class priors</b>: Adjust for different train/test class distributions</li><li><b>Combining models</b>: Properly combine predictions from multiple models</li></ol>",
+      "tags": [
+        "ch05",
+        "posterior",
+        "decision-theory"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-080",
+      "front": "What is a precision-recall (PR) curve?",
+      "back": "A <b>precision-recall curve</b> plots <b>precision</b> vs <b>recall</b> as the classification threshold varies.<br><br>Each threshold gives a different confusion matrix, hence different precision/recall.<br><br>PR curves are especially informative when the <b>positive class is rare</b>.<br><br><b>Intuition</b>: With rare positives (e.g., 1% fraud), a bad classifier predicting 'always negative' gets 99% accuracy and low FPR (few false positives relative to many true negatives). ROC curves, which use FPR, can look deceptively good. But precision asks: 'Of predicted positives, how many are correct?' This exposes the failure - if you never predict positive, precision is undefined; if you predict a few, precision will be low because true positives are so rare. PR curves focus entirely on the positive class, ignoring the overwhelming true negatives that mask poor performance.",
+      "tags": [
+        "ch05",
+        "precision-recall",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-081",
+      "front": "What is PR-AUC (area under the precision-recall curve)?",
+      "back": "<b>PR-AUC</b> summarizes a PR curve as a single number (area under the curve).<br><br><b>Baseline</b>: A random classifier has precision equal to the positive class prevalence \\( p(y=1) \\), so the baseline PR curve is a horizontal line at that value.<br><br>Higher PR-AUC indicates better performance on the positive class.",
+      "tags": [
+        "ch05",
+        "pr-auc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-082",
+      "front": "What does it mean for a classifier to be well-calibrated?",
+      "back": "A classifier is <b>calibrated</b> if its predicted probabilities match empirical frequencies.<br><br><b>Example</b>: Among examples where the model predicts 0.8, about 80% should truly be positive.<br><br><b>Why useful</b>: Calibration matters when probabilities drive decisions (thresholding, ranking with costs, risk estimates), not just class labels.<br><br><b>How to check</b>: reliability diagram (calibration curve).<br><b>How to fix</b>: post-hoc calibration such as <b>temperature scaling</b> (common for neural nets).",
+      "tags": [
+        "ch05",
+        "calibration",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-083",
+      "front": "What is focal loss and when is it used?",
+      "back": "<b>Focal loss</b> down-weights easy examples to focus training on hard ones:<br><br>\\( FL(p_t) = -\\alpha_t (1 - p_t)^\\gamma \\log(p_t) \\)<br><br>where \\( p_t \\) is the predicted probability for the true class.<br><br><b>Key idea</b>: The \\( (1 - p_t)^\\gamma \\) factor reduces the loss for well-classified examples (high \\( p_t \\)).<br><br><b>Parameters</b>:<ul><li>\\( \\gamma \\): Focusing parameter (typically 2). Higher = more focus on hard examples.</li><li>\\( \\alpha_t \\): Class weight for imbalance</li></ul><b>When to use</b>: Object detection (many easy negatives, few hard positives), extreme class imbalance.<br><br><b>Origin</b>: RetinaNet (2017).",
+      "tags": [
+        "ch05",
+        "focal-loss",
+        "imbalanced-classes"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-084",
+      "front": "What is plotted on the x-axis and y-axis of a ROC curve?",
+      "back": "<b>X-axis</b>: False Positive Rate (FPR) = FP / (FP + TN)<br><b>Y-axis</b>: True Positive Rate (TPR) = TP / (TP + FN)<br><br><b>Intuition</b>:<ul><li>X-axis: Of all actual negatives, what fraction did we incorrectly call positive?</li><li>Y-axis: Of all actual positives, what fraction did we correctly identify?</li></ul><b>Ideal point</b>: Top-left corner (0, 1) - zero false positives, all true positives detected.",
+      "tags": [
+        "ch05",
+        "roc",
+        "evaluation"
+      ]
+    },
+    {
+      "uid": "deep-learning-foundations-and-concepts-05-085",
+      "front": "How do you 'read' the ROC curve and what information does it tell you?",
+      "back": "The ROC curve plots <b>false positive rate</b> (x-axis) vs <b>true positive rate</b> (y-axis) for a range of thresholds.<br><br><b>Why thresholds matter</b>: Classifiers usually output a continuous score rather than a binary decision. You must choose a threshold to binarize this score before computing classification metrics.<br><br><b>The trade-off</b>: Raising or lowering the threshold directly trades off between TPR and FPR:<ul><li>Lower threshold: More positives predicted → higher TPR but also higher FPR</li><li>Higher threshold: Fewer positives predicted → lower FPR but also lower TPR</li></ul><b>Reading the curve</b>: The ROC curve shows this entire trade-off. The <b>area under the curve (AUC)</b> measures how 'nice' this trade-off is - a larger area means the classifier can achieve high TPR without incurring high FPR.",
+      "tags": [
+        "ch05",
+        "roc",
+        "evaluation"
       ]
     }
   ]
