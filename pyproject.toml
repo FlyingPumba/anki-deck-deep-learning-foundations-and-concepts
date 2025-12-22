@@ -1,9 +1,0 @@
-[project]
-name = "anki-deck-deep-learning-foundations-and-concepts"
-version = "0.1.0"
-description = "Deep Learning: Foundations and Concepts curriculum synced to Anki"
-requires-python = ">=3.13"
-dependencies = [
-    "pyzotero>=1.7.6",
-    "requests>=2.32.5",
-]
